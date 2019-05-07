@@ -1,0 +1,13 @@
+= BASH =
+
+== dirs & files ==
+
+=== compare two dirs ===
+* show same files in 2 dirs, ignoring extensions
+{{{
+    comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
+}}}
+* show different files in 2 dirs, ignoring extensions
+{{{
+    comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
+}}}
