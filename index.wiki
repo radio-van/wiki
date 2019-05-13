@@ -12,6 +12,20 @@
     comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
 }}}
 
+= MULTIMEDIA =
+
+== ffmpeg ==
+
+=== batch conversion ===
+{{{
+find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new
+}}}
+* `parallel` - GNU parallel
+* output format:
+  * {} - same name and path as input
+  * {.} - same path and name w/o extension
+
+
 = NETWORKING =
 
 == tcp/ip ==
