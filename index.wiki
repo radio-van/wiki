@@ -11,3 +11,23 @@
 {{{
     comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
 }}}
+
+= NETWORKING =
+
+== tcp/ip ==
+
+=== ip address aliasing ===
+CentOS::
+  :: `/etc/sysconfig/network-scripts`
+  :: `cp ifcfg-ethX icfg-ethX:N`
+  <br>
+  :: necessary fields in alias interface are:
+  {{{
+  DEVICE="ethX:N"
+  BOOTPROTO=static
+  ONBOOT=yes
+  IPADDR=...
+  NETMASK=...
+  GATEWAY=...
+  }}}
+  :: `/etc/init.d/network restart`
