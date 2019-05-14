@@ -45,3 +45,12 @@ CentOS::
   GATEWAY=...
   }}}
   :: `/etc/init.d/network restart`
+  
+= DATABASES =
+
+== SQL ==
+
+=== update part of the value ===
+{{{class="brush: sql"
+UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+}}}
