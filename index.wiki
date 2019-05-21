@@ -1,6 +1,6 @@
-= BASH =
+= DEVELOPING =
 
-== dirs & files ==
+== bash ==
 
 === compare two dirs ===
 * show same files in 2 dirs, ignoring extensions
@@ -12,6 +12,71 @@
     comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
 }}}
 
+== brew ==
+
+=== downgrade package ===
+{{{
+brew search <package name>
+}}}
+Older/specific versions are marked with `@`
+{{{
+brew install <package>@<version>
+brew unlink <old package>
+brew link --force --overwrite <new package>
+}}}
+
+== vim ==
+
+=== lines ===
+- `set number` - show line numbers (1 2 3)
+- `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
+- `set number relativenamber` - combine both
+
+= HARDWARE =
+
+== Android flashing ==
+
+=== Essential phone ===
+
+- activate Developer options (taps on build version)
+- allow OEM unlock
+- allow usb debugging
+- boot to `fastboot mode` (usb + volume down)
+- unlock bootloader (warranty void!)
+{{{
+fastboot flashing unlock
+}}}
+- reboot phone
+- get current boot slot, `a` or `b`
+{{{
+adb shell getprop ro.boot.slot_suffix
+}}}
+or
+{{{
+fastboot getvar current_slot
+}}}
+- boot into `fastboot mode`, switch slot
+{{{
+fastboot --set-active=x
+}}}
+    where `x` is `a` or `b`
+- flash *twrp img*
+{{{
+fastboot flash boot_<slot num> twrp-<...>.img 
+}}}
+* `TWRP-SEP.img` is needed, stock *twrp* lack touch
+- reboot to recovery from fastboot
+- push *twrp-installer*
+{{{
+adb push twrp-installer-<...>.zip /sdcard
+}}}
+- install *twrp-installer* from *twrp* -> now *TWRP* is installed to both slots
+- reboot to opposite slot from *twrp*  # TODO not clear yet
+- flash `Magisk`, `firmware`, etc
+
+* seems like patched boot is needed to be flashed to get *Magisk* to work
+
+    
 = MULTIMEDIA =
 
 == ffmpeg ==
