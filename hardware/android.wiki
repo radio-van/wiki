@@ -1,0 +1,44 @@
+= Android =
+
+=== flashing ===
+
+==== essential ====
+
+- activate Developer options (taps on build version)
+- allow OEM unlock
+- allow usb debugging
+- boot to `fastboot mode` (usb + volume down)
+- unlock bootloader (warranty void!)
+{{{
+fastboot flashing unlock
+}}}
+- reboot phone
+- get current boot slot, `a` or `b`
+{{{
+adb shell getprop ro.boot.slot_suffix
+}}}
+- or
+{{{
+fastboot getvar current_slot
+}}}
+- boot into `fastboot mode`, switch slot
+{{{
+fastboot --set-active=x
+}}}
+    where `x` is `a` or `b`
+- flash *twrp img*
+{{{
+fastboot flash boot_<slot num> twrp-<...>.img 
+}}}
+* `TWRP-SEP.img` is needed, stock *twrp* lack touch
+- reboot to recovery from fastboot
+- push *twrp-installer*
+{{{
+adb push twrp-installer-<...>.zip /sdcard
+}}}
+- install *twrp-installer* from *twrp* -> now *TWRP* is installed to both slots
+- reboot to opposite slot from *twrp*  # TODO not clear yet
+- flash `Magisk`, `firmware`, etc
+
+* seems like patched boot is needed to be flashed to get *Magisk* to work
+

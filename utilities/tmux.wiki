@@ -1,0 +1,5 @@
+= TMUX =
+
+=== panes ===
+
+list panes & windows:: `^b s`, `tmux ls`

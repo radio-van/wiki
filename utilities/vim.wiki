@@ -1,0 +1,9 @@
+= VIM = 
+
+=== configuration ===
+
+==== lines ====
+
+- `set number` - show line numbers (1 2 3)
+- `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
+- `set number relativenamber` - combine both

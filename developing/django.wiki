@@ -1,0 +1,15 @@
+= DJANGO =
+
+=== localization ===
+
+==== make/update localization files ====
+* create/update `.po` files
+{{{
+  django-admin makemessages -l <locale>
+}}}
+* edit them in `Poedit`
+* compile `.mo` files
+{{{
+  django-admin compilemessages 
+}}}
+

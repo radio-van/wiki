@@ -1,0 +1,15 @@
+= BREW =
+
+=== tips & trics ===
+
+==== downgrade package ====
+{{{
+brew search <package name>
+}}}
+Older/specific versions are marked with `@`
+{{{
+brew install <package>@<version>
+brew unlink <old package>
+brew link --force --overwrite <new package>
+}}}
+

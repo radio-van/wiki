@@ -1,0 +1,27 @@
+= BASH =
+
+=== configuration ===
+
+==== files ====
+
+login shell:: when you login from another host or text console on login machine
+non-login shell:: when you start display manager
+interactive shell:: when you're connected to a pseudo-terminal via text-console or SSH
+non-interactive shell:: rare, can be launched on some display managers or when shell runs a script
+
+* `.bashrc` - _interactive_ and _non-login_ shell (i.e in existing session)
+* `.bash_profile` - _login_ shell
+* 
+
+=== tips & tricks ===
+
+==== compare two dirs ====
+
+* show same files in 2 dirs, ignoring extensions
+{{{
+    comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
+}}}
+* show different files in 2 dirs, ignoring extensions
+{{{
+    comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
+}}}

@@ -1,121 +1,33 @@
-= DEVELOPING =
-
-== bash ==
-
-=== compare two dirs ===
-* show same files in 2 dirs, ignoring extensions
-{{{
-    comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
-}}}
-* show different files in 2 dirs, ignoring extensions
-{{{
-    comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
-}}}
-
-== brew ==
-
-=== downgrade package ===
-{{{
-brew search <package name>
-}}}
-Older/specific versions are marked with `@`
-{{{
-brew install <package>@<version>
-brew unlink <old package>
-brew link --force --overwrite <new package>
-}}}
-
-== vim ==
-
-=== lines ===
-- `set number` - show line numbers (1 2 3)
-- `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
-- `set number relativenamber` - combine both
-
-= HARDWARE =
-
-== Android flashing ==
-
-=== Essential phone ===
-
-- activate Developer options (taps on build version)
-- allow OEM unlock
-- allow usb debugging
-- boot to `fastboot mode` (usb + volume down)
-- unlock bootloader (warranty void!)
-{{{
-fastboot flashing unlock
-}}}
-- reboot phone
-- get current boot slot, `a` or `b`
-{{{
-adb shell getprop ro.boot.slot_suffix
-}}}
-or
-{{{
-fastboot getvar current_slot
-}}}
-- boot into `fastboot mode`, switch slot
-{{{
-fastboot --set-active=x
-}}}
-    where `x` is `a` or `b`
-- flash *twrp img*
-{{{
-fastboot flash boot_<slot num> twrp-<...>.img 
-}}}
-* `TWRP-SEP.img` is needed, stock *twrp* lack touch
-- reboot to recovery from fastboot
-- push *twrp-installer*
-{{{
-adb push twrp-installer-<...>.zip /sdcard
-}}}
-- install *twrp-installer* from *twrp* -> now *TWRP* is installed to both slots
-- reboot to opposite slot from *twrp*  # TODO not clear yet
-- flash `Magisk`, `firmware`, etc
-
-* seems like patched boot is needed to be flashed to get *Magisk* to work
-
-    
-= MULTIMEDIA =
-
-== ffmpeg ==
-
-=== batch conversion ===
-{{{
-find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new
-}}}
-* `parallel` - GNU parallel
-* output format:
-  * {} - same name and path as input
-  * {.} - same path and name w/o extension
-
-
-= NETWORKING =
-
-== tcp/ip ==
-
-=== ip address aliasing ===
-CentOS::
-  :: `/etc/sysconfig/network-scripts`
-  :: `cp ifcfg-ethX icfg-ethX:N`
-  <br>
-  :: necessary fields in alias interface are:
-  {{{
-  DEVICE="ethX:N"
-  BOOTPROTO=static
-  ONBOOT=yes
-  IPADDR=...
-  NETMASK=...
-  GATEWAY=...
-  }}}
-  :: `/etc/init.d/network restart`
-  
-= DATABASES =
-
-== SQL ==
-
-=== update part of the value ===
-{{{class="brush: sql"
-UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
-}}}
+* Developing
+  * [[developing/databases|databases]]
+    * [[developing/databases#sql|SQL]]
+      * [[developing/databases#tips & tricks|tips & trics]]
+        * [[developing/databases#update part of the value|update part of the value]]
+  * [[developing/django|django]]
+    * [[developing/django#localization|localization]]
+* Hardware
+  * [[hardware/android|android]]
+    * [[hardware/android#flashing|flashing]]
+      * [[hardware/android#essential|Essential Phone PH-1]]
+* Linux
+  * [[linux/networking|networking]]
+    * [[linux/networking#tcp/ip|TCP/IP]]
+      * [[linux/networking#ip address aliasing]]
+* Utilities
+  * [[utilities/bash|bash]]
+    * [[utilities/bash#configuration|configuration]]
+      * [[utilities/bash#files|files]]
+    * [[utilities/bash#tips & tricks|tips & tricks]]
+      * [[utilities/bash#compare two dirs|compare two directories]]
+  * [[utilities/brew|brew]]
+    * [[utilities/brew#tips & tricks|tips & trics]]
+      * [[utilities/brew#downgrade package|downgrade package]]
+  * [[utilities/ffmpeg|ffmpeg]]
+    * [[utilities/ffmpeg#tips & trics|tips & tricks]]
+      * [[utilities/ffmpeg#conversion: batch|conversion: batch]]
+      * [[utilities/ffmpeg#sample: noise|sample: noise]]
+  * [[utilities/tmux|tmux]] 
+    * [[utilities/tmux#panes|panes]]
+  * [[utilities/vim|vim]]
+    * [[utilities/vim#configuration|configuration]]
+      * [[utilities/vim#lines|lines]]

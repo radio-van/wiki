@@ -1,0 +1,11 @@
+= DATABASES =
+
+== SQL ==
+
+=== tips & tricks ===
+
+==== update part of the value ====
+{{{class="brush: sql"
+UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+}}}
+
