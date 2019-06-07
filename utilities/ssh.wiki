@@ -1,0 +1,19 @@
+= Contents =
+  - [[#SSH|SSH]]
+      - [[#SSH#authorization|authorization]]
+        - [[#SSH#authorization#keygen|keygen]]
+        - [[#SSH#authorization#copy key|copy key]]
+
+= SSH =
+
+=== authorization ===
+
+==== keygen ====
+{{{
+   ssh-keygen -t rsa -b 2048 -f $FILE
+ }}}
+==== copy key ====
+{{{
+   ssh-copy-id -i $FILE $user@$host
+ }}}
+

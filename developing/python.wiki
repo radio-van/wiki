@@ -1,0 +1,68 @@
+= Contents =
+  - [[#PYTHON|PYTHON]]
+      - [[#PYTHON#virtualenv|virtualenv]]
+        - [[#PYTHON#virtualenv#create venv|create venv]]
+        - [[#PYTHON#virtualenv#install requirements|install requirements]]
+        - [[#PYTHON#virtualenv#activate pyenv|activate pyenv]]
+        - [[#PYTHON#virtualenv#create pyenv|create pyenv]]
+        - [[#PYTHON#virtualenv#install version of Python|install version of Python]]
+      - [[#PYTHON#tips & tricks|tips & tricks]]
+        - [[#PYTHON#tips & tricks#web server|web server]]
+
+= PYTHON =
+
+=== mock ===
+To patch *class* attribute or method::
+{{{class="brush: python"
+  @mock.patch.object(Class, 'attribute/method')
+  def test(self, mocked_attribute/method):
+    mocked_method.side_effect=...
+    mocked_method.return_value=...
+}}}
+:: also, mocked object/method can be specified
+{{{class="brush: python"
+  def fake_method(self):
+    ...
+    
+  @mock.patch.object(Class, 'attribute/method', faked_method)
+  def test(self):
+    mocked_method.side_effect=...
+    mocked_method.return_value=...
+}}}
+
+
+To patch 
+    
+
+=== virtualenv ===
+			
+==== create venv ====
+{{{
+  python -m venv $venv
+}}}
+==== install requirements ====
+{{{
+  pip install -r requirements.txt
+}}}
+==== activate pyenv ====
+{{{
+  pyenv activate $venv_name
+}}}
+==== create pyenv ====
+{{{
+  pyenv virtualenv $python_version $venv_name
+}}}
+==== install version of Python ====
+{{{
+  pyenv install $version
+}}}
+                
+                
+                
+                
+=== tips & tricks ===
+
+==== web server ====
+{{{
+  python -m http.server --cgi 8000
+}}}

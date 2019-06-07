@@ -1,3 +1,10 @@
+= Contents =
+  - [[#FFMPEG|FFMPEG]]
+      - [[#FFMPEG#tips & tricks|tips & tricks]]
+        - [[#FFMPEG#tips & tricks#conversion: batch|conversion: batch]]
+        - [[#FFMPEG#tips & tricks#conversion: remove audio|conversion: remove audio]]
+        - [[#FFMPEG#tips & tricks#sample: noise|sample: noise]]
+
 = FFMPEG =
 
 === tips & tricks ===
@@ -11,17 +18,22 @@
   * {} - same name and path as input
   * {.} - same path and name w/o extension
 
+==== conversion: remove audio ====
+{{{
+  ffmpeg -i input -c copy -an output
+}}}
+
 ==== sample: noise ====
 * color
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \
-  -t 5 -vf hue=s=0 output.mkv
+  -t 5 -vf hue=s=0 output
 }}}
 * monochrome
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \
-  -t 5 output.mkv
+  -t 5 output
 }}}
 

@@ -1,11 +1,50 @@
+= Contents =
+  - [[#DATABASES|DATABASES]]
+    - [[#DATABASES#postgress|postgress]]
+        - [[#DATABASES#postgress#pgcli connect|pgcli connect]]
+    - [[#DATABASES#sql|sql]]
+      - [[#DATABASES#sql#modification|modification]]
+        - [[#DATABASES#sql#modification#insert values|insert values]]
+        - [[#DATABASES#sql#modification#update part of the value|update part of the value]]
+      - [[#DATABASES#sql#queries|queries]]
+        - [[#DATABASES#sql#queries#filter values|filter values]]
+        - [[#DATABASES#sql#queries#limit query|limit query]]
+
 = DATABASES =
 
-== SQL ==
+== postgress ==
 
-=== tips & tricks ===
+==== pgcli connect ====
+{{{
+  pgcli -h localhost -u postgres
+}}}
+ 
+== sql ==
 
+=== modification ===
+
+==== insert values ====
+{{{class="brush: sql"
+   INSERT INTO table (col1, col2) VALUES (val1, val2);
+}}}
 ==== update part of the value ====
 {{{class="brush: sql"
-UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+  UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
 }}}
+
+=== queries ===
+
+==== delete values ====
+{{{class="brush: sql"
+  DELETE FROM table WHERE condition;
+}}}
+==== filter values ====
+{{{class="brush: sql"
+  SELECT * FROM table WHERE string IN (value1, value2,...);
+}}}
+==== limit query ====
+{{{class="brush: sql"
+  SELECT * FROM table LIMIT num;
+}}}
+
 

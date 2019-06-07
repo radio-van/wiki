@@ -1,3 +1,7 @@
+= Contents =
+  - [[#TMUX|TMUX]]
+      - [[#TMUX#panes|panes]]
+
 = TMUX =
 
 === panes ===

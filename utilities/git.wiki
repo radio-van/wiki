@@ -1,0 +1,73 @@
+= Contents =
+  - [[#git|git]]
+      - [[#git#tips and tricks|tips and tricks]]
+        - [[#git#tips and tricks#checkout one file|checkout one file]]
+        - [[#git#tips and tricks#checkout remote branch|checkout remote branch]]
+        - [[#git#tips and tricks#delete local branch|delete local branch]]
+        - [[#git#tips and tricks#delete remote branch|delete remote branch]]
+        - [[#git#tips and tricks#diff with branch|diff with branch]]
+        - [[#git#tips and tricks#push to remote|push to remote]]
+        - [[#git#tips and tricks#push to remote (diff name)|push to remote (diff name)]]
+        - [[#git#tips and tricks#stash: apply 1 file|stash: apply 1 file]]
+        - [[#git#tips and tricks#stash: clear|stash: clear]]
+        - [[#git#tips and tricks#stash: show|stash: show]]
+        - [[#git#tips and tricks#submodules: update|submodules: update]]
+
+= git =
+
+=== tips and tricks ===
+
+==== checkout one file ====
+{{{
+   git checkout $commit_hash -- $filename
+}}}
+
+==== checkout remote branch ====
+{{{
+   git checkout $remote_branch
+}}}
+
+==== delete local branch ====
+{{{
+   git branch -d $branch
+}}}
+
+==== delete remote branch ====
+{{{
+   git push origin --delete $remote_branch
+}}}
+
+==== diff with branch ====
+{{{
+   git diff --name-only $branch
+}}}
+
+==== push to remote ====
+{{{
+   git push -u $remote $branch
+}}}
+
+==== push to remote (diff name) ====
+{{{
+   git push -u $remote HEAD:$remote_branch
+}}}
+
+==== stash: apply 1 file ====
+{{{
+   git checkout stash@{0} -- $file
+}}}
+
+==== stash: clear ====
+{{{
+   git stash clear
+}}}
+
+==== stash: show ====
+{{{
+   git stash show -p
+}}}
+
+==== submodules: update ====
+{{{
+   git submodule update --recursive --remote
+ }}}

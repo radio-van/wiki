@@ -1,3 +1,10 @@
+= Contents =
+  - [[#BASH|BASH]]
+      - [[#BASH#configuration|configuration]]
+        - [[#BASH#configuration#files|files]]
+      - [[#BASH#tips & tricks|tips & tricks]]
+        - [[#BASH#tips & tricks#compare two dirs|compare two dirs]]
+
 = BASH =
 
 === configuration ===

@@ -1,4 +1,34 @@
+= Contents =
+  - [[#Android|Android]]
+      - [[#Android#building apk|building apk]]
+        - [[#Android#building apk#create keystore|create keystore]]
+        - [[#Android#building apk#sign|sign]]
+        - [[#Android#building apk#verify|verify]]
+        - [[#Android#building apk#zipalign|zipalign]]
+      - [[#Android#flashing|flashing]]
+        - [[#Android#flashing#essential|essential]]
+        - [[#Android#flashing#Galaxy 4|Galaxy 4]]
+
 = Android =
+
+=== building apk ===
+
+==== create keystore ====
+{{{
+   keytool -genkey -v -keystore mycustom.keystore -alias mykeyaliasname -keyalg RSA -keysize 2048 -validity 10000
+ }}}
+==== sign ====
+{{{
+   jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore mycustom.keystore -storepass mystorepass $APK.apk mykeyaliasname
+ }}}
+==== verify ====
+{{{
+   jarsigner -verify $APK.apk
+ }}}
+==== zipalign ====
+{{{
+   zipalign 4 $APK.apk $APK-signed.apk
+ }}}
 
 === flashing ===
 
@@ -28,13 +58,13 @@ fastboot --set-active=x
     where `x` is `a` or `b`
 - flash *twrp img*
 {{{
-fastboot flash boot_<slot num> twrp-<...>.img 
+fastboot flash boot_ twrp-.img 
 }}}
 * `TWRP-SEP.img` is needed, stock *twrp* lack touch
 - reboot to recovery from fastboot
 - push *twrp-installer*
 {{{
-adb push twrp-installer-<...>.zip /sdcard
+adb push twrp-installer-.zip /sdcard
 }}}
 - install *twrp-installer* from *twrp* -> now *TWRP* is installed to both slots
 - reboot to opposite slot from *twrp*  # TODO not clear yet
@@ -42,3 +72,11 @@ adb push twrp-installer-<...>.zip /sdcard
 
 * seems like patched boot is needed to be flashed to get *Magisk* to work
 
+==== Galaxy 4 ====
+
+- boot to `downloading mode` (hold volume up + home + power)
+{{{
+  heimdall flash --RECOVERY twrp-.img --no-reboot
+}}}
+- reboot phone into recovery (volume down + power + home)
+- flash `Magisk`, `firmware`, etc

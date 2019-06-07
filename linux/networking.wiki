@@ -1,12 +1,34 @@
+= Contents =
+  - [[#NETWORKING|NETWORKING]]
+    - [[#NETWORKING#tcp/ip|tcp/ip]]
+      - [[#NETWORKING#tcp/ip#iptables|iptables]]
+        - [[#NETWORKING#tcp/ip#iptables#show nat table|show nat table]]
+        - [[#NETWORKING#tcp/ip#iptables#port forwarding|port forwarding]]
+      - [[#NETWORKING#tcp/ip#configuration|configuration]]
+        - [[#NETWORKING#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
+
 = NETWORKING =
 
 == tcp/ip ==
+
+=== iptables ===
+
+==== show nat table ====
+{{{
+   iptables -n -t nat -L --line-number
+ }}}
+==== port forwarding ====
+{{{
+   iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT
+ }}}
+
+=== configuration ===
 
 ==== ip address aliasing ====
 CentOS::
   :: `/etc/sysconfig/network-scripts`
   :: `cp ifcfg-ethX icfg-ethX:N`
-  <br>
+  
   :: necessary fields in alias interface are:
   {{{
   DEVICE="ethX:N"

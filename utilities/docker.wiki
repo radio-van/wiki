@@ -1,0 +1,19 @@
+= Contents =
+  - [[#DOCKER|DOCKER]]
+      - [[#DOCKER#container control|container control]]
+        - [[#DOCKER#container control#stop all containers|stop all containers]]
+        - [[#DOCKER#container control#rm all containers|rm all containers]]
+
+= DOCKER =
+
+=== container control ===
+
+==== stop all containers ====
+{{{
+   docker stop $(docker ps -a -q)
+ }}}
+==== rm all containers ====
+{{{
+   docker rm $(docker ps -a -q)
+ }}}
+
