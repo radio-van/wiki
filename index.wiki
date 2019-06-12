@@ -10,6 +10,7 @@
   * [[utilities/bash#Contents|bash]]
   * [[utilities/brew#Contents|brew]]
   * [[utilities/docker#Contents|docker]]
+  * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/git#Contents|git]] 
   * [[utilities/ssh#Contents|ssh]]

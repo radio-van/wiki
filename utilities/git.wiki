@@ -8,6 +8,8 @@
         - [[#git#tips and tricks#diff with branch|diff with branch]]
         - [[#git#tips and tricks#push to remote|push to remote]]
         - [[#git#tips and tricks#push to remote (diff name)|push to remote (diff name)]]
+        - [[#git#tips and tricks#remove file from index|remove file from index]]
+        - [[#git#tips and tricks#remove all files from index|remove all files from index]]
         - [[#git#tips and tricks#stash: apply 1 file|stash: apply 1 file]]
         - [[#git#tips and tricks#stash: clear|stash: clear]]
         - [[#git#tips and tricks#stash: show|stash: show]]
@@ -50,6 +52,16 @@
 ==== push to remote (diff name) ====
 {{{
    git push -u $remote HEAD:$remote_branch
+}}}
+
+==== remove file from index ====
+{{{
+   git reset $file
+}}}
+
+==== remove all files from index ====
+{{{
+   git reset
 }}}
 
 ==== stash: apply 1 file ====
