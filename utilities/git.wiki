@@ -14,6 +14,7 @@
         - [[#git#tips and tricks#stash: clear|stash: clear]]
         - [[#git#tips and tricks#stash: show|stash: show]]
         - [[#git#tips and tricks#submodules: update|submodules: update]]
+        - [[#git#tips and tricks#urls: change remote url|urls: change remote url]]
 
 = git =
 
@@ -21,65 +22,70 @@
 
 ==== checkout one file ====
 {{{
-   git checkout $commit_hash -- $filename
+  git checkout $commit_hash -- $filename
 }}}
 
 ==== checkout remote branch ====
 {{{
-   git checkout $remote_branch
+  git checkout $remote_branch
 }}}
 
 ==== delete local branch ====
 {{{
-   git branch -d $branch
+  git branch -d $branch
 }}}
 
 ==== delete remote branch ====
 {{{
-   git push origin --delete $remote_branch
+  git push origin --delete $remote_branch
 }}}
 
 ==== diff with branch ====
 {{{
-   git diff --name-only $branch
+  git diff --name-only $branch
 }}}
 
 ==== push to remote ====
 {{{
-   git push -u $remote $branch
+  git push -u $remote $branch
 }}}
 
 ==== push to remote (diff name) ====
 {{{
-   git push -u $remote HEAD:$remote_branch
+  git push -u $remote HEAD:$remote_branch
 }}}
 
 ==== remove file from index ====
 {{{
-   git reset $file
+  git reset $file
 }}}
 
 ==== remove all files from index ====
 {{{
-   git reset
+  git reset
 }}}
 
 ==== stash: apply 1 file ====
 {{{
-   git checkout stash@{0} -- $file
+  git checkout stash@{0} -- $file
 }}}
 
 ==== stash: clear ====
 {{{
-   git stash clear
+  git stash clear
 }}}
 
 ==== stash: show ====
 {{{
-   git stash show -p
+  git stash show -p
 }}}
 
 ==== submodules: update ====
 {{{
-   git submodule update --recursive --remote
- }}}
+  git submodule update --recursive --remote
+}}}
+
+==== urls: change remote url ====
+{{{
+  git remote set-url $remote $new_url
+}}}
