@@ -2,6 +2,7 @@
   - [[#BREW|BREW]]
       - [[#BREW#tips & tricks|tips & tricks]]
         - [[#BREW#tips & tricks#downgrade package|downgrade package]]
+        - [[#BREW#tips & tricks#prevent package from upgrading|prevent package from upgrading]]
 
 = BREW =
 
@@ -17,4 +18,9 @@ Older/specific versions are marked with `@`
   brew unlink <old package>
   brew link --force --overwrite <new package>
 }}}
+Also it's a good idea to [[#prevent package from upgrading|prevent package from upgrading]]
 
+==== prevent package from upgrading ====
+{{{
+  brew pin <package>
+}}}
