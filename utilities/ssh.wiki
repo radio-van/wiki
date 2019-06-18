@@ -3,6 +3,7 @@
       - [[#SSH#authorization|authorization]]
         - [[#SSH#authorization#keygen|keygen]]
         - [[#SSH#authorization#copy key|copy key]]
+        - [[#SSH#authorization#force using password|force using password]]
 
 = SSH =
 
@@ -16,4 +17,7 @@
 {{{
    ssh-copy-id -i $FILE $user@$host
  }}}
-
+==== force using password ====
+{{{
+  ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no $host
+}}}

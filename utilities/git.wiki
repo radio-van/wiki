@@ -6,6 +6,7 @@
         - [[#git#tips and tricks#delete local branch|delete local branch]]
         - [[#git#tips and tricks#delete remote branch|delete remote branch]]
         - [[#git#tips and tricks#diff with branch|diff with branch]]
+        - [[#git#tips and tricks#index: show files in index|index: show files in index]]
         - [[#git#tips and tricks#push to remote|push to remote]]
         - [[#git#tips and tricks#push to remote (diff name)|push to remote (diff name)]]
         - [[#git#tips and tricks#remove file from index|remove file from index]]
@@ -43,6 +44,11 @@
 ==== diff with branch ====
 {{{
   git diff --name-only $branch
+}}}
+
+==== index: show files in index ====
+{{{
+  git ls-tree -r master --name-only
 }}}
 
 ==== push to remote ====
