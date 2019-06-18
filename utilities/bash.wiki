@@ -4,6 +4,7 @@
         - [[#BASH#configuration#files|files]]
       - [[#BASH#tips & tricks|tips & tricks]]
         - [[#BASH#tips & tricks#compare two dirs|compare two dirs]]
+        - [[#BASH#tips & tricks#run a command for each line of a file|run a command for each line of a file]]
 
 = BASH =
 
@@ -31,4 +32,9 @@ non-interactive shell:: rare, can be launched on some display managers or when s
 * show different files in 2 dirs, ignoring extensions
 {{{
     comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
+}}}
+
+==== run a command for each line of a file ====
+{{{
+  while read in; do <command> "$in"; done < file
 }}}
