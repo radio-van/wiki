@@ -1,0 +1,4 @@
+# ignore everything
+*
+# add .wiki files
+!*.wiki
