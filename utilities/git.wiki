@@ -89,7 +89,13 @@
 ==== submodules: update ====
 {{{
   git submodule update --recursive --remote
+  git submodule update --init --remote --rebase --recursive
 }}}
+- `--init` initialize all submodules, which haven't been yet
+- `--checkout` checkout on commit, recorded in superproject (detached head)
+- `--rebase` rebase on commit, recorded in superproject (no detached head)
+- `--recursive` update nested submodules
+- `--remote` use the status of the submodule's remote-tracking branch (branch name is taken from .gitmodules)
 
 ==== urls: change remote url ====
 {{{
