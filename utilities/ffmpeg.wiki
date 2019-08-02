@@ -3,6 +3,7 @@
       - [[#FFMPEG#tips & tricks|tips & tricks]]
         - [[#FFMPEG#tips & tricks#conversion: batch|conversion: batch]]
         - [[#FFMPEG#tips & tricks#conversion: remove audio|conversion: remove audio]]
+        - [[#FFMPEG#tips & tricks#info (ffprobe): bitrate|info (ffprobe): bitrate]]
         - [[#FFMPEG#tips & tricks#sample: noise|sample: noise]]
 
 = FFMPEG =
@@ -23,6 +24,10 @@
   ffmpeg -i input -c copy -an output
 }}}
 
+==== info (ffprobe): bitrate ====
+{{{
+  ffprobe -v error -select_streams a:0  -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 
+}}}
 ==== sample: noise ====
 * color
 {{{

@@ -8,6 +8,7 @@
   * [[linux/networking#Contents|networking]]
 * Utilities
   * [[utilities/bash#Contents|bash]]
+  * [[utilities/beets#Contents|beets]]
   * [[utilities/brew#Contents|brew]]
   * [[utilities/docker#Contents|docker]]
   * [[utilities/exiftool#Contents|exiftool]]
