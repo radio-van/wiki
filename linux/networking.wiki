@@ -1,11 +1,12 @@
 = Contents =
-  - [[#NETWORKING|NETWORKING]]
-    - [[#NETWORKING#tcp/ip|tcp/ip]]
-      - [[#NETWORKING#tcp/ip#iptables|iptables]]
-        - [[#NETWORKING#tcp/ip#iptables#show nat table|show nat table]]
-        - [[#NETWORKING#tcp/ip#iptables#port forwarding|port forwarding]]
-      - [[#NETWORKING#tcp/ip#configuration|configuration]]
-        - [[#NETWORKING#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
+        - [[#NETWORKING|NETWORKING]]
+                - [[#NETWORKING#tcp/ip|tcp/ip]]
+                        - [[#NETWORKING#tcp/ip#iptables|iptables]]
+                                - [[#NETWORKING#tcp/ip#iptables#show nat table|show nat table]]
+                                - [[#NETWORKING#tcp/ip#iptables#port forwarding|port forwarding]]
+                                - [[#NETWORKING#tcp/ip#iptables#basic routing between eth0 and wlan0|basic routing between eth0 and wlan0]]
+                        - [[#NETWORKING#tcp/ip#configuration|configuration]]
+                                - [[#NETWORKING#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
 
 = NETWORKING =
 
@@ -16,11 +17,17 @@
 ==== show nat table ====
 {{{
    iptables -n -t nat -L --line-number
- }}}
+}}}
 ==== port forwarding ====
 {{{
    iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT
- }}}
+}}}
+==== basic routing between eth0 and wlan0 ====
+{{{
+   sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
+   sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
+   sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT  
+}}}
 
 === configuration ===
 

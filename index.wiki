@@ -6,6 +6,12 @@
   * [[hardware/android#Contents|android]]
 * Linux
   * [[linux/networking#Contents|networking]]
+  * [[linux/tips_tricks#Contents|tips&tricks]]
+* Mac OS
+  * [[macos/apps#Contents|apps]]
+  * [[macos/networking#Contents|networking]]
+* Windows
+  * [[windows/tips_tricks#Contents|tips&tricks]]
 * Utilities
   * [[utilities/bash#Contents|bash]]
   * [[utilities/beets#Contents|beets]]
