@@ -1,0 +1,12 @@
+= Contents =
+      - [[#options|options]]
+
+=== options ===
+
+`-raz` default options: `recursive`, `archive`, `compression`
+`--progress` show progress of copying
+`--dry-run` do not copy, just test
+`-I` ignore files in destination (force replace)
+`--ignore-existing` do not copy files with the same name even if they are newer
+`--update` copy files only if they are newer than ones in the destination
+

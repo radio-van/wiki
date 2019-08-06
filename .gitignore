@@ -1,4 +1,6 @@
 # ignore everything
-*
+#*
 # add .wiki files
-!*.wiki
+!**/*.wiki
+!linux/test.wiki
+!/linux/*
