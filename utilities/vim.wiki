@@ -1,12 +1,15 @@
 = Contents =
-        - [[#VIM|VIM]]
-                        - [[#VIM#configuration|configuration]]
-                                - [[#VIM#configuration#lines|lines]]
-                        - [[#VIM#plugins|plugins]]
-                                - [[#VIM#plugins#fugitive|fugitive]]
-                                        - [[#VIM#plugins#fugitive#merge conflict|merge conflict]]
-                        - [[#VIM#tips&trics|tips&trics]]
-                                - [[#VIM#tips&trics#save with sudo|save with sudo]]
+  - [[#VIM|VIM]]
+      - [[#VIM#configuration|configuration]]
+        - [[#VIM#configuration#lines|lines]]
+      - [[#VIM#plugins|plugins]]
+        - [[#VIM#plugins#fugitive|fugitive]]
+          - [[#VIM#plugins#fugitive#merge conflict|merge conflict]]
+      - [[#VIM#tips&trics|tips&trics]]
+        - [[#VIM#tips&trics#save with sudo|save with sudo]]
+      - [[#VIM#usage|usage]]
+        - [[#VIM#usage#windows and panes|windows and panes]]
+          - [[#VIM#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
 
 = VIM = 
 
@@ -43,7 +46,16 @@ commands::
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
 === tips&trics ===
+
 ==== save with sudo ====
 {{{
    :w !sudo tee %
 }}}
+
+=== usage ===
+
+==== windows and panes ====
+
+===== switch between horizontal and vertical splits =====
+`C-w` + `J` - vertical -> horizontal
+`C-w` + `H` or `L` - horizontal -> vertical

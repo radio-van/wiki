@@ -20,6 +20,7 @@
   * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/git#Contents|git]] 
+  * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/tmux#Contents|tmux]] 
   * [[utilities/vim#Contents|vim]]
