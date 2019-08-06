@@ -1,0 +1,17 @@
+== filesystem ==
+`/bin` ::
+    system commands needed when no FS are mounted (e.g. single-user mode), like *cat*, *cp*, *dd*, *rm*, ...
+    _managed by Packet Manager_
+`/sbin` ::
+    system administration utilities, like *fdisk*, *ifconfig*, *mkfs*, *reboot*, ...
+`/usr/bin` ::
+    commands, typical for all company's servers (i.e. this dir is the same for all servers, even if OS are different)
+    also, links to interpreters (*Python*, *Perl*)
+    _managed by Packet Manager_
+`/usr/sbin` ::
+    the same, but contains administrative utilities
+`/usr/local/bin`, `/usr/local/sbin` ::
+    OS-depended, hardware-depended utilities
+    _not managed by Packet Manager_, *make install* _goes here_
+`/home/$USER/bin` ::
+    utilities for particular user, should be synced between hosts with the same user
