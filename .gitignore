@@ -1,4 +1,9 @@
 # ignore everything
 #*
+*.html
+*.css
+.tags
+
 # add .wiki files
+!*.wiki
 !**/*.wiki

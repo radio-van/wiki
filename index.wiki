@@ -17,6 +17,7 @@
   * [[utilities/bash#Contents|bash]]
   * [[utilities/beets#Contents|beets]]
   * [[utilities/brew#Contents|brew]]
+  * [[utilities/crontab#Contents|crontab]]
   * [[utilities/docker#Contents|docker]]
   * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
