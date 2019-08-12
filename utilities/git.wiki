@@ -15,6 +15,7 @@
         - [[#git#tips and tricks#push to remote (diff name)|push to remote (diff name)]]
         - [[#git#tips and tricks#remove file from index|remove file from index]]
         - [[#git#tips and tricks#remove all files from index|remove all files from index]]
+        - [[#git#tips and tricks#skipping files|skipping files]]
         - [[#git#tips and tricks#stash: apply 1 file|stash: apply 1 file]]
         - [[#git#tips and tricks#stash: clear|stash: clear]]
         - [[#git#tips and tricks#stash: show|stash: show]]
@@ -95,6 +96,12 @@
 {{{
   git reset
 }}}
+
+==== skipping files ====
+1. `--assume-unchanged`
+Git assumes that files with this bit are not changed by user and skips their check. Git will fail if the file is being commited.
+2. `--skip-worktree`
+Git assumes that working copy of files with this bit is up to date with index and use version from the index. Meanwhile the file in the working tree can be different or even absent. Git _can_ update working copy of the file (e.g. on pull).
 
 ==== stash: apply 1 file ====
 {{{
