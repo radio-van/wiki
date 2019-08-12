@@ -1,8 +1,11 @@
 = Contents =
   - [[#git|git]]
+      - [[#git#configuration|configuration]]
+        - [[#git#configuration#gitignore|gitignore]]
       - [[#git#tips and tricks|tips and tricks]]
         - [[#git#tips and tricks#checkout one file|checkout one file]]
         - [[#git#tips and tricks#checkout remote branch|checkout remote branch]]
+        - [[#git#tips and tricks#check why file ignored|check why file ignored]]
         - [[#git#tips and tricks#delete local branch|delete local branch]]
         - [[#git#tips and tricks#delete remote branch|delete remote branch]]
         - [[#git#tips and tricks#diff with branch|diff with branch]]
@@ -18,6 +21,17 @@
         - [[#git#tips and tricks#urls: change remote url|urls: change remote url]]
 
 = git =
+=== configuration ===
+
+==== gitignore ====
+{{{
+  # exclude everything
+  *
+  # except
+  !*.extension
+  # even if they are in subfolders
+  !*/
+}}}
 
 === tips and tricks ===
 
@@ -29,6 +43,11 @@
 ==== checkout remote branch ====
 {{{
   git checkout $remote_branch
+}}}
+
+==== check why file ignored ====
+{{{
+  git check-ignore -v $filename
 }}}
 
 ==== delete local branch ====

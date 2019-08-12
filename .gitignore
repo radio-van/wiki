@@ -1,4 +1,6 @@
 # ignore everything
-#*
-# add .wiki files
-!**/*.wiki
+*
+# except
+!*.wiki
+# even if they are in subfolders
+!*/
