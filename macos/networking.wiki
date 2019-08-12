@@ -1,0 +1,7 @@
+= Contents =
+        - [[#set TTL|set TTL]]
+
+= set TTL =
+{{{
+   sudo sysctl -w net.inet.ip.ttl=65
+}}}

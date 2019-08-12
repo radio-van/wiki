@@ -1,0 +1,19 @@
+= Contents =
+                - [[#fork bomb|fork bomb]]
+
+== fork bomb ==
+{{{
+   :(){ :|:& };:
+}}}
+explanation::
+{{{
+   :(){
+    :|:&
+   };:
+}}}
+:: aka
+{{{
+   function(){
+     call_itself | call_itself &[background]
+   };(end) call_function
+}}

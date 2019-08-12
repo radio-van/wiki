@@ -9,6 +9,7 @@
         - [[#git#tips and tricks#delete local branch|delete local branch]]
         - [[#git#tips and tricks#delete remote branch|delete remote branch]]
         - [[#git#tips and tricks#diff with branch|diff with branch]]
+        - [[#git#tips and tricks#exclude w/o .gitignore|exclude w/o .gitignore]]
         - [[#git#tips and tricks#index: show files in index|index: show files in index]]
         - [[#git#tips and tricks#push to remote|push to remote]]
         - [[#git#tips and tricks#push to remote (diff name)|push to remote (diff name)]]
@@ -63,6 +64,11 @@
 ==== diff with branch ====
 {{{
   git diff --name-only $branch
+}}}
+
+==== exclude w/o .gitignore ====
+{{{
+   .git/info/exclude
 }}}
 
 ==== index: show files in index ====

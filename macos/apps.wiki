@@ -1,0 +1,7 @@
+= Contents =
+        - [[#unlock app|unlock app]]
+
+= unlock app =
+{{{
+   sudo xattr -rd com.apple.quarantine /Applications/LockedApp.app
+}}}
