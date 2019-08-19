@@ -21,6 +21,7 @@
   * [[utilities/docker#Contents|docker]]
   * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
+  * [[utilities/find#Contents|find]]
   * [[utilities/git#Contents|git]] 
   * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]

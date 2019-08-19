@@ -1,0 +1,32 @@
+= Contents =
+      - [[#delete|delete]]
+      - [[#exec command|exec command]]
+      - [[#exec complex commands|exec complex commands]]
+      - [[#exec multiple commands|exec multiple commands]]
+      - [[#negative condition|negative condition]]
+
+=== delete ===
+{{{
+   find . --delete
+}}}
+
+=== exec command ===
+{{{
+   find . -exec foo {} \;
+}}}
+
+=== exec complex commands ===
+{{{
+   find . -exec bash -c ' foo "$1"' _ {} \;
+}}}
+
+=== exec multiple commands ===
+{{{
+   find . -exec foo {} \; -exec bar {} \;
+}}}
+
+=== negative condition ===
+use `!`::
+{{{
+   find . ! -name 'foo.bar'
+}}}
