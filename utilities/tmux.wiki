@@ -1,9 +1,19 @@
 = Contents =
   - [[#TMUX|TMUX]]
       - [[#TMUX#panes|panes]]
+    - [[#TMUX#plug-ins|plug-ins]]
+      - [[#TMUX#plug-ins#tmux-gitbar|tmux-gitbar]]
+        - [[#TMUX#plug-ins#tmux-gitbar#overview|overview]]
 
 = TMUX =
 
 === panes ===
 
 list panes & windows:: `^b s`, `tmux ls`
+
+== plug-ins ==
+
+=== tmux-gitbar ===
+
+==== overview ====
+`branch - remote - ↑[sync to remote] | ●[staged files] x[merge conflict] ⚑[stash file] ✖︎+[changed, but not staged files]...[untracked files]`
