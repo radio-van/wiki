@@ -1,16 +1,30 @@
 = Contents =
   - [[#FFMPEG|FFMPEG]]
-      - [[#FFMPEG#tips & tricks|tips & tricks]]
-        - [[#FFMPEG#tips & tricks#conversion: batch|conversion: batch]]
-        - [[#FFMPEG#tips & tricks#conversion: remove audio|conversion: remove audio]]
-        - [[#FFMPEG#tips & tricks#info (ffprobe): bitrate|info (ffprobe): bitrate]]
-        - [[#FFMPEG#tips & tricks#sample: noise|sample: noise]]
+      - [[#FFMPEG#conversion|conversion]]
+        - [[#FFMPEG#conversion#concat|concat]]
+        - [[#FFMPEG#conversion#parallel|parallel]]
+        - [[#FFMPEG#conversion#remove audio|remove audio]]
+      - [[#FFMPEG#info|info]]
+        - [[#FFMPEG#info#bitrate|bitrate]]
+      - [[#FFMPEG#generate|generate]]
+        - [[#FFMPEG#generate#color noise|color noise]]
+        - [[#FFMPEG#generate#monochrome noise|monochrome noise]]
 
 = FFMPEG =
 
-=== tips & tricks ===
+=== conversion ===
 
-==== conversion: batch ====
+==== concat ====
+prepare list of files::
+{{{
+   file '1.mp4'
+   file '2.mp4'
+   . . .
+}}}
+run::
+`ffmpeg -f concat -i list -c copy output`
+
+==== parallel ====
 {{{
   find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new
 }}}
@@ -19,23 +33,27 @@
   * {} - same name and path as input
   * {.} - same path and name w/o extension
 
-==== conversion: remove audio ====
+==== remove audio ====
 {{{
   ffmpeg -i input -c copy -an output
 }}}
 
-==== info (ffprobe): bitrate ====
+=== info ===
+
+==== bitrate ====
 {{{
   ffprobe -v error -select_streams a:0  -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 
 }}}
-==== sample: noise ====
-* color
+
+=== generate ===
+
+==== color noise ====
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \
   -t 5 -vf hue=s=0 output
 }}}
-* monochrome
+==== monochrome noise ====
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \

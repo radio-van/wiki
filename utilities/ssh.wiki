@@ -11,7 +11,7 @@
 
 ==== keygen ====
 {{{
-   ssh-keygen -t rsa -b 2048 -f $FILE
+   ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f FILE
  }}}
 ==== copy key ====
 {{{
