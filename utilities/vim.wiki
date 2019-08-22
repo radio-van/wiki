@@ -1,6 +1,7 @@
 = Contents =
   - [[#VIM|VIM]]
       - [[#VIM#configuration|configuration]]
+        - [[#VIM#configuration#options & variables|options & variables]]
         - [[#VIM#configuration#lines|lines]]
       - [[#VIM#plugins|plugins]]
         - [[#VIM#plugins#fugitive|fugitive]]
@@ -14,6 +15,10 @@
 = VIM = 
 
 === configuration ===
+
+==== options & variables ====
+`:set` is for setting _options_
+`:let` is for setting _variables_
 
 ==== lines ====
 
