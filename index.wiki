@@ -27,3 +27,4 @@
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/tmux#Contents|tmux]] 
   * [[utilities/vim#Contents|vim]]
+  * [[utilities/wireguard#Contents|wireguard]]
