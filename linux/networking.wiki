@@ -10,6 +10,7 @@
         - [[#PRACTICE#tcp/ip#iptables#basic routing between eth0 and wlan0|basic routing between eth0 and wlan0]]
       - [[#PRACTICE#tcp/ip#configuration|configuration]]
         - [[#PRACTICE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
+    - [[#PRACTICE#tips & trics|tips & trics]]
 
 = THEORY =
 
@@ -62,3 +63,7 @@ CentOS::
   }}}
   :: `/etc/init.d/network restart`
 
+== tips & trics ==
+show process which is listening target port
+* `lsof -i :PORT`
+* `netstat -ltnp | grep -w ':PORT'`

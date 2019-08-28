@@ -3,10 +3,14 @@
       - [[#VIM#configuration|configuration]]
         - [[#VIM#configuration#options & variables|options & variables]]
         - [[#VIM#configuration#lines|lines]]
+      - [[#VIM#using|using]]
+        - [[#VIM#using#ranges|ranges]]
       - [[#VIM#plugins|plugins]]
         - [[#VIM#plugins#fugitive|fugitive]]
           - [[#VIM#plugins#fugitive#merge conflict|merge conflict]]
       - [[#VIM#tips&trics|tips&trics]]
+        - [[#VIM#tips&trics#comment several lines|comment several lines]]
+        - [[#VIM#tips&trics#save recordered macro|save recordered macro]]
         - [[#VIM#tips&trics#save with sudo|save with sudo]]
       - [[#VIM#usage|usage]]
         - [[#VIM#usage#windows and panes|windows and panes]]
@@ -25,6 +29,19 @@
 - `set number` - show line numbers (1 2 3)
 - `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
 - `set number relativenamber` - combine both
+
+=== using ===
+
+==== ranges ====
+| N     | line number N                               | `:21s/foo/bar/g`      |
+| $     | last line                                   | `:$s/foo/bar/g`       |
+| .     | current line                                | `:.w single_line.txt` |
+| %     | all lines                                   | `:%s/foo/bar/g`       |
+| N,M   | line range                                  | `:21,25d`             |
+| .,$   | from current to the end                     | `:.,$s/foo/bar/g`     |
+| .+1,$ | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
+| .,.+5 | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
+| '<,'> | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
 
 === plugins ===
 
@@ -51,6 +68,16 @@ commands::
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
 === tips&trics ===
+
+==== comment several lines ====
+- `C-v` (visual block selection)
+- select lines with arrow keys
+- `I` (insert to the beginning of the line)
+- insert comment character (for example `#`)
+
+==== save recordered macro ====
+macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
+add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
 ==== save with sudo ====
 {{{
