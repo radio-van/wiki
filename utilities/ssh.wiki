@@ -4,20 +4,37 @@
         - [[#SSH#authorization#keygen|keygen]]
         - [[#SSH#authorization#copy key|copy key]]
         - [[#SSH#authorization#force using password|force using password]]
+        - [[#SSH#authorization#disabling password auth|disabling password auth]]
+        - [[#SSH#authorization#disabling root login|disabling root login]]
+        - [[#SSH#authorization#limit login access|limit login access]]
+        - [[#SSH#authorization#generate public key from private|generate public key from private]]
+        - [[#SSH#authorization#storing keys|storing keys]]
 
 = SSH =
 
 === authorization ===
 
 ==== keygen ====
-{{{
-   ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f FILE
- }}}
+`ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f FILE`
+`ssh-keygen -t ed25519 -C "your_email@example.com" -f FILE`
 ==== copy key ====
-{{{
-   ssh-copy-id -i $FILE $user@$host
- }}}
+`ssh-copy-id -i $FILE $user@$host`
 ==== force using password ====
-{{{
-  ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no $host
-}}}
+`ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no $host`
+==== disabling password auth ====
+`/etc/ssh/sshd_config`
+uncomment: `PasswordAuthentication no`
+apply: `service ssh restart`
+==== disabling root login ====
+`/etc/ssh/sshd_config`
+uncomment: `PermitRootLogin no`
+apply: `service ssh restart`
+==== limit login access ====
+`/etc/ssh/sshd_config`
+add: `AllowUsers user1 user2 ...`
+apply: `service ssh restart`
+==== generate public key from private ====
+`ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.pub` (comment would be lost)
+==== storing keys ====
+`chmod 700 ~/.ssh`
+`chmod 600 ~/.ssh/authorization_keys`
