@@ -1,53 +1,39 @@
 = Contents =
-  - [[#VIM|VIM]]
-      - [[#VIM#configuration|configuration]]
-        - [[#VIM#configuration#options & variables|options & variables]]
-        - [[#VIM#configuration#lines|lines]]
-      - [[#VIM#using|using]]
-        - [[#VIM#using#ranges|ranges]]
-      - [[#VIM#plugins|plugins]]
-        - [[#VIM#plugins#fugitive|fugitive]]
-          - [[#VIM#plugins#fugitive#merge conflict|merge conflict]]
-      - [[#VIM#tips&trics|tips&trics]]
-        - [[#VIM#tips&trics#comment several lines|comment several lines]]
-        - [[#VIM#tips&trics#save recordered macro|save recordered macro]]
-        - [[#VIM#tips&trics#save with sudo|save with sudo]]
-      - [[#VIM#usage|usage]]
-        - [[#VIM#usage#windows and panes|windows and panes]]
-          - [[#VIM#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
+    - [[#configuration|configuration]]
+        - [[#configuration#options & variables|options & variables]]
+        - [[#configuration#lines|lines]]
+    - [[#plugins|plugins]]
+        - [[#plugins#fugitive|fugitive]]
+            - [[#plugins#fugitive#merge conflict|merge conflict]]
+    - [[#tips&trics|tips&trics]]
+        - [[#tips&trics#comment several lines|comment several lines]]
+        - [[#tips&trics#save recordered macro|save recordered macro]]
+        - [[#tips&trics#save with sudo|save with sudo]]
+    - [[#usage|usage]]
+        - [[#usage#editing|editing]]
+            - [[#usage#editing#toggle case|toggle case]]
+            - [[#usage#editing#ranges|ranges]]
+            - [[#usage#editing#substitution|substitution]]
+        - [[#usage#windows and panes|windows and panes]]
+            - [[#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
 
-= VIM = 
+= configuration =
 
-=== configuration ===
-
-==== options & variables ====
+== options & variables ==
 `:set` is for setting _options_
 `:let` is for setting _variables_
 
-==== lines ====
+== lines ==
 
 - `set number` - show line numbers (1 2 3)
 - `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
 - `set number relativenamber` - combine both
 
-=== using ===
+= plugins =
 
-==== ranges ====
-| N     | line number N                               | `:21s/foo/bar/g`      |
-| $     | last line                                   | `:$s/foo/bar/g`       |
-| .     | current line                                | `:.w single_line.txt` |
-| %     | all lines                                   | `:%s/foo/bar/g`       |
-| N,M   | line range                                  | `:21,25d`             |
-| .,$   | from current to the end                     | `:.,$s/foo/bar/g`     |
-| .+1,$ | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
-| .,.+5 | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
-| '<,'> | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
+== fugitive ==
 
-=== plugins ===
-
-==== fugitive ====
-
-===== merge conflict =====
+=== merge conflict ===
 splits order::
 - left (top) - *target branch* _aka master_ `2`
 - middle - *working copy* with conflict markers `1`
@@ -63,31 +49,108 @@ commands::
 * `[c` - previous hunk
 * `]c` - next hunk
 
+`:g/^function!\? \(s:\)\?My/;/^endfunction/s/^/" /`
 :: e.g.
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
-=== tips&trics ===
+= tips&trics =
 
-==== comment several lines ====
+== comment several lines ==
 - `C-v` (visual block selection)
 - select lines with arrow keys
 - `I` (insert to the beginning of the line)
 - insert comment character (for example `#`)
 
-==== save recordered macro ====
+== save recordered macro ==
 macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
-==== save with sudo ====
+== save with sudo ==
 {{{
    :w !sudo tee %
 }}}
 
-=== usage ===
+= usage =
 
-==== windows and panes ====
+== editing ==
 
-===== switch between horizontal and vertical splits =====
+=== toggle case ===
+* toggle case **HellO** to **hELLo** with `g~` then a movement. 
+* uppercase **HellO** to **HELLO** with `gU` then a movement. 
+* lowercase **HellO** to **hello** with `gu` then a movement. 
+
+Examples::
+:: toggle case of the character under the cursor, or all visually-selected characters
+`~`
+:: toggle case of the next three characters
+`3~`
+:: toggle case of the next three words
+`g~3w`
+:: toggle case of the current word (inner word – cursor anywhere in word)
+`g~iw`
+:: toggle case of all characters to end of line
+`g~$`
+:: toggle case of the current line (same as V~)
+`g~~`
+
+=== ranges ===
+| `N`     | line number N                               | `:21s/foo/bar/g`      |
+| `$`     | last line                                   | `:$s/foo/bar/g`       |
+| `.`     | current line                                | `:.w single_line.txt` |
+| `%`     | all lines                                   | `:%s/foo/bar/g`       |
+| `N,M`   | line range                                  | `:21,25d`             |
+| `.,$`   | from current to the end                     | `:.,$s/foo/bar/g`     |
+| `.+1,$` | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
+| `.,.+5` | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
+| `'<,'>` | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
+
+=== substitution ===
+combine **search range** with **substitution**::
+:: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
+`:.,/green/co $`
+:: replace all `old` in the next line in which the `apples` occurs, and the line following it. 
+`:/apples/,/apples/+1s/old/new/g`
+:: same (.1 is .+1, and because ; was used, the cursor position is set to the line matching `apples` before interpreting the .+1). 
+`:/apples/;.1s/old/new/g`
+:: replace all `old` in the next line in which `apples` occurs, and all lines up to and including 100 lines after the current line (where the command was entered). 
+`:/apples/,.100s/old/new/g`
+
+::  Replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
+    `/apples/` identifies the first line after the cursor containing `apples`. 
+    `/peaches/` is similar (first line after the current line, not the first after `apples`). Be aware of backwards ranges. 
+    The block is all lines from `apples` to `peaches`, inclusive. 
+`:/apples/,/peaches/ s/old/new/g`
+:: Same, but `peaches` identifies the first occurrence after `apples`. 
+`:/apples/;/peaches/ s/old/new/g`
+:: Insert `# ` at the start of each line in the first block. 
+`:/apples/,/peaches/ s/^/# /g`
+:: Insert `# ` at the start of each line inside the block. 
+
+To do a global replace in all blocks with the same patterns, use :g: ::
+
+`:/apples/+1,/peaches/-1 s/^/# /g`
+::  Insert `# ` at the start of each line in all identified blocks. 
+    :g/apples/ identifies each line containing `apples`. 
+    In each such line, .,/peaches/ s/^/# /g is executed 
+    (the . is assumed; it means the current line, where `apples` occurs). 
+`:g/apples/,/peaches/ s/^/# /g`
+::  This example is for a Vim script where functions start with function or function! and end with endfunction. 
+    Insert `` ` at the start of each line in each block. 
+    All functions that start with function My or function s:My will be commented out. 
+    The last line in each block is where endfunction first occurs (at the left margin), after where function My is found. 
+
+| Item        | Description                                                    |
+| `/pattern/` | next line where pattern matches                                |
+| `?pattern?` | previous line where pattern matches                            |
+| `\/`        | next line where the previously used search pattern matches     |
+| `\?`        | previous line where the previously used search pattern matches |
+| `\&`        | next line where the previously used substitute pattern matches |
+| `0;/that`   | first line containing `that` (also matches in the first line)  |
+| `1;/that`   | first line after line 1 containing `that`                      |
+
+== windows and panes ==
+
+=== switch between horizontal and vertical splits ===
 `C-w` + `J` - vertical -> horizontal
 `C-w` + `H` or `L` - horizontal -> vertical
