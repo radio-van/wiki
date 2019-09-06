@@ -1,0 +1,14 @@
+= Contents =
+    - [[#reset user password|reset user password]]
+
+= reset user password =
+* hold `command-S` on startup.
+* run `mount -uw /.`
+* load *plist*:
+  * *10.7 and later*:
+    `launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist`
+  * *10.6 and earlier*:
+    `launchctl load /System/Library/LaunchDaemons/com.apple.DirectoryServices.plist`
+* run `passwd username`
+* run `reboot`
+

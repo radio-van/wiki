@@ -11,6 +11,7 @@
 * Mac OS
   * [[macos/apps#Contents|apps]]
   * [[macos/networking#Contents|networking]]
+  * [[macos/system#Contents|system]]
 * Windows
   * [[windows/tips_tricks#Contents|tips&tricks]]
 * Utilities
