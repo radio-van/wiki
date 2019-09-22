@@ -1,20 +1,21 @@
 = Contents =
-  - [[#FFMPEG|FFMPEG]]
-      - [[#FFMPEG#conversion|conversion]]
-        - [[#FFMPEG#conversion#concat|concat]]
-        - [[#FFMPEG#conversion#parallel|parallel]]
-        - [[#FFMPEG#conversion#remove audio|remove audio]]
-      - [[#FFMPEG#info|info]]
-        - [[#FFMPEG#info#bitrate|bitrate]]
-      - [[#FFMPEG#generate|generate]]
-        - [[#FFMPEG#generate#color noise|color noise]]
-        - [[#FFMPEG#generate#monochrome noise|monochrome noise]]
+  - [[#conversion|conversion]]
+    - [[#conversion#concat|concat]]
+    - [[#conversion#parallel|parallel]]
+    - [[#conversion#remove audio|remove audio]]
+    - [[#conversion#convert images to video|convert images to video]]
+      - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
+    - [[#conversion#overlaying image on video|overlaying image on video]]
+    - [[#conversion#adding sound to a video|adding sound to a video]]
+  - [[#info|info]]
+    - [[#info#bitrate|bitrate]]
+  - [[#generate|generate]]
+    - [[#generate#color noise|color noise]]
+    - [[#generate#monochrome noise|monochrome noise]]
 
-= FFMPEG =
+= conversion =
 
-=== conversion ===
-
-==== concat ====
+== concat ==
 prepare list of files::
 {{{
    file '1.mp4'
@@ -24,7 +25,7 @@ prepare list of files::
 run::
 `ffmpeg -f concat -i list -c copy output`
 
-==== parallel ====
+== parallel ==
 {{{
   find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new
 }}}
@@ -33,27 +34,48 @@ run::
   * {} - same name and path as input
   * {.} - same path and name w/o extension
 
-==== remove audio ====
+== remove audio ==
 {{{
   ffmpeg -i input -c copy -an output
 }}}
 
-=== info ===
+== convert images to video ==
+`ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4`
 
-==== bitrate ====
+* `%04d` means that images are padded with `4` zeros: _pic0001.png, pic0002.png, ..._
+* `-r` is the framerate (fps)
+* `-crf` is the quality, lower means better quality, 15-25 is usually good
+* `-s` is the resolution
+* `-pix_fmt yuv420p` specifies the pixel format
+
+=== specifying start and end frames ===
+`ffmpeg -r 60 -f image2 -s 1920x1080 -start_number 1 -i pic%04d.png -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4`
+
+* `-start_number` specifies what image to start at
+* `-vframes 1000` specifies the number frames/images in the video
+
+== overlaying image on video ==
+`ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -i ~/path_to_overlay.png -filter_complex "[0:v][1:v] overlay=0:0" -vcodec libx264 -crf 25  -pix_fmt yuv420p test_overlay.mp4`
+
+== adding sound to a video ==
+`ffmpeg -r 60 -f image2 -s 1280x720 -i pic%05d.png -i MP3FILE.mp3 -vcodec libx264 -b 4M -vpre normal -acodec copy OUTPUT.mp4 `
+
+= info =
+
+== bitrate ==
 {{{
   ffprobe -v error -select_streams a:0  -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 
 }}}
 
-=== generate ===
+= generate =
 
-==== color noise ====
+== color noise ==
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \
   -t 5 -vf hue=s=0 output
 }}}
-==== monochrome noise ====
+== monochrome noise ==
 {{{
   ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 \
   -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy \
