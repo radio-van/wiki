@@ -1,33 +1,26 @@
 = Contents =
-  - [[#DJANGO|DJANGO]]
-      - [[#DJANGO#localization|localization]]
-        - [[#DJANGO#localization#make/update localization files|make/update localization files]]
-      - [[#DJANGO#migrations|migrations]]
-        - [[#DJANGO#migrations#makemigrations|makemigrations]]
-        - [[#DJANGO#migrations#migrate|migrate]]
+  - [[#localization|localization]]
+    - [[#localization#make/update localization files|make/update localization files]]
+  - [[#migrations|migrations]]
+    - [[#migrations#makemigrations|makemigrations]]
+    - [[#migrations#migrate|migrate]]
 
-= DJANGO =
+= localization =
 
-=== localization ===
-
-==== make/update localization files ====
+== make/update localization files ==
 * create/update `.po` files
-{{{
-  django-admin makemessages -l 
-}}}
+`django-admin makemessages -l ru_RU`
 * edit them in `Poedit`
 * compile `.mo` files
-{{{
-  django-admin compilemessages 
-}}}
+`django-admin compilemessages`
 
-=== migrations ===
+= migrations =
 			
-==== makemigrations ====
+== makemigrations ==
 {{{
    ./manage.py makemigrations
  }}}
-==== migrate ====
+== migrate ==
 {{{
    ./manage.py migrate
  }}}
