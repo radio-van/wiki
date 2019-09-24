@@ -2,18 +2,21 @@
     - [[#configuration|configuration]]
         - [[#configuration#options & variables|options & variables]]
         - [[#configuration#lines|lines]]
+        - [[#configuration#tips&trics|tips&trics]]
+            - [[#configuration#tips&trics#change cursor in different modes|change cursor in different modes]]
     - [[#plugins|plugins]]
         - [[#plugins#fugitive|fugitive]]
             - [[#plugins#fugitive#merge conflict|merge conflict]]
-    - [[#tips&trics|tips&trics]]
-        - [[#tips&trics#comment several lines|comment several lines]]
-        - [[#tips&trics#save recordered macro|save recordered macro]]
-        - [[#tips&trics#save with sudo|save with sudo]]
     - [[#usage|usage]]
         - [[#usage#editing|editing]]
             - [[#usage#editing#toggle case|toggle case]]
             - [[#usage#editing#ranges|ranges]]
             - [[#usage#editing#substitution|substitution]]
+            - [[#usage#editing#tips&trics|tips&trics]]
+                - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
+                - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
+        - [[#usage#macro|macro]]
+            - [[#usage#macro#save recordered macro|save recordered macro]]
         - [[#usage#windows and panes|windows and panes]]
             - [[#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
 
@@ -24,10 +27,26 @@
 `:let` is for setting _variables_
 
 == lines ==
-
 - `set number` - show line numbers (1 2 3)
 - `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
 - `set number relativenamber` - combine both
+
+== tips&trics ==
+=== change cursor in different modes ===
+{{{
+  let &t_SI.="\e[5 q" "SI = INSERT mode
+  let &t_SR.="\e[4 q" "SR = REPLACE mode
+  let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
+  "Cursor settings:
+
+  "  1 -> blinking block
+  "  2 -> solid block 
+  "  3 -> blinking underscore
+  "  4 -> solid underscore
+  "  5 -> blinking vertical bar
+  "  6 -> solid vertical bar
+}}}
 
 = plugins =
 
@@ -53,23 +72,6 @@ commands::
 :: e.g.
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
-
-= tips&trics =
-
-== comment several lines ==
-- `C-v` (visual block selection)
-- select lines with arrow keys
-- `I` (insert to the beginning of the line)
-- insert comment character (for example `#`)
-
-== save recordered macro ==
-macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
-add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
-
-== save with sudo ==
-{{{
-   :w !sudo tee %
-}}}
 
 = usage =
 
@@ -149,8 +151,22 @@ To do a global replace in all blocks with the same patterns, use :g: ::
 | `0;/that`   | first line containing `that` (also matches in the first line)  |
 | `1;/that`   | first line after line 1 containing `that`                      |
 
-== windows and panes ==
+=== tips&trics ===
+==== comment several lines ====
+- `C-v` (visual block selection)
+- select lines with arrow keys
+- `I` (insert to the beginning of the line)
+- insert comment character (for example `#`)
 
+==== save with sudo ====
+`:w !sudo tee %`
+
+== macro ==
+=== save recordered macro ===
+macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
+add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
+
+== windows and panes ==
 === switch between horizontal and vertical splits ===
 `C-w` + `J` - vertical -> horizontal
 `C-w` + `H` or `L` - horizontal -> vertical
