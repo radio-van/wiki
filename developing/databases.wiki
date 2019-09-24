@@ -1,18 +1,20 @@
 = Contents =
-  - [[#postgress|postgress]]
-    - [[#postgress#pgcli connect|pgcli connect]]
-  - [[#sql|sql]]
-    - [[#sql#value modification|value modification]]
-      - [[#sql#value modification#insert values|insert values]]
-      - [[#sql#value modification#update part of the value|update part of the value]]
-      - [[#sql#value modification#delete values|delete values]]
-    - [[#sql#table modification|table modification]]
-      - [[#sql#table modification#add column|add column]]
-      - [[#sql#table modification#rename column|rename column]]
-    - [[#sql#queries|queries]]
-      - [[#sql#queries#filter values|filter values]]
-      - [[#sql#queries#limit query|limit query]]
-      - [[#sql#queries#sort order|sort order]]
+    - [[#postgress|postgress]]
+        - [[#postgress#pgcli connect|pgcli connect]]
+        - [[#postgress#dump|dump]]
+        - [[#postgress#restore|restore]]
+    - [[#sql|sql]]
+        - [[#sql#value modification|value modification]]
+            - [[#sql#value modification#insert values|insert values]]
+            - [[#sql#value modification#update part of the value|update part of the value]]
+            - [[#sql#value modification#delete values|delete values]]
+        - [[#sql#table modification|table modification]]
+            - [[#sql#table modification#add column|add column]]
+            - [[#sql#table modification#rename column|rename column]]
+        - [[#sql#queries|queries]]
+            - [[#sql#queries#filter values|filter values]]
+            - [[#sql#queries#limit query|limit query]]
+            - [[#sql#queries#sort order|sort order]]
 
 = postgress =
 
@@ -20,7 +22,14 @@
 {{{
   pgcli -h localhost -u postgres
 }}}
- 
+
+== dump ==
+`pg_dump -U username > filename`
+`pg_dumpall -U username > filename`
+
+== restore ==
+`psql dbname < filename`
+
 = sql =
 
 == value modification ==
