@@ -3,6 +3,7 @@
         - [[#postgress#pgcli connect|pgcli connect]]
         - [[#postgress#dump|dump]]
         - [[#postgress#restore|restore]]
+        - [[#postgress#write to file|write to file]]
     - [[#sql|sql]]
         - [[#sql#value modification|value modification]]
             - [[#sql#value modification#insert values|insert values]]
@@ -11,10 +12,14 @@
         - [[#sql#table modification|table modification]]
             - [[#sql#table modification#add column|add column]]
             - [[#sql#table modification#rename column|rename column]]
+            - [[#sql#table modification#create temp table|create temp table]]
+            - [[#sql#table modification#read from CSV file|read from CSV file]]
         - [[#sql#queries|queries]]
             - [[#sql#queries#filter values|filter values]]
             - [[#sql#queries#limit query|limit query]]
             - [[#sql#queries#sort order|sort order]]
+            - [[#sql#queries#query from several tables|query from several tables]]
+            - [[#sql#queries#aggregate data with same values|aggregate data with same values]]
 
 = postgress =
 
@@ -29,6 +34,9 @@
 
 == restore ==
 `psql dbname < filename`
+
+== write to file ==
+`\o filename`
 
 = sql =
 
@@ -55,6 +63,16 @@
 {{{class="brush: sql"
   ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
 }}}
+=== create temp table ===
+{{{class="brush: sql"
+  CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
+}}}
+hint:: date field type is `TIMESTAMP WITH TIME ZONE`
+
+=== read from CSV file ===
+{{{class="brush: sql"
+  COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
+}}}
 
 == queries ==
 === filter values ===
@@ -69,5 +87,13 @@
 {{{class="brush: sql"
   SELECT * FROM table ORDER BY id asc/desc;
 }}}
-
+=== query from several tables ===
+{{{class="brush: sql"
+  SELECT * FROM table1 INNER JOIN table2 ON condition_of_joining WHERE ...;
+}}}
+=== aggregate data with same values ===
+{{{class="brush: sql"
+  SELECT DISTINCT column FROM ...
+  SELECT column2, MAX(column1) FROM ... GROUP BY column2;
+}}} 
 
