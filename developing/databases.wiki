@@ -16,6 +16,7 @@
             - [[#sql#table modification#read from CSV file|read from CSV file]]
         - [[#sql#queries|queries]]
             - [[#sql#queries#filter values|filter values]]
+            - [[#sql#queries#search for partial value|search for partial value]]
             - [[#sql#queries#limit query|limit query]]
             - [[#sql#queries#sort order|sort order]]
             - [[#sql#queries#query from several tables|query from several tables]]
@@ -79,6 +80,11 @@ hint:: date field type is `TIMESTAMP WITH TIME ZONE`
 {{{class="brush: sql"
   SELECT * FROM table WHERE string IN (value1, value2,...);
 }}}
+=== search for partial value ===
+{{{class="brush: sql"
+  SELECT * FROM table WHERE column LIKE 'pattern';
+}}}
+hint:: use `%` as wildcard, e.g. `pattern%` or `%pattern%`
 === limit query ===
 {{{class="brush: sql"
   SELECT * FROM table LIMIT num;
