@@ -1,17 +1,18 @@
 = Contents =
-  - [[#PYTHON|PYTHON]]
-      - [[#PYTHON#virtualenv|virtualenv]]
-        - [[#PYTHON#virtualenv#create venv|create venv]]
-        - [[#PYTHON#virtualenv#install requirements|install requirements]]
-        - [[#PYTHON#virtualenv#activate pyenv|activate pyenv]]
-        - [[#PYTHON#virtualenv#create pyenv|create pyenv]]
-        - [[#PYTHON#virtualenv#install version of Python|install version of Python]]
-      - [[#PYTHON#tips & tricks|tips & tricks]]
-        - [[#PYTHON#tips & tricks#web server|web server]]
+    - [[#Tests|Tests]]
+        - [[#Tests#mocking|mocking]]
+    - [[#Workspace|Workspace]]
+        - [[#Workspace#create venv|create venv]]
+        - [[#Workspace#create pyenv|create pyenv]]
+        - [[#Workspace#activate pyenv|activate pyenv]]
+        - [[#Workspace#install version of Python|install version of Python]]
+        - [[#Workspace#install requirements|install requirements]]
+    - [[#Tips & tricks|Tips & tricks]]
+        - [[#Tips & tricks#web server|web server]]
+        - [[#Tips & tricks#decode base64|decode base64]]
 
-= PYTHON =
-
-=== mock ===
+= Tests =
+== mocking ==
 To patch *class* attribute or method::
 {{{class="brush: python"
   @mock.patch.object(Class, 'attribute/method')
@@ -30,39 +31,25 @@ To patch *class* attribute or method::
     mocked_method.return_value=...
 }}}
 
+= Workspace =
+== create venv ==
+`python -m venv $venv`
+== create pyenv ==
+`pyenv virtualenv $python_version $venv_name`
+== activate pyenv ==
+`pyenv activate $venv_name`
+== install version of Python ==
+`pyenv install $version`
+== install requirements ==
+`pip install -r requirements.txt`
+                
+= Tips & tricks =
+== web server ==
+`python -m http.server --cgi 8000`
+== decode base64 ==
+{{{
+    import base64
+    coded_string = '''Q5YACgA...'''
+    base64.b64decode(coded_string)
+}}}
 
-To patch 
-    
-
-=== virtualenv ===
-			
-==== create venv ====
-{{{
-  python -m venv $venv
-}}}
-==== install requirements ====
-{{{
-  pip install -r requirements.txt
-}}}
-==== activate pyenv ====
-{{{
-  pyenv activate $venv_name
-}}}
-==== create pyenv ====
-{{{
-  pyenv virtualenv $python_version $venv_name
-}}}
-==== install version of Python ====
-{{{
-  pyenv install $version
-}}}
-                
-                
-                
-                
-=== tips & tricks ===
-
-==== web server ====
-{{{
-  python -m http.server --cgi 8000
-}}}

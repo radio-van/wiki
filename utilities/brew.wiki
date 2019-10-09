@@ -1,8 +1,8 @@
 = Contents =
-  - [[#BREW|BREW]]
-      - [[#BREW#tips & tricks|tips & tricks]]
-        - [[#BREW#tips & tricks#downgrade package|downgrade package]]
-        - [[#BREW#tips & tricks#prevent package from upgrading|prevent package from upgrading]]
+    - [[#BREW|BREW]]
+            - [[#BREW#tips & tricks|tips & tricks]]
+                - [[#BREW#tips & tricks#downgrade package|downgrade package]]
+                - [[#BREW#tips & tricks#prevent package from upgrading|prevent package from upgrading]]
 
 = BREW =
 

@@ -56,7 +56,7 @@
 splits order::
 - left (top) - *target branch* _aka master_ `2`
 - middle - *working copy* with conflict markers `1`
-- right (bottom) - *merge branch* _aka feature_ (the one specified in `git merge` command) `3`
+- [[right]] (bottom) - *merge branch* _aka feature_ (the one specified in `git merge` command) `3`
 
 | 2 | 1 | 3 |
 

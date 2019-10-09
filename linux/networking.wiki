@@ -1,16 +1,17 @@
 = Contents =
-  - [[#THEORY|THEORY]]
-    - [[#THEORY#interfaces|interfaces]]
-      - [[#THEORY#interfaces#TUN/TAP|TUN/TAP]]
-  - [[#PRACTICE|PRACTICE]]
-    - [[#PRACTICE#tcp/ip|tcp/ip]]
-      - [[#PRACTICE#tcp/ip#iptables|iptables]]
-        - [[#PRACTICE#tcp/ip#iptables#show nat table|show nat table]]
-        - [[#PRACTICE#tcp/ip#iptables#port forwarding|port forwarding]]
-        - [[#PRACTICE#tcp/ip#iptables#basic routing between eth0 and wlan0|basic routing between eth0 and wlan0]]
-      - [[#PRACTICE#tcp/ip#configuration|configuration]]
-        - [[#PRACTICE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
-    - [[#PRACTICE#tips & trics|tips & trics]]
+    - [[#THEORY|THEORY]]
+        - [[#THEORY#interfaces|interfaces]]
+            - [[#THEORY#interfaces#TUN/TAP|TUN/TAP]]
+    - [[#PRACTICE|PRACTICE]]
+        - [[#PRACTICE#tcp/ip|tcp/ip]]
+            - [[#PRACTICE#tcp/ip#iptables|iptables]]
+                - [[#PRACTICE#tcp/ip#iptables#show nat table|show nat table]]
+                - [[#PRACTICE#tcp/ip#iptables#delete rule|delete rule]]
+                - [[#PRACTICE#tcp/ip#iptables#port forwarding|port forwarding]]
+                - [[#PRACTICE#tcp/ip#iptables#basic routing between eth0 and wlan0|basic routing between eth0 and wlan0]]
+            - [[#PRACTICE#tcp/ip#configuration|configuration]]
+                - [[#PRACTICE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
+        - [[#PRACTICE#tips & trics|tips & trics]]
 
 = THEORY =
 
@@ -31,13 +32,12 @@ TAP:: devices work at the _Ethernet level_ or _layer 2_ and therefore behave lik
 === iptables ===
 
 ==== show nat table ====
-{{{
-   iptables -n -t nat -L --line-number
-}}}
+`iptables -n -t nat -L --line-number`
+==== delete rule ====
+list table with `--line-numbers`
+`iptables -D <CHAIN_NAME> <RULE_NUMBER>`
 ==== port forwarding ====
-{{{
-   iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT
-}}}
+`iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`
 ==== basic routing between eth0 and wlan0 ====
 {{{
    sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
