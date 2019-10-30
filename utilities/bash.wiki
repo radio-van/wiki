@@ -1,13 +1,13 @@
 = Contents =
-  - [[#BASH|BASH]]
-      - [[#BASH#configuration|configuration]]
-        - [[#BASH#configuration#files|files]]
-      - [[#BASH#usage|usage]]
-        - [[#BASH#usage#parameters expansion|parameters expansion]]
-      - [[#BASH#tips & tricks|tips & tricks]]
-        - [[#BASH#tips & tricks#history across all shells|history across all shells]]
-        - [[#BASH#tips & tricks#compare two dirs|compare two dirs]]
-        - [[#BASH#tips & tricks#run a command for each line of a file|run a command for each line of a file]]
+    - [[#BASH|BASH]]
+            - [[#BASH#configuration|configuration]]
+                - [[#BASH#configuration#files|files]]
+            - [[#BASH#usage|usage]]
+                - [[#BASH#usage#parameters expansion|parameters expansion]]
+            - [[#BASH#tips & tricks|tips & tricks]]
+                - [[#BASH#tips & tricks#history across all shells|history across all shells]]
+                - [[#BASH#tips & tricks#compare two dirs|compare two dirs]]
+                - [[#BASH#tips & tricks#run a command for each line of a file|run a command for each line of a file]]
 
 = BASH =
 
