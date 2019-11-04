@@ -10,6 +10,7 @@
   * [[linux/workspace#Contents|workspace]]
 * Mac OS
   * [[macos/apps#Contents|apps]]
+  * [[macos/installation#Contents|installation]]
   * [[macos/networking#Contents|networking]]
   * [[macos/system#Contents|system]]
 * Windows
