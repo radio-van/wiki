@@ -1,7 +1,9 @@
 = Contents =
     - [[#syntax|syntax]]
+    - [[#examples|examples]]
+        - [[#examples#newsboat crontab|newsboat crontab]]
 
-== syntax ==
+= syntax =
 {{{
 * * * * *  command to execute
 │ │ │ │ │
@@ -11,3 +13,7 @@
 │ └────────────────── hour (0 - 23)
 └─────────────────────── min (0 - 59)
 }}}
+
+= examples =
+== newsboat crontab ==
+see [[wiki0:newsboat#auto reload by cron|newsboat]]

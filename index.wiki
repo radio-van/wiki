@@ -25,6 +25,7 @@
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/find#Contents|find]]
   * [[utilities/git#Contents|git]] 
+  * [[utilities/newsboat#Contents|newsboat]] 
   * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/tmux#Contents|tmux]] 
