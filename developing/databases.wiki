@@ -21,6 +21,9 @@
             - [[#sql#queries#sort order|sort order]]
             - [[#sql#queries#query from several tables|query from several tables]]
             - [[#sql#queries#aggregate data with same values|aggregate data with same values]]
+            - [[#sql#queries#JOINS|JOINS]]
+                - [[#sql#queries#JOINS#inner join|inner join]]
+                - [[#sql#queries#JOINS#left join|left join]]
 
 = postgress =
 
@@ -103,3 +106,31 @@ hint:: use `%` as wildcard, e.g. `pattern%` or `%pattern%`
   SELECT column2, MAX(column1) FROM ... GROUP BY column2;
 }}} 
 
+=== JOINS ===
+==== inner join ====
+select smth from one table where particular values are the same in both tables
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  INNER JOIN table_B B ON A.id = B.id
+}}}
+==== left join ====
+select everything from one table plus values from another table that are the same with the first one
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  LEFT JOIN table_B B ON A.id = B.id
+}}}
+select values from one table that dont exist in the second table
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  LEFT JOIN table_B B ON A.id = B.id
+  WHERE table_B.id IS NULL; 
+}}}

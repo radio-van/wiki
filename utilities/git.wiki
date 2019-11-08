@@ -2,6 +2,7 @@
     - [[#concept|concept]]
     - [[#configuration|configuration]]
         - [[#configuration#gitignore|gitignore]]
+        - [[#configuration#hide utracked files|hide utracked files]]
     - [[#usage|usage]]
         - [[#usage#checkout one file|checkout one file]]
         - [[#usage#checkout remote branch|checkout remote branch]]
@@ -64,6 +65,9 @@
   # even if they are in subfolders
   !*/
 }}}
+
+== hide utracked files ==
+`git config --local status.showUntrackedFiles no`
 
 = usage =
 
