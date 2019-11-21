@@ -14,6 +14,7 @@
             - [[#sql#table modification#rename column|rename column]]
             - [[#sql#table modification#create temp table|create temp table]]
             - [[#sql#table modification#read from CSV file|read from CSV file]]
+            - [[#sql#table modification#write to CSV file|write to CSV file]]
         - [[#sql#queries|queries]]
             - [[#sql#queries#filter values|filter values]]
             - [[#sql#queries#search for partial value|search for partial value]]
@@ -72,10 +73,13 @@
   CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
 }}}
 hint:: date field type is `TIMESTAMP WITH TIME ZONE`
-
 === read from CSV file ===
 {{{class="brush: sql"
   COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
+}}}
+=== write to CSV file ===
+{{{class="brush: sql"
+  \copy (SELECT ...) to 'filename' with csv;
 }}}
 
 == queries ==
