@@ -3,10 +3,16 @@
         - [[#configuration#options & variables|options & variables]]
         - [[#configuration#lines|lines]]
         - [[#configuration#tips&trics|tips&trics]]
+            - [[#configuration#tips&trics#backup settings|backup settings]]
             - [[#configuration#tips&trics#change cursor in different modes|change cursor in different modes]]
     - [[#plugins|plugins]]
-        - [[#plugins#fugitive|fugitive]]
-            - [[#plugins#fugitive#merge conflict|merge conflict]]
+        - [[#plugins#dirs|dirs]]
+        - [[#plugins#package managers|package managers]]
+            - [[#plugins#package managers#vim8 built-in|vim8 built-in]]
+            - [[#plugins#package managers#vim-plug|vim-plug]]
+        - [[#plugins#third-party plugins|third-party plugins]]
+            - [[#plugins#third-party plugins#fugitive|fugitive]]
+                - [[#plugins#third-party plugins#fugitive#merge conflict|merge conflict]]
     - [[#usage|usage]]
         - [[#usage#editing|editing]]
             - [[#usage#editing#toggle case|toggle case]]
@@ -32,6 +38,32 @@
 - `set number relativenamber` - combine both
 
 == tips&trics ==
+=== backup settings ===
+{{{
+    " Protect changes between writes. Default values of
+    " updatecount (200 keystrokes) and updatetime
+    " (4 seconds) are fine
+    set swapfile
+    set directory^=~/.vim/swap//
+
+    " protect against crash-during-write
+    set writebackup
+    " but do not persist backup after successful write
+    set nobackup
+    " use rename-and-write-new method whenever safe
+    set backupcopy=auto
+    " patch required to honor double slash at end
+    if has("patch-8.1.0251")
+        " consolidate the writebackups -- not a big
+        " deal either way, since they usually get deleted
+        set backupdir^=~/.vim/backup//
+    end
+
+    " persist the undo tree for each file
+    set undofile
+    set undodir^=~/.vim/undo//
+}}}
+
 === change cursor in different modes ===
 {{{
   let &t_SI.="\e[5 q" "SI = INSERT mode
@@ -49,10 +81,47 @@
 }}}
 
 = plugins =
+== dirs ==
+* `/plugin`
+*Global* auto-loading plugins
+* `/autoload`
+Loading when prompted by another plugin
+* `/ftdetect`
+filetype detectors
+* `/ftplugin`
+scripts for know filetypes
+* `/compiler`
+determines how to run compilers and linters
+* `/pack`
+vim8 packages
 
-== fugitive ==
+== package managers ==
+=== vim8 built-in ===
+`mkdir -p ~/.vim/pack/foobar/{opt,start}`
+`:helptags ~/.vim/pack/foobar/opt/<plugin>/doc`
+* `/start` - autoload
+* `/opt` - load on prompt
+To load _optional_ plugin `:packadd <plugin>`
 
-=== merge conflict ===
+=== vim-plug ===
+Auto-install *vim-plug* manager
+{{{
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+}}}
+Make plugins section
+{{{
+    call plug#begin('~/.vim/plugged')
+    call plug#end()
+}}}
+
+== third-party plugins ==
+=== fugitive ===
+
+==== merge conflict ====
 splits order::
 - left (top) - *target branch* _aka master_ `2`
 - middle - *working copy* with conflict markers `1`
