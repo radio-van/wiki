@@ -1,19 +1,25 @@
 = Contents =
-  - [[#conversion|conversion]]
-    - [[#conversion#concat|concat]]
-    - [[#conversion#parallel|parallel]]
-    - [[#conversion#remove audio|remove audio]]
-    - [[#conversion#convert images to video|convert images to video]]
-      - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
-    - [[#conversion#overlaying image on video|overlaying image on video]]
-    - [[#conversion#adding sound to a video|adding sound to a video]]
-  - [[#info|info]]
-    - [[#info#bitrate|bitrate]]
-  - [[#generate|generate]]
-    - [[#generate#color noise|color noise]]
-    - [[#generate#monochrome noise|monochrome noise]]
+    - [[#conversion|conversion]]
+        - [[#conversion#cut|cut]]
+        - [[#conversion#concat|concat]]
+        - [[#conversion#parallel|parallel]]
+        - [[#conversion#remove audio|remove audio]]
+        - [[#conversion#convert images to video|convert images to video]]
+            - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
+        - [[#conversion#overlaying image on video|overlaying image on video]]
+        - [[#conversion#adding sound to a video|adding sound to a video]]
+    - [[#info|info]]
+        - [[#info#bitrate|bitrate]]
+    - [[#generate|generate]]
+        - [[#generate#color noise|color noise]]
+        - [[#generate#monochrome noise|monochrome noise]]
 
 = conversion =
+
+== cut ==
+`ffmpeg -i <source> -ss <start_time> -t <duration> -async 1 <output>`
+`ffmpeg -i <source> -ss <start_time> -to <end_time> -async 1 <output>`
+`<time>` in format `HH:MM:SS`
 
 == concat ==
 prepare list of files::
