@@ -3,6 +3,7 @@
         - [[#configuration#options & variables|options & variables]]
         - [[#configuration#lines|lines]]
         - [[#configuration#tips&trics|tips&trics]]
+            - [[#configuration#tips&trics#reload config|reload config]]
             - [[#configuration#tips&trics#backup settings|backup settings]]
             - [[#configuration#tips&trics#change cursor in different modes|change cursor in different modes]]
     - [[#plugins|plugins]]
@@ -21,6 +22,7 @@
             - [[#usage#editing#tips&trics|tips&trics]]
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
+        - [[#usage#encryption|encryption]]
         - [[#usage#macro|macro]]
             - [[#usage#macro#save recordered macro|save recordered macro]]
         - [[#usage#windows and panes|windows and panes]]
@@ -29,8 +31,10 @@
 = configuration =
 
 == options & variables ==
-`:set` is for setting _options_
-`:let` is for setting _variables_
+* `:set` is for setting _options_
+* `:let` is for setting _variables_
+* to check option state use _option_`?`
+* to invert boolean options use `no`_option_
 
 == lines ==
 - `set number` - show line numbers (1 2 3)
@@ -38,6 +42,8 @@
 - `set number relativenamber` - combine both
 
 == tips&trics ==
+=== reload config ===
+`:so` aka `:source` - reads any file as a sequence of vim commands (`.vimrc` by default)
 === backup settings ===
 {{{
     " Protect changes between writes. Default values of
@@ -175,8 +181,25 @@ Examples::
 | `.+1,$` | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
 | `.,.+5` | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
 | `'<,'>` | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
+| `'a,'b` | from mark `a` to mark `b`                   | `:'a,'bs/foo/bar/g`   |
+
+range refinement:
+* `...g` - global (all occurtences), e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing `foo`
+* `...v` - reverse condition
+examples::
+* `:.,+21g/foo/d` delete all lines with _foo_, from current line plus 21 more lines
+* `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
 
 === substitution ===
+*ex/ed* legacy
+* replace `:s/../../`
+* delete `:/.../d`
+* move `:/.../m`
+* join `:/.../j`
+* read from file `:r`
+* read from cli `:r!`
+* format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
+
 combine **search range** with **substitution**::
 :: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
 `:.,/green/co $`
@@ -186,8 +209,7 @@ combine **search range** with **substitution**::
 `:/apples/;.1s/old/new/g`
 :: replace all `old` in the next line in which `apples` occurs, and all lines up to and including 100 lines after the current line (where the command was entered). 
 `:/apples/,.100s/old/new/g`
-
-::  Replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
+:: replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
     `/apples/` identifies the first line after the cursor containing `apples`. 
     `/peaches/` is similar (first line after the current line, not the first after `apples`). Be aware of backwards ranges. 
     The block is all lines from `apples` to `peaches`, inclusive. 
@@ -197,9 +219,7 @@ combine **search range** with **substitution**::
 :: Insert `# ` at the start of each line in the first block. 
 `:/apples/,/peaches/ s/^/# /g`
 :: Insert `# ` at the start of each line inside the block. 
-
 To do a global replace in all blocks with the same patterns, use :g: ::
-
 `:/apples/+1,/peaches/-1 s/^/# /g`
 ::  Insert `# ` at the start of each line in all identified blocks. 
     :g/apples/ identifies each line containing `apples`. 
@@ -229,6 +249,12 @@ To do a global replace in all blocks with the same patterns, use :g: ::
 
 ==== save with sudo ====
 `:w !sudo tee %`
+
+== encryption ==
+Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfish2` is recommended
+* To encrypt file type `:X`, then passphrase twice
+* To reset password type `:X`, then empty passphrase
+*Warning* do not modify or save file that was decrypted with wrong password, otherwise it would be damaged!
 
 == macro ==
 === save recordered macro ===
