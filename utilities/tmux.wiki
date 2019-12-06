@@ -37,6 +37,8 @@ list panes & windows:: `^b s`, `tmux ls`
 `break-pane`
 * count number of panes
 `tmux list-panes | wc -l`
+* restart command in pane, if `-k` given, kills current command
+`: respawn-pane [-k]`
 
 == conditions ==
 `if-shell 'tmux <condition>' 'result is true' 'result is false'`

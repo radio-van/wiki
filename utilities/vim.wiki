@@ -14,7 +14,11 @@
         - [[#plugins#third-party plugins|third-party plugins]]
             - [[#plugins#third-party plugins#fugitive|fugitive]]
                 - [[#plugins#third-party plugins#fugitive#merge conflict|merge conflict]]
+            - [[#plugins#third-party plugins#fzf|fzf]]
     - [[#usage|usage]]
+        - [[#usage#navigation|navigation]]
+            - [[#usage#navigation#jumps|jumps]]
+            - [[#usage#navigation#tags|tags]]
         - [[#usage#editing|editing]]
             - [[#usage#editing#toggle case|toggle case]]
             - [[#usage#editing#ranges|ranges]]
@@ -148,8 +152,60 @@ commands::
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
-= usage =
+=== fzf ===
+* `Ctrl-T` open in new tab
+* `Ctrl-X` open in new split
+* `Ctrl-V` open in new vertical split
+Bang `!` version of command opens `fzf` in full screen
 
+| `:Files [PATH]`     | Files                                                         |
+| `:GFiles [OPTS]`    | Git files (git ls-files)                                      |
+| `:GFiles?`          | Git files (git status)                                        |
+| `:Buffers`          | Open buffers                                                  |
+| `:Colors`           | Color schemes                                                 |
+| `:Ag [PATTERN]`     | ag search result (ALT-A to select all, ALT-D to deselect all) |
+| `:Rg [PATTERN]`     | rg search result (ALT-A to select all, ALT-D to deselect all) |
+| `:Lines [QUERY]`    | Lines in loaded buffers                                       |
+| `:BLines [QUERY]`   | Lines in the current buffer                                   |
+| `:Tags [QUERY]`     | Tags in the project (ctags -R)                                |
+| `:BTags [QUERY]`    | Tags in the current buffer                                    |
+| `:Marks`            | Marks                                                         |
+| `:Windows`          | Windows                                                       |
+| `:Locate [PATTERN]` | locate command output                                         |
+| `:History`          | `v:oldfiles` and open buffers                                 |
+| `:History:`         | Command history                                               |
+| `:History/`         | Search history                                                |
+| `:Snippets`         | Snippets (UltiSnips)                                          |
+| `:Commits`          | Git commits (requires `fugitive.vim`)                         |
+| `:BCommits`         | Git commits for the current buffer                            |
+| `:Commands`         | Commands                                                      |
+| `:Maps`             | Normal mode mappings                                          |
+| `:Helptags`         | Help tags                                                     |
+| `:Filetypes`        | File types                                                    |
+
+= usage =
+== navigation ==
+=== jumps ===
+* `gd` to local declaration
+* `gD` to global declaration
+* `g*`/`g#` search word under cursor (will search also for words that contain word under cursor as a part)
+* `gf` to file under cursor
+* `g]` to tag defenition
+* `gg` to first line
+* `NG` to line `N` (last line if `N` is not provided)
+
+=== tags ===
+jump to tag::
+* `Ctrl-]`, `Ctrl-click`, `g-click`, `:tag` jump to tag
+* `:tselect <tag>`, `g]` list locations with a tag if multiple
+* `Ctrl-t`, `:pop`, `Ctrl-right_click`, `g-right_click` jump back
+* `g Ctrl-]`, `:tjump` to jump or select tag if multiple
+* `:tag /<pattern>` search tag
+open tags in windows, tabs, splits::
+* `Ctrl-W }`, `:ptag` preview tag
+* `Ctrl-W ]` open tag in new window
+* `Ctrl-\` open definition in new tab
+* `Alt-]` open definition in vertical split
 == editing ==
 
 === toggle case ===
