@@ -245,6 +245,7 @@ range refinement:
 examples::
 * `:.,+21g/foo/d` delete all lines with _foo_, from current line plus 21 more lines
 * `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
+* `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
 
 === substitution ===
 *ex/ed* legacy
