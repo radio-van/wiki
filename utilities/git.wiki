@@ -4,6 +4,7 @@
         - [[#configuration#gitignore|gitignore]]
         - [[#configuration#hide utracked files|hide utracked files]]
     - [[#usage|usage]]
+        - [[#usage#change branch base|change branch base]]
         - [[#usage#checkout one file|checkout one file]]
         - [[#usage#checkout remote branch|checkout remote branch]]
         - [[#usage#check why file ignored|check why file ignored]]
@@ -70,6 +71,8 @@
 `git config --local status.showUntrackedFiles no`
 
 = usage =
+== change branch base ==
+`git rebase --onto <new_base> <old_base> <branch>`
 
 == checkout one file ==
 `git checkout $commit_hash -- $filename`
