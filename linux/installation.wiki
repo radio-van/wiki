@@ -2,6 +2,8 @@
     - [[#X|X]]
         - [[#X#window manager|window manager]]
             - [[#X#window manager#i3|i3]]
+    - [[#misc|misc]]
+        - [[#misc#auto login|auto login]]
 
 = X =
 * install `xorg-server`
@@ -22,8 +24,14 @@
 * install fonts e.g. `ttf-droid`, hint: use `fc-list` to list installed fonts
 * autostart: add to `~/.bash_profile`
   {{{
-     if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-       exec startx
+      if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+          exec startx
+      fi
+  }}}
+  or
+  {{{
+     if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+         exec startx
      fi
   }}}
   
@@ -31,3 +39,10 @@
 === i3 ===
 useful additions:
   - `dmenu` dynamic menu to launch scripts and programs
+
+= misc =
+== auto login ==
+* copy default service `cp /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service`
+* create symlink in place of original one `ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service`
+* modify `ExecStart=-/sbin/agetty -a USERNAME %I 38400`
+* apply `systemctl daemon-reload && systemctl start getty@tty1.service`
