@@ -5,6 +5,7 @@
 * Hardware
   * [[hardware/android#Contents|android]]
 * Linux
+  * [[linux/installation#Contents|installation]]
   * [[linux/networking#Contents|networking]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
   * [[linux/workspace#Contents|workspace]]
@@ -25,8 +26,10 @@
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/find#Contents|find]]
   * [[utilities/git#Contents|git]] 
+  * [[utilities/gnupg#Contents|gnupg]] 
   * [[utilities/lxc#Contents|lxc]] 
   * [[utilities/newsboat#Contents|newsboat]] 
+  * [[utilities/pass#Contents|pass]]
   * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/tmux#Contents|tmux]] 

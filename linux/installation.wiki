@@ -1,0 +1,33 @@
+= Contents =
+    - [[#X|X]]
+        - [[#X#window manager|window manager]]
+            - [[#X#window manager#i3|i3]]
+
+= X =
+* install `xorg-server`
+* check video card `lspci | grep -e VGA -e 3D`
+* install appropriate driver
+    * search `pacman -Ss xf86-video`
+| Brand  | Type        | Driver               |
+| AMD    | Open source | `xf86-video-amdgpu`  |
+| \/     | \/          | `xf86-video-ati`     |
+| Intel  | Open source | `xf86-video-intel`   |
+| NVIDIA | Open source | `xf86-video-nouveau` |
+| \/     | Proprietary | `nvidia`             |
+| \/     | \/          | `nvidia-390xx`       |
+
+* install `xorg-xinit`
+* install *window manager* e.g. `i3-wm`
+* edit `~/.xinitrc` to run *window manager* automatically
+* install fonts e.g. `ttf-droid`, hint: use `fc-list` to list installed fonts
+* autostart: add to `~/.bash_profile`
+  {{{
+     if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+       exec startx
+     fi
+  }}}
+  
+== window manager ==
+=== i3 ===
+useful additions:
+  - `dmenu` dynamic menu to launch scripts and programs

@@ -1,0 +1,34 @@
+= Contents =
+    - [[#configuration|configuration]]
+    - [[#usage|usage]]
+        - [[#usage#generate|generate]]
+        - [[#usage#list|list]]
+        - [[#usage#edit|edit]]
+        - [[#usage#private keys|private keys]]
+        - [[#usage#public keys|public keys]]
+        - [[#usage#encrypt/decrypt|encrypt/decrypt]]
+
+    GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management system, along with access modules for all kinds of public key directories.
+    GnuPG, also known as GPG, is a command line tool with features for easy integration with other applications.
+    A wealth of frontend applications and libraries are available. GnuPG also provides support for S/MIME and Secure Shell (ssh).
+
+= configuration =
+default storage is `~/.gnupg` and can be modified with `$GNUPGHOME` env variable
+default config files are `~/.gnupg/gpg.conf` and `~/.gnupg/dirmngr.conf`
+= usage =
+== generate ==
+generate key `gpg --full-gen-key`
+generate revocation certificate `gpg --gen-revoke --armor --output=revocation_certificate.asc user-id`
+== list ==
+`gpg --list-keys`
+== edit ==
+`gpg --edit-key <user-id>`
+== private keys ==
+export `gpg --export-secret-keys --armor <user-id> > privkey.asc`
+== public keys ==
+export `gpg --output public.key --armor --export user-id`
+import `gpg --import public.key`
+== encrypt/decrypt ==
+encrypt `gpg --recipient user-id --encrypt doc`
+decrypt `gpg --output doc --decrypt doc.gpg`
+
