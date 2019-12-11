@@ -1,19 +1,18 @@
 = Contents =
-    - [[#container management|container management]]
-        - [[#container management#create|create]]
-    - [[#network|network]]
-        - [[#network#virtual bridge|virtual bridge]]
-        - [[#network#add bridge to default container config|add bridge to default container config]]
-    - [[#tips&trics|tips&trics]]
-        - [[#tips&trics#lxc clones|lxc clones]]
-        - [[#tips&trics#fix alpine tty bug|fix alpine tty bug]]
-        - [[#tips&trics#mount|mount]]
+    - [[#configuration|configuration]]
+        - [[#configuration#change container storage path|change container storage path]]
+        - [[#configuration#virtual bridge|virtual bridge]]
+    - [[#usage|usage]]
+        - [[#usage#create|create]]
+        - [[#usage#add bridge to default container config|add bridge to default container config]]
+        - [[#usage#lxc clones|lxc clones]]
+        - [[#usage#fix alpine tty bug|fix alpine tty bug]]
+        - [[#usage#mount|mount]]
 
-= container management =
-== create ==
-`lxc-create -n <name> -t download -- --dist <distributive> --release <dist version> --arch <architecture>`
+= configuration =
+== change container storage path ==
+`echo 'lxc.lxcpath=...' >> /etc/lxc/lxc.conf`
 
-= network =
 == virtual bridge ==
 virtual bridge allows containers to communicate with each other and host
 `/etc/default/lxc-net`
@@ -32,6 +31,10 @@ for DHCP
 enable service
 `systemctl enable lxc-net.service`
 
+= usage =
+== create ==
+`lxc-create -n <name> -t download -- --dist <distributive> --release <dist version> --arch <architecture>`
+
 == add bridge to default container config ==
 `/etc/lxc/default.conf`
 {{{
@@ -40,7 +43,6 @@ enable service
     lxc.net.0.flags = up
 }}}
 
-= tips&trics =
 == lxc clones ==
 `lxc-copy -n base -N clone -B overlayfs -s`
 

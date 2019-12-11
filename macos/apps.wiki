@@ -1,7 +1,11 @@
 = Contents =
-        - [[#unlock app|unlock app]]
+    - [[#quicklook|quicklook]]
+    - [[#misc|misc]]
 
-= unlock app =
-{{{
-   sudo xattr -rd com.apple.quarantine /Applications/LockedApp.app
-}}}
+= quicklook =
+using from terminal
+`qlmanage -p <file>`
+
+= misc =
+for unlocking third-party apps see [[system#unlock_app|unlock app]]
+
