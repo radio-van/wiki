@@ -2,6 +2,7 @@
     - [[#syntax|syntax]]
     - [[#examples|examples]]
         - [[#examples#newsboat crontab|newsboat crontab]]
+        - [[#examples#git fetch crontab|git fetch crontab]]
 
 = syntax =
 {{{
@@ -17,3 +18,6 @@
 = examples =
 == newsboat crontab ==
 see [[wiki0:newsboat#auto reload by cron|newsboat]]
+== git fetch crontab ==
+`* * * * * su -s /bin/sh nobody -c 'cd <path> && /usr/local/bin/git pull -q origin master'`
+for MacOS `* * * * * /bin/sh -c 'cd <path> && /usr/local/bin/git pull -q origin master'`
