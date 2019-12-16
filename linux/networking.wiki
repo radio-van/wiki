@@ -3,10 +3,15 @@
         - [[#THEORY#interfaces|interfaces]]
             - [[#THEORY#interfaces#TUN/TAP|TUN/TAP]]
     - [[#USAGE|USAGE]]
-        - [[#USAGE#tcp/ip|tcp/ip]]
-            - [[#USAGE#tcp/ip#configuration|configuration]]
-                - [[#USAGE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
-        - [[#USAGE#tips & trics|tips & trics]]
+    - [[#configuration|configuration]]
+        - [[#configuration#hostname|hostname]]
+        - [[#configuration#interfaces|interfaces]]
+            - [[#configuration#interfaces#system V|system V]]
+            - [[#configuration#interfaces#systemd|systemd]]
+        - [[#configuration#firewall|firewall]]
+        - [[#configuration#DNS resolving|DNS resolving]]
+        - [[#configuration#ip address aliasing|ip address aliasing]]
+        - [[#configuration#tips & trics|tips & trics]]
 
 = THEORY =
 
@@ -21,12 +26,52 @@ TAP Interfaces
 TAP:: devices work at the _Ethernet level_ or _layer 2_ and therefore behave like a real network adaptor. Since they are running at _layer 2_ they can transport any _layer 3_ protocol and aren’t limited to point-to-point connections. *TAP* devices can be part of a bridge and are commonly used in virtualization systems to provide virtual network adaptors to multiple guest machines. Since *TAP* devices work at _layer 2_ they will forward broadcast traffic which normally makes them a poor choice for VPN connections as the VPN link is typically much narrower than a LAN network (and usually more expensive). But VPN clients using *TAP* interfaces will be in the same subnet and therefor no additional routing is needed (VPN acts as ethernet switch).
 
 = USAGE =
-== tcp/ip ==
+= configuration =
+== hostname ==
+`echo <hostname> > /etc/hostname`
+`hostname -F /etc/hostname`
+for static configurations add to `/etc/hosts`
+`<static ip>   hostname.domain.com`
 
-=== configuration ===
+== interfaces ==
+=== system V ===
+`/etc/networking/interfaces`
+{{{
+   auto <interface>
+   iface <interface> inet loopback|dhcp|manual|static
+   ***
+}}}
+_***_ additional rules are allowed e.g. `up ip route add default via <address>`
+in case of `static`
+{{{
+   iface <interface> inet static
+       address <address>
+       netmask <netmask>
+       gateway <gateway>
+}}}
+=== systemd ===
+use `systemd` units
+`/etc/systemd/network/20-<name>.network`
+{{{
+    [Match]
+    Name=<interface>
+
+    [Network]
+    DHCP=ipv4
+    <or>
+    Address=<addresss>/<mask>
+    Gateway=<gateway>
+}}}
+enable & start unit with `systemctl enable|start 20-<name>`
+   
+== firewall ==
 use [[iptables#Contents|iptables]]
 
-==== ip address aliasing ====
+== DNS resolving ==
+`/etc/resolv.conf`
+`nameserver X.X.X.X`
+
+== ip address aliasing ==
 CentOS::
   :: `/etc/sysconfig/network-scripts`
   :: `cp ifcfg-ethX icfg-ethX:N`
