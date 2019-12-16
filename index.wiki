@@ -16,6 +16,7 @@
 * Windows
   * [[windows/tips_tricks#Contents|tips&tricks]]
 * Utilities
+  * [[utilities/adb#Contents|adb]]
   * [[utilities/bash#Contents|bash]]
   * [[utilities/beets#Contents|beets]]
   * [[utilities/brew#Contents|brew]]

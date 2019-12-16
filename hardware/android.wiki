@@ -1,38 +1,43 @@
 = Contents =
-  - [[#Android|Android]]
-      - [[#Android#building apk|building apk]]
-        - [[#Android#building apk#create keystore|create keystore]]
-        - [[#Android#building apk#sign|sign]]
-        - [[#Android#building apk#verify|verify]]
-        - [[#Android#building apk#zipalign|zipalign]]
-      - [[#Android#flashing|flashing]]
-        - [[#Android#flashing#essential|essential]]
-        - [[#Android#flashing#Galaxy 4|Galaxy 4]]
+    - [[#building apk|building apk]]
+        - [[#building apk#create keystore|create keystore]]
+        - [[#building apk#sign|sign]]
+        - [[#building apk#verify|verify]]
+        - [[#building apk#zipalign|zipalign]]
+    - [[#flashing|flashing]]
+        - [[#flashing#essential|essential]]
+        - [[#flashing#Galaxy 4|Galaxy 4]]
+        - [[#flashing#ZTE modem 836F|ZTE modem 836F]]
+            - [[#flashing#ZTE modem 836F#modes|modes]]
+            - [[#flashing#ZTE modem 836F#firmware|firmware]]
+            - [[#flashing#ZTE modem 836F#terminal|terminal]]
+            - [[#flashing#ZTE modem 836F#adb shell configuration|adb shell configuration]]
+    - [[#AT commands|AT commands]]
+        - [[#AT commands#overview|overview]]
+        - [[#AT commands#SMS|SMS]]
 
-= Android =
+= building apk =
 
-=== building apk ===
-
-==== create keystore ====
+== create keystore ==
 {{{
    keytool -genkey -v -keystore mycustom.keystore -alias mykeyaliasname -keyalg RSA -keysize 2048 -validity 10000
  }}}
-==== sign ====
+== sign ==
 {{{
    jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore mycustom.keystore -storepass mystorepass $APK.apk mykeyaliasname
  }}}
-==== verify ====
+== verify ==
 {{{
    jarsigner -verify $APK.apk
  }}}
-==== zipalign ====
+== zipalign ==
 {{{
    zipalign 4 $APK.apk $APK-signed.apk
  }}}
 
-=== flashing ===
+= flashing =
 
-==== essential ====
+== essential ==
 
 - activate Developer options (taps on build version)
 - allow OEM unlock
@@ -72,7 +77,7 @@ adb push twrp-installer-.zip /sdcard
 
 * seems like patched boot is needed to be flashed to get *Magisk* to work
 
-==== Galaxy 4 ====
+== Galaxy 4 ==
 
 - boot to `downloading mode` (hold volume up + home + power)
 {{{
@@ -80,3 +85,43 @@ adb push twrp-installer-.zip /sdcard
 }}}
 - reboot phone into recovery (volume down + power + home)
 - flash `Magisk`, `firmware`, etc
+
+== ZTE modem 836F ==
+*Windows* software
+* `terminal` *COM* terminal for sending *AT* commands
+* `SCSI.exe` switches modem mode (see [[#modes|below]]) to enable firmware update
+* `ZTE Software` firmware tool
+
+=== modes ===
+* *MODE 0* works as modem + optical drive
+* *MODE 1* works as modem + `adb`
+* *MODE 2* firmware ready
+
+=== firmware ===
+- run `SCSI` to switch modem to appropriate mode
+- run `ZTE Software`, flash `unlock`, then `firmware` (disconnect modem between flashing)
+- using terminal, switch to prefered [[#modes|mode]]
+
+=== terminal ===
+`at^modimei=<imei>` change *imei*
+or
+`at^setimei=<imei>`
+
+=== adb shell configuration ===
+more info about [[../utilities/adb#Contents|adb]]
+`cfg show` show config
+`cfg set <property>=<value>` change configuration
+`cfg save` save configuration
+
+
+= AT commands =
+== overview ==
+To use *AT* commands on Linux try
+`socat - /dev/ttyUSB2,crnl`
+or `minicom`
+
+== SMS ==
+`AT+CMGR=<index>` read SMS
+`AT+CMGL="REC UNREAD"` list unread SMS
+`AT+CMGL="ALL"` list all SMS
+
