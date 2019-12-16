@@ -2,16 +2,11 @@
     - [[#THEORY|THEORY]]
         - [[#THEORY#interfaces|interfaces]]
             - [[#THEORY#interfaces#TUN/TAP|TUN/TAP]]
-    - [[#PRACTICE|PRACTICE]]
-        - [[#PRACTICE#tcp/ip|tcp/ip]]
-            - [[#PRACTICE#tcp/ip#iptables|iptables]]
-                - [[#PRACTICE#tcp/ip#iptables#show nat table|show nat table]]
-                - [[#PRACTICE#tcp/ip#iptables#delete rule|delete rule]]
-                - [[#PRACTICE#tcp/ip#iptables#port forwarding|port forwarding]]
-                - [[#PRACTICE#tcp/ip#iptables#basic routing between eth0 and wlan0|basic routing between eth0 and wlan0]]
-            - [[#PRACTICE#tcp/ip#configuration|configuration]]
-                - [[#PRACTICE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
-        - [[#PRACTICE#tips & trics|tips & trics]]
+    - [[#USAGE|USAGE]]
+        - [[#USAGE#tcp/ip|tcp/ip]]
+            - [[#USAGE#tcp/ip#configuration|configuration]]
+                - [[#USAGE#tcp/ip#configuration#ip address aliasing|ip address aliasing]]
+        - [[#USAGE#tips & trics|tips & trics]]
 
 = THEORY =
 
@@ -25,27 +20,11 @@ TAP Interfaces
 
 TAP:: devices work at the _Ethernet level_ or _layer 2_ and therefore behave like a real network adaptor. Since they are running at _layer 2_ they can transport any _layer 3_ protocol and aren’t limited to point-to-point connections. *TAP* devices can be part of a bridge and are commonly used in virtualization systems to provide virtual network adaptors to multiple guest machines. Since *TAP* devices work at _layer 2_ they will forward broadcast traffic which normally makes them a poor choice for VPN connections as the VPN link is typically much narrower than a LAN network (and usually more expensive). But VPN clients using *TAP* interfaces will be in the same subnet and therefor no additional routing is needed (VPN acts as ethernet switch).
 
-= PRACTICE =
-
+= USAGE =
 == tcp/ip ==
 
-=== iptables ===
-
-==== show nat table ====
-`iptables -n -t nat -L --line-number`
-==== delete rule ====
-list table with `--line-numbers`
-`iptables -D <CHAIN_NAME> <RULE_NUMBER>`
-==== port forwarding ====
-`iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`
-==== basic routing between eth0 and wlan0 ====
-{{{
-   sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
-   sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
-   sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT  
-}}}
-
 === configuration ===
+use [[iptables#Contents|iptables]]
 
 ==== ip address aliasing ====
 CentOS::

@@ -8,9 +8,11 @@
         - [[#usage#public keys|public keys]]
         - [[#usage#encrypt/decrypt|encrypt/decrypt]]
 
-    GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management system, along with access modules for all kinds of public key directories.
+    GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
+    system, along with access modules for all kinds of public key directories.
     GnuPG, also known as GPG, is a command line tool with features for easy integration with other applications.
-    A wealth of frontend applications and libraries are available. GnuPG also provides support for S/MIME and Secure Shell (ssh).
+    A wealth of frontend applications and libraries are available.
+    GnuPG also provides support for S/MIME and [[ssh#Contents|ssh]].
 
 = configuration =
 default storage is `~/.gnupg` and can be modified with `$GNUPGHOME` env variable

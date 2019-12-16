@@ -27,6 +27,7 @@
   * [[utilities/find#Contents|find]]
   * [[utilities/git#Contents|git]] 
   * [[utilities/gnupg#Contents|gnupg]] 
+  * [[utilities/iptables#Contents|iptables]] 
   * [[utilities/lxc#Contents|lxc]] 
   * [[utilities/newsboat#Contents|newsboat]] 
   * [[utilities/pass#Contents|pass]]
