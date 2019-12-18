@@ -2,6 +2,7 @@
   * [[developing/databases#Contents|databases]]
   * [[developing/django|django]]
   * [[developing/python#Contents|python]]
+  * [[developing/js#Contents|JS]]
 * Hardware
   * [[hardware/android#Contents|android]]
 * Linux
