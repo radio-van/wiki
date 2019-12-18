@@ -47,7 +47,11 @@
 
 == tips&trics ==
 === reload config ===
-`:so` aka `:source` - reads any file as a sequence of vim commands (`.vimrc` by default)
+`:so` aka `:source` - reads any file as a sequence of vim commands
+tricks:
+`:so %` when editing `.vimrc` reloads `.vimrc`
+`:so $MYVIMRC` reloads `.vimrc` from any file
+
 === backup settings ===
 {{{
     " Protect changes between writes. Default values of

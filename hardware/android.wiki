@@ -10,10 +10,10 @@
         - [[#flashing#ZTE modem 836F|ZTE modem 836F]]
             - [[#flashing#ZTE modem 836F#modes|modes]]
             - [[#flashing#ZTE modem 836F#firmware|firmware]]
-            - [[#flashing#ZTE modem 836F#terminal|terminal]]
             - [[#flashing#ZTE modem 836F#adb shell configuration|adb shell configuration]]
     - [[#AT commands|AT commands]]
         - [[#AT commands#overview|overview]]
+        - [[#AT commands#IMEI|IMEI]]
         - [[#AT commands#SMS|SMS]]
 
 = building apk =
@@ -102,11 +102,6 @@ adb push twrp-installer-.zip /sdcard
 - run `ZTE Software`, flash `unlock`, then `firmware` (disconnect modem between flashing)
 - using terminal, switch to prefered [[#modes|mode]]
 
-=== terminal ===
-`at^modimei=<imei>` change *imei*
-or
-`at^setimei=<imei>`
-
 === adb shell configuration ===
 more info about [[../utilities/adb#Contents|adb]]
 `cfg show` show config
@@ -119,6 +114,13 @@ more info about [[../utilities/adb#Contents|adb]]
 To use *AT* commands on Linux try
 `socat - /dev/ttyUSB2,crnl`
 or `minicom`
+
+use `ate1` command to turn on echo
+
+== IMEI ==
+`at^modimei=<imei>`
+or
+`at^setimei=<imei>`
 
 == SMS ==
 `AT+CMGR=<index>` read SMS
