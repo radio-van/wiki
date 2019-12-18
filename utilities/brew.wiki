@@ -1,10 +1,11 @@
 = Contents =
-    - [[#tips & tricks|tips & tricks]]
-        - [[#tips & tricks#downgrade package|downgrade package]]
-        - [[#tips & tricks#prevent package from upgrading|prevent package from upgrading]]
-        - [[#tips & tricks#multi-user system|multi-user system]]
+    - [[#receipts|receipts]]
+        - [[#receipts#downgrade package|downgrade package]]
+        - [[#receipts#prevent package from upgrading|prevent package from upgrading]]
+        - [[#receipts#multi-user system|multi-user system]]
+        - [[#receipts#show dependency tree|show dependency tree]]
 
-= tips & tricks =
+= receipts =
 
 == downgrade package ==
 `brew search <package name>`
@@ -23,5 +24,7 @@ Also it's a good idea to [[#prevent package from upgrading|prevent package from 
 {{{
     chgrp -R admin /usr/local/*
     chmod -R g+w /usr/local/*
-}}
+}}}
 
+== show dependency tree ==
+`brew deps --tree --installed`
