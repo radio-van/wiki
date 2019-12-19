@@ -5,6 +5,7 @@
   * [[developing/js#Contents|JS]]
 * Hardware
   * [[hardware/android#Contents|android]]
+  * [[hardware/modems#Contents|usb-modems]]
 * Linux
   * [[linux/installation#Contents|installation]]
   * [[linux/networking#Contents|networking]]
