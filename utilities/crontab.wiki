@@ -1,5 +1,6 @@
 = Contents =
     - [[#syntax|syntax]]
+    - [[#configuration|configuration]]
     - [[#examples|examples]]
         - [[#examples#newsboat crontab|newsboat crontab]]
         - [[#examples#git fetch crontab|git fetch crontab]]
@@ -14,6 +15,9 @@
 │ └────────────────── hour (0 - 23)
 └─────────────────────── min (0 - 59)
 }}}
+
+= configuration =
+to add logs on MacOS see [[../macos/system#add logs|add logs]]
 
 = examples =
 == newsboat crontab ==
