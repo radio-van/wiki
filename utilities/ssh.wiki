@@ -41,7 +41,7 @@ apply: `service ssh restart`
 == keys ==
 === keygen ===
 `ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f FILE`
-`[[ssh-keygen -t ed25519 -C "your_email@example.com" -f FILE]]`
+`ssh-keygen -t ed25519 -C "your_email@example.com" -f FILE`
 === copy key ===
 `ssh-copy-id -i $FILE $user@$host`
 === generate public key from private ===
