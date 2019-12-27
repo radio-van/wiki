@@ -14,6 +14,7 @@
         - [[#usage#diff with branch|diff with branch]]
         - [[#usage#exclude w/o .gitignore|exclude w/o .gitignore]]
         - [[#usage#index: show files in index|index: show files in index]]
+        - [[#usage#pull from remote (force)|pull from remote (force)]]
         - [[#usage#push to remote|push to remote]]
         - [[#usage#push to remote (diff name)|push to remote (diff name)]]
         - [[#usage#remove file from index|remove file from index]]
@@ -103,6 +104,9 @@ diff remote from local::
 
 == index: show files in index ==
 `git ls-tree -r master --name-only`
+
+== pull from remote (force) ==
+`git reset --hard <remote>/<branch>`
 
 == push to remote ==
 `git push -u $remote $branch`
