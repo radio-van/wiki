@@ -15,6 +15,7 @@
     - [[#receipts|receipts]]
         - [[#receipts#web server|web server]]
         - [[#receipts#decode base64|decode base64]]
+        - [[#receipts#get python version|get python version]]
 
 = Classes =
 == initialization ==
@@ -114,4 +115,9 @@ To patch *class* attribute or method::
     coded_string = '''Q5YACgA...'''
     base64.b64decode(coded_string)
 }}}
-
+== get python version ==
+{{{
+    import sys
+    print(sys.version)
+    print(sys.executable)
+}}}
