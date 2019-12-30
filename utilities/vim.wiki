@@ -23,6 +23,7 @@
             - [[#usage#navigation#jumps|jumps]]
             - [[#usage#navigation#tags|tags]]
         - [[#usage#editing|editing]]
+            - [[#usage#editing#basic idea|basic idea]]
             - [[#usage#editing#toggle case|toggle case]]
             - [[#usage#editing#ranges|ranges]]
             - [[#usage#editing#substitution|substitution]]
@@ -219,6 +220,11 @@ open tags in windows, tabs, splits::
 * `Ctrl-\` open definition in new tab
 * `Alt-]` open definition in vertical split
 == editing ==
+
+=== basic idea ===
+`operation` `range` `object`
+e.g. `ci"` = `c`hange `i`nside `"`
+e.g. `dw` = `d`elete `w`ord
 
 === toggle case ===
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
