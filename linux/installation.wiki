@@ -1,15 +1,34 @@
 = Contents =
-    - [[#graphics|graphics]]
-        - [[#graphics#xorg|xorg]]
-            - [[#graphics#xorg#known issues|known issues]]
-                - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
-        - [[#graphics#background|background]]
-        - [[#graphics#window manager|window manager]]
-            - [[#graphics#window manager#i3|i3]]
-    - [[#misc|misc]]
-        - [[#misc#auto login|auto login]]
-            - [[#misc#auto login#manual|manual]]
-            - [[#misc#auto login#using display manager|using display manager]]
+  - [[#base|base]]
+    - [[#base#pacman|pacman]]
+    - [[#base#users|users]]
+      - [[#base#users#sudo|sudo]]
+  - [[#graphics|graphics]]
+    - [[#graphics#xorg|xorg]]
+      - [[#graphics#xorg#known issues|known issues]]
+        - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
+    - [[#graphics#background|background]]
+    - [[#graphics#window manager|window manager]]
+      - [[#graphics#window manager#i3|i3]]
+  - [[#misc|misc]]
+    - [[#misc#auto login|auto login]]
+      - [[#misc#auto login#manual|manual]]
+      - [[#misc#auto login#using display manager|using display manager]]
+
+= base =
+== pacman ==
+* initialize keys `pacman-key --init`
+* populate keys `pacman-key --populate <distro>`, `distro` can be found at `/usr/share/pacman/keyrings/`
+* upgrade `pacman -Syu`
+
+
+== users ==
+`useradd -m -G <group> <user>`
+- `-m` will create home folder
+- `-G` will add to group (e.g. `wheel`)
+=== sudo ===
+* add user to `sudo` (Debian-based distros) or `wheel` group `usermod -aG wheel` (`-a` preserves previous groups)
+* edit sudoers file with `visudo` add/uncomment `%wheel ALL=(ALL) ALL`
 
 = graphics =
 == xorg ==

@@ -18,6 +18,8 @@
   * [[macos/system#Contents|system]]
 * Windows
   * [[windows/tips_tricks#Contents|tips&tricks]]
+* Packages
+  * [[packages/home-assistant#Contents|Home-Assistant]]
 * Utilities
   * [[utilities/adb#Contents|adb]]
   * [[utilities/bash#Contents|bash]]
