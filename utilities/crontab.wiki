@@ -1,7 +1,11 @@
 = Contents =
     - [[#syntax|syntax]]
+    - [[#configuration|configuration]]
+    - [[#examples|examples]]
+        - [[#examples#newsboat crontab|newsboat crontab]]
+        - [[#examples#git fetch crontab|git fetch crontab]]
 
-== syntax ==
+= syntax =
 {{{
 * * * * *  command to execute
 │ │ │ │ │
@@ -11,3 +15,13 @@
 │ └────────────────── hour (0 - 23)
 └─────────────────────── min (0 - 59)
 }}}
+
+= configuration =
+to add logs on MacOS see [[../macos/system#add logs|add logs]]
+
+= examples =
+== newsboat crontab ==
+see [[wiki0:newsboat#auto reload by cron|newsboat]]
+== git fetch crontab ==
+`* * * * * su -s /bin/sh nobody -c 'cd <path> && /usr/local/bin/git pull -q origin master'`
+for MacOS `* * * * * /bin/sh -c 'cd <path> && /usr/local/bin/git pull -q origin master'`

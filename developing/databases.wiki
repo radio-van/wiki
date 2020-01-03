@@ -1,18 +1,30 @@
 = Contents =
-  - [[#postgress|postgress]]
-    - [[#postgress#pgcli connect|pgcli connect]]
-  - [[#sql|sql]]
-    - [[#sql#value modification|value modification]]
-      - [[#sql#value modification#insert values|insert values]]
-      - [[#sql#value modification#update part of the value|update part of the value]]
-      - [[#sql#value modification#delete values|delete values]]
-    - [[#sql#table modification|table modification]]
-      - [[#sql#table modification#add column|add column]]
-      - [[#sql#table modification#rename column|rename column]]
-    - [[#sql#queries|queries]]
-      - [[#sql#queries#filter values|filter values]]
-      - [[#sql#queries#limit query|limit query]]
-      - [[#sql#queries#sort order|sort order]]
+    - [[#postgress|postgress]]
+        - [[#postgress#pgcli connect|pgcli connect]]
+        - [[#postgress#dump|dump]]
+        - [[#postgress#restore|restore]]
+        - [[#postgress#write to file|write to file]]
+    - [[#sql|sql]]
+        - [[#sql#value modification|value modification]]
+            - [[#sql#value modification#insert values|insert values]]
+            - [[#sql#value modification#update part of the value|update part of the value]]
+            - [[#sql#value modification#delete values|delete values]]
+        - [[#sql#table modification|table modification]]
+            - [[#sql#table modification#add column|add column]]
+            - [[#sql#table modification#rename column|rename column]]
+            - [[#sql#table modification#create temp table|create temp table]]
+            - [[#sql#table modification#read from CSV file|read from CSV file]]
+            - [[#sql#table modification#write to CSV file|write to CSV file]]
+        - [[#sql#queries|queries]]
+            - [[#sql#queries#filter values|filter values]]
+            - [[#sql#queries#search for partial value|search for partial value]]
+            - [[#sql#queries#limit query|limit query]]
+            - [[#sql#queries#sort order|sort order]]
+            - [[#sql#queries#query from several tables|query from several tables]]
+            - [[#sql#queries#aggregate data with same values|aggregate data with same values]]
+            - [[#sql#queries#JOINS|JOINS]]
+                - [[#sql#queries#JOINS#inner join|inner join]]
+                - [[#sql#queries#JOINS#left join|left join]]
 
 = postgress =
 
@@ -20,7 +32,17 @@
 {{{
   pgcli -h localhost -u postgres
 }}}
- 
+
+== dump ==
+`pg_dump -U username > filename`
+`pg_dumpall -U username > filename`
+
+== restore ==
+`psql dbname < filename`
+
+== write to file ==
+`\o filename`
+
 = sql =
 
 == value modification ==
@@ -46,12 +68,30 @@
 {{{class="brush: sql"
   ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
 }}}
+=== create temp table ===
+{{{class="brush: sql"
+  CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
+}}}
+hint:: date field type is `TIMESTAMP WITH TIME ZONE`
+=== read from CSV file ===
+{{{class="brush: sql"
+  COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
+}}}
+=== write to CSV file ===
+{{{class="brush: sql"
+  \copy (SELECT ...) to 'filename' with csv;
+}}}
 
 == queries ==
 === filter values ===
 {{{class="brush: sql"
   SELECT * FROM table WHERE string IN (value1, value2,...);
 }}}
+=== search for partial value ===
+{{{class="brush: sql"
+  SELECT * FROM table WHERE column LIKE 'pattern';
+}}}
+hint:: use `%` as wildcard, e.g. `pattern%` or `%pattern%`
 === limit query ===
 {{{class="brush: sql"
   SELECT * FROM table LIMIT num;
@@ -60,5 +100,41 @@
 {{{class="brush: sql"
   SELECT * FROM table ORDER BY id asc/desc;
 }}}
+=== query from several tables ===
+{{{class="brush: sql"
+  SELECT * FROM table1 INNER JOIN table2 ON condition_of_joining WHERE ...;
+}}}
+=== aggregate data with same values ===
+{{{class="brush: sql"
+  SELECT DISTINCT column FROM ...
+  SELECT column2, MAX(column1) FROM ... GROUP BY column2;
+}}} 
 
-
+=== JOINS ===
+==== inner join ====
+select smth from one table where particular values are the same in both tables
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  INNER JOIN table_B B ON A.id = B.id
+}}}
+==== left join ====
+select everything from one table plus values from another table that are the same with the first one
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  LEFT JOIN table_B B ON A.id = B.id
+}}}
+select values from one table that dont exist in the second table
+{{{class="brush: sql"
+  SELECT
+    A.*
+  FROM
+    table_A A
+  LEFT JOIN table_B B ON A.id = B.id
+  WHERE table_B.id IS NULL; 
+}}}

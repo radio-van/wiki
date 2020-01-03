@@ -1,17 +1,76 @@
 = Contents =
-  - [[#PYTHON|PYTHON]]
-      - [[#PYTHON#virtualenv|virtualenv]]
-        - [[#PYTHON#virtualenv#create venv|create venv]]
-        - [[#PYTHON#virtualenv#install requirements|install requirements]]
-        - [[#PYTHON#virtualenv#activate pyenv|activate pyenv]]
-        - [[#PYTHON#virtualenv#create pyenv|create pyenv]]
-        - [[#PYTHON#virtualenv#install version of Python|install version of Python]]
-      - [[#PYTHON#tips & tricks|tips & tricks]]
-        - [[#PYTHON#tips & tricks#web server|web server]]
+    - [[#Classes|Classes]]
+        - [[#Classes#initialization|initialization]]
+    - [[#Tests|Tests]]
+        - [[#Tests#mocking|mocking]]
+    - [[#additional tools|additional tools]]
+        - [[#additional tools#virtual envs|virtual envs]]
+            - [[#additional tools#virtual envs#create venv|create venv]]
+            - [[#additional tools#virtual envs#create pyenv|create pyenv]]
+            - [[#additional tools#virtual envs#activate pyenv|activate pyenv]]
+            - [[#additional tools#virtual envs#install version of Python|install version of Python]]
+        - [[#additional tools#package manager|package manager]]
+            - [[#additional tools#package manager#pip|pip]]
+                - [[#additional tools#package manager#pip#install requirements|install requirements]]
+    - [[#receipts|receipts]]
+        - [[#receipts#web server|web server]]
+        - [[#receipts#decode base64|decode base64]]
+        - [[#receipts#get python version|get python version]]
 
-= PYTHON =
+= Classes =
+== initialization ==
+- `Foo(*args, **kwargs)` means `Foo.__call__(*args, **kwargs)`
+- object `Foo` is an instance of class `type`, so calling `Foo.__call__(*args, **kwargs)` is equal to `type.__call__(Foo, *args, **kwargs)`
+- calling `type.__call__(Foo, *args, **kwargs)` calls `type.__new__(Foo, *args, **kwargs)` which returns `obj`
+- `obj` is initialied during calling `obj.__init__(*args, **kwargs)`
+- result of the whole process - initialized `obj`
 
-=== mock ===
+`__new__` method allocates memory and returns object
+it could be customized to achive desired results
+*Singletone* pattern example
+{{{class="brush: python"
+    class Singleton(object):
+        _instance = None
+        
+        def __new__(cls, *args, **kwargs):
+            if cls._instance is None:
+                cls._instance = super().__new__(cls, *args, **kwargs)
+            return cls._instance
+}}}
+{{{class="brush: python"
+    >>> s1 = Singleton()
+    ... s2 = Singleton()
+    ... s1 is s2
+    True
+}}}
+returns the same instance if it's already has been created (note that `__init__` method would be called for each `Singletone()` call)
+
+*Borg* pattern example
+{{{class="brush: python"
+    class Borg(object):
+        _dict = None
+
+        def __new__(cls, *args, **kwargs):
+            obj = super().__new__(cls, *args, **kwargs)
+            if cls._dict is None:
+                cls._dict = obj.__dict__
+            else:
+                obj.__dict__ = cls._dict
+            return obj
+}}}
+{{{class="brush: python"
+    >>> b1 = Borg()
+    ... b2 = Borg()
+    ... b1 is b2
+    False
+    >>> b1.x = 8
+    ... b2.x
+    8
+}}}
+instances would be different, but share same data
+
+= Tests =
+== mocking ==
 To patch *class* attribute or method::
 {{{class="brush: python"
   @mock.patch.object(Class, 'attribute/method')
@@ -30,39 +89,35 @@ To patch *class* attribute or method::
     mocked_method.return_value=...
 }}}
 
+= additional tools =
 
-To patch 
-    
+== virtual envs ==
+=== create venv ===
+`python -m venv $venv`
+=== create pyenv ===
+`pyenv virtualenv $python_version $venv_name`
+=== activate pyenv ===
+`pyenv activate $venv_name`
+=== install version of Python ===
+`pyenv install $version`
 
-=== virtualenv ===
-			
-==== create venv ====
-{{{
-  python -m venv $venv
-}}}
+== package manager ==
+=== pip ===
 ==== install requirements ====
-{{{
-  pip install -r requirements.txt
-}}}
-==== activate pyenv ====
-{{{
-  pyenv activate $venv_name
-}}}
-==== create pyenv ====
-{{{
-  pyenv virtualenv $python_version $venv_name
-}}}
-==== install version of Python ====
-{{{
-  pyenv install $version
-}}}
+`pip install -r requirements.txt`
                 
-                
-                
-                
-=== tips & tricks ===
-
-==== web server ====
+= receipts =
+== web server ==
+`python -m http.server --cgi 8000`
+== decode base64 ==
 {{{
-  python -m http.server --cgi 8000
+    import base64
+    coded_string = '''Q5YACgA...'''
+    base64.b64decode(coded_string)
+}}}
+== get python version ==
+{{{
+    import sys
+    print(sys.version)
+    print(sys.executable)
 }}}

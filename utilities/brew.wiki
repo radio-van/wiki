@@ -1,26 +1,30 @@
 = Contents =
-  - [[#BREW|BREW]]
-      - [[#BREW#tips & tricks|tips & tricks]]
-        - [[#BREW#tips & tricks#downgrade package|downgrade package]]
-        - [[#BREW#tips & tricks#prevent package from upgrading|prevent package from upgrading]]
+    - [[#receipts|receipts]]
+        - [[#receipts#downgrade package|downgrade package]]
+        - [[#receipts#prevent package from upgrading|prevent package from upgrading]]
+        - [[#receipts#multi-user system|multi-user system]]
+        - [[#receipts#show dependency tree|show dependency tree]]
 
-= BREW =
+= receipts =
 
-=== tips & tricks ===
-
-==== downgrade package ====
-{{{
-  brew search <package name>
-}}}
+== downgrade package ==
+`brew search <package name>`
 Older/specific versions are marked with `@`
 {{{
-  brew install <package>@<version>
-  brew unlink <old package>
-  brew link --force --overwrite <new package>
+    brew install <package>@<version>
+    brew unlink <old package>
+    brew link --force --overwrite <new package>
 }}}
 Also it's a good idea to [[#prevent package from upgrading|prevent package from upgrading]]
 
-==== prevent package from upgrading ====
+== prevent package from upgrading ==
+`brew pin <package>`
+
+== multi-user system ==
 {{{
-  brew pin <package>
+    chgrp -R admin /usr/local/*
+    chmod -R g+w /usr/local/*
 }}}
+
+== show dependency tree ==
+`brew deps --tree --installed`

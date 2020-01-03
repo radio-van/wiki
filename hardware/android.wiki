@@ -1,38 +1,35 @@
 = Contents =
-  - [[#Android|Android]]
-      - [[#Android#building apk|building apk]]
-        - [[#Android#building apk#create keystore|create keystore]]
-        - [[#Android#building apk#sign|sign]]
-        - [[#Android#building apk#verify|verify]]
-        - [[#Android#building apk#zipalign|zipalign]]
-      - [[#Android#flashing|flashing]]
-        - [[#Android#flashing#essential|essential]]
-        - [[#Android#flashing#Galaxy 4|Galaxy 4]]
+    - [[#building apk|building apk]]
+        - [[#building apk#create keystore|create keystore]]
+        - [[#building apk#sign|sign]]
+        - [[#building apk#verify|verify]]
+        - [[#building apk#zipalign|zipalign]]
+    - [[#flashing|flashing]]
+        - [[#flashing#essential|essential]]
+        - [[#flashing#Galaxy 4|Galaxy 4]]
 
-= Android =
+= building apk =
 
-=== building apk ===
-
-==== create keystore ====
+== create keystore ==
 {{{
    keytool -genkey -v -keystore mycustom.keystore -alias mykeyaliasname -keyalg RSA -keysize 2048 -validity 10000
  }}}
-==== sign ====
+== sign ==
 {{{
    jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore mycustom.keystore -storepass mystorepass $APK.apk mykeyaliasname
  }}}
-==== verify ====
+== verify ==
 {{{
    jarsigner -verify $APK.apk
  }}}
-==== zipalign ====
+== zipalign ==
 {{{
    zipalign 4 $APK.apk $APK-signed.apk
  }}}
 
-=== flashing ===
+= flashing =
 
-==== essential ====
+== essential ==
 
 - activate Developer options (taps on build version)
 - allow OEM unlock
@@ -72,7 +69,7 @@ adb push twrp-installer-.zip /sdcard
 
 * seems like patched boot is needed to be flashed to get *Magisk* to work
 
-==== Galaxy 4 ====
+== Galaxy 4 ==
 
 - boot to `downloading mode` (hold volume up + home + power)
 {{{
@@ -80,3 +77,5 @@ adb push twrp-installer-.zip /sdcard
 }}}
 - reboot phone into recovery (volume down + power + home)
 - flash `Magisk`, `firmware`, etc
+
+
