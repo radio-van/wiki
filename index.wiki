@@ -10,7 +10,7 @@
   * [[linux/installation#Contents|installation]]
   * [[linux/networking#Contents|networking]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
-  * [[linux/workspace#Contents|workspace]]
+  * [[linux/workspace#Contents|filesystem]]
 * Mac OS
   * [[macos/apps#Contents|apps]]
   * [[macos/installation#Contents|installation]]
