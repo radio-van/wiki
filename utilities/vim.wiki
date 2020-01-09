@@ -31,6 +31,9 @@
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
         - [[#usage#encryption|encryption]]
+        - [[#usage#file|file]]
+            - [[#usage#file#current file|current file]]
+                - [[#usage#file#current file#modificators|modificators]]
         - [[#usage#macro|macro]]
             - [[#usage#macro#save recordered macro|save recordered macro]]
         - [[#usage#windows and panes|windows and panes]]
@@ -330,6 +333,16 @@ Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfi
 * To encrypt file type `:X`, then passphrase twice
 * To reset password type `:X`, then empty passphrase
 *Warning* do not modify or save file that was decrypted with wrong password, otherwise it would be damaged!
+
+== file ==
+=== current file ===
+`%` expands to current file (only name by default?)
+==== modificators ====
+`:p` expand to full path 
+`:h` remove last component (i.e. filename and separator)
+`:t` filename and extension
+`:r` removes extension
+`:e` file extansion
 
 == macro ==
 === save recordered macro ===
