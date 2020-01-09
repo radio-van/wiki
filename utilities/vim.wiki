@@ -142,7 +142,9 @@ Make plugins section
 == built-in ==
 === terminal ===
 ==== scroll ====
-`ctrl-W N`
+`ctrl-W N` for scrolling
+`i` or `a` for resume as terminal
+
 
 == third-party plugins ==
 === fugitive ===
