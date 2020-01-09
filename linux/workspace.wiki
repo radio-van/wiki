@@ -1,4 +1,4 @@
-== filesystem ==
+= bin folders =
 `/bin` ::
     system commands needed when no FS are mounted (e.g. single-user mode), like *cat*, *cp*, *dd*, *rm*, ...
     _managed by Packet Manager_
@@ -15,3 +15,8 @@
     _not managed by Packet Manager_, *make install* _goes here_
 `/home/$USER/bin` ::
     utilities for particular user, should be synced between hosts with the same user
+    
+= etc folders =
+`/etc/default` contains parameters that user is likely to change. Those modifications are preserved across package uprades.
+In `System V` for each service in `/etc/init.d/<service>` default file from `/etc/default/<service>` is being sourced.
+The purpose is to provide extra options on starting the service or override some aspects of the service's startup.
