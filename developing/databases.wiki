@@ -7,6 +7,7 @@
         - [[#usage#restore|restore]]
         - [[#usage#write to file|write to file]]
     - [[#sql|sql]]
+        - [[#sql#roles|roles]]
         - [[#sql#value modification|value modification]]
             - [[#sql#value modification#insert values|insert values]]
             - [[#sql#value modification#update part of the value|update part of the value]]
@@ -46,6 +47,15 @@
 `\o filename`
 
 = sql =
+
+== roles ==
+`CREATE ROLE` or `createuser`, useful `options` are:
+- `-s` superuser
+- `-r` allow role creation
+- `-l` allow login
+- `d` allow create db
+
+see also `ALTER ROLE`, `DROP ROLE`
 
 == value modification ==
 === insert values ===
