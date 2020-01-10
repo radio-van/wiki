@@ -1,9 +1,11 @@
 = Contents =
-    - [[#postgress|postgress]]
-        - [[#postgress#pgcli connect|pgcli connect]]
-        - [[#postgress#dump|dump]]
-        - [[#postgress#restore|restore]]
-        - [[#postgress#write to file|write to file]]
+    - [[#tools|tools]]
+        - [[#tools#pgcli|pgcli]]
+            - [[#tools#pgcli#connect|connect]]
+    - [[#usage|usage]]
+        - [[#usage#dump|dump]]
+        - [[#usage#restore|restore]]
+        - [[#usage#write to file|write to file]]
     - [[#sql|sql]]
         - [[#sql#value modification|value modification]]
             - [[#sql#value modification#insert values|insert values]]
@@ -26,19 +28,19 @@
                 - [[#sql#queries#JOINS#inner join|inner join]]
                 - [[#sql#queries#JOINS#left join|left join]]
 
-= postgress =
+= tools =
+== pgcli ==
+=== connect ===
+`pgcli -h localhost -u postgres`
 
-== pgcli connect ==
-{{{
-  pgcli -h localhost -u postgres
-}}}
-
+= usage =
 == dump ==
-`pg_dump -U username > filename`
-`pg_dumpall -U username > filename`
+`pg_dump -U username > filename` dump database
+`pg_dumpall -U username > filename` dump all databases
 
 == restore ==
-`psql dbname < filename`
+`psql dbname < filename` restore single database
+`psql -f <dump> postgres` full restore
 
 == write to file ==
 `\o filename`
