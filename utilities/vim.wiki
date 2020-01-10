@@ -19,6 +19,17 @@
                 - [[#plugins#third-party plugins#fugitive#merge conflict|merge conflict]]
             - [[#plugins#third-party plugins#fzf|fzf]]
     - [[#usage|usage]]
+        - [[#usage#buffers|buffers]]
+            - [[#usage#buffers#close|close]]
+            - [[#usage#buffers#list|list]]
+            - [[#usage#buffers#switch|switch]]
+            - [[#usage#buffers#save and restore|save and restore]]
+            - [[#usage#buffers#execute commands|execute commands]]
+        - [[#usage#tabs|tabs]]
+            - [[#usage#tabs#navigation|navigation]]
+            - [[#usage#tabs#usage with buffers|usage with buffers]]
+            - [[#usage#tabs#open files|open files]]
+            - [[#usage#tabs#re-arrange tabs|re-arrange tabs]]
         - [[#usage#navigation|navigation]]
             - [[#usage#navigation#jumps|jumps]]
             - [[#usage#navigation#tags|tags]]
@@ -37,6 +48,7 @@
         - [[#usage#macro|macro]]
             - [[#usage#macro#save recordered macro|save recordered macro]]
         - [[#usage#windows and panes|windows and panes]]
+            - [[#usage#windows and panes#resize window|resize window]]
             - [[#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
 
 = configuration =
@@ -202,6 +214,62 @@ Bang `!` version of command opens `fzf` in full screen
 | `:Filetypes`        | File types                                                    |
 
 = usage =
+== buffers ==
+Buffers are loaded files. Windows are framebuffers for buffers.
+=== close ===
+`:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
+`<range>bd`, e.g. `3,5bd` would close `3, 4, 5` buffers
+
+=== list ===
+`:buffers`, `:ls`, `:files`
+
+=== switch ===
+`:b <number|name>`, use `Tab` for autocomplete
+`:sb <num|name>` opens buffer in horizontal split
+`:vert sb <num|name>` opens buffer in vertical split
+
+`<number>C-^` 
+`C-W ^` or `C-W C-^` opens buffer in new window
+
+`:bfirst`, `:brewind`, `sbfirst`, `sbrewind` jumps to first buffer in list
+`:blast`, `:sblast` jumps to last buffer
+`:bnext`, `:sbnext` jumps to next buffer
+`:bprevious`, `:bNext` jumps to previous buffer
+
+`:bmodified`, `:sbmodified` jumps to next modified buffer
+
+`:ball` opens all buffers from list
+`:unhide`, `:sunhide` opens all loaded buffers
+
+to switch to already opened buffer instead of opening new window/split set option
+`switchbuf` to `useopen`
+
+=== save and restore ===
+include `%` flag to `viminfo` option
+buffers could be saved per folder with local `viminfo` file
+
+=== execute commands ===
+`:bufdo`
+
+== tabs ==
+Tabs are just another representation of the group of windows/splits
+=== navigation ===
+`gt` next tab
+`gT` previous tab
+`<number>gt` tab in `<number>` position (from 1)
+
+=== usage with buffers ===
+`:tab ball` open each buffer in new tab
+`:tab split` copy current window to a new tab
+`C-w T` move current window to a new tab
+
+=== open files ===
+`:tabedit`, `:tabfind`
+
+=== re-arrange tabs ===
+`:tabm` moves current tab to last
+`:tabm <position>` moves current tab to position (`0` for first)
+
 == navigation ==
 === jumps ===
 * `gd` to local declaration
@@ -352,6 +420,20 @@ macro are saved into named registers, so they can be simply pasted as common str
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
 == windows and panes ==
+=== resize window ===
+`:resize <number>`
+`:resie +<number>`
+`:resie -<number>`
+`:vertical resize <number>`
+
+`C-w +`, `C-w -` for horizontal split
+`C-w >`, `C-w <` for vertical split
+also numbers could be used, e.g. `C-w 10+`
+
+`C-w _` maximum height
+`C-w |` maximum width
+`C-w =` equal sizes
+
 === switch between horizontal and vertical splits ===
 `C-w` + `J` - vertical -> horizontal
 `C-w` + `H` or `L` - horizontal -> vertical
