@@ -2,30 +2,39 @@
     - [[#concept|concept]]
     - [[#configuration|configuration]]
         - [[#configuration#gitignore|gitignore]]
+            - [[#configuration#gitignore#check why file ignored|check why file ignored]]
+            - [[#configuration#gitignore#exclude w/o .gitignore|exclude w/o .gitignore]]
         - [[#configuration#hide utracked files|hide utracked files]]
     - [[#usage|usage]]
-        - [[#usage#change branch base|change branch base]]
-        - [[#usage#checkout one file|checkout one file]]
-        - [[#usage#checkout remote branch|checkout remote branch]]
-        - [[#usage#check why file ignored|check why file ignored]]
-        - [[#usage#check upstream status|check upstream status]]
-        - [[#usage#delete local branch|delete local branch]]
-        - [[#usage#delete remote branch|delete remote branch]]
-        - [[#usage#diff with branch|diff with branch]]
-        - [[#usage#exclude w/o .gitignore|exclude w/o .gitignore]]
-        - [[#usage#index: show files in index|index: show files in index]]
-        - [[#usage#pull from remote (force)|pull from remote (force)]]
-        - [[#usage#push to remote|push to remote]]
-        - [[#usage#push to remote (diff name)|push to remote (diff name)]]
-        - [[#usage#remove file from index|remove file from index]]
-        - [[#usage#remove all files from index|remove all files from index]]
-        - [[#usage#set upstream|set upstream]]
-        - [[#usage#skipping files|skipping files]]
-        - [[#usage#stash: apply 1 file|stash: apply 1 file]]
-        - [[#usage#stash: clear|stash: clear]]
-        - [[#usage#stash: show|stash: show]]
-        - [[#usage#submodules: update|submodules: update]]
-        - [[#usage#urls: change remote url|urls: change remote url]]
+        - [[#usage#branch|branch]]
+            - [[#usage#branch#change base|change base]]
+            - [[#usage#branch#delete local branch|delete local branch]]
+            - [[#usage#branch#delete remote branch|delete remote branch]]
+            - [[#usage#branch#set upstream|set upstream]]
+        - [[#usage#checkout|checkout]]
+            - [[#usage#checkout#one file|one file]]
+            - [[#usage#checkout#remote branch|remote branch]]
+        - [[#usage#diff|diff]]
+            - [[#usage#diff#local from remote|local from remote]]
+            - [[#usage#diff#remote from local|remote from local]]
+            - [[#usage#diff#with branch|with branch]]
+        - [[#usage#index|index]]
+            - [[#usage#index#show files in index|show files in index]]
+            - [[#usage#index#remove file from index|remove file from index]]
+            - [[#usage#index#remove all files from index|remove all files from index]]
+            - [[#usage#index#skipping files|skipping files]]
+        - [[#usage#remote|remote]]
+            - [[#usage#remote#pull from remote (force)|pull from remote (force)]]
+            - [[#usage#remote#push to remote|push to remote]]
+            - [[#usage#remote#push to remote (diff name)|push to remote (diff name)]]
+        - [[#usage#stash|stash]]
+            - [[#usage#stash#apply 1 file|apply 1 file]]
+            - [[#usage#stash#clear|clear]]
+            - [[#usage#stash#show / diff|show / diff]]
+        - [[#usage#submodules|submodules]]
+            - [[#usage#submodules#update|update]]
+        - [[#usage#urls|urls]]
+            - [[#usage#urls#change remote url|change remote url]]
 
 = concept =
 *workspace*:: is the directory tree of (source) files that you see and edit
@@ -67,63 +76,47 @@
   # even if they are in subfolders
   !*/
 }}}
+=== check why file ignored ===
+`git check-ignore -v $filename`
+=== exclude w/o .gitignore ===
+`.git/info/exclude`
 
 == hide utracked files ==
 `git config --local status.showUntrackedFiles no`
 
 = usage =
-== change branch base ==
+== branch ==
+=== change base ===
 `git rebase --onto <new_base> <old_base> <branch>`
-
-== checkout one file ==
-`git checkout $commit_hash -- $filename`
-
-== checkout remote branch ==
-`git checkout $remote_branch`
-
-== check why file ignored ==
-`git check-ignore -v $filename`
-
-== check upstream status ==
-diff local from remote::
-`git log <branch> ^<remote/branch>`
-diff remote from local::
-`git log ^<branch> <remote/branch>`
-
-== delete local branch ==
+=== delete local branch ===
 `git branch -d $branch`
-
-== delete remote branch ==
+=== delete remote branch ===
 `git push origin --delete $remote_branch`
-
-== diff with branch ==
-`git diff --name-only $branch`
-
-== exclude w/o .gitignore ==
-`.git/info/exclude`
-
-== index: show files in index ==
-`git ls-tree -r master --name-only`
-
-== pull from remote (force) ==
-`git reset --hard <remote>/<branch>`
-
-== push to remote ==
-`git push -u $remote $branch`
-
-== push to remote (diff name) ==
-`git push -u $remote HEAD:$remote_branch`
-
-== remove file from index ==
-`git reset $file`
-
-== remove all files from index ==
-`git reset`
-
-== set upstream ==
+=== set upstream ===
 `git branch --set-upstream-to remote/branch-name`
 
-== skipping files ==
+== checkout ==
+=== one file ===
+`git checkout $commit_hash -- $filename`
+=== remote branch ===
+`git checkout $remote_branch`
+
+== diff ==
+=== local from remote ===
+`git log <branch> ^<remote/branch>`
+=== remote from local ===
+`git log ^<branch> <remote/branch>`
+=== with branch ===
+`git diff --name-only $branch`
+
+== index ==
+=== show files in index ===
+`git ls-tree -r master --name-only`
+=== remove file from index ===
+`git reset $file`
+=== remove all files from index ===
+`git reset`
+=== skipping files ===
 `git update-index`
 1. `--assume-unchanged`
 Git assumes that files with this bit are not changed by user and skips their check 
@@ -135,16 +128,25 @@ in both cases Git:
 - _can_ update working copy of the file if it's changed on remote side
 - will show merge conflict if file is changed on both sides
 
-== stash: apply 1 file ==
+== remote ==
+=== pull from remote (force) ===
+`git reset --hard <remote>/<branch>`
+=== push to remote ===
+`git push -u $remote $branch`
+=== push to remote (diff name) ===
+`git push -u $remote HEAD:$remote_branch`
+
+
+== stash ==
+=== apply 1 file === 
 `git checkout stash@{0} -- $file`
-
-== stash: clear ==
+=== clear === 
 `git stash clear`
+=== show / diff ===
+`git stash show` use `-p` option to show diff
 
-== stash: show ==
-`git stash show -p`
-
-== submodules: update ==
+== submodules ==
+=== update ===
 `git submodule update --recursive --remote`
 }}}
 - `--init` initialize all submodules, which haven't been yet
@@ -153,5 +155,6 @@ in both cases Git:
 - `--recursive` update nested submodules
 - `--remote` use the status of the submodule's remote-tracking branch (branch name is taken from .gitmodules)
 
-== urls: change remote url ==
+== urls ==
+=== change remote url ===
 `git remote set-url $remote $new_url`
