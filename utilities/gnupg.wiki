@@ -1,17 +1,17 @@
 = Contents =
-    - [[#configuration|configuration]]
-    - [[#usage|usage]]
-        - [[#usage#generate|generate]]
-        - [[#usage#list|list]]
-        - [[#usage#edit|edit]]
-        - [[#usage#export|export]]
-        - [[#usage#import|import]]
-        - [[#usage#delete|delete]]
-        - [[#usage#encrypt/decrypt|encrypt/decrypt]]
-        - [[#usage#git integration|git integration]]
-    - [[#gpg-agent|gpg-agent]]
-        - [[#gpg-agent#configuration|configuration]]
-        - [[#gpg-agent#ssh integration|ssh integration]]
+  - [[#configuration|configuration]]
+  - [[#usage|usage]]
+    - [[#usage#generate|generate]]
+    - [[#usage#list|list]]
+    - [[#usage#edit|edit]]
+    - [[#usage#export|export]]
+    - [[#usage#import|import]]
+    - [[#usage#delete|delete]]
+    - [[#usage#encrypt/decrypt|encrypt/decrypt]]
+    - [[#usage#git integration|git integration]]
+  - [[#gpg-agent|gpg-agent]]
+    - [[#gpg-agent#configuration|configuration]]
+    - [[#gpg-agent#ssh integration|ssh integration]]
 
     GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
     system, along with access modules for all kinds of public key directories.
@@ -22,6 +22,13 @@
 = configuration =
 default storage is `~/.gnupg` and can be modified with `$GNUPGHOME` env variable
 default config files are `~/.gnupg/gpg.conf` and `~/.gnupg/dirmngr.conf`
+
+`~/.gnupg/gpg-agent.conf` handles `gpg-agent` preferences, e.g. `enable-ssh-support` to emulate `ssh-agent`
+`~/.gnupg/sshcontrol` stores keys for use with `ssh`
+
+Keys identities could be:
+- *hash* or *key ID*? - the hash of key in different formats, e.g. `0xlong`. Represents only particular (*public* or *private*) key
+- *keygrip* refers to both *private* and *public* keys in keypair. Must be used in `sshcontrol` file. Could be obtained by `--with-keygrip` option.
 
 useful config
 {{{
