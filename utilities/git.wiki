@@ -27,6 +27,7 @@
             - [[#usage#remote#pull from remote (force)|pull from remote (force)]]
             - [[#usage#remote#push to remote|push to remote]]
             - [[#usage#remote#push to remote (diff name)|push to remote (diff name)]]
+        - [[#usage#show|show]]
         - [[#usage#stash|stash]]
             - [[#usage#stash#apply 1 file|apply 1 file]]
             - [[#usage#stash#clear|clear]]
@@ -136,6 +137,9 @@ in both cases Git:
 === push to remote (diff name) ===
 `git push -u $remote HEAD:$remote_branch`
 
+
+== show ==
+`git show branch:file` shows file from another branch
 
 == stash ==
 === apply 1 file === 
