@@ -1,26 +1,149 @@
 = Contents =
-  - [[#base|base]]
-    - [[#base#pacman|pacman]]
-    - [[#base#users|users]]
-      - [[#base#users#sudo|sudo]]
-  - [[#graphics|graphics]]
-    - [[#graphics#xorg|xorg]]
-      - [[#graphics#xorg#known issues|known issues]]
-        - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
-    - [[#graphics#background|background]]
-    - [[#graphics#window manager|window manager]]
-      - [[#graphics#window manager#i3|i3]]
-  - [[#misc|misc]]
-    - [[#misc#auto login|auto login]]
-      - [[#misc#auto login#manual|manual]]
-      - [[#misc#auto login#using display manager|using display manager]]
+    - [[#base|base]]
+        - [[#base#pre-installation|pre-installation]]
+        - [[#base#partition|partition]]
+            - [[#base#partition#crypt|crypt]]
+                - [[#base#partition#crypt#LVM on LUKS|LVM on LUKS]]
+        - [[#base#install base system|install base system]]
+        - [[#base#generate fstab|generate fstab]]
+        - [[#base#chroot|chroot]]
+        - [[#base#adjust time|adjust time]]
+        - [[#base#locale|locale]]
+        - [[#base#hostname|hostname]]
+        - [[#base#initramfs|initramfs]]
+        - [[#base#bootloader|bootloader]]
+            - [[#base#bootloader#systemd-boot|systemd-boot]]
+        - [[#base#pacman|pacman]]
+        - [[#base#users|users]]
+            - [[#base#users#sudo|sudo]]
+    - [[#graphics|graphics]]
+        - [[#graphics#xorg|xorg]]
+            - [[#graphics#xorg#known issues|known issues]]
+                - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
+        - [[#graphics#background|background]]
+        - [[#graphics#window manager|window manager]]
+            - [[#graphics#window manager#i3|i3]]
+    - [[#misc|misc]]
+        - [[#misc#auto login|auto login]]
+            - [[#misc#auto login#manual|manual]]
+            - [[#misc#auto login#using display manager|using display manager]]
 
 = base =
+== pre-installation ==
+* check if EFI is used `ls /sys/firmware/efi/efivars`
+* set ntp-time `timedatectl set-ntp true`
+
+== partition ==
+default scheme is
+- `/boot` if EFI is used
+- `/root` ~20-30Gb, depends on amount of software
+- `/home` for user's stuff
+- `swap` ~ double? of RAM for suspend to disk
+
+use `fdisk` for partitioning, set partition type to `Linux filesystem`
+use `mkfs.ext4` for create filesystem
+
+if installing on system with existing `EFI system partition` (e.g. on Apple computer), it could be mounted and used
+
+=== crypt ===
+==== LVM on LUKS ====
+{{{
+   +----------------------------+
+   | boot | luks [encrypted]... |
+   +------+----------+----------+
+   | .... | lvm-part | lvm-part |
+   +------+---------------------+
+}}}
+
+1. create encrypted partition
+   * `cryptsetup luksFormat /dev/sdaX`
+   * `cryptsetup open /dev/sdaX cryptlvm`
+   * decrypted container is available at `/dev/mapper/cryptlvm`
+2. create `LVM` partitions
+   * `pvcreate /dev/mapper/cryptlvm` 
+   * `vgcreate MyVolGroup /dev/mapper/cryptlvm`  
+   * create partitions
+   {{{
+      lvcreate -L 8G MyVolGroup -n swap
+      lvcreate -L 32G MyVolGroup -n root
+      lvcreate -l 100%FREE MyVolGroup -n home
+   }}}
+   * make filesystems
+   {{{
+      mkfs.ext4 /dev/MyVolGroup/root
+      mkfs.ext4 /dev/MyVolGroup/home
+      mkswap /dev/MyVolGroup/swap
+   }}}
+   * mount partitions
+   {{{
+      mount /dev/MyVolGroup/root /mnt
+      mkdir /mnt/home
+      mount /dev/MyVolGroup/home /mnt/home
+      swapon /dev/MyVolGroup/swap
+   }}}
+3. mount `/boot` (existing, or create new one)
+   `mount /dev/sdbN /mnt/boot`
+4. set `mkinitcpio` hooks, install `lvm2` package
+   `HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)`
+   *ATTENTION* follow the order of hooks!
+5. set bootloader options
+   `cryptdevice=UUID=<device-UUID>:cryptlvm root=/dev/MyVolGroup/root`
+   * `<device-UUID>` can be checked with `lsblk -dno UUID /dev/sdaX`
+   * if `systemd-boot` is used, config file is `<EFI System Partition>/loader/entries/<name>.conf`, `<name>` must be populated in `<EFI System Partition>/loader/loader.conf`
+
+== install base system ==
+`pacstrap /mnt base linux linux-firmware <any additional packages>`, e.g. `lvm2` for `LVM`
+
+== generate fstab ==
+`genfstab -U /mnt >> /mnt/etc/fstab`
+
+== chroot ==
+`arch-chroot /mnt`
+
+== adjust time ==
+`ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`
+`hwclock --systohc`
+
+== locale ==
+Uncomment `en_US.UTF-8 UTF-8` and other needed locales in `/etc/locale.gen`
+`locale-gen`
+`echo LANG=en_US.UTF-8 >> /etc/locale.conf`
+
+== hostname ==
+`echo hostname >> /etc/hostname`
+edit `/etc/hosts`
+{{{
+    127.0.0.1	localhost
+    ::1		    localhost
+    127.0.1.1	<hostname>.localdomain	<hostname>
+}}}
+
+== initramfs ==
+if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `dm-crypt`), creating new initramfs is required
+`mkinitcpio -P`
+
+== bootloader ==
+=== systemd-boot ===
+* `esp/loader/loader.conf` (`esp` is `EFI System Partition`)
+{{{
+    default  arch
+    timeout  4
+    console-mode max
+    editor   no
+}}}
+* `esp/loader/entries/*.conf`
+{{{
+    title   Arch Linux
+    linux   /vmlinuz-linux
+    initrd  /initramfs-linux.img
+    options root=LABEL=arch_os rw
+}}}
+if `LUKS` and `LVM` are used, change `options` according to [[LVM_on_LUKS|LVM and LUKS]]
+
 == pacman ==
 * initialize keys `pacman-key --init`
 * populate keys `pacman-key --populate <distro>`, `distro` can be found at `/usr/share/pacman/keyrings/`
 * upgrade `pacman -Syu`
-
 
 == users ==
 `useradd -m -G <group> <user>`
@@ -29,6 +152,7 @@
 === sudo ===
 * add user to `sudo` (Debian-based distros) or `wheel` group `usermod -aG wheel` (`-a` preserves previous groups)
 * edit sudoers file with `visudo` add/uncomment `%wheel ALL=(ALL) ALL`
+
 
 = graphics =
 == xorg ==
