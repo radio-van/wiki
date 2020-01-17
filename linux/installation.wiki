@@ -138,7 +138,7 @@ if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `d
     initrd  /initramfs-linux.img
     options root=LABEL=arch_os rw
 }}}
-if `LUKS` and `LVM` are used, change `options` according to [[LVM_on_LUKS|LVM and LUKS]]
+if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM and LUKS]]
 
 == pacman ==
 * initialize keys `pacman-key --init`
