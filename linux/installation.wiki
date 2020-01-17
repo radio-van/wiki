@@ -189,6 +189,7 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
 Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|Early KMS start]]
 * add gpu (`amdgpu`, `radeon`, ...) to `MODULES=(...)` section of `/etc/mkinitcpio.conf`
 * `mkinitcpio -p linux`
+
 == background ==
 `feh --bg-scale /path/to/image`
 == window manager ==
