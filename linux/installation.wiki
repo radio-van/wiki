@@ -18,6 +18,7 @@
             - [[#base#users#sudo|sudo]]
     - [[#graphics|graphics]]
         - [[#graphics#xorg|xorg]]
+            - [[#graphics#xorg#configuration files|configuration files]]
             - [[#graphics#xorg#known issues|known issues]]
                 - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
         - [[#graphics#background|background]]
@@ -184,6 +185,21 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
          exec startx
      fi
   }}}
+=== configuration files ===
+* `~/.xinitrc` to run Window Manager, e.g. `exec i3` (add `&` to run smth in background), also sources `.xprofile`
+* `~/.xprofile` to run anything before Window manager, e.g. compositor `xcompmgr &`
+* `~/.Xresources | ~/.Xdefaults` to set colors and options for different programs, e.g. [[../utilities/urxvt#Contents|urxvt]]
+* `/etc/X11/xorg.conf` for different preferences, e.g. keyboard switcher:
+{{{
+    Section "InputClass"
+            Identifier "system-keyboard"
+            MatchIsKeyboard "on"
+            Option "XkbLayout" "us, ru"
+            Option "XkbModel" "pc104"
+            Option "XkbOptions" "grp:alt_shift_toggle"
+    EndSection
+}}}
+
 === known issues ===
 ==== Fatal server error: (EE) AddScreen/ScreenInit ====
 Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|Early KMS start]]

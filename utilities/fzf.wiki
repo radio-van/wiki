@@ -1,3 +1,10 @@
+= Contents =
+    - [[#installation|installation]]
+        - [[#installation#mac os|mac os]]
+        - [[#installation#linux|linux]]
+    - [[#usage|usage]]
+        - [[#usage#with vim|with vim]]
+
 `FZF` is a fuzzy file finder.
 
 = installation =
