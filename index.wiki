@@ -1,3 +1,5 @@
+= Contents =
+
 * Developing
   * [[developing/databases#Contents|databases]]
   * [[developing/django|django]]
@@ -41,5 +43,6 @@
   * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/tmux#Contents|tmux]] 
+  * [[utilities/urxvt#Contents|urxvt]]
   * [[utilities/vim#Contents|vim]]
   * [[utilities/wireguard#Contents|wireguard]]
