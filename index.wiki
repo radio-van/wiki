@@ -31,6 +31,7 @@
   * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/find#Contents|find]]
+  * [[utilities/fzf#Contents|fzf]]
   * [[utilities/git#Contents|git]] 
   * [[utilities/gnupg#Contents|gnupg]] 
   * [[utilities/iptables#Contents|iptables]] 

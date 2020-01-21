@@ -419,6 +419,11 @@ Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfi
 macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
+== session ==
+Vim can save current buffers, layout, etc into session file
+`:mksession <file>`
+to restore it: `:so <file>`
+
 == windows and panes ==
 === resize window ===
 `:resize <number>`
