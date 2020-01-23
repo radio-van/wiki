@@ -216,16 +216,26 @@ useful additions:
 = misc =
 == auto login ==
 === manual ===
-* copy default service `cp /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service`
-* create symlink in place of original one `ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service`
-* modify `ExecStart=-/sbin/agetty -a USERNAME %I 38400`
-* apply 
-{{{
-  systemctl daemon-reload
-  systemctl disable getty@tty1
-  systemctl enable autologin@tty1
-  systemctl start autologin@tty1
-}}}
+1. override default service
+    `/etc/systemd/system/getty@tty1.service.d/override.conf`
+    {{{
+       [Service]
+       ExecStart=
+       ExecStart=-/usr/bin/agetty --autologin <username> --noclear %I $TERM
+    }}}
+*OR*
+2. create additional service
+    * copy default service `cp /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service`
+    * create symlink in place of original one `ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service`
+    * modify `ExecStart=-/sbin/agetty -a USERNAME %I 38400`
+    * apply 
+    {{{
+      systemctl daemon-reload
+      systemctl disable getty@tty1
+      systemctl enable autologin@tty1
+      systemctl start autologin@tty1
+    }}}
+    
 === using display manager ===
 [[https://github.com/spanezz/nodm|nodm]]
 
