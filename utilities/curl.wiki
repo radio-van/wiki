@@ -1,8 +1,12 @@
 = Contents =
     - [[#usage|usage]]
+        - [[#usage#add line after response|add line after response]]
         - [[#usage#POST with json data|POST with json data]]
 
 = usage =
+
+== add line after response ==
+`-w "\n"`
 
 == POST with json data ==
 
