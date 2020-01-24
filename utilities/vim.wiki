@@ -37,7 +37,9 @@
             - [[#usage#editing#basic idea|basic idea]]
             - [[#usage#editing#toggle case|toggle case]]
             - [[#usage#editing#ranges|ranges]]
-            - [[#usage#editing#substitution|substitution]]
+            - [[#usage#editing#ex/ed|ex/ed]]
+            - [[#usage#editing#search patterns|search patterns]]
+            - [[#usage#editing#examples|examples]]
             - [[#usage#editing#tips&trics|tips&trics]]
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
@@ -47,6 +49,7 @@
                 - [[#usage#file#current file#modificators|modificators]]
         - [[#usage#macro|macro]]
             - [[#usage#macro#save recordered macro|save recordered macro]]
+        - [[#usage#session|session]]
         - [[#usage#windows and panes|windows and panes]]
             - [[#usage#windows and panes#resize window|resize window]]
             - [[#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
@@ -338,7 +341,7 @@ examples::
 * `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
 * `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
 
-=== substitution ===
+=== ex/ed ===
 *ex/ed* legacy
 * replace `:s/../../`
 * delete `:/.../d`
@@ -348,6 +351,18 @@ examples::
 * read from cli `:r!`
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
 
+=== search patterns ===
+| Item             | Description                                                                          |
+| `/pattern/`      | next line where pattern matches                                                      |
+| `?pattern?`      | previous line where pattern matches                                                  |
+| `\/`             | next line where the previously used search pattern matches                           |
+| `\?`             | previous line where the previously used search pattern matches                       |
+| `\&`             | next line where the previously used substitute pattern matches                       |
+| `0;/that`        | first line containing `that` (also matches in the first line)                        |
+| `1;/that`        | first line after line 1 containing `that`                                            |
+| `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for *foo* not following *bar* |
+
+=== examples ===
 combine **search range** with **substitution**::
 :: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
 `:.,/green/co $`
@@ -378,15 +393,6 @@ To do a global replace in all blocks with the same patterns, use :g: ::
     Insert `` ` at the start of each line in each block. 
     All functions that start with function My or function s:My will be commented out. 
     The last line in each block is where endfunction first occurs (at the left margin), after where function My is found. 
-
-| Item        | Description                                                    |
-| `/pattern/` | next line where pattern matches                                |
-| `?pattern?` | previous line where pattern matches                            |
-| `\/`        | next line where the previously used search pattern matches     |
-| `\?`        | previous line where the previously used search pattern matches |
-| `\&`        | next line where the previously used substitute pattern matches |
-| `0;/that`   | first line containing `that` (also matches in the first line)  |
-| `1;/that`   | first line after line 1 containing `that`                      |
 
 === tips&trics ===
 ==== comment several lines ====
