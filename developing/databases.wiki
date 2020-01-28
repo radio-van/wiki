@@ -41,7 +41,7 @@
 
 == restore ==
 `psql dbname < filename` restore single database
-`psql -f <dump> postgres` full restore
+`psql -f <dump> -U <user>` full restore
 
 == write to file ==
 `\o filename`
