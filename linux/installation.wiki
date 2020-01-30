@@ -146,6 +146,8 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
 * populate keys `pacman-key --populate <distro>`, `distro` can be found at `/usr/share/pacman/keyrings/`
 * upgrade `pacman -Syu`
 
+* delete orphans `pacman -Rusn $(pacman -Qtdq)` use `-Qttdq` for potential orphans
+
 == users ==
 `useradd -m -G <group> <user>`
 - `-m` will create home folder
