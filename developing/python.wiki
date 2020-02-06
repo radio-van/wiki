@@ -1,6 +1,7 @@
 = Contents =
     - [[#Classes|Classes]]
         - [[#Classes#initialization|initialization]]
+        - [[#Classes#importing|importing]]
     - [[#Tests|Tests]]
         - [[#Tests#mocking|mocking]]
     - [[#additional tools|additional tools]]
@@ -69,6 +70,28 @@ returns the same instance if it's already has been created (note that `__init__`
 }}}
 instances would be different, but share same data
 
+== importing ==
+`package1.py`
+{{{
+   class A(object):
+     def __init__(self):
+       ...
+}}}
+`package2.py`
+{{{
+   from package1 import A
+   
+   class B(object):
+     def __init__(self):
+       ...
+}}}
+in this case in `package2` a variable named `A` is created and points to actual `A` class in memory.<br>
+`package1` also contains a variable named `A` which also points to class `A` in memory.<b>
+{{{
+   package1.A --+
+                |----> <actual class A>
+   package2.A---+
+}}}
 = Tests =
 == mocking ==
 To patch *class* attribute or method::
