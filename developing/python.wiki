@@ -118,6 +118,9 @@ To patch *instance* attribute or method::
 }}}
 `mock_A.return_value` contains instance of `mock_A`
 <br>
+`mock.patch(target, ...)`
+`target` must be in form `package.module.ClassName`
+<br>
 To patch *class* attribute or method::
 {{{class="brush: python"
   @mock.patch.object(Class, 'attribute/method')
@@ -136,6 +139,8 @@ To patch *class* attribute or method::
     mocked_method.return_value=...
 }}}
 <br>
+in this case `attribute` is *Class* attribute. To patch *instance* attribute<br>
+`@patch.object(Class, method)` must be used *?*
 === return values ===
 to mock return value `mock_instance.some_method.return_value` could be used
 to assign a function as a return value `mock_instance.some_method.side_effect` could be used
