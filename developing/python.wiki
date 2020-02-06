@@ -97,6 +97,22 @@ namespace of `package1` and use it to get to class in memory.
 
 = Tests =
 == mocking ==
+To patch *instance* attribute or method::
+{{{
+   from package2 import B
+   
+   class TestB:
+     @mock.patch('package2.A')  # replace the memory address that package2.A points to (now it's instance of the Mock class)
+     def test_b(self, mock_A):
+       test = B()
+}}}
+{{{
+   package1.A ------> <actual class A>
+   package2.A---+
+                |----> <Mock object>
+   mock_A-------+
+}}}
+<br>
 To patch *class* attribute or method::
 {{{class="brush: python"
   @mock.patch.object(Class, 'attribute/method')
