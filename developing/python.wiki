@@ -4,6 +4,9 @@
         - [[#Classes#importing|importing]]
     - [[#Tests|Tests]]
         - [[#Tests#mocking|mocking]]
+            - [[#Tests#mocking#basics|basics]]
+            - [[#Tests#mocking#return values|return values]]
+            - [[#Tests#mocking#return different value on each call|return different value on each call]]
     - [[#additional tools|additional tools]]
         - [[#additional tools#virtual envs|virtual envs]]
             - [[#additional tools#virtual envs#create venv|create venv]]
@@ -97,6 +100,7 @@ namespace of `package1` and use it to get to class in memory.
 
 = Tests =
 == mocking ==
+=== basics ===
 To patch *instance* attribute or method::
 {{{
    from package2 import B
@@ -112,6 +116,7 @@ To patch *instance* attribute or method::
                 |----> <Mock object>
    mock_A-------+
 }}}
+`mock_A.return_value` contains instance of `mock_A`
 <br>
 To patch *class* attribute or method::
 {{{class="brush: python"
@@ -130,6 +135,13 @@ To patch *class* attribute or method::
     mocked_method.side_effect=...
     mocked_method.return_value=...
 }}}
+<br>
+=== return values ===
+to mock return value `mock_instance.some_method.return_value` could be used
+to assign a function as a return value `mock_instance.some_method.side_effect` could be used
+
+=== return different value on each call ===
+`mock_instance.some_method.side_effect = [<return_value_1>, <return_value_2>, ...]`
 
 = additional tools =
 
