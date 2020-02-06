@@ -92,6 +92,9 @@ in this case in `package2` a variable named `A` is created and points to actual 
                 |----> <actual class A>
    package2.A---+
 }}}
+now when `A` is referred from `B` class, interpreter will attempt to find an `A` variable in<br>
+namespace of `package1` and use it to get to class in memory.
+
 = Tests =
 == mocking ==
 To patch *class* attribute or method::
