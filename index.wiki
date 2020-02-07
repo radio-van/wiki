@@ -42,6 +42,7 @@
   * [[utilities/pass#Contents|pass]]
   * [[utilities/rsync#Contents|rsync]]
   * [[utilities/ssh#Contents|ssh]]
+  * [[utilities/sudo#Contents|sudo]]
   * [[utilities/tmux#Contents|tmux]] 
   * [[utilities/urxvt#Contents|urxvt]]
   * [[utilities/vim#Contents|vim]]
