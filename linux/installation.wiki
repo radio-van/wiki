@@ -24,10 +24,12 @@
         - [[#graphics#background|background]]
         - [[#graphics#window manager|window manager]]
             - [[#graphics#window manager#i3|i3]]
-    - [[#misc|misc]]
-        - [[#misc#auto login|auto login]]
-            - [[#misc#auto login#manual|manual]]
-            - [[#misc#auto login#using display manager|using display manager]]
+    - [[#login|login]]
+        - [[#login#auto login|auto login]]
+            - [[#login#auto login#manual|manual]]
+            - [[#login#auto login#using display manager|using display manager]]
+    - [[#configs|configs]]
+        - [[#configs#dotfiles|dotfiles]]
 
 = base =
 == pre-installation ==
@@ -221,7 +223,7 @@ Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|E
 useful additions:
   - `dmenu` dynamic menu to launch scripts and programs
 
-= misc =
+= login =
 == auto login ==
 === manual ===
 1. override default service
@@ -247,3 +249,22 @@ useful additions:
 === using display manager ===
 [[https://github.com/spanezz/nodm|nodm]]
 
+= configs =
+== dotfiles ==
+Repository with workdir in *home* folder.
+Initial:
+{{{
+    git init --bare $HOME/.dotfiles
+    echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+    source .bashrc
+    dotfiles config --local status.showUntrackedFiles no
+}}}
+Sync existing:
+{{{
+    echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+    source .bashrc
+    echo ".dotfiles" >> .gitignore
+    git clone --bare <git-repo-url> $HOME/.dotfiles
+    dotfiles checkout
+    dotfiles config --local status.showUntrackedFiles no
+}}}
