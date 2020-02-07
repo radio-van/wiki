@@ -189,7 +189,7 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
   }}}
 === configuration files ===
 * `~/.xinitrc` to run Window Manager, e.g. `exec i3` (add `&` to run smth in background), also sources `.xprofile`
-* `~/.xprofile` to run anything before Window manager, e.g. compositor `xcompmgr &`
+* `~/.xprofile` to run anything before Window manager, e.g. compositor `xcompmgr &`, used by login*?* managers
 * `~/.Xresources | ~/.Xdefaults` to set colors and options for different programs, e.g. [[../utilities/urxvt#Contents|urxvt]]
 * `/etc/X11/xorg.conf` for different preferences, e.g. keyboard switcher:
 {{{
@@ -199,6 +199,12 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
             Option "XkbLayout" "us, ru"
             Option "XkbModel" "pc104"
             Option "XkbOptions" "grp:alt_shift_toggle"
+    EndSection
+}}}
+or enable composition:
+{{{
+    Section "Extensions"
+        Option "Composite" "true"
     EndSection
 }}}
 
