@@ -30,6 +30,8 @@
             - [[#login#auto login#using display manager|using display manager]]
     - [[#configs|configs]]
         - [[#configs#dotfiles|dotfiles]]
+    - [[#power management|power management]]
+        - [[#power management#sleep and hibernation|sleep and hibernation]]
 
 = base =
 == pre-installation ==
@@ -268,3 +270,26 @@ Sync existing:
     dotfiles checkout
     dotfiles config --local status.showUntrackedFiles no
 }}}
+
+= power management =
+== sleep and hibernation ==
+* *sleep* aka *suspend-to-ram* writes state to RAM, significantly decrease power consumption
+* *hibernate* aka *suspend-to-swap* writes state to *swap* partition/file and powers off the machine
+* *hybrid-sleep* combines both, state is restored from RAM, in case of power loss - from swap
+
+to enable resuming from swap, `resume` hook must be added to `initramfs` i.e. `/etc/mkinitcpio.conf`<br>
+after `lvm2` and `encrypt` (if they are used) and after*?* `filesystem`
+then, rebuild with `mkinitcpio -P`
+
+also appropriate *kernel parameters* must be added.<br>
+if `systemd-bootd` is used, then edit `/boot/loader/entities/<entity>.conf`<br>
+and add `resume=<path to swap>` e.g. `resume=/dev/<LVM group>/swap`
+
+commands are:
+* `systemctl suspend`
+* `systemctl hibernate`
+* `systemctl hybrid-sleep`
+
+for security install `xss-lock` and add it to autostart (e.g. `.bash_profile`)
+`xss-lock -- <external locker> &` e.g. `i3locks`
+it will lock system after sleep/hibernation
