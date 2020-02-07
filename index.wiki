@@ -39,6 +39,7 @@
   * [[utilities/gnupg#Contents|gnupg]] 
   * [[utilities/iptables#Contents|iptables]] 
   * [[utilities/lxc#Contents|lxc]] 
+  * [[utilities/keynav#Contents|keynav]] 
   * [[utilities/newsboat#Contents|newsboat]] 
   * [[utilities/pass#Contents|pass]]
   * [[utilities/rsync#Contents|rsync]]
