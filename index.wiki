@@ -30,6 +30,7 @@
   * [[utilities/crontab#Contents|crontab]]
   * [[utilities/curl#Contents|curl]]
   * [[utilities/docker#Contents|docker]]
+  * [[utilities/dunst#Contents|dunst]]
   * [[utilities/exiftool#Contents|exiftool]]
   * [[utilities/ffmpeg#Contents|ffmpeg]]
   * [[utilities/find#Contents|find]]
