@@ -5,11 +5,13 @@
             - [[#configuration#gitignore#check why file ignored|check why file ignored]]
             - [[#configuration#gitignore#exclude w/o .gitignore|exclude w/o .gitignore]]
         - [[#configuration#hide utracked files|hide utracked files]]
+        - [[#configuration#test connection|test connection]]
     - [[#usage|usage]]
         - [[#usage#branch|branch]]
             - [[#usage#branch#change base|change base]]
             - [[#usage#branch#delete local branch|delete local branch]]
             - [[#usage#branch#delete remote branch|delete remote branch]]
+            - [[#usage#branch#delete file from all commits history|delete file from all commits history]]
             - [[#usage#branch#set upstream|set upstream]]
         - [[#usage#checkout|checkout]]
             - [[#usage#checkout#one file|one file]]
@@ -24,6 +26,7 @@
             - [[#usage#index#remove all files from index|remove all files from index]]
             - [[#usage#index#skipping files|skipping files]]
         - [[#usage#remote|remote]]
+            - [[#usage#remote#add remote with non-default ssh port|add remote with non-default ssh port]]
             - [[#usage#remote#pull from remote (force)|pull from remote (force)]]
             - [[#usage#remote#push to remote|push to remote]]
             - [[#usage#remote#push to remote (diff name)|push to remote (diff name)]]
@@ -84,6 +87,8 @@
 
 == hide utracked files ==
 `git config --local status.showUntrackedFiles no`
+== test connection ==
+`ssh -T git@<address>`
 
 = usage =
 == branch ==
@@ -93,6 +98,8 @@
 `git branch -d $branch`
 === delete remote branch ===
 `git push origin --delete $remote_branch`
+=== delete file from all commits history ===
+`git filter-branch --tree-filter "rm -f <file>" -- --all`
 === set upstream ===
 `git branch --set-upstream-to remote/branch-name`
 
@@ -130,6 +137,8 @@ in both cases Git:
 - will show merge conflict if file is changed on both sides
 
 == remote ==
+=== add remote with non-default ssh port ===
+`get remote add <name> ssh://git@<address>:<ssh_port>/<username>/<repo>.git`
 === pull from remote (force) ===
 `git reset --hard <remote>/<branch>`
 === push to remote ===
