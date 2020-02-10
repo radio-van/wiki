@@ -10,6 +10,7 @@ keybindings are keysequence plus list of commands
 `space warp,click 1,end`
 
 = keybindings =
+* `^;` toggle keynav
 * `h` select the left half of the region
 * `j` select the bottom half of the region
 * `k` select the top half of the region
