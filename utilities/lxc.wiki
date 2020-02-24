@@ -12,6 +12,7 @@
 = configuration =
 == change container storage path ==
 `echo 'lxc.lxcpath=...' >> /etc/lxc/lxc.conf`
+default path is `/var/lib/lxc/`
 
 == virtual bridge ==
 virtual bridge allows containers to communicate with each other and host
