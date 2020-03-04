@@ -13,6 +13,7 @@
   * [[linux/networking#Contents|networking]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
   * [[linux/workspace#Contents|filesystem]]
+  * [[linux/zip#Contents|zip]]
 * Mac OS
   * [[macos/apps#Contents|apps]]
   * [[macos/installation#Contents|installation]]
