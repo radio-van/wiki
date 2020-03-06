@@ -121,6 +121,27 @@ To patch *instance* attribute or method::
 `mock.patch(target, ...)`
 `target` must be in form `package.module.ClassName`
 <br>
+It's important to do a proper import, because
+{{{
+   import random
+   from random import choice
+   
+   def a():
+       return choice([1,2,3])
+   
+   def b():
+       return random.choice([1,2,3])
+       
+    with mock.patch('random.choice', return_value=1000):
+        print('a', a())
+        print('b', b())
+}}}
+result will be
+{{{
+   >>> a 3
+   >>> b 1000
+}}}
+
 To patch *class* attribute or method::
 {{{class="brush: python"
   @mock.patch.object(Class, 'attribute/method')
