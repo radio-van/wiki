@@ -30,6 +30,8 @@
             - [[#usage#remote#pull from remote (force)|pull from remote (force)]]
             - [[#usage#remote#push to remote|push to remote]]
             - [[#usage#remote#push to remote (diff name)|push to remote (diff name)]]
+        - [[#usage#repo|repo]]
+            - [[#usage#repo#init|init]]
         - [[#usage#show|show]]
         - [[#usage#stash|stash]]
             - [[#usage#stash#apply 1 file|apply 1 file]]
@@ -146,6 +148,14 @@ in both cases Git:
 === push to remote (diff name) ===
 `git push -u $remote HEAD:$remote_branch`
 
+== repo ==
+=== init ===
+* `git init <name>` creates *working* repository with a *working tree*.
+Supposed to be used when files in repository will be modified, i.e. common workflow case.
+* `git init --bare <name>` creates *bare* repository without *working tree*.
+Supposed to be used as centralized point to store changes from remote repos, i.e. for *sharing*.
+Assume it doesn't have a working tree, there will be no conflicts on pushing files into.
+That's how remote servers, e.g. GitHub, work.
 
 == show ==
 `git show branch:file` shows file from another branch
