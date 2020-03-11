@@ -3,6 +3,7 @@
         - [[#configuration#change container storage path|change container storage path]]
         - [[#configuration#virtual bridge|virtual bridge]]
     - [[#usage|usage]]
+        - [[#usage#attach|attach]]
         - [[#usage#create|create]]
         - [[#usage#add bridge to default container config|add bridge to default container config]]
         - [[#usage#lxc clones|lxc clones]]
@@ -33,6 +34,12 @@ enable service
 `systemctl enable lxc-net.service`
 
 = usage =
+== attach ==
+`lxc-attach <name> -- <command>` can be used to run commands inside container.
+`lxc-attach` uses (?) `$PATH` from host, so `/bin` can be not presented in `PATH` and therefore
+common utils like `ls`, `cat`, `echo` won't be found. To fix this manually add `/bin` to `$PATH` or
+run `lxc-attach` with `--clear-env` option.
+
 == create ==
 `lxc-create -n <name> -t download -- --dist <distributive> --release <dist version> --arch <architecture>`
 
