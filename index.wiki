@@ -1,6 +1,7 @@
 = Contents =
 
 * Developing
+  * [[developing/common#Contents|common]]
   * [[developing/databases#Contents|databases]]
   * [[developing/django|django]]
   * [[developing/python#Contents|python]]
