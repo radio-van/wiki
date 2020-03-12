@@ -1,0 +1,6 @@
+= Contents =
+    - [[#getty|getty]]
+
+= getty =
+`getty` is a program which detects connection to `tty` (virtual console) and
+launches another program (`login` by default).
