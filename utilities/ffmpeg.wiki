@@ -11,6 +11,7 @@
         - [[#conversion#convert images to video|convert images to video]]
             - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
         - [[#conversion#overlaying image on video|overlaying image on video]]
+        - [[#conversion#resize|resize]]
         - [[#conversion#speed|speed]]
             - [[#conversion#speed#audio|audio]]
             - [[#conversion#speed#video|video]]
@@ -91,6 +92,11 @@ full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|
 
 == overlaying image on video ==
 `ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -i ~/path_to_overlay.png -filter_complex "[0:v][1:v] overlay=0:0" -vcodec libx264 -crf 25  -pix_fmt yuv420p test_overlay.mp4`
+
+== resize ==
+`ffmpeg -i <input> -s 720x480 -c:a copy <output>`
+`ffmpeg -i <input> -filter:v scale=width:height -c:a copy <output>`
+use `-1` instead of `height` or `width` to automatic calculation
 
 == speed ==
 === audio ===
