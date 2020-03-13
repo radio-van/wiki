@@ -1,19 +1,16 @@
 = Contents =
-    - [[#BASH|BASH]]
-            - [[#BASH#configuration|configuration]]
-                - [[#BASH#configuration#files|files]]
-            - [[#BASH#usage|usage]]
-                - [[#BASH#usage#parameters expansion|parameters expansion]]
-            - [[#BASH#tips & tricks|tips & tricks]]
-                - [[#BASH#tips & tricks#history across all shells|history across all shells]]
-                - [[#BASH#tips & tricks#compare two dirs|compare two dirs]]
-                - [[#BASH#tips & tricks#run a command for each line of a file|run a command for each line of a file]]
+    - [[#configuration|configuration]]
+        - [[#configuration#basics|basics]]
+        - [[#configuration#history across all shells|history across all shells]]
+    - [[#usage|usage]]
+        - [[#usage#execute and source|execute and source]]
+        - [[#usage#parameters expansion|parameters expansion]]
+    - [[#recepies|recepies]]
+        - [[#recepies#compare two dirs|compare two dirs]]
+        - [[#recepies#run a command for each line of a file|run a command for each line of a file]]
 
-= BASH =
-
-=== configuration ===
-
-==== files ====
+= configuration =
+== basics ==
 login shell:: when you login from another host or text console on login machine
 non-login shell:: when you start display manager
 interactive shell:: when you're connected to a pseudo-terminal via text-console or SSH
@@ -22,17 +19,7 @@ non-interactive shell:: rare, can be launched on some display managers or when s
 * `.bashrc` - _interactive_ and _non-login_ shell (i.e in existing session)
 * `.bash_profile` - _login_ shell
 
-=== usage ===
-
-==== parameters expansion ====
-| `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
-| `${VAR##pattern}` | delete longest match of pattern from the beginning  |
-| `${VAR%pattern}`  | delete shortest match of pattern from the end       |
-| `${VAR%%pattern}` | delete longest match of pattern from the end        |
-
-=== tips & tricks ===
-
-==== history across all shells ====
+== history across all shells ==
 Basic way::
 `export PROMPT_COMMAND='history -a'`
 ::    If set, the value is executed as a command prior to issuing each primary prompt.
@@ -48,18 +35,24 @@ Complex way::
 ::    When the shell exits, append to the history file instead of overwriting it
 `export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"`
 ::    After each command, append to the history file and reread it
-      
-==== compare two dirs ====
-* show same files in 2 dirs, ignoring extensions
-{{{
-    comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
-}}}
-* show different files in 2 dirs, ignoring extensions
-{{{
-    comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)
-}}}
 
-==== run a command for each line of a file ====
-{{{
-  while read in; do <command> "$in"; done < file
-}}}
+= usage =
+== execute and source ==
+* `execute` aka `./<script>` runs script in _new_ shell (all changes to environment will stay in that shell)
+* `source` aka `. <script>` runs script in _current_ shell (all changes to environment will be applied to current shell)
+
+== parameters expansion ==
+| `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
+| `${VAR##pattern}` | delete longest match of pattern from the beginning  |
+| `${VAR%pattern}`  | delete shortest match of pattern from the end       |
+| `${VAR%%pattern}` | delete longest match of pattern from the end        |
+
+= recepies =
+== compare two dirs ==
+* show same files in 2 dirs, ignoring extensions
+`comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
+* show different files in 2 dirs, ignoring extensions
+`comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
+
+== run a command for each line of a file ==
+`while read in; do <command> "$in"; done < file`
