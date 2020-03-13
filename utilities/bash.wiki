@@ -2,12 +2,14 @@
     - [[#configuration|configuration]]
         - [[#configuration#basics|basics]]
         - [[#configuration#history across all shells|history across all shells]]
+    - [[#scripting|scripting]]
+        - [[#scripting#set options|set options]]
+        - [[#scripting#recepies & examples|recepies & examples]]
+            - [[#scripting#recepies & examples#compare two dirs|compare two dirs]]
+            - [[#scripting#recepies & examples#run a command for each line of a file|run a command for each line of a file]]
     - [[#usage|usage]]
         - [[#usage#execute and source|execute and source]]
         - [[#usage#parameters expansion|parameters expansion]]
-    - [[#recepies|recepies]]
-        - [[#recepies#compare two dirs|compare two dirs]]
-        - [[#recepies#run a command for each line of a file|run a command for each line of a file]]
 
 = configuration =
 == basics ==
@@ -36,6 +38,29 @@ Complex way::
 `export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"`
 ::    After each command, append to the history file and reread it
 
+= scripting =
+== set options ==
+* `set -e` will force sxript to exit after first failed command (but it won't catch fails in the middle of pipe)
+{{{
+   set -e
+   failing_command                # with set -e script exits here
+   fail_could_be_ignored || true  # force to ignore command results
+   normal_command                 # this won't be executed with set -e
+}}}
+* `-o pipefail` sets pipe command exit status to the non-zero status of rightmost command in pipe, i.e. if one of pipe commands fails, the whole pipe fails
+* `-u` treat unset variables as errors and exit, instead of empty output
+* `-x` print each command before executing (with proper arguments)
+
+== recepies & examples ==
+=== compare two dirs ===
+* show same files in 2 dirs, ignoring extensions
+`comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
+* show different files in 2 dirs, ignoring extensions
+`comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
+
+=== run a command for each line of a file ===
+`while read in; do <command> "$in"; done < file`
+
 = usage =
 == execute and source ==
 * `execute` aka `./<script>` runs script in _new_ shell (all changes to environment will stay in that shell)
@@ -46,13 +71,3 @@ Complex way::
 | `${VAR##pattern}` | delete longest match of pattern from the beginning  |
 | `${VAR%pattern}`  | delete shortest match of pattern from the end       |
 | `${VAR%%pattern}` | delete longest match of pattern from the end        |
-
-= recepies =
-== compare two dirs ==
-* show same files in 2 dirs, ignoring extensions
-`comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
-* show different files in 2 dirs, ignoring extensions
-`comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
-
-== run a command for each line of a file ==
-`while read in; do <command> "$in"; done < file`
