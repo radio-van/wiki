@@ -34,19 +34,40 @@
 === connect ===
 `pgcli -h localhost -u postgres`
 
-= usage =
-== dump ==
+== psql==
+=== dump ===
 `pg_dump -U username > filename` dump database
 `pg_dumpall -U username > filename` dump all databases
 
-== restore ==
+=== restore ===
 `psql dbname < filename` restore single database
 `psql -f <dump> -U <user>` full restore
 
-== write to file ==
+=== write to file ===
 `\o filename`
 
 = sql =
+
+== constraints ==
+*Constraints* are the rules enforced on a data columns on table.
+These are used to limit the type of data that can go into a table.
+Could be _column_ level and _table_ level.
+
+Commonly used:
+* `NOT NULL` ensures that a column cannot have *NULL* value
+* `DEFAULT` provides a default value for a column when none is specified
+* `UNIQUE` ensures that all values in a column are different
+* `PRIMARY Key` uniquely identifies each row/record in a table
+* `CHECK` ensures that all values in a column satisfies certain conditions
+
+Usage:
+{{{
+CREATE TABLE COMPANY(
+  ID INT PRIMARY    KEY     NOT NULL,
+  NAME              TEXT    NOT NULL UNIQUE,
+  AGE               INT     NOT NULL CHECK(AGE > 18),
+  SALARY            REAL    DEFAULT 50000.00
+}}}
 
 == roles ==
 `CREATE ROLE` or `createuser`, useful `options` are:
@@ -56,43 +77,6 @@
 - `d` allow create db
 
 see also `ALTER ROLE`, `DROP ROLE`
-
-== value modification ==
-=== insert values ===
-{{{class="brush: sql"
-   INSERT INTO table (col1, col2) VALUES (val1, val2);
-}}}
-=== update part of the value ===
-{{{class="brush: sql"
-  UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
-}}}
-=== delete values ===
-{{{class="brush: sql"
-  DELETE FROM table WHERE condition;
-}}}
-
-== table modification ==
-=== add column ===
-{{{class="brush: sql"
-  ALTER TABLE table ADD column_name datatype; 
-}}}
-=== rename column ===
-{{{class="brush: sql"
-  ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
-}}}
-=== create temp table ===
-{{{class="brush: sql"
-  CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
-}}}
-hint:: date field type is `TIMESTAMP WITH TIME ZONE`
-=== read from CSV file ===
-{{{class="brush: sql"
-  COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
-}}}
-=== write to CSV file ===
-{{{class="brush: sql"
-  \copy (SELECT ...) to 'filename' with csv;
-}}}
 
 == queries ==
 === filter values ===
@@ -150,3 +134,41 @@ select values from one table that dont exist in the second table
   LEFT JOIN table_B B ON A.id = B.id
   WHERE table_B.id IS NULL; 
 }}}
+
+== tables ==
+=== add column ===
+{{{class="brush: sql"
+  ALTER TABLE table ADD column_name datatype; 
+}}}
+=== rename column ===
+{{{class="brush: sql"
+  ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
+}}}
+=== create temp table ===
+{{{class="brush: sql"
+  CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
+}}}
+hint:: date field type is `TIMESTAMP WITH TIME ZONE`
+=== read from CSV file ===
+{{{class="brush: sql"
+  COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
+}}}
+=== write to CSV file ===
+{{{class="brush: sql"
+  \copy (SELECT ...) to 'filename' with csv;
+}}}
+
+== values ==
+=== insert ===
+{{{class="brush: sql"
+   INSERT INTO table (col1, col2) VALUES (val1, val2);
+}}}
+=== partial update ===
+{{{class="brush: sql"
+  UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+}}}
+=== delete ===
+{{{class="brush: sql"
+  DELETE FROM table WHERE condition;
+}}}
+

@@ -1,9 +1,9 @@
 = Contents =
-  - [[#localization|localization]]
-    - [[#localization#make/update localization files|make/update localization files]]
-  - [[#migrations|migrations]]
-    - [[#migrations#makemigrations|makemigrations]]
-    - [[#migrations#migrate|migrate]]
+    - [[#localization|localization]]
+        - [[#localization#make/update localization files|make/update localization files]]
+    - [[#migrations|migrations]]
+        - [[#migrations#makemigrations|makemigrations]]
+        - [[#migrations#migrate|migrate]]
 
 = localization =
 
@@ -17,10 +17,7 @@
 = migrations =
 			
 == makemigrations ==
-{{{
-   ./manage.py makemigrations
- }}}
+`./manage.py makemigrations`
+
 == migrate ==
-{{{
-   ./manage.py migrate
- }}}
+`./manage.py migrate`

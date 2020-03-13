@@ -157,6 +157,12 @@ Supposed to be used as centralized point to store changes from remote repos, i.e
 Assume it doesn't have a working tree, there will be no conflicts on pushing files into.
 That's how remote servers, e.g. GitHub, work.
 
+== scripting ==
+=== paths ===
+* `git rev-parse --show-toplevel` shows root dir in git working tree
+* `git rev-parse --show-superproject-working-tree` if current repo is submodule, shows root dir of main repo
+* `git rev-parse --show-prefix` shows relative path from root folder of repo
+
 == show ==
 `git show branch:file` shows file from another branch
 
