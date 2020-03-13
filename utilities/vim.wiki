@@ -36,10 +36,12 @@
         - [[#usage#editing|editing]]
             - [[#usage#editing#basic idea|basic idea]]
             - [[#usage#editing#toggle case|toggle case]]
+            - [[#usage#editing#regex|regex]]
+                - [[#usage#editing#regex#lookahead / lookbehind|lookahead / lookbehind]]
             - [[#usage#editing#ranges|ranges]]
             - [[#usage#editing#ex/ed|ex/ed]]
             - [[#usage#editing#search patterns|search patterns]]
-            - [[#usage#editing#examples|examples]]
+                - [[#usage#editing#search patterns#examples|examples]]
             - [[#usage#editing#tips&trics|tips&trics]]
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
@@ -321,6 +323,24 @@ Examples::
 :: toggle case of the current line (same as V~)
 `g~~`
 
+=== regex ===
+Vim's style of Regex is different from *PCRE*, all special characters must be escaped, e.g.
+- *PCRE* `(foo|bar)` means `foo` or `bar`
+- *Vim* `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
+
+==== lookahead / lookbehind ====
+Instead of *PCRE* form `(?...)` *Vim* uses `\@` form
+* Positive lookahead `\@=`
+* Negative lookahead `\@!`
+* Positive lookbehind `\@<=`
+* Negative lookbehind `\@<!`
+
+e.g.
+`/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
+
+*!! THIS PART SHOULD BE MOVED TO REGEX !!*
+* *Positive lookahead* searches for some expression, but do not include that expression in result
+
 === ranges ===
 | `N`     | line number N                               | `:21s/foo/bar/g`      |
 | `$`     | last line                                   | `:$s/foo/bar/g`       |
@@ -362,7 +382,7 @@ examples::
 | `1;/that`        | first line after line 1 containing `that`                                            |
 | `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for *foo* not following *bar* |
 
-=== examples ===
+==== examples ====
 combine **search range** with **substitution**::
 :: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
 `:.,/green/co $`
