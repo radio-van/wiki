@@ -1,5 +1,6 @@
 = Contents =
     - [[#conversion|conversion]]
+        - [[#conversion#add sound to a video|add sound to a video]]
         - [[#conversion#batch|batch]]
         - [[#conversion#cut|cut]]
         - [[#conversion#concat|concat]]
@@ -10,7 +11,10 @@
         - [[#conversion#convert images to video|convert images to video]]
             - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
         - [[#conversion#overlaying image on video|overlaying image on video]]
-        - [[#conversion#adding sound to a video|adding sound to a video]]
+        - [[#conversion#speed|speed]]
+            - [[#conversion#speed#audio|audio]]
+            - [[#conversion#speed#video|video]]
+            - [[#conversion#speed#together|together]]
     - [[#filters|filters]]
         - [[#filters#select|select]]
         - [[#filters#segmented output|segmented output]]
@@ -23,6 +27,9 @@
         - [[#generate#black without sound|black without sound]]
 
 = conversion =
+
+== add sound to a video ==
+`ffmpeg -r 60 -f image2 -s 1280x720 -i pic%05d.png -i MP3FILE.mp3 -vcodec libx264 -b 4M -vpre normal -acodec copy OUTPUT.mp4 `
 
 == batch ==
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
@@ -58,18 +65,14 @@ sometimes `,` in expression should be escaped with `\`
 `+` is logical `OR`
 full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|ffmpeg documentation]]
 == parallel ==
-{{{
-  find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new
-}}}
+`find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new`
 * `parallel` - GNU parallel
 * output format:
   * {} - same name and path as input
   * {.} - same path and name w/o extension
 
 == remove audio ==
-{{{
-  ffmpeg -i input -c copy -an output
-}}}
+`ffmpeg -i input -c copy -an output`
 
 == convert images to video ==
 `ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4`
@@ -89,8 +92,19 @@ full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|
 == overlaying image on video ==
 `ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -i ~/path_to_overlay.png -filter_complex "[0:v][1:v] overlay=0:0" -vcodec libx264 -crf 25  -pix_fmt yuv420p test_overlay.mp4`
 
-== adding sound to a video ==
-`ffmpeg -r 60 -f image2 -s 1280x720 -i pic%05d.png -i MP3FILE.mp3 -vcodec libx264 -b 4M -vpre normal -acodec copy OUTPUT.mp4 `
+== speed ==
+=== audio ===
+`ffmpeg -i <input> -filter:a "atempo=2.0" -vn <output>` `atempo` range is 0.5..2.0
+`ffmpeg -i <input> -filter:a "atempo=2.0,atempo=2.0" -vn <output>` for more than 2.0 speed
+=== video ===
+use `-an` to disable audio
+`ffmpeg -i <input> -filter:v "setpts=0.5*PTS" <output>` double speed (drop frames)
+`ffmpeg -i <input> -r 60 -filter:v "setpts=0.5*PTS" <output>` double speed (no drop frames, assuming original FR was 30 fps)
+`ffmpeg -i <input> -filter:v "setpts=2.0*PTS" <output>` slow down speed
+add optical filter to add smooth
+`ffmpeg -i <input> -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" <output>`
+=== together ===
+`ffmpeg -i <input> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <output>`
 
 = filters =
 == select ==
