@@ -1,3 +1,15 @@
+= Contents =
+    - [[#bin folders|bin folders]]
+    - [[#etc folders|etc folders]]
+    - [[#crypt|crypt]]
+        - [[#crypt#LUKS|LUKS]]
+            - [[#crypt#LUKS#keyfile on separate drive|keyfile on separate drive]]
+    - [[#mount|mount]]
+        - [[#mount#grant write permissions to user|grant write permissions to user]]
+        - [[#mount#allow user to mount|allow user to mount]]
+        - [[#mount#mount options|mount options]]
+        - [[#mount#mount ramfs|mount ramfs]]
+
 = bin folders =
 `/bin` ::
     system commands needed when no FS are mounted (e.g. single-user mode), like *cat*, *cp*, *dd*, *rm*, ...
@@ -70,3 +82,5 @@ all 4 above options implie `nosuid, nodev`
 * `nofail` skips errors if device doesn't exests (useful for mount external drives during boot)
 * `remount` attempt to remount an already-mounted FS
 
+== mount ramfs ==
+`mount ramfs <mountpoint> -t ramfs`
