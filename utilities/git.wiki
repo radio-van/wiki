@@ -92,6 +92,11 @@
 == test connection ==
 `ssh -T git@<address>`
 
+== aliases ==
+`git config --global alias.<name> '<command'>`
+e.g.
+`git config --global alias.pushall '!git remote | xargs -L1 git push --all'`
+
 = usage =
 == branch ==
 === change base ===
@@ -145,6 +150,8 @@ in both cases Git:
 `git reset --hard <remote>/<branch>`
 === push to remote ===
 `git push -u $remote $branch`
+=== push to all remotes ===
+`git remote | xargs -L1 git push --all`
 === push to remote (diff name) ===
 `git push -u $remote HEAD:$remote_branch`
 
