@@ -1,4 +1,4 @@
-= Contents =
+= cONTENTs =
     - [[#concept|concept]]
     - [[#configuration|configuration]]
         - [[#configuration#gitignore|gitignore]]
