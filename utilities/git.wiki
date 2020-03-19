@@ -183,9 +183,8 @@ That's how remote servers, e.g. GitHub, work.
 
 == submodules ==
 === update ===
-`git submodule update --recursive --remote`
-}}}
-- `--init` initialize all submodules, which haven't been yet
+`git submodule update`
+- `--init` initialize all submodules, which haven't been yet (also resets them to state in latest commit)
 - `--checkout` checkout on commit, recorded in superproject (detached head)
 - `--rebase` rebase on commit, recorded in superproject (no detached head)
 - `--recursive` update nested submodules
