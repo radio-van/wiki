@@ -116,6 +116,20 @@ e.g.
 === remote branch ===
 `git checkout $remote_branch`
 
+== commit ==
+=== squash two commits ===
+`git rebase --interactive HEAD~2`
+for the latest commit change `pick` to `squash`, e.g.
+{{{
+  pick <hash> commit1
+  pick <hash> commit2
+}}}
+then edit combined message for new commit
+{{{
+  message of commit1
+  message of commit2
+}}}
+
 == diff ==
 === local from remote ===
 `git log <branch> ^<remote/branch>`
