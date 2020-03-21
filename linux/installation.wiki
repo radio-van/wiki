@@ -60,34 +60,17 @@ if installing on system with existing `EFI system partition` (e.g. on Apple comp
    +------+---------------------+
 }}}
 
-1. create encrypted partition
-   * `cryptsetup luksFormat /dev/sdaX`
-   * `cryptsetup open /dev/sdaX cryptlvm`
-   * decrypted container is available at `/dev/mapper/cryptlvm`
-2. create `LVM` partitions
-   * `pvcreate /dev/mapper/cryptlvm` 
-   * `vgcreate MyVolGroup /dev/mapper/cryptlvm`  
-   * create partitions
-   {{{
-      lvcreate -L 8G MyVolGroup -n swap
-      lvcreate -L 32G MyVolGroup -n root
-      lvcreate -l 100%FREE MyVolGroup -n home
-   }}}
-   * make filesystems
-   {{{
-      mkfs.ext4 /dev/MyVolGroup/root
-      mkfs.ext4 /dev/MyVolGroup/home
-      mkswap /dev/MyVolGroup/swap
-   }}}
-   * mount partitions
-   {{{
+1. [[workspace#create encrypted partition|create encrypted partition]]
+2. [[workspace#LVM|create LVM partitions]]
+3. mount partitions
+   - mount `/boot` (existing, or create new one) `mount /dev/sdbN /mnt/boot`
+   - mount the rest
+    {{{
       mount /dev/MyVolGroup/root /mnt
       mkdir /mnt/home
       mount /dev/MyVolGroup/home /mnt/home
       swapon /dev/MyVolGroup/swap
-   }}}
-3. mount `/boot` (existing, or create new one)
-   `mount /dev/sdbN /mnt/boot`
+    }}}
 4. set `mkinitcpio` hooks, install `lvm2` package
    `HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)`
    *ATTENTION* follow the order of hooks!

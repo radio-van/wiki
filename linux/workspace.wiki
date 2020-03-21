@@ -3,12 +3,16 @@
     - [[#etc folders|etc folders]]
     - [[#crypt|crypt]]
         - [[#crypt#LUKS|LUKS]]
-            - [[#crypt#LUKS#keyfile on separate drive|keyfile on separate drive]]
+        - [[#crypt#create encrypted partition|create encrypted partition]]
+            - [[#crypt#create encrypted partition#keyfile on separate drive|keyfile on separate drive]]
+    - [[#volumes|volumes]]
+        - [[#volumes#LVM|LVM]]
     - [[#mount|mount]]
         - [[#mount#grant write permissions to user|grant write permissions to user]]
         - [[#mount#allow user to mount|allow user to mount]]
         - [[#mount#mount options|mount options]]
         - [[#mount#mount ramfs|mount ramfs]]
+        - [[#mount#mount encrypted volumes|mount encrypted volumes]]
 
 = bin folders =
 `/bin` ::
@@ -35,6 +39,11 @@ The purpose is to provide extra options on starting the service or override some
 
 = crypt =
 == LUKS ==
+== create encrypted partition ==
+* `cryptsetup luksFormat /dev/sdaX`
+* `cryptsetup open /dev/sdaX cryptlvm`
+* decrypted container is available at `/dev/mapper/cryptlvm`
+
 === keyfile on separate drive ===
 `cryptsetup luksAddKey <device> <keyfile>`
 `keyfile` can be random file, passphrase, binary
@@ -53,6 +62,23 @@ recover key
 `<Name> <UUID> <device-with-key> luks,timeout=180,keyfile-offset=Y,keyfile-size=N`
 or
 `crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
+
+= volumes =
+== LVM ==
+* create physical volume `pvcreate /dev/mapper/cryptlvm` 
+* create virtual volume group `vgcreate MyVolGroup /dev/mapper/cryptlvm`  
+* create partitions
+{{{
+  lvcreate -L 8G MyVolGroup -n swap
+  lvcreate -L 32G MyVolGroup -n root
+  lvcreate -l 100%FREE MyVolGroup -n home
+}}}
+* make filesystems
+{{{
+  mkfs.ext4 /dev/MyVolGroup/root
+  mkfs.ext4 /dev/MyVolGroup/home
+  mkswap /dev/MyVolGroup/swap
+}}}
 
 = mount =
 == grant write permissions to user ==
@@ -82,5 +108,15 @@ all 4 above options implie `nosuid, nodev`
 * `nofail` skips errors if device doesn't exests (useful for mount external drives during boot)
 * `remount` attempt to remount an already-mounted FS
 
+* `x-systemd.automount` mount not at a boot time, but at access moment
+* `x-systemd.mount-timeout=N` timeout if disk is not accessible
+
 == mount ramfs ==
 `mount ramfs <mountpoint> -t ramfs`
+
+== mount encrypted volumes ==
+`/etc/crypttab`
+`<name> UUID=<uuid of /dev/sdXY aka LUKS partition>    <password>    luks,timeout=N,[key options]`
+where
+* `<password>` is a path to keyfile, e.g. by physical position `/dev/disk/by-path/pci-...`
+* `key options` could be key offset/size `keyfile-offset=<bytes>,keyfile-size=<bytes>`
