@@ -1,24 +1,28 @@
 = Contents =
+    - [[#streams|streams]]
     - [[#conversion|conversion]]
-        - [[#conversion#add sound to a video|add sound to a video]]
-        - [[#conversion#batch|batch]]
-        - [[#conversion#cut|cut]]
-        - [[#conversion#concat|concat]]
-        - [[#conversion#exctract frames|exctract frames]]
-        - [[#conversion#expressions|expressions]]
-        - [[#conversion#parallel|parallel]]
-        - [[#conversion#remove audio|remove audio]]
-        - [[#conversion#convert images to video|convert images to video]]
-            - [[#conversion#convert images to video#specifying start and end frames|specifying start and end frames]]
-        - [[#conversion#overlaying image on video|overlaying image on video]]
-        - [[#conversion#resize|resize]]
-        - [[#conversion#speed|speed]]
-            - [[#conversion#speed#audio|audio]]
-            - [[#conversion#speed#video|video]]
-            - [[#conversion#speed#together|together]]
+    - [[#presets|presets]]
+    - [[#quality|quality]]
+    - [[#output|output]]
+    - [[#expressions|expressions]]
+    - [[#usecases|usecases]]
+        - [[#usecases#concat images to video|concat images to video]]
+        - [[#usecases#batch|batch]]
+        - [[#usecases#cut|cut]]
+        - [[#usecases#concat|concat]]
+        - [[#usecases#exctract frames|exctract frames]]
+        - [[#usecases#parallel|parallel]]
+        - [[#usecases#remove audio|remove audio]]
+        - [[#usecases#specifying start and end frames|specifying start and end frames]]
+        - [[#usecases#overlaying image on video|overlaying image on video]]
+        - [[#usecases#resize|resize]]
     - [[#filters|filters]]
         - [[#filters#select|select]]
         - [[#filters#segmented output|segmented output]]
+        - [[#filters#speed|speed]]
+            - [[#filters#speed#audio|audio]]
+            - [[#filters#speed#video|video]]
+            - [[#filters#speed#together|together]]
     - [[#info|info]]
         - [[#info#bitrate|bitrate]]
         - [[#info#framerate|framerate]]
@@ -27,10 +31,53 @@
         - [[#generate#monochrome noise|monochrome noise]]
         - [[#generate#black without sound|black without sound]]
 
-= conversion =
+= streams =
+By default *ffmpeg* only selects 1 video, 1 audio and 1 subtitle track.
+To preserve all tracks, explicit `map` assigment should be passed.
+- `-map 0:v` preserves all video tracks
+- `-map 0:a` preserves all audio tracks
+- `-map 0:s` preserves all subtitle tracks
+External tracks should be passed with `-i`
+e.g.
+`ffmpeg -i <video> -i <audio> -i <subtitle> -map 0:v -map 0:a -c:v copy -c:a copy <output>`
 
-== add sound to a video ==
-`ffmpeg -r 60 -f image2 -s 1280x720 -i pic%05d.png -i MP3FILE.mp3 -vcodec libx264 -b 4M -vpre normal -acodec copy OUTPUT.mp4 `
+= conversion =
+Codecs are determined by `-c` argument
+- `-c:v copy` will copy video codec from the source
+- `-c:a copy` will copy audio codec from the source
+- `-c:v libx264` will convert video to *H.264*
+- `-c:a libvorbis` will convert audio to *vorbis*
+
+= presets =
+- `-fpre <file>` preset from file
+- `-vpre <name>` named video preset, e.g. `normal`
+- `-apre <name>` named audio preset
+- `-spre <name>` named subtitle preset
+
+= quality =
+- `-b <number><measure>` sets bitrate, e.g. `-b 4M`, `-b 64k`
+- `-preset <name>` e.g. `-preset medium`
+- `-crf <number>` lower `<number>` means better quality, 15-25 is usually good
+
+= output =
+- `-pix_fmt yuv420p <output>` sets pixel format of the output
+- `ffmpeg -i ... -o <output> -y` will override *output* file if exists
+
+= expressions =
+`select` filter (maybe others) can use expressions.
+e.g. to select frame on 11 second `select=eq(t,11)`, for more info see [[#filters#select|select]]
+sometimes `,` in expression should be escaped with `\`
+`*` is logical `AND`
+`+` is logical `OR`
+full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|ffmpeg documentation]]
+
+= usecases =
+== concat images to video ==
+`ffmpeg -r 60 -f image2 -s 1280x720 -i pic%04d.png -i MP3FILE.mp3 -vcodec libx264 -c:a copy <output>`
+where:
+- `-r 60` framerate
+- `-s <width>x<height>` frame size
+- `-i pic%04d.png` batch of source images, filenames are padded with `4` zeros: _pic0001.png, pic0002.png, ..._
 
 == batch ==
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
@@ -57,14 +104,7 @@ hint: add `-safe 0` before `-i` if file pathes are not relative
 * extract 1 frame every 5 seconds `ffmpeg -i <input> -vf fps=1/5 thumb%04d.jpg`
 * extract keyframes `ffmpeg -i <input> -vf "select=eq(pict_type\,I)" -vsync vfr thumb%04d.jpg`
   for more info see [[#expressions|expressions]]
- 
-== expressions ==
-`select` filter (maybe others) can use expressions.
-e.g. to select frame on 11 second `select=eq(t,11)`, for more info see [[#filters#select|select]]
-sometimes `,` in expression should be escaped with `\`
-`*` is logical `AND`
-`+` is logical `OR`
-full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|ffmpeg documentation]]
+
 == parallel ==
 `find $path -name ... | parallel ffmpeg -i {} -y <filters> .{}.new`
 * `parallel` - GNU parallel
@@ -75,16 +115,7 @@ full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|
 == remove audio ==
 `ffmpeg -i input -c copy -an output`
 
-== convert images to video ==
-`ffmpeg -r 60 -f image2 -s 1920x1080 -i pic%04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4`
-
-* `%04d` means that images are padded with `4` zeros: _pic0001.png, pic0002.png, ..._
-* `-r` is the framerate (fps)
-* `-crf` is the quality, lower means better quality, 15-25 is usually good
-* `-s` is the resolution
-* `-pix_fmt yuv420p` specifies the pixel format
-
-=== specifying start and end frames ===
+== specifying start and end frames ==
 `ffmpeg -r 60 -f image2 -s 1920x1080 -start_number 1 -i pic%04d.png -vframes 1000 -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4`
 
 * `-start_number` specifies what image to start at
@@ -98,19 +129,6 @@ full list of expressions is available in [[https://ffmpeg.org/ffmpeg-utils.html|
 `ffmpeg -i <input> -filter:v scale=width:height -c:a copy <output>`
 use `-1` instead of `height` or `width` to automatic calculation
 
-== speed ==
-=== audio ===
-`ffmpeg -i <input> -filter:a "atempo=2.0" -vn <output>` `atempo` range is 0.5..2.0
-`ffmpeg -i <input> -filter:a "atempo=2.0,atempo=2.0" -vn <output>` for more than 2.0 speed
-=== video ===
-use `-an` to disable audio
-`ffmpeg -i <input> -filter:v "setpts=0.5*PTS" <output>` double speed (drop frames)
-`ffmpeg -i <input> -r 60 -filter:v "setpts=0.5*PTS" <output>` double speed (no drop frames, assuming original FR was 30 fps)
-`ffmpeg -i <input> -filter:v "setpts=2.0*PTS" <output>` slow down speed
-add optical filter to add smooth
-`ffmpeg -i <input> -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" <output>`
-=== together ===
-`ffmpeg -i <input> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <output>`
 
 = filters =
 == select ==
@@ -134,8 +152,21 @@ useful arguments:
 * `segment_times times` specify a list of split points. times contains a list of comma separated duration specifications, in increasing order
 * `reset_timestamps 1|0` reset timestamps at the beginning of each segment, so that each segment will start with near-zero timestamps. Useful for appropriate thumbs in mediaplayers
 
-= info =
+== speed ==
+=== audio ===
+`ffmpeg -i <input> -filter:a "atempo=2.0" -vn <output>` `atempo` range is 0.5..2.0
+`ffmpeg -i <input> -filter:a "atempo=2.0,atempo=2.0" -vn <output>` for more than 2.0 speed
+=== video ===
+use `-an` to disable audio
+`ffmpeg -i <input> -filter:v "setpts=0.5*PTS" <output>` double speed (drop frames)
+`ffmpeg -i <input> -r 60 -filter:v "setpts=0.5*PTS" <output>` double speed (no drop frames, assuming original FR was 30 fps)
+`ffmpeg -i <input> -filter:v "setpts=2.0*PTS" <output>` slow down speed
+add optical filter to add smooth
+`ffmpeg -i <input> -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" <output>`
+=== together ===
+`ffmpeg -i <input> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <output>`
 
+= info =
 == bitrate ==
 `ffprobe -v error -select_streams a:0  -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 `
 == framerate ==
@@ -143,11 +174,9 @@ useful arguments:
 
 
 = generate =
-
 == color noise ==
 `ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy -t 5 -vf hue=s=0 output`
 == monochrome noise ==
 `ffmpeg -f rawvideo -video_size 1280x720 -pixel_format yuv420p -framerate 25 -i /dev/urandom -ar 48000 -ac 2 -f s16le -i /dev/urandom -codec:a copy -t 5 output`
 == black without sound ==
 `ffmpeg -f lavfi -i color=black:s=1920x1080:r=30 -preset ultrafast -t 00:44 <output>`
-
