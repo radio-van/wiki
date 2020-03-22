@@ -48,9 +48,11 @@
         - [[#usage#encryption|encryption]]
         - [[#usage#file|file]]
             - [[#usage#file#current file|current file]]
-                - [[#usage#file#current file#modificators|modificators]]
+            - [[#usage#file#encoding|encoding]]
         - [[#usage#macro|macro]]
             - [[#usage#macro#save recordered macro|save recordered macro]]
+        - [[#usage#registers|registers]]
+            - [[#usage#registers#file|file]]
         - [[#usage#session|session]]
         - [[#usage#windows and panes|windows and panes]]
             - [[#usage#windows and panes#resize window|resize window]]
@@ -432,18 +434,36 @@ Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfi
 
 == file ==
 === current file ===
-`%` expands to current file (only name by default?)
-==== modificators ====
-`:p` expand to full path 
-`:h` remove last component (i.e. filename and separator)
-`:t` filename and extension
-`:r` removes extension
-`:e` file extansion
+There are registers with file names:
+- `%` contains current file name
+- `#` contains alternate file name
+`:echo @<register>` displays register contents
+e.g.
+`:echo @%` gets current file, relative to working dir
+to get more specific data, `:echo expand(<expression>)` could be used
+expression is `'<register>:<modificator>'`, e.g. `:echo expand('%:p')`
+modificators
+- `p` expand to full path
+- `h` remove last component (i.e. filename and separator)
+- `t` filename and extension
+- `r` removes extension
+- `e` file extansion
+=== encoding===
+- `set fileencoding` - gets current encoding
+- `set fileencoding=utf8` - sets encoding to be saved
+- `:e! ++enc=utf8` - re-read file with specified encoding
 
 == macro ==
 === save recordered macro ===
 macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
+
+== registers ==
+`^R<register>` in *insert* mode pastes content of register, e.g. `^R%` pastes current filename
+`"<register><command>` in *normal mode* sends register to command, e.g. `"%p` pastes current filename
+=== file ===
+- `%` contains current file name
+- `#` contains alternate file name
 
 == session ==
 Vim can save current buffers, layout, etc into session file
