@@ -99,14 +99,24 @@ e.g.
 
 = usage =
 == branch ==
+
 === change base ===
 `git rebase --onto <new_base> <old_base> <branch>`
+
 === delete local branch ===
 `git branch -d $branch`
+
 === delete remote branch ===
 `git push origin --delete $remote_branch`
+
 === delete file from all commits history ===
 `git filter-branch --tree-filter "rm -f <file>" -- --all`
+
+== rename branch ==
+`git branch -m <oldname> <newname>`
+if branch is already checkouted:
+`git branch -M <newname>`
+
 === set upstream ===
 `git branch --set-upstream-to remote/branch-name`
 
