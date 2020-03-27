@@ -58,7 +58,11 @@ where
 recover key
 `dd if=/dev/<device> of=<keyfile> bs=1 skip=X count=N`
 
-`/etc/crypttab`
+for root partition edit `/boot/loader/entries/<entry>.conf`
+`options cryptdevice=UUID=...:<LVMGroup> cryptkey=<keyfile>:<offset>:<size> root=/dev/<LVMGroup>/...`
+*NOTE*: if `<keyfile>` path contains `:`, they must be escaped with `\`
+
+for non-root filesystems `/etc/crypttab`
 `<Name> <UUID> <device-with-key> luks,timeout=180,keyfile-offset=Y,keyfile-size=N`
 or
 `crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
