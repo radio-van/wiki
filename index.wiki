@@ -11,6 +11,7 @@
   * [[hardware/modems#Contents|usb-modems]]
 * Linux
   * [[linux/installation#Contents|installation]]
+  * [[linux/keyboard#Contents|keyboard]]
   * [[linux/login#Contents|login]]
   * [[linux/networking#Contents|networking]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
