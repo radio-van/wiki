@@ -10,6 +10,8 @@
         - [[#configuration#firewall|firewall]]
         - [[#configuration#DNS resolving|DNS resolving]]
         - [[#configuration#ip address aliasing|ip address aliasing]]
+        - [[#configuration#wireless|wireless]]
+            - [[#configuration#wireless#wpa_supplicant|wpa_supplicant]]
         - [[#configuration#tips & trics|tips & trics]]
 
 = interfaces =
@@ -89,6 +91,30 @@ CentOS::
   GATEWAY=...
   }}}
   :: `/etc/init.d/network restart`
+
+== wireless ==
+=== wpa_supplicant ===
+* create initial config
+`/etc/wpa_supplicant/wpa_supplicant.conf`
+{{{
+    ctrl_interface=/run/wpa_supplicant
+    update_config=1
+}}}
+* start `wpa_supplicant`
+`wpa_supplicant -B -i <interface> -c /etc/wpa_supplicant/wpa_supplicant.conf`
+* run `wpa_cli -i <interface>`
+    * `scan`
+    * `scan_results`
+    * `add_network`
+    * `set_network <id> ssid "<SSID>"`
+    * `set_network <id> psk "<passphrase>"`
+    * `enable_network <id>`
+    * `save_config`
+    * `quit`
+* enable `wpa_supplicant.service`
+
+for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obtain configuration
+
 
 == tips & trics ==
 show process which is listening target port
