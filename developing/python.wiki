@@ -1,8 +1,11 @@
 = Contents =
     - [[#Classes|Classes]]
-        - [[#Classes#initialization|initialization]]
-        - [[#Classes#importing|importing]]
-        - [[#Classes#__str__ and __repr__|__str__ and __repr__]]
+        - [[#Classes#general|general]]
+            - [[#Classes#general#initialization|initialization]]
+            - [[#Classes#general#importing|importing]]
+            - [[#Classes#general#__str__ and __repr__|__str__ and __repr__]]
+        - [[#Classes#strings|strings]]
+            - [[#Classes#strings#format|format]]
     - [[#Tests|Tests]]
         - [[#Tests#mocking|mocking]]
             - [[#Tests#mocking#basics|basics]]
@@ -23,7 +26,8 @@
         - [[#receipts#get python version|get python version]]
 
 = Classes =
-== initialization ==
+== general ==
+=== initialization ===
 - `Foo(*args, **kwargs)` means `Foo.__call__(*args, **kwargs)`
 - object `Foo` is an instance of class `type`, so calling `Foo.__call__(*args, **kwargs)` is equal to `type.__call__(Foo, *args, **kwargs)`
 - calling `type.__call__(Foo, *args, **kwargs)` calls `type.__new__(Foo, *args, **kwargs)` which returns `obj`
@@ -74,7 +78,7 @@ returns the same instance if it's already has been created (note that `__init__`
 }}}
 instances would be different, but share same data
 
-== importing ==
+=== importing ===
 `package1.py`
 {{{
    class A(object):
@@ -99,13 +103,23 @@ in this case in `package2` a variable named `A` is created and points to actual 
 now when `A` is referred from `B` class, interpreter will attempt to find an `A` variable in<br>
 namespace of `package1` and use it to get to class in memory.
 
-== __str__ and __repr__ ==
+=== __str__ and __repr__ ===
 They are useful to get information about object in log/debug.
 Instead of just the name of object's class, some useful info (like state of variables) can be represented.
 * `__repr__` should be unambiguous, e.g. `log("MyClass(this=%r, that=%r)" % (self.this, self.that))` (*NOTE*: `%r` is mandatory to get `__repr__` of objects)
 * `__str__` should be reliable, i.e. human-readable. If `__str__` is not implemented, `__str__ = _repr__` is assumed.
 
-
+== strings ==
+=== format ===
+* basic form (use only for python < 2.5)
+  `"string %s" % var`
+  takes only single *var* or *tuple*, so to avoid errors, if *var* can be list/tuple/etc `"string %s" % (var,)` must be used.
+* format
+  `"string {}".format(var)`
+* f-string (use only for python >3)
+  `f'string {var}'`
+  
+  
 = Tests =
 == mocking ==
 === basics ===
