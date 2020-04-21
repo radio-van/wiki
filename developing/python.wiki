@@ -2,6 +2,7 @@
     - [[#Classes|Classes]]
         - [[#Classes#initialization|initialization]]
         - [[#Classes#importing|importing]]
+        - [[#Classes#__str__ and __repr__|__str__ and __repr__]]
     - [[#Tests|Tests]]
         - [[#Tests#mocking|mocking]]
             - [[#Tests#mocking#basics|basics]]
@@ -97,6 +98,13 @@ in this case in `package2` a variable named `A` is created and points to actual 
 }}}
 now when `A` is referred from `B` class, interpreter will attempt to find an `A` variable in<br>
 namespace of `package1` and use it to get to class in memory.
+
+== __str__ and __repr__ ==
+They are useful to get information about object in log/debug.
+Instead of just the name of object's class, some useful info (like state of variables) can be represented.
+* `__repr__` should be unambiguous, e.g. `log("MyClass(this=%r, that=%r)" % (self.this, self.that))` (*NOTE*: `%r` is mandatory to get `__repr__` of objects)
+* `__str__` should be reliable, i.e. human-readable. If `__str__` is not implemented, `__str__ = _repr__` is assumed.
+
 
 = Tests =
 == mocking ==
