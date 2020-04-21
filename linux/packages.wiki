@@ -1,5 +1,6 @@
 = Contents =
     - [[#conflicts on sysupgrade|conflicts on sysupgrade]]
+    - [[#installation log|installation log]]
 
 = conflicts on sysupgrade =
 {{{
@@ -10,3 +11,7 @@
 * check which package owns the file `pacman -Qo <filepath>`
   if it is another package, then it is a bug
 * force overwrite file `pacman -S <package> --overwrite <filepath>`
+
+= installation log =
+`grep -i installed /var/log/pacman.log` recently installed packages
+`grep -i upgraded /var/log/pacman.log` recently upgraded packages
