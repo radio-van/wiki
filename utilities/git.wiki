@@ -71,7 +71,35 @@
       +<---diff---->+   
 
 }}}                                   
+
+Everything in git is reffered by hashes.
+e.g. after commiting 1 file, there will be 3 objects:
+- archived file itself, with its hash as a name
+- snapshot of working tree, with its hash
+- commit itself, also with hash
+
+Each *commit* object contains:
+- hash of working tree snapshot, e.g. `tree <hash>`
+- comment
+- author/creator info
+- parent commit hash
+
+`HEAD`, branches and tags are just refs to the appropriate *commit hash*, i.e. deletion of branch doesn't lead to deletion of other objects.
+
 = configuration =
+
+== folder structure ==
+* `HEAD` contains path to `refs` and the hash of commit
+* `branches`
+* `config` contains author info, repos urls, etc
+* `description` used by `gitweb`
+* `hooks` scripts to launch before/after several actions: push/pull/commit, etc
+* `info/`
+    * `exclude` similar to [[#gitignore|.gitignore]] but won't be included in commit
+* `objects` archived files/commits/snapshots with their hashes as names. *NOTE:* first two symbols of hash are the name of the subfolder.
+* `refs/`
+    * `refs`
+    * `tags`
 
 == gitignore ==
 {{{
