@@ -48,6 +48,7 @@
   * [[utilities/newsboat#Contents|newsboat]] 
   * [[utilities/pass#Contents|pass]]
   * [[utilities/rsync#Contents|rsync]]
+  * [[utilities/sed#Contents|sed]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/sudo#Contents|sudo]]
   * [[utilities/tmux#Contents|tmux]] 
