@@ -11,12 +11,13 @@
   * [[hardware/modems#Contents|usb-modems]]
 * Linux
   * [[linux/installation#Contents|installation]]
+  * [[linux/workspace#Contents|filesystem]]
   * [[linux/keyboard#Contents|keyboard]]
+  * [[linux/logs#Contents|logs]]
   * [[linux/login#Contents|login]]
   * [[linux/networking#Contents|networking]]
   * [[linux/packages#Contents|packages]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
-  * [[linux/workspace#Contents|filesystem]]
   * [[linux/zip#Contents|zip]]
 * Mac OS
   * [[macos/apps#Contents|apps]]
