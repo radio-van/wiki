@@ -1,32 +1,43 @@
 = Contents =
-      - [[#delete|delete]]
-      - [[#exec command|exec command]]
-      - [[#exec complex commands|exec complex commands]]
-      - [[#exec multiple commands|exec multiple commands]]
-      - [[#negative condition|negative condition]]
+    - [[#empty folders|empty folders]]
+    - [[#delete|delete]]
+    - [[#exec command|exec command]]
+    - [[#exec complex commands|exec complex commands]]
+    - [[#exec multiple commands|exec multiple commands]]
+    - [[#negative condition|negative condition]]
+    - [[#operations|operations]]
+    - [[#prune|prune]]
+    - [[#search pattern|search pattern]]
 
-=== delete ===
-{{{
-   find . --delete
-}}}
+= empty folders =
+`find . -type d -empty`
 
-=== exec command ===
-{{{
-   find . -exec foo {} \;
-}}}
+= delete =
+`find . --delete`
 
-=== exec complex commands ===
-{{{
-   find . -exec bash -c ' foo "$1"' _ {} \;
-}}}
+= exec command =
+`find . -exec foo {} \;`
 
-=== exec multiple commands ===
-{{{
-   find . -exec foo {} \; -exec bar {} \;
-}}}
+= exec complex commands =
+`find . -exec bash -c ' foo "$1"' _ {} \;`
 
-=== negative condition ===
-use `!`::
-{{{
-   find . ! -name 'foo.bar'
-}}}
+= exec multiple commands =
+`find . -exec foo {} \; -exec bar {} \;`
+
+= negative condition =
+use `!`
+`find . ! -name 'foo.bar'`
+
+= operations =
+* *OR* `-o`
+  `expr1 -o expr2` `expr2` is not evaluated if `expr1` is true
+  
+= prune =
+if file is a directory, do not descend into it.
+can't be used with `-delete` because it implies `-depth`
+e.g.
+`find . -path <pattern> -prune -o -print` will exclude folder `<pattern>`
+
+= search pattern =
+`find . -path <pattern>` filename matches pattern
+pattern is relative to start point directory

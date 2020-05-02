@@ -1,4 +1,4 @@
-= cONTENTs =
+= CONTENTS =
     - [[#concept|concept]]
     - [[#configuration|configuration]]
         - [[#configuration#gitignore|gitignore]]
@@ -87,6 +87,12 @@ Each *commit* object contains:
 `HEAD`, branches and tags are just refs to the appropriate *commit hash*, i.e. deletion of branch doesn't lead to deletion of other objects.
 
 = configuration =
+
+== aliases ==
+`git config --global alias.<name> '<command>'`
+`<command>`: for shell command use `!` *?*
+e.g.
+`git config --global alias.pushall '!git remote | xargs -L1 git push --all'`
 
 == folder structure ==
 * `HEAD` contains path to `refs` and the hash of commit
