@@ -154,6 +154,10 @@ if branch is already checkouted:
 === set upstream ===
 `git branch --set-upstream-to remote/branch-name`
 
+=== show graph ===
+`git log --all --decorate --oneline --graph`
+mnemonic: *A*ll *D*ecorate *O*neline *G*raph - *a dog*
+
 == checkout ==
 === one file ===
 `git checkout $commit_hash -- $filename`
