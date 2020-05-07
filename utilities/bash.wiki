@@ -6,7 +6,12 @@
         - [[#scripting#set options|set options]]
         - [[#scripting#recepies & examples|recepies & examples]]
             - [[#scripting#recepies & examples#compare two dirs|compare two dirs]]
+            - [[#scripting#recepies & examples#cut string variable|cut string variable]]
+            - [[#scripting#recepies & examples#get name of current function|get name of current function]]
+            - [[#scripting#recepies & examples#get name of current script?|get name of current script?]]
+            - [[#scripting#recepies & examples#get args|get args]]
             - [[#scripting#recepies & examples#run a command for each line of a file|run a command for each line of a file]]
+            - [[#scripting#recepies & examples#wait until command returns true|wait until command returns true]]
     - [[#usage|usage]]
         - [[#usage#execute and source|execute and source]]
         - [[#usage#parameters expansion|parameters expansion]]
@@ -58,8 +63,36 @@ Complex way::
 * show different files in 2 dirs, ignoring extensions
 `comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
 
+=== cut string variable ===
+`${VAR:N}` cuts first `N` symbols
+`${VAR:N:M}` cuts first `N` symbols and then output `M` symbols of what is rest.
+
+=== get name of current function ===
+`$FUNCNAME`
+
+=== get name of current script? ===
+`$0`
+
+=== get args ===
+`$@` - all args
+`$1, $2, ...` - first, second, etc arg
+
 === run a command for each line of a file ===
-`while read in; do <command> "$in"; done < file`
+{{{
+while read -r <loop_var>
+do
+  <command>
+done < file
+}}}
+
+
+=== wait until command returns true ===
+{{{
+until $(<command>)
+do
+  echo "Try again"
+done
+}}}
 
 = usage =
 == execute and source ==
