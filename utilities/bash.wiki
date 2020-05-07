@@ -10,6 +10,7 @@
             - [[#scripting#recepies & examples#get name of current function|get name of current function]]
             - [[#scripting#recepies & examples#get name of current script?|get name of current script?]]
             - [[#scripting#recepies & examples#get args|get args]]
+            - [[#scripting#recepies & examples#loop words in string|loop words in string]]
             - [[#scripting#recepies & examples#run a command for each line of a file|run a command for each line of a file]]
             - [[#scripting#recepies & examples#wait until command returns true|wait until command returns true]]
     - [[#usage|usage]]
@@ -77,6 +78,14 @@ Complex way::
 `$@` - all args
 `$1, $2, ...` - first, second, etc arg
 
+=== loop words in string ===
+{{{
+IFS=' '
+for <loop_var> in <string>; do
+  <command>
+done
+}}}
+
 === run a command for each line of a file ===
 {{{
 while read -r <loop_var>
@@ -85,6 +94,12 @@ do
 done < file
 }}}
 
+{{{
+while read -r <loop_var>
+do
+  <command>
+done <<< <multiline_variable>
+}}}
 
 === wait until command returns true ===
 {{{
