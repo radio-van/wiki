@@ -193,6 +193,10 @@ then edit combined message for new commit
 `git reset $file`
 === remove all files from index ===
 `git reset`
+=== restore deleted file ===
+`git restore <file>`
+=== restore file to state 2 commits back ===
+`git restore --source branch~2 <file>`
 === skipping files ===
 `git update-index`
 1. `--assume-unchanged`
@@ -204,6 +208,8 @@ in both cases Git:
 - won't commit this file (even if it is added explicitly)
 - _can_ update working copy of the file if it's changed on remote side
 - will show merge conflict if file is changed on both sides
+=== undo add to stage ===
+`git restore --staged <file>`
 
 == remote ==
 === add remote with non-default ssh port ===
