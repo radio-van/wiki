@@ -30,6 +30,7 @@
   * [[packages/home-assistant#Contents|Home-Assistant]]
 * Utilities
   * [[utilities/adb#Contents|adb]]
+  * [[utilities/awk#Contents|awk]]
   * [[utilities/bash#Contents|bash]]
   * [[utilities/beets#Contents|beets]]
   * [[utilities/brew#Contents|brew]]
