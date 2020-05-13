@@ -162,7 +162,8 @@ mnemonic: *A*ll *D*ecorate *O*neline *G*raph - *a dog*
 === one file ===
 `git checkout $commit_hash -- $filename`
 === remote branch ===
-`git checkout $remote_branch`
+`git checkout -t <remote>/<branch>`
+`git checkout -b <local_branch> <remote>/<branch>`
 
 == commit ==
 === squash two commits ===
