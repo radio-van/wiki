@@ -135,7 +135,8 @@ e.g.
 == branch ==
 
 === change base ===
-`git rebase --onto <new_base> <old_base> <branch>`
+`git rebase <new_base>`
+`git rebase <new_base> <old_base>`
 
 === delete local branch ===
 `git branch -d $branch`
