@@ -11,6 +11,7 @@
             - [[#Tests#mocking#basics|basics]]
             - [[#Tests#mocking#return values|return values]]
             - [[#Tests#mocking#return different value on each call|return different value on each call]]
+            - [[#Tests#mocking#mocking immutable built-ins|mocking immutable built-ins]]
     - [[#additional tools|additional tools]]
         - [[#additional tools#virtual envs|virtual envs]]
             - [[#additional tools#virtual envs#create venv|create venv]]
@@ -190,6 +191,27 @@ to assign a function as a return value `mock_instance.some_method.side_effect` c
 
 === return different value on each call ===
 `mock_instance.some_method.side_effect = [<return_value_1>, <return_value_2>, ...]`
+
+=== mocking immutable built-ins ===
+assuming:
+`some_module.py`
+{{{
+import datetime
+
+def some_method():
+  now = datetime.datetime.utcnow()
+  ...
+}}}
+to patch built-in `utcnow()`:
+`test.py`
+{{{
+import some_module
+
+def test():
+    with mock.patch('some_module.datetime.datetime', mock.Mock(utcnow=mock.Mock(return_value=<mocked_date>))):
+      some_module.some_method()
+      ...
+}}}
 
 = additional tools =
 
