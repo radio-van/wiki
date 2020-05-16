@@ -17,6 +17,7 @@
   * [[linux/login#Contents|login]]
   * [[linux/networking#Contents|networking]]
   * [[linux/packages#Contents|packages]]
+  * [[linux/sound#Contents|sound]]
   * [[linux/tips_tricks#Contents|tips&tricks]]
   * [[linux/zip#Contents|zip]]
 * Mac OS
