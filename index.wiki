@@ -54,6 +54,7 @@
   * [[utilities/sed#Contents|sed]]
   * [[utilities/ssh#Contents|ssh]]
   * [[utilities/sudo#Contents|sudo]]
+  * [[utilities/systemd#Contents|systemd]]
   * [[utilities/tmux#Contents|tmux]] 
   * [[utilities/urxvt#Contents|urxvt]]
   * [[utilities/vim#Contents|vim]]

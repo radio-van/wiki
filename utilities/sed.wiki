@@ -32,7 +32,7 @@ commands can be combined using multiple `-e` argument, or with `;`, e.g. `sed -e
 to apply multiple commands to the same [[#ranges|range]], `<range> {command1, command2}` can be used.
 
 == delete ==
-`d` deletes line
+`/pattern/d` deletes line
 
 == print ==
 `p` prints line (even if `-n` given)

@@ -24,10 +24,14 @@ useful options:
 `iptables -n -t <table> -L --line-number`
 `-n` disables hostname conversion
 
-== delete rule ==
+= delete rule =
 list table with `--line-numbers`
 `iptables -D <CHAIN_NAME> <RULE_NUMBER>`
+also rule can be deleted if it is repeated with `-D` instead of `-A` option.
 
+= flush rules =
+`iptables -t <table> -F` flushes whole table
+`iptables -t <table> -F <chain>` flushes single chain
 = recepies =
 == port forwarding ==
 `iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`
