@@ -37,6 +37,8 @@ if file is a directory, do not descend into it.
 can't be used with `-delete` because it implies `-depth`
 e.g.
 `find . -path <pattern> -prune -o -print` will exclude folder `<pattern>`
+to exclude `<pattern>` in root dir and all subdirs use:
+`find . -path "./<pattern>" -prune`
 
 = search pattern =
 `find . -path <pattern>` filename matches pattern
