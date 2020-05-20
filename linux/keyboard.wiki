@@ -36,7 +36,7 @@ it will also convert specified layout to closest match for console and applies t
 * `terminate:.*` keybinding for terminate Xorg
 * `ctrl:.* | caps:.*` various swaps and substitutions for *caps lock* and modifiers keys
 * `keymap:pointerkeys` toggles mouse keys by `Shift+NumLock`
-* `compose:.*` use existing key as *Compose* key: `<Compose> ' e` => `e'` # TODO replace with actual glyph
+* `compose:.*` use existing key as *Compose* key: `<Compose> ' e` => `é`
   also custom *Compose* keys may be defined in `~/.XCompose`:
   {{{
   include "%L"  # include system config
