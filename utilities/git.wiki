@@ -162,6 +162,8 @@ mnemonic: *A*ll *D*ecorate *O*neline *G*raph - *a dog*
 == checkout ==
 === one file ===
 `git checkout $commit_hash -- $filename`
+if file doesn't exist in current branch
+`git show TREESH:/path/to/file > /path/to/file`
 === remote branch ===
 `git checkout -t <remote>/<branch>`
 `git checkout -b <local_branch> <remote>/<branch>`
