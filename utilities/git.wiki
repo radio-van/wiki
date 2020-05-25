@@ -190,6 +190,11 @@ then edit combined message for new commit
 === with branch ===
 `git diff --name-only $branch`
 
+== fetch ==
+fetch downloads remote objects
+=== fetch remote branch w/o checkout ===
+`git fetch <remote> <remote_branch>:<local_branch>`
+
 == index ==
 === show files in index ===
 `git ls-tree -r master --name-only`
