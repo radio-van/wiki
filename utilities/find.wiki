@@ -8,6 +8,8 @@
     - [[#operations|operations]]
     - [[#prune|prune]]
     - [[#search pattern|search pattern]]
+    - [[#tips&trics|tips&trics]]
+        - [[#tips&trics#batch file ranaming|batch file ranaming]]
 
 = empty folders =
 `find . -type d -empty`
@@ -43,3 +45,8 @@ to exclude `<pattern>` in root dir and all subdirs use:
 = search pattern =
 `find . -path <pattern>` filename matches pattern
 pattern is relative to start point directory
+
+= tips&trics =
+== batch file ranaming ==
+works with recursive paths
+`find . -type d -name '<name>' -print0 | xargs --null -I{} sh -c 'echo {} | sed s/<name>/<new-name>/g | xargs -I% mv {} %'`
