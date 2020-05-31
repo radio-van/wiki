@@ -15,6 +15,7 @@
         - [[#configuration#tips & trics|tips & trics]]
             - [[#configuration#tips & trics#show process which is listening target port|show process which is listening target port]]
             - [[#configuration#tips & trics#get ip|get ip]]
+            - [[#configuration#tips & trics#capture trafic on particular port|capture trafic on particular port]]
 
 = interfaces =
 
@@ -124,3 +125,6 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 * `netstat -ltnp | grep -w ':PORT'`
 === get ip ===
 `ip -4 addr show <interface> | grep -oP '(?<=inet\s)\d+(\.\d+){3}`
+
+=== capture trafic on particular port ===
+`ngrep port 53`
