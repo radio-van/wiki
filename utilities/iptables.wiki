@@ -36,7 +36,11 @@ also rule can be deleted if it is repeated with `-D` instead of `-A` option.
 
 = recepies =
 == port forwarding ==
+w/o NAT
+`iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $PORT -j REDIRECT --to-port $PORT`
+w/ NAT
 `iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`
+
 == basic routing between eth0 and wlan0 ==
 {{{
    sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
