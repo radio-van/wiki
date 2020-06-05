@@ -194,8 +194,9 @@ useful arguments:
 
 == speed ==
 === audio ===
-`ffmpeg -i <input> -filter:a "atempo=2.0" -vn <output>` `atempo` range is 0.5..2.0
-`ffmpeg -i <input> -filter:a "atempo=2.0,atempo=2.0" -vn <output>` for more than 2.0 speed
+`ffmpeg -i <input> -filter:a "atempo=2.0" -vn <output>`
+`atempo` range is 0.5..2.0, for more than 2.0 speed:
+`ffmpeg -i <input> -filter:a "atempo=2.0,atempo=2.0" -vn <output>` 
 === video ===
 use `-an` to disable audio
 `ffmpeg -i <input> -filter:v "setpts=0.5*PTS" <output>` double speed (drop frames)
