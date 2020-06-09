@@ -45,6 +45,7 @@
             - [[#usage#editing#tips&trics|tips&trics]]
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
+                - [[#usage#editing#tips&trics#sort uniq lines|sort uniq lines]]
         - [[#usage#encryption|encryption]]
         - [[#usage#file|file]]
             - [[#usage#file#current file|current file]]
@@ -425,6 +426,10 @@ To do a global replace in all blocks with the same patterns, use :g: ::
 
 ==== save with sudo ====
 `:w !sudo tee %`
+
+==== sort uniq lines ====
+`:sort u`
+untested: `:%!uniq`
 
 == encryption ==
 Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfish2` is recommended
