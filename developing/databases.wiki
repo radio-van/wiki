@@ -28,6 +28,7 @@
         - [[#sql#values|values]]
             - [[#sql#values#insert|insert]]
             - [[#sql#values#partial update|partial update]]
+            - [[#sql#values#update|update]]
             - [[#sql#values#delete|delete]]
 
 = tools =
@@ -167,6 +168,10 @@ hint:: date field type is `TIMESTAMP WITH TIME ZONE`
 === partial update ===
 {{{class="brush: sql"
   UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+}}}
+=== update ===
+{{{class="brush: sql"
+  UPDATE table SET value = '<value>' WHERE condition;
 }}}
 === delete ===
 {{{class="brush: sql"
