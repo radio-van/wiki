@@ -7,6 +7,8 @@
         - [[#Containers#stop all containers|stop all containers]]
         - [[#Containers#rm all containers|rm all containers]]
     - [[#Managing|Managing]]
+        - [[#Managing#unused stuff|unused stuff]]
+        - [[#Managing#location|location]]
 
 = build =
 == UnionFS ==
@@ -41,6 +43,7 @@ Docker image size could be reduced with `DockerSlim` utility
 `docker rm $(docker ps -a -q)`
 
 = Managing =
+== unused stuff ==
 * check occupied space
 `docker system df`, last column will show how much space could be free
 * clear
@@ -51,3 +54,14 @@ to remove selectively, use:
     could be previewed by `docker image ls -f dangling=true`
   * `docker volume prune` remove unused volumes
   * `docker build prune` remove unused cache
+
+== location ==
+`/lib/systemd/system/docker.service`
+`ExecStart=/usr/bin/dockerd -g <new/path> -H fd://`
+
+`systemctl stop docker`
+`systemctl daemon-reload`
+
+`rsync -aqxP /var/lib/docker/ /new/path/docker`
+
+`systemctl start docker`
