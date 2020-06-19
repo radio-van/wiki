@@ -1,6 +1,7 @@
 = Contents =
     - [[#conflicts on sysupgrade|conflicts on sysupgrade]]
     - [[#installation log|installation log]]
+    - [[#downgrade package|downgrade package]]
 
 = conflicts on sysupgrade =
 {{{
@@ -15,3 +16,9 @@
 = installation log =
 `grep -i installed /var/log/pacman.log` recently installed packages
 `grep -i upgraded /var/log/pacman.log` recently upgraded packages
+
+= downgrade package =
+`pacman -U /var/cache/pacman/pkg/<package>`
+add to `/etc/pacman.conf`
+`IgnorePkg = <package>`
+to prevent further updates
