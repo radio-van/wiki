@@ -2,22 +2,13 @@
     - [[#tools|tools]]
         - [[#tools#pgcli|pgcli]]
             - [[#tools#pgcli#connect|connect]]
-    - [[#usage|usage]]
-        - [[#usage#dump|dump]]
-        - [[#usage#restore|restore]]
-        - [[#usage#write to file|write to file]]
+        - [[#tools#psql|psql]]
+            - [[#tools#psql#dump|dump]]
+            - [[#tools#psql#restore|restore]]
+            - [[#tools#psql#write to file|write to file]]
     - [[#sql|sql]]
+        - [[#sql#constraints|constraints]]
         - [[#sql#roles|roles]]
-        - [[#sql#value modification|value modification]]
-            - [[#sql#value modification#insert values|insert values]]
-            - [[#sql#value modification#update part of the value|update part of the value]]
-            - [[#sql#value modification#delete values|delete values]]
-        - [[#sql#table modification|table modification]]
-            - [[#sql#table modification#add column|add column]]
-            - [[#sql#table modification#rename column|rename column]]
-            - [[#sql#table modification#create temp table|create temp table]]
-            - [[#sql#table modification#read from CSV file|read from CSV file]]
-            - [[#sql#table modification#write to CSV file|write to CSV file]]
         - [[#sql#queries|queries]]
             - [[#sql#queries#filter values|filter values]]
             - [[#sql#queries#search for partial value|search for partial value]]
@@ -28,6 +19,17 @@
             - [[#sql#queries#JOINS|JOINS]]
                 - [[#sql#queries#JOINS#inner join|inner join]]
                 - [[#sql#queries#JOINS#left join|left join]]
+        - [[#sql#tables|tables]]
+            - [[#sql#tables#add column|add column]]
+            - [[#sql#tables#rename column|rename column]]
+            - [[#sql#tables#create temp table|create temp table]]
+            - [[#sql#tables#read from CSV file|read from CSV file]]
+            - [[#sql#tables#write to CSV file|write to CSV file]]
+        - [[#sql#values|values]]
+            - [[#sql#values#insert|insert]]
+            - [[#sql#values#partial update|partial update]]
+            - [[#sql#values#update|update]]
+            - [[#sql#values#delete|delete]]
 
 = tools =
 == pgcli ==
@@ -166,6 +168,10 @@ hint:: date field type is `TIMESTAMP WITH TIME ZONE`
 === partial update ===
 {{{class="brush: sql"
   UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
+}}}
+=== update ===
+{{{class="brush: sql"
+  UPDATE table SET value = '<value>' WHERE condition;
 }}}
 === delete ===
 {{{class="brush: sql"

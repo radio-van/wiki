@@ -32,6 +32,8 @@
         - [[#configs#dotfiles|dotfiles]]
     - [[#power management|power management]]
         - [[#power management#sleep and hibernation|sleep and hibernation]]
+    - [[#additional hardware|additional hardware]]
+        - [[#additional hardware#Lenovo's bluetooth|Lenovo's bluetooth]]
 
 = base =
 == pre-installation ==
@@ -276,3 +278,11 @@ commands are:
 for security install `xss-lock` and add it to autostart (e.g. `.bash_profile`)
 `xss-lock -- <external locker> &` e.g. `i3locks`
 it will lock system after sleep/hibernation
+
+= additional hardware =
+== Lenovo's bluetooth ==
+{{{
+  pacman -S bluez bluez-utils
+  modprobe btusb
+  systemctl enable --now bluetooth
+}}}
