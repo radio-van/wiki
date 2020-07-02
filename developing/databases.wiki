@@ -26,6 +26,7 @@
             - [[#sql#tables#read from CSV file|read from CSV file]]
             - [[#sql#tables#write to CSV file|write to CSV file]]
         - [[#sql#values|values]]
+            - [[#sql#values#duplicate|duplicate]]
             - [[#sql#values#insert|insert]]
             - [[#sql#values#partial update|partial update]]
             - [[#sql#values#update|update]]
@@ -161,6 +162,10 @@ hint:: date field type is `TIMESTAMP WITH TIME ZONE`
 }}}
 
 == values ==
+=== duplicate ===
+{{{
+  INSERT INTO table (col1, col2, ...) SELECT col1, col2 FROM table WHERE <condition>
+}}}
 === insert ===
 {{{class="brush: sql"
    INSERT INTO table (col1, col2) VALUES (val1, val2);
