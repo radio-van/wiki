@@ -80,6 +80,8 @@ use [[iptables#Contents|iptables]]
 `nameserver X.X.X.X`
 
 == ip address aliasing ==
+ArchLinus::
+`ip addr add 10.200.10.1/24 dev lo label lo:0`
 CentOS::
   :: `/etc/sysconfig/network-scripts`
   :: `cp ifcfg-ethX icfg-ethX:N`
