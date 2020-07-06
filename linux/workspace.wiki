@@ -7,6 +7,7 @@
             - [[#crypt#create encrypted partition#keyfile on separate drive|keyfile on separate drive]]
     - [[#volumes|volumes]]
         - [[#volumes#LVM|LVM]]
+            - [[#volumes#LVM#workaround of stack LUKS+LVM volume|workaround of stack LUKS+LVM volume]]
     - [[#mount|mount]]
         - [[#mount#grant write permissions to user|grant write permissions to user]]
         - [[#mount#allow user to mount|allow user to mount]]
@@ -83,6 +84,11 @@ or
   mkfs.ext4 /dev/MyVolGroup/home
   mkswap /dev/MyVolGroup/swap
 }}}
+=== workaround of stack LUKS+LVM volume ===
+sympthoms: `device <device> still in use`
+`vgdisplay` shows all `VolumeGroup`s
+`vgchange -a n <name>` fix activation of `<name> VolumeGroup`
+`cryptsetup close <device>` can be used afterwards
 
 = mount =
 == grant write permissions to user ==
