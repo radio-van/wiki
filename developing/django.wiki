@@ -6,6 +6,9 @@
     - [[#migrations|migrations]]
         - [[#migrations#makemigrations|makemigrations]]
         - [[#migrations#migrate|migrate]]
+    - [[#models|models]]
+        - [[#models#fields|fields]]
+            - [[#models#fields#methods|methods]]
     - [[#queryset|queryset]]
         - [[#queryset#values|values]]
     - [[#timezone|timezone]]
@@ -46,6 +49,23 @@
 
 == migrate ==
 `./manage.py migrate`
+
+= models =
+== fields ==
+Fields translates Python object to data of appropriate type, that can be stored into given DB.
+Fileds classes are stored in *Model*'s `Meta` class.
+Fields classes translate data or pass data to *serializer*.
+Usually, for custom field two classes are needed:
+* custom class for model's user, this class' instance is used for representation and operations with data when *Model*'s field is changed.
+* `Filed` subclass to transform the class above to value for storing in DB or DB's value into Python object.
+
+=== methods ===
+- `.to_python(value)` converts data from DB to Python object.
+- `.get_prep_value(value)` converts Python object to DB data (DB type-agnostic).
+- `.get_db_prep_value(value, connection)` is the same, but for specific DB type.
+- `.value_to_string(value)` converts Python object to appropriate format for *serializer*.
+- `._get_val_from_obj(obj)` used to get value from Python object. *DEPRECATED*
+- `.value_from_object(obj)` the same, used in new Django.
 
 = queryset =
 == values ==
