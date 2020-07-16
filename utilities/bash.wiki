@@ -47,7 +47,7 @@ Complex way::
 
 = scripting =
 == set options ==
-* `set -e` will force sxript to exit after first failed command (but it won't catch fails in the middle of pipe)
+* `set -e` will force script to exit after first failed command (but it won't catch fails in the middle of pipe)
 {{{
    set -e
    failing_command                # with set -e script exits here
