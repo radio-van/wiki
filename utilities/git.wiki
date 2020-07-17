@@ -267,6 +267,10 @@ That's how remote servers, e.g. GitHub, work.
 - `--recursive` update nested submodules
 - `--remote` use the status of the submodule's remote-tracking branch (branch name is taken from .gitmodules)
 
+e.g.
+* checkout all submodules on commits in super-repo `git submodule update --recursive --checkout`
+* update all submodules to latest commits in remote repos `git submodule update --remote --recursive --checkout`
+
 == urls ==
 === change remote url ===
 `git remote set-url $remote $new_url`
