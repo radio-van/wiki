@@ -17,6 +17,7 @@
     - [[#usage|usage]]
         - [[#usage#execute and source|execute and source]]
         - [[#usage#parameters expansion|parameters expansion]]
+        - [[#usage#previous command and arguments|previous command and arguments]]
 
 = configuration =
 == basics ==
@@ -135,3 +136,15 @@ e.g.
 | `${VAR##pattern}` | delete longest match of pattern from the beginning  |
 | `${VAR%pattern}`  | delete shortest match of pattern from the end       |
 | `${VAR%%pattern}` | delete longest match of pattern from the end        |
+
+== previous command and arguments ==
+- `!!` whole previous command (useful with `sudo`)
+- `!^` first argument
+- `!$` last argument
+- `!*` all arguments
+- `!:2` second argument
+- `!:2-3` second to third
+- `!:2-$`, `!:2*` second to last
+- `!:2-` second to last, *does not* includes last
+- `!:0` the command itself
+
