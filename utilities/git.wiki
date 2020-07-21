@@ -198,6 +198,8 @@ fetch downloads remote objects
 == index ==
 === show files in index ===
 `git ls-tree -r master --name-only`
+=== show ignored files ===
+`git status --ignored`
 === remove file from index ===
 `git reset $file`
 === remove all files from index ===
