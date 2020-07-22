@@ -29,6 +29,8 @@
   * [[windows/tips_tricks#Contents|tips&tricks]]
 * Packages
   * [[packages/home-assistant#Contents|Home-Assistant]]
+* Protocols
+  * [[protocols/email#Contents|email]]
 * Utilities
   * [[utilities/adb#Contents|adb]]
   * [[utilities/awk#Contents|awk]]
