@@ -36,6 +36,7 @@
         - [[#usage#editing|editing]]
             - [[#usage#editing#basic idea|basic idea]]
             - [[#usage#editing#toggle case|toggle case]]
+            - [[#usage#editing#increase/decrease numbers|increase/decrease numbers]]
             - [[#usage#editing#regex|regex]]
                 - [[#usage#editing#regex#lookahead / lookbehind|lookahead / lookbehind]]
             - [[#usage#editing#ranges|ranges]]
@@ -311,6 +312,11 @@ e.g. `dw` = `d`elete `w`ord
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
 * uppercase **HellO** to **HELLO** with `gU` then a movement. 
 * lowercase **HellO** to **hello** with `gu` then a movement. 
+  
+=== increase/decrease numbers ===
+`C-a` increases number under cursor (whole number)
+`C-x` decreases number under cursor (whole number)
+
 
 Examples::
 :: toggle case of the character under the cursor, or all visually-selected characters
