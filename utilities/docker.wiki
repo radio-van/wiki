@@ -4,6 +4,8 @@
         - [[#build#Base image|Base image]]
         - [[#build#Dockerfile|Dockerfile]]
     - [[#Containers|Containers]]
+        - [[#Containers#recreate container|recreate container]]
+        - [[#Containers#removing container|removing container]]
         - [[#Containers#stop all containers|stop all containers]]
         - [[#Containers#rm all containers|rm all containers]]
     - [[#Managing|Managing]]
@@ -37,6 +39,16 @@ Docker image size could be reduced with `DockerSlim` utility
   use `COPY --chown <user>` instead
   
 = Containers =
+== recreate container ==
+`docker-compose up <container>`
+`--force-recreate` - restarts container even if configuration unchanged
+`-V` recreates anonymous volumes
+
+== removing container ==
+`docker rm <container>`
+`docker-compose down <container>`
+`-v` removes all named/anonymous volumes
+
 == stop all containers ==
 `docker stop $(docker ps -a -q)`
 == rm all containers ==
