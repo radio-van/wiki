@@ -45,8 +45,11 @@
                 - [[#usage#editing#search patterns#examples|examples]]
             - [[#usage#editing#tips&trics|tips&trics]]
                 - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
+                - [[#usage#editing#tips&trics#global commands|global commands]]
+                - [[#usage#editing#tips&trics#run normal mode commands on selected lines|run normal mode commands on selected lines]]
                 - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
                 - [[#usage#editing#tips&trics#sort uniq lines|sort uniq lines]]
+                - [[#usage#editing#tips&trics#time travel|time travel]]
         - [[#usage#encryption|encryption]]
         - [[#usage#file|file]]
             - [[#usage#file#current file|current file]]
@@ -430,12 +433,22 @@ To do a global replace in all blocks with the same patterns, use :g: ::
 - `I` (insert to the beginning of the line)
 - insert comment character (for example `#`)
 
+==== global commands ====
+`:g/pattern/<command>`, e.g. `:g/^A/m$` moves all lines starting `A` to the end of the file
+
+==== run normal mode commands on selected lines ====
+`'<,'>norm <normal mode keys>`
+
 ==== save with sudo ====
 `:w !sudo tee %`
 
 ==== sort uniq lines ====
 `:sort u`
 untested: `:%!uniq`
+
+==== time travel ====
+- `earlier:<time>`, `<time>` e.g. `1m` for 1 minute. Reverts file to `<time>` back
+- `later:<time>` reverts file to the state later `<time>` from now
 
 == encryption ==
 Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfish2` is recommended
