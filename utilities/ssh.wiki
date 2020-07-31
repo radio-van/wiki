@@ -18,6 +18,8 @@
         - [[#ssh-agent#agent-forwarding|agent-forwarding]]
             - [[#ssh-agent#agent-forwarding#overview|overview]]
             - [[#ssh-agent#agent-forwarding#configuration|configuration]]
+    - [[#scp|scp]]
+            - [[#scp#ambiguous target|ambiguous target]]
 
 = configuration =
 
@@ -99,3 +101,6 @@ apply: `service ssh restart`
 * autostart `eval ssh-agent` (`eval` is used due to exporting env variable)
 * `SSH_ASKPASS` determines which program would be used for asking user's confirmation for key reading
     
+= scp =
+=== ambiguous target ===
+All spaces in target path must be escaped with `\\` and path itself must be enclosed with `"`
