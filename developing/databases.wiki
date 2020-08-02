@@ -1,4 +1,4 @@
-= Contents =
+# Contents 
     - [[#tools|tools]]
         - [[#tools#pgcli|pgcli]]
             - [[#tools#pgcli#connect|connect]]
@@ -32,26 +32,26 @@
             - [[#sql#values#update|update]]
             - [[#sql#values#delete|delete]]
 
-= tools =
-== pgcli ==
-=== connect ===
+# tools 
+## pgcli 
+### connect 
 `pgcli -h localhost -u postgres`
 
-== psql==
-=== dump ===
+## psql
+### dump 
 `pg_dump -U username > filename` dump database
 `pg_dumpall -U username > filename` dump all databases
 
-=== restore ===
+### restore 
 `psql dbname < filename` restore single database
 `psql -f <dump> -U <user>` full restore
 
-=== write to file ===
+### write to file 
 `\o filename`
 
-= sql =
+# sql 
 
-== constraints ==
+## constraints 
 *Constraints* are the rules enforced on a data columns on table.
 These are used to limit the type of data that can go into a table.
 Could be _column_ level and _table_ level.
@@ -64,15 +64,15 @@ Commonly used:
 * `CHECK` ensures that all values in a column satisfies certain conditions
 
 Usage:
-{{{
+```sql
 CREATE TABLE COMPANY(
   ID INT PRIMARY    KEY     NOT NULL,
   NAME              TEXT    NOT NULL UNIQUE,
   AGE               INT     NOT NULL CHECK(AGE > 18),
   SALARY            REAL    DEFAULT 50000.00
-}}}
+```
 
-== roles ==
+## roles 
 `CREATE ROLE` or `createuser`, useful `options` are:
 - `-s` superuser
 - `-r` allow role creation
@@ -81,105 +81,104 @@ CREATE TABLE COMPANY(
 
 see also `ALTER ROLE`, `DROP ROLE`
 
-== queries ==
-=== filter values ===
-{{{class="brush: sql"
+## queries 
+### filter values 
+```sql
   SELECT * FROM table WHERE string IN (value1, value2,...);
-}}}
-=== search for partial value ===
-{{{class="brush: sql"
+```
+### search for partial value 
+```sql
   SELECT * FROM table WHERE column LIKE 'pattern';
-}}}
-hint:: use `%` as wildcard, e.g. `pattern%` or `%pattern%`
-=== limit query ===
-{{{class="brush: sql"
+```
+> hint: use `%` as wildcard, e.g. `pattern%` or `%pattern%`
+### limit query 
+```sql
   SELECT * FROM table LIMIT num;
-}}}
-=== sort order ===
-{{{class="brush: sql"
+```
+### sort order 
+```sql
   SELECT * FROM table ORDER BY id asc/desc;
-}}}
-=== query from several tables ===
-{{{class="brush: sql"
+```
+### query from several tables 
+```sql
   SELECT * FROM table1 INNER JOIN table2 ON condition_of_joining WHERE ...;
-}}}
-=== aggregate data with same values ===
-{{{class="brush: sql"
+```
+### aggregate data with same values 
+```sql
   SELECT DISTINCT column FROM ...
   SELECT column2, MAX(column1) FROM ... GROUP BY column2;
-}}} 
+``` 
 
-=== JOINS ===
-==== inner join ====
+### JOINS 
+#### inner join 
 select smth from one table where particular values are the same in both tables
-{{{class="brush: sql"
+```sql
   SELECT
     A.*
   FROM
     table_A A
   INNER JOIN table_B B ON A.id = B.id
-}}}
-==== left join ====
+```
+#### left join 
 select everything from one table plus values from another table that are the same with the first one
-{{{class="brush: sql"
+```sql
   SELECT
     A.*
   FROM
     table_A A
   LEFT JOIN table_B B ON A.id = B.id
-}}}
+```
 select values from one table that dont exist in the second table
-{{{class="brush: sql"
+```sql
   SELECT
     A.*
   FROM
     table_A A
   LEFT JOIN table_B B ON A.id = B.id
   WHERE table_B.id IS NULL; 
-}}}
+```
 
-== tables ==
-=== add column ===
-{{{class="brush: sql"
+## tables 
+### add column 
+```sql
   ALTER TABLE table ADD column_name datatype; 
-}}}
-=== rename column ===
-{{{class="brush: sql"
+```
+### rename column 
+```sql
   ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
-}}}
-=== create temp table ===
-{{{class="brush: sql"
+```
+### create temp table 
+```sql
   CREATE TEMPORARY TABLE table (column1 TYPE, column2 TYPE);
-}}}
-hint:: date field type is `TIMESTAMP WITH TIME ZONE`
-=== read from CSV file ===
-{{{class="brush: sql"
+```
+> hint: date field type is `TIMESTAMP WITH TIME ZONE`
+### read from CSV file 
+```sql
   COPY table (column1, column2, ...) FROM 'filename' WITH CSV DELIMITER ',' QUOTE '"' ESCAPE '"';
-}}}
-=== write to CSV file ===
-{{{class="brush: sql"
+```
+### write to CSV file 
+```sql
   \copy (SELECT ...) to 'filename' with csv;
-}}}
+```
 
-== values ==
-=== duplicate ===
-{{{
+## values 
+### duplicate 
+```sql
   INSERT INTO table (col1, col2, ...) SELECT col1, col2 FROM table WHERE <condition>
-}}}
-=== insert ===
-{{{class="brush: sql"
+```
+### insert 
+```sql
    INSERT INTO table (col1, col2) VALUES (val1, val2);
-}}}
-=== partial update ===
-{{{class="brush: sql"
+```
+### partial update 
+```sql
   UPDATE table SET value = REPLACE(value, 'which', 'whith') WHERE condition;
-}}}
-=== update ===
-{{{class="brush: sql"
+```
+### update 
+```sql
   UPDATE table SET value = '<value>' WHERE condition;
-}}}
-=== delete ===
-{{{class="brush: sql"
+```
+### delete 
+```sql
   DELETE FROM table WHERE condition;
-}}}
-
+```
