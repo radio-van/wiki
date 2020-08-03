@@ -79,6 +79,20 @@ Custom table can be created with `xmodmap -pke > ~/.Xmodmap` and following line 
 or temporary: `xmodmap -e "keycode 46 = l L l L lstroke Lstroke lstroke"`
 
 === modifier keys ===
+defaults:
+- *mod1* `Alt_L`, `Meta_L`
+- *mod2* `Num_Lock`
+- *mod3* -
+- *mod4* `Super_L`, `Super_R`, `Hyper_L`
+- *mod5* `Level3_Shift`, `Mode_switch`
+
+Additional modifier keys came from _Space Cadet Keyboard_
+* `Meta` usually emulated with `AltGr` or `Alt_R` (sometimes it's called `Option`)
+* `Super` is `Win` (Windows) or `Cmd` (MacOS)
+* `Compose` is usually `Win Menu`
+* `Meh` is `Shift + Ctrl + Alt`
+* `Hyper` is gone, sometimes it's `Shift + Ctrl + Alt + Super`
+
 `xmodmap -pm` shows current modifier keys table
 
 Custom table can be created as described above
@@ -89,7 +103,7 @@ clear mod2
 keycode 38 = Caps_Lock
 keycode 77 = Num_Lock
 add lock = Caps_Lock
-add lock = Num_Lock
+add mod2 = Num_Lock
 }}}
 
 === reverse scrolling ===
