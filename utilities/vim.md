@@ -109,14 +109,16 @@ Make plugins section
 ### fugitive
 
 #### merge conflict
-splits order::
+splits order
+
 - left (top) - **target branch** _aka master_ `2`
 - middle - **working copy** with conflict markers `1`
 - right (bottom) - **merge branch** _aka feature_ (the one specified in `git merge` command) `3`
 
 | 2 | 1 | 3 |
 
-commands::
+commands
+
 * `:diffget` `dg` - get changes from buffer
 * `:diffput` `dp` - put changes to buffer
 * `diffupdate` - recalculate diff colors
@@ -125,7 +127,8 @@ commands::
 * `]c` - next hunk
 
 `:g/^function!\? \(s:\)\?My/;/^endfunction/s/^/" /`
-:: e.g.
+
+e.g.
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
@@ -228,13 +231,16 @@ Tabs are just another representation of the group of windows/splits
 * `NG` to line `N` (last line if `N` is not provided)
 
 ### tags
-jump to tag::
+jump to tag
+
 * `Ctrl-]`, `Ctrl-click`, `g-click`, `:tag` jump to tag
 * `:tselect <tag>`, `g]` list locations with a tag if multiple
 * `Ctrl-t`, `:pop`, `Ctrl-right_click`, `g-right_click` jump back
 * `g Ctrl-]`, `:tjump` to jump or select tag if multiple
 * `:tag /<pattern>` search tag
-open tags in windows, tabs, splits::
+
+open tags in windows, tabs, splits
+
 * `Ctrl-W }`, `:ptag` preview tag
 * `Ctrl-W ]` open tag in new window
 * `Ctrl-\` open definition in new tab
@@ -256,18 +262,19 @@ e.g. `dw` = `d`elete `w`ord
 `C-x` decreases number under cursor (whole number)
 
 
-Examples::
-:: toggle case of the character under the cursor, or all visually-selected characters
+Examples
+
+* toggle case of the character under the cursor, or all visually-selected characters
 `~`
-:: toggle case of the next three characters
+* toggle case of the next three characters
 `3~`
-:: toggle case of the next three words
+* toggle case of the next three words
 `g~3w`
-:: toggle case of the current word (inner word – cursor anywhere in word)
+* toggle case of the current word (inner word – cursor anywhere in word)
 `g~iw`
-:: toggle case of all characters to end of line
+* toggle case of all characters to end of line
 `g~$`
-:: toggle case of the current line (same as V~)
+* toggle case of the current line (same as V~)
 `g~~`
 
 ### regex
@@ -303,7 +310,9 @@ e.g.
 range refinement:
 * `...g` - global (all occurtences), e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing `foo`
 * `...v` - reverse condition
-examples::
+
+examples
+
 * `:.,+21g/foo/d` delete all lines with _foo_, from current line plus 21 more lines
 * `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
 * `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
@@ -330,36 +339,34 @@ examples::
 | `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for **foo** not following **bar** |
 
 #### examples
-combine **search range** with **substitution**::
-:: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
-`:.,/green/co $`
-:: replace all `old` in the next line in which the `apples` occurs, and the line following it. 
-`:/apples/,/apples/+1s/old/new/g`
-:: same (.1 is .+1, and because ; was used, the cursor position is set to the line matching `apples` before interpreting the .+1). 
-`:/apples/;.1s/old/new/g`
-:: replace all `old` in the next line in which `apples` occurs, and all lines up to and including 100 lines after the current line (where the command was entered). 
-`:/apples/,.100s/old/new/g`
-:: replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
+combine **search range** with **substitution**
+
+* copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
+`.,/green/co $`
+* replace all `old` in the next line in which the `apples` occurs, and the line following it. 
+`/apples/,/apples/+1s/old/new/g`
+* same (.1 is .+1, and because ; was used, the cursor position is set to the line matching `apples` before interpreting the .+1). 
+`/apples/;.1s/old/new/g`
+* replace all `old` in the next line in which `apples` occurs, and all lines up to and including 100 lines after the current line (where the command was entered). 
+`/apples/,.100s/old/new/g`
+* replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
     `/apples/` identifies the first line after the cursor containing `apples`. 
     `/peaches/` is similar (first line after the current line, not the first after `apples`). Be aware of backwards ranges. 
     The block is all lines from `apples` to `peaches`, inclusive. 
-`:/apples/,/peaches/ s/old/new/g`
-:: Same, but `peaches` identifies the first occurrence after `apples`. 
-`:/apples/;/peaches/ s/old/new/g`
-:: Insert `# ` at the start of each line in the first block. 
-`:/apples/,/peaches/ s/^/# /g`
-:: Insert `# ` at the start of each line inside the block. 
-To do a global replace in all blocks with the same patterns, use :g: ::
-`:/apples/+1,/peaches/-1 s/^/# /g`
-::  Insert `# ` at the start of each line in all identified blocks. 
+`/apples/,/peaches/ s/old/new/g`
+* Same, but `peaches` identifies the first occurrence after `apples`. 
+`/apples/;/peaches/ s/old/new/g`
+* Insert `# ` at the start of each line in the first block. 
+`/apples/,/peaches/ s/^/# /g`
+* Insert `# ` at the start of each line inside the block. 
+
+To do a global replace in all blocks with the same patterns, use :g:
+`/apples/+1,/peaches/-1 s/^/# /g`
+*  Insert `# ` at the start of each line in all identified blocks. 
     :g/apples/ identifies each line containing `apples`. 
     In each such line, .,/peaches/ s/^/# /g is executed 
     (the . is assumed; it means the current line, where `apples` occurs). 
-`:g/apples/,/peaches/ s/^/# /g`
-::  This example is for a Vim script where functions start with function or function! and end with endfunction. 
-    Insert `` ` at the start of each line in each block. 
-    All functions that start with function My or function s:My will be commented out. 
-    The last line in each block is where endfunction first occurs (at the left margin), after where function My is found. 
+`g/apples/,/peaches/ s/^/# /g`
 
 ### tips&trics
 #### comment several lines
