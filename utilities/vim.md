@@ -183,7 +183,9 @@ splits order
 - middle - **working copy** with conflict markers `1`
 - right (bottom) - **merge branch** _aka feature_ (the one specified in `git merge` command) `3`
 
+```
 | 2 | 1 | 3 |
+```
 
 commands
 
@@ -206,6 +208,7 @@ e.g.
 * `Ctrl-V` open in new vertical split
 Bang `!` version of command opens `fzf` in full screen
 
+|---------------------|---------------------------------------------------------------|
 | `:Files [PATH]`     | Files                                                         |
 | `:GFiles [OPTS]`    | Git files (git ls-files)                                      |
 | `:GFiles?`          | Git files (git status)                                        |
@@ -235,58 +238,63 @@ Bang `!` version of command opens `fzf` in full screen
 ## buffers
 Buffers are loaded files. Windows are framebuffers for buffers.
 ### close
-`:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
-`<range>bd`, e.g. `3,5bd` would close `3, 4, 5` buffers
+* `:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
+`<range>bd`
+
+e.g.
+`3,5bd` would close `3, 4, 5` buffers
 
 ### list
-`:buffers`, `:ls`, `:files`
+* `:buffers`, `:ls`, `:files`
 
 ### switch
-`:b <number|name>`, use `Tab` for autocomplete
-`:sb <num|name>` opens buffer in horizontal split
-`:vert sb <num|name>` opens buffer in vertical split
+* `:b <number|name>`, use `Tab` for autocomplete
+* `:sb <num|name>` opens buffer in horizontal split
+* `:vert sb <num|name>` opens buffer in vertical split
 
-`<number>C-^` 
+* `<number>C-^` 
 `C-W ^` or `C-W C-^` opens buffer in new window
 
-`:bfirst`, `:brewind`, `sbfirst`, `sbrewind` jumps to first buffer in list
-`:blast`, `:sblast` jumps to last buffer
-`:bnext`, `:sbnext` jumps to next buffer
-`:bprevious`, `:bNext` jumps to previous buffer
+* `:bfirst`, `:brewind`, `sbfirst`, `sbrewind` jumps to first buffer in list
+* `:blast`, `:sblast` jumps to last buffer
+* `:bnext`, `:sbnext` jumps to next buffer
+* `:bprevious`, `:bNext` jumps to previous buffer
 
-`:bmodified`, `:sbmodified` jumps to next modified buffer
+* `:bmodified`, `:sbmodified` jumps to next modified buffer
 
-`:ball` opens all buffers from list
-`:unhide`, `:sunhide` opens all loaded buffers
+* `:ball` opens all buffers from list
+* `:unhide`, `:sunhide` opens all loaded buffers
 
 to switch to already opened buffer instead of opening new window/split set option
 `switchbuf` to `useopen`
 
 ### save and restore
 include `%` flag to `viminfo` option
+
 buffers could be saved per folder with local `viminfo` file
 
 ### execute commands
-`:bufdo`
+* `:bufdo`
 
 ## tabs
 Tabs are just another representation of the group of windows/splits
+
 ### navigation
-`gt` next tab
-`gT` previous tab
-`<number>gt` tab in `<number>` position (from 1)
+* `gt` next tab
+* `gT` previous tab
+* `<number>gt` tab in `<number>` position (from 1)
 
 ### usage with buffers
-`:tab ball` open each buffer in new tab
-`:tab split` copy current window to a new tab
-`C-w T` move current window to a new tab
+* `:tab ball` open each buffer in new tab
+* `:tab split` copy current window to a new tab
+* `C-w T` move current window to a new tab
 
 ### open files
-`:tabedit`, `:tabfind`
+* `:tabedit`, `:tabfind`
 
 ### re-arrange tabs
-`:tabm` moves current tab to last
-`:tabm <position>` moves current tab to position (`0` for first)
+* `:tabm` moves current tab to last
+* `:tabm <position>` moves current tab to position (`0` for first)
 
 ## navigation
 ### jumps
@@ -322,7 +330,9 @@ To turn off diff mode `:windo diffoff`
 
 ### basic idea
 `operation` `range` `object`
+
 e.g. `ci"` = `c`hange `i`nside `"`
+
 e.g. `dw` = `d`elete `w`ord
 
 ### toggle case
@@ -362,13 +372,13 @@ Instead of **PCRE** form `(?...)` **Vim** uses `\@` form
 * Positive lookbehind `\@<=`
 * Negative lookbehind `\@<!`
 
+**Positive lookahead** searches for some expression, but do not include that expression in result
+
 e.g.
 `/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
 
-*!! THIS PART SHOULD BE MOVED TO REGEX !!*
-* **Positive lookahead** searches for some expression, but do not include that expression in result
-
 ### ranges
+|---------|---------------------------------------------|-----------------------|
 | `N`     | line number N                               | `:21s/foo/bar/g`      |
 | `$`     | last line                                   | `:$s/foo/bar/g`       |
 | `.`     | current line                                | `:.w single_line.txt` |
@@ -401,45 +411,46 @@ examples
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
 
 ### search patterns
-| Item             | Description                                                                          |
-| `/pattern/`      | next line where pattern matches                                                      |
-| `?pattern?`      | previous line where pattern matches                                                  |
-| `\/`             | next line where the previously used search pattern matches                           |
-| `\?`             | previous line where the previously used search pattern matches                       |
-| `\&`             | next line where the previously used substitute pattern matches                       |
-| `0;/that`        | first line containing `that` (also matches in the first line)                        |
-| `1;/that`        | first line after line 1 containing `that`                                            |
+|------------------|------------------------------------------------------------------------------------------|
+| Item             | Description                                                                              |
+| `/pattern/`      | next line where pattern matches                                                          |
+| `?pattern?`      | previous line where pattern matches                                                      |
+| `\/`             | next line where the previously used search pattern matches                               |
+| `\?`             | previous line where the previously used search pattern matches                           |
+| `\&`             | next line where the previously used substitute pattern matches                           |
+| `0;/that`        | first line containing `that` (also matches in the first line)                            |
+| `1;/that`        | first line after line 1 containing `that`                                                |
 | `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for **foo** not following **bar** |
 
 #### examples
 combine **search range** with **substitution**
 
 * copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
-`.,/green/co $`
+    `.,/green/co $`
 * replace all `old` in the next line in which the `apples` occurs, and the line following it. 
-`/apples/,/apples/+1s/old/new/g`
+    `/apples/,/apples/+1s/old/new/g`
 * same (.1 is .+1, and because ; was used, the cursor position is set to the line matching `apples` before interpreting the .+1). 
-`/apples/;.1s/old/new/g`
+    `/apples/;.1s/old/new/g`
 * replace all `old` in the next line in which `apples` occurs, and all lines up to and including 100 lines after the current line (where the command was entered). 
-`/apples/,.100s/old/new/g`
+    `/apples/,.100s/old/new/g`
 * replace all `old` in the first block that starts with `apples` and ends with `peaches`. 
     `/apples/` identifies the first line after the cursor containing `apples`. 
     `/peaches/` is similar (first line after the current line, not the first after `apples`). Be aware of backwards ranges. 
     The block is all lines from `apples` to `peaches`, inclusive. 
-`/apples/,/peaches/ s/old/new/g`
+    `/apples/,/peaches/ s/old/new/g`
 * Same, but `peaches` identifies the first occurrence after `apples`. 
-`/apples/;/peaches/ s/old/new/g`
+    `/apples/;/peaches/ s/old/new/g`
 * Insert `# ` at the start of each line in the first block. 
-`/apples/,/peaches/ s/^/# /g`
+    `/apples/,/peaches/ s/^/# /g`
 * Insert `# ` at the start of each line inside the block. 
 
 To do a global replace in all blocks with the same patterns, use :g:
-`/apples/+1,/peaches/-1 s/^/# /g`
+    `/apples/+1,/peaches/-1 s/^/# /g`
 *  Insert `# ` at the start of each line in all identified blocks. 
     :g/apples/ identifies each line containing `apples`. 
     In each such line, .,/peaches/ s/^/# /g is executed 
     (the . is assumed; it means the current line, where `apples` occurs). 
-`g/apples/,/peaches/ s/^/# /g`
+    `g/apples/,/peaches/ s/^/# /g`
 
 ### tips&trics
 #### comment several lines
@@ -500,32 +511,32 @@ macro are saved into named registers, so they can be simply pasted as common str
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
 ## registers
-`^R<register>` in **insert mode** pastes content of register, e.g. `^R%` pastes current filename
-`"<register><command>` in **normal mode** sends register to command, e.g. `"%p` pastes current filename
+* `^R<register>` in **insert mode** pastes content of register, e.g. `^R%` pastes current filename
+* `"<register><command>` in **normal mode** sends register to command, e.g. `"%p` pastes current filename
 ### file
 - `%` contains current file name
 - `#` contains alternate file name
 
 ## session
 Vim can save current buffers, layout, etc into session file
-`:mksession <file>`
+    `:mksession <file>`
 to restore it: `:so <file>`
 
 ## windows and panes
 ### resize window
-`:resize <number>`
-`:resie +<number>`
-`:resie -<number>`
-`:vertical resize <number>`
+* `:resize <number>`
+* `:resie +<number>`
+* `:resie -<number>`
+* `:vertical resize <number>`
 
-`C-w +`, `C-w -` for horizontal split
-`C-w >`, `C-w <` for vertical split
+* `C-w +`, `C-w -` for horizontal split
+* `C-w >`, `C-w <` for vertical split
 also numbers could be used, e.g. `C-w 10+`
 
-`C-w _` maximum height
-`C-w |` maximum width
-`C-w =` equal sizes
+* `C-w _` maximum height
+* `C-w |` maximum width
+* `C-w =` equal sizes
 
 ### switch between horizontal and vertical splits
-`C-w` + `J` - vertical -> horizontal
-`C-w` + `H` or `L` - horizontal -> vertical
+* `C-w` + `J` - vertical -> horizontal
+* `C-w` + `H` or `L` - horizontal -> vertical
