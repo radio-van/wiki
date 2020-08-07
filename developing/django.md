@@ -21,17 +21,17 @@
 | URL                                      | HTTP method                            | action                           | URL name                |
 | ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |
 | [.format]                                | GET                                    | root view                        | api-root                |
-| ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |
+|                                          |                                        |                                  |                         |
 | {prefix}/[.format]                       | GET                                    | list                             | {basename}-list         |
 |                                          | POST                                   | create                           |                         |
-| ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |
+|                                          |                                        |                                  |                         |
 | {prefix}/{methodname}/[.format]          | GET (or as specified by 'methods' arg) | '@list_route' decorated method   | {basename}-{methodname} |
-| ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |
+|                                          |                                        |                                  |                         |
 | {prefix}/{lookup}/[.format]              | GET                                    | retrieve                         |                         |
 |                                          | PUT                                    | update                           | {basename}-detail       |
 |                                          | PATCH                                  | partial_update                   |                         |
 |                                          | DELETE                                 | destroy                          |                         |
-| ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |
+|                                          |                                        |                                  |                         |
 | {prefix}/{lookup}/{methodname}/[.format] | GET (or as specified by 'methods' arg) | '@detail_route' decorated method | {basename}-{methodname} |
 
 # localization
