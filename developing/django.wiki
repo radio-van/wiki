@@ -1,18 +1,20 @@
 = Contents =
-    - [[#Django Rest Framework|Django Rest Framework]]
-        - [[#Django Rest Framework#router|router]]
-    - [[#localization|localization]]
-        - [[#localization#make/update localization files|make/update localization files]]
-    - [[#migrations|migrations]]
-        - [[#migrations#makemigrations|makemigrations]]
-        - [[#migrations#migrate|migrate]]
-    - [[#models|models]]
-        - [[#models#fields|fields]]
-            - [[#models#fields#methods|methods]]
-            - [[#models#fields#attributes|attributes]]
-    - [[#queryset|queryset]]
-        - [[#queryset#values|values]]
-    - [[#timezone|timezone]]
+    - [[#django-rest-framework]]
+    - [[#-django-rest-framework-]]
+    - [[#localization]]
+    - [[#]]
+    - [[#migrations]]
+    - [[#-2]]
+    - [[#-3]]
+    - [[#models]]
+    - [[#-models-]]
+    - [[#fields-classes-translate-data-or-pass-data-to-serializer]]
+    - [[#-filed-subclass-to-transform-the-class-above-to-value-for-storing-in-db-or-dbs-value-into-python-object]]
+    - [[#-4]]
+    - [[#-5]]
+    - [[#queryset]]
+    - [[#-queryset-]]
+    - [[#timezone]]
 
 = Django Rest Framework =
 == router ==
@@ -56,9 +58,12 @@
 Fields translates Python object to data of appropriate type, that can be stored into given DB.
 Fileds classes are stored in *Model*'s `Meta` class.
 Fields classes translate data or pass data to *serializer*.
+=== custom fields ===
 Usually, for custom field two classes are needed:
 * custom class for model's user, this class' instance is used for representation and operations with data when *Model*'s field is changed.
 * `Filed` subclass to transform the class above to value for storing in DB or DB's value into Python object.
+=== DateTimeFiled ===
+* `auto_now_add = True` is **not** overriding by explicit argument!
 
 === methods ===
 - `.to_python(value)` converts data from DB to Python object.
