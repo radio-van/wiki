@@ -1,6 +1,7 @@
 # ignore everything
 *
 # except
+!*.md
 !*.wiki
 # even if they are in subfolders
 !*/

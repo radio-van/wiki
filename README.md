@@ -9,4 +9,5 @@ This causes following:
 - all files with *.wiki* extension are in format which is not recognized by GitHub
 - links from **index** file don't work properly
 - inner links in files may not work properly
+
 *Please be patient, WIP*
