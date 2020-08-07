@@ -1,90 +1,25 @@
-= Contents =
-    - [[#configuration|configuration]]
-        - [[#configuration#options & variables|options & variables]]
-        - [[#configuration#lines|lines]]
-        - [[#configuration#tips&trics|tips&trics]]
-            - [[#configuration#tips&trics#reload config|reload config]]
-            - [[#configuration#tips&trics#backup settings|backup settings]]
-            - [[#configuration#tips&trics#change cursor in different modes|change cursor in different modes]]
-    - [[#plugins|plugins]]
-        - [[#plugins#dirs|dirs]]
-        - [[#plugins#package managers|package managers]]
-            - [[#plugins#package managers#vim8 built-in|vim8 built-in]]
-            - [[#plugins#package managers#vim-plug|vim-plug]]
-        - [[#plugins#built-in|built-in]]
-            - [[#plugins#built-in#terminal|terminal]]
-                - [[#plugins#built-in#terminal#scroll|scroll]]
-        - [[#plugins#third-party plugins|third-party plugins]]
-            - [[#plugins#third-party plugins#fugitive|fugitive]]
-                - [[#plugins#third-party plugins#fugitive#merge conflict|merge conflict]]
-            - [[#plugins#third-party plugins#fzf|fzf]]
-    - [[#usage|usage]]
-        - [[#usage#buffers|buffers]]
-            - [[#usage#buffers#close|close]]
-            - [[#usage#buffers#list|list]]
-            - [[#usage#buffers#switch|switch]]
-            - [[#usage#buffers#save and restore|save and restore]]
-            - [[#usage#buffers#execute commands|execute commands]]
-        - [[#usage#tabs|tabs]]
-            - [[#usage#tabs#navigation|navigation]]
-            - [[#usage#tabs#usage with buffers|usage with buffers]]
-            - [[#usage#tabs#open files|open files]]
-            - [[#usage#tabs#re-arrange tabs|re-arrange tabs]]
-        - [[#usage#navigation|navigation]]
-            - [[#usage#navigation#jumps|jumps]]
-            - [[#usage#navigation#tags|tags]]
-        - [[#usage#editing|editing]]
-            - [[#usage#editing#basic idea|basic idea]]
-            - [[#usage#editing#toggle case|toggle case]]
-            - [[#usage#editing#increase/decrease numbers|increase/decrease numbers]]
-            - [[#usage#editing#regex|regex]]
-                - [[#usage#editing#regex#lookahead / lookbehind|lookahead / lookbehind]]
-            - [[#usage#editing#ranges|ranges]]
-            - [[#usage#editing#ex/ed|ex/ed]]
-            - [[#usage#editing#search patterns|search patterns]]
-                - [[#usage#editing#search patterns#examples|examples]]
-            - [[#usage#editing#tips&trics|tips&trics]]
-                - [[#usage#editing#tips&trics#comment several lines|comment several lines]]
-                - [[#usage#editing#tips&trics#global commands|global commands]]
-                - [[#usage#editing#tips&trics#run normal mode commands on selected lines|run normal mode commands on selected lines]]
-                - [[#usage#editing#tips&trics#save with sudo|save with sudo]]
-                - [[#usage#editing#tips&trics#sort uniq lines|sort uniq lines]]
-                - [[#usage#editing#tips&trics#time travel|time travel]]
-        - [[#usage#encryption|encryption]]
-        - [[#usage#file|file]]
-            - [[#usage#file#current file|current file]]
-            - [[#usage#file#encoding|encoding]]
-        - [[#usage#macro|macro]]
-            - [[#usage#macro#save recordered macro|save recordered macro]]
-        - [[#usage#registers|registers]]
-            - [[#usage#registers#file|file]]
-        - [[#usage#session|session]]
-        - [[#usage#windows and panes|windows and panes]]
-            - [[#usage#windows and panes#resize window|resize window]]
-            - [[#usage#windows and panes#switch between horizontal and vertical splits|switch between horizontal and vertical splits]]
+# configuration
 
-= configuration =
-
-== options & variables ==
+## options & variables
 * `:set` is for setting _options_
 * `:let` is for setting _variables_
-* to check option state use _option_`?`
-* to invert boolean options use `no`_option_
+* to check option state use `<option>?`
+* to invert boolean options use `no<option>`
 
-== lines ==
+## lines
 - `set number` - show line numbers (1 2 3)
 - `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
 - `set number relativenamber` - combine both
 
-== tips&trics ==
-=== reload config ===
+## tips&trics
+### reload config
 `:so` aka `:source` - reads any file as a sequence of vim commands
 tricks:
 `:so %` when editing `.vimrc` reloads `.vimrc`
 `:so $MYVIMRC` reloads `.vimrc` from any file
 
-=== backup settings ===
-{{{
+### backup settings
+```vim
     " Protect changes between writes. Default values of
     " updatecount (200 keystrokes) and updatetime
     " (4 seconds) are fine
@@ -107,10 +42,10 @@ tricks:
     " persist the undo tree for each file
     set undofile
     set undodir^=~/.vim/undo//
-}}}
+```
 
-=== change cursor in different modes ===
-{{{
+### change cursor in different modes
+```vim
   let &t_SI.="\e[5 q" "SI = INSERT mode
   let &t_SR.="\e[4 q" "SR = REPLACE mode
   let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
@@ -123,12 +58,12 @@ tricks:
   "  4 -> solid underscore
   "  5 -> blinking vertical bar
   "  6 -> solid vertical bar
-}}}
+```
 
-= plugins =
-== dirs ==
+# plugins
+## dirs
 * `/plugin`
-*Global* auto-loading plugins
+**Global** auto-loading plugins
 * `/autoload`
 Loading when prompted by another plugin
 * `/ftdetect`
@@ -140,44 +75,44 @@ determines how to run compilers and linters
 * `/pack`
 vim8 packages
 
-== package managers ==
-=== vim8 built-in ===
+## package managers
+### vim8 built-in
 `mkdir -p ~/.vim/pack/foobar/{opt,start}`
 `:helptags ~/.vim/pack/foobar/opt/<plugin>/doc`
 * `/start` - autoload
 * `/opt` - load on prompt
 To load _optional_ plugin `:packadd <plugin>`
 
-=== vim-plug ===
-Auto-install *vim-plug* manager
-{{{
+### vim-plug
+Auto-install **vim-plug** manager
+```vim
     if empty(glob('~/.vim/autoload/plug.vim'))
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
-}}}
+```
 Make plugins section
-{{{
+```vim
     call plug#begin('~/.vim/plugged')
     call plug#end()
-}}}
+```
 
-== built-in ==
-=== terminal ===
-==== scroll ====
+## built-in
+### terminal
+#### scroll
 `ctrl-W N` for scrolling
 `i` or `a` for resume as terminal
 
 
-== third-party plugins ==
-=== fugitive ===
+## third-party plugins
+### fugitive
 
-==== merge conflict ====
+#### merge conflict
 splits order::
-- left (top) - *target branch* _aka master_ `2`
-- middle - *working copy* with conflict markers `1`
-- [[right]] (bottom) - *merge branch* _aka feature_ (the one specified in `git merge` command) `3`
+- left (top) - **target branch** _aka master_ `2`
+- middle - **working copy** with conflict markers `1`
+- right (bottom) - **merge branch** _aka feature_ (the one specified in `git merge` command) `3`
 
 | 2 | 1 | 3 |
 
@@ -194,7 +129,7 @@ commands::
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
 
-=== fzf ===
+### fzf
 * `Ctrl-T` open in new tab
 * `Ctrl-X` open in new split
 * `Ctrl-V` open in new vertical split
@@ -225,17 +160,17 @@ Bang `!` version of command opens `fzf` in full screen
 | `:Helptags`         | Help tags                                                     |
 | `:Filetypes`        | File types                                                    |
 
-= usage =
-== buffers ==
+# usage
+## buffers
 Buffers are loaded files. Windows are framebuffers for buffers.
-=== close ===
+### close
 `:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
 `<range>bd`, e.g. `3,5bd` would close `3, 4, 5` buffers
 
-=== list ===
+### list
 `:buffers`, `:ls`, `:files`
 
-=== switch ===
+### switch
 `:b <number|name>`, use `Tab` for autocomplete
 `:sb <num|name>` opens buffer in horizontal split
 `:vert sb <num|name>` opens buffer in vertical split
@@ -256,34 +191,34 @@ Buffers are loaded files. Windows are framebuffers for buffers.
 to switch to already opened buffer instead of opening new window/split set option
 `switchbuf` to `useopen`
 
-=== save and restore ===
+### save and restore
 include `%` flag to `viminfo` option
 buffers could be saved per folder with local `viminfo` file
 
-=== execute commands ===
+### execute commands
 `:bufdo`
 
-== tabs ==
+## tabs
 Tabs are just another representation of the group of windows/splits
-=== navigation ===
+### navigation
 `gt` next tab
 `gT` previous tab
 `<number>gt` tab in `<number>` position (from 1)
 
-=== usage with buffers ===
+### usage with buffers
 `:tab ball` open each buffer in new tab
 `:tab split` copy current window to a new tab
 `C-w T` move current window to a new tab
 
-=== open files ===
+### open files
 `:tabedit`, `:tabfind`
 
-=== re-arrange tabs ===
+### re-arrange tabs
 `:tabm` moves current tab to last
 `:tabm <position>` moves current tab to position (`0` for first)
 
-== navigation ==
-=== jumps ===
+## navigation
+### jumps
 * `gd` to local declaration
 * `gD` to global declaration
 * `g*`/`g#` search word under cursor (will search also for words that contain word under cursor as a part)
@@ -292,7 +227,7 @@ Tabs are just another representation of the group of windows/splits
 * `gg` to first line
 * `NG` to line `N` (last line if `N` is not provided)
 
-=== tags ===
+### tags
 jump to tag::
 * `Ctrl-]`, `Ctrl-click`, `g-click`, `:tag` jump to tag
 * `:tselect <tag>`, `g]` list locations with a tag if multiple
@@ -304,19 +239,19 @@ open tags in windows, tabs, splits::
 * `Ctrl-W ]` open tag in new window
 * `Ctrl-\` open definition in new tab
 * `Alt-]` open definition in vertical split
-== editing ==
+## editing
 
-=== basic idea ===
+### basic idea
 `operation` `range` `object`
 e.g. `ci"` = `c`hange `i`nside `"`
 e.g. `dw` = `d`elete `w`ord
 
-=== toggle case ===
+### toggle case
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
 * uppercase **HellO** to **HELLO** with `gU` then a movement. 
 * lowercase **HellO** to **hello** with `gu` then a movement. 
   
-=== increase/decrease numbers ===
+### increase/decrease numbers
 `C-a` increases number under cursor (whole number)
 `C-x` decreases number under cursor (whole number)
 
@@ -335,13 +270,13 @@ Examples::
 :: toggle case of the current line (same as V~)
 `g~~`
 
-=== regex ===
-Vim's style of Regex is different from *PCRE*, all special characters must be escaped, e.g.
-- *PCRE* `(foo|bar)` means `foo` or `bar`
-- *Vim* `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
+### regex
+Vim's style of Regex is different from **PCRE**, all special characters must be escaped, e.g.
+- **PCRE** `(foo|bar)` means `foo` or `bar`
+- **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
 
-==== lookahead / lookbehind ====
-Instead of *PCRE* form `(?...)` *Vim* uses `\@` form
+#### lookahead / lookbehind
+Instead of **PCRE** form `(?...)` **Vim** uses `\@` form
 * Positive lookahead `\@=`
 * Negative lookahead `\@!`
 * Positive lookbehind `\@<=`
@@ -351,9 +286,9 @@ e.g.
 `/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
 
 *!! THIS PART SHOULD BE MOVED TO REGEX !!*
-* *Positive lookahead* searches for some expression, but do not include that expression in result
+* **Positive lookahead** searches for some expression, but do not include that expression in result
 
-=== ranges ===
+### ranges
 | `N`     | line number N                               | `:21s/foo/bar/g`      |
 | `$`     | last line                                   | `:$s/foo/bar/g`       |
 | `.`     | current line                                | `:.w single_line.txt` |
@@ -373,7 +308,7 @@ examples::
 * `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
 * `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
 
-=== ex/ed ===
+### ex/ed
 *ex/ed* legacy
 * replace `:s/../../`
 * delete `:/.../d`
@@ -383,7 +318,7 @@ examples::
 * read from cli `:r!`
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
 
-=== search patterns ===
+### search patterns
 | Item             | Description                                                                          |
 | `/pattern/`      | next line where pattern matches                                                      |
 | `?pattern?`      | previous line where pattern matches                                                  |
@@ -392,9 +327,9 @@ examples::
 | `\&`             | next line where the previously used substitute pattern matches                       |
 | `0;/that`        | first line containing `that` (also matches in the first line)                        |
 | `1;/that`        | first line after line 1 containing `that`                                            |
-| `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for *foo* not following *bar* |
+| `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for **foo** not following **bar** |
 
-==== examples ====
+#### examples
 combine **search range** with **substitution**::
 :: copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
 `:.,/green/co $`
@@ -426,38 +361,38 @@ To do a global replace in all blocks with the same patterns, use :g: ::
     All functions that start with function My or function s:My will be commented out. 
     The last line in each block is where endfunction first occurs (at the left margin), after where function My is found. 
 
-=== tips&trics ===
-==== comment several lines ====
+### tips&trics
+#### comment several lines
 - `C-v` (visual block selection)
 - select lines with arrow keys
 - `I` (insert to the beginning of the line)
 - insert comment character (for example `#`)
 
-==== global commands ====
+#### global commands
 `:g/pattern/<command>`, e.g. `:g/^A/m$` moves all lines starting `A` to the end of the file
 
-==== run normal mode commands on selected lines ====
+#### run normal mode commands on selected lines
 `'<,'>norm <normal mode keys>`
 
-==== save with sudo ====
+#### save with sudo
 `:w !sudo tee %`
 
-==== sort uniq lines ====
+#### sort uniq lines
 `:sort u`
 untested: `:%!uniq`
 
-==== time travel ====
+#### time travel
 - `earlier:<time>`, `<time>` e.g. `1m` for 1 minute. Reverts file to `<time>` back
 - `later:<time>` reverts file to the state later `<time>` from now
 
-== encryption ==
+## encryption
 Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfish2` is recommended
 * To encrypt file type `:X`, then passphrase twice
 * To reset password type `:X`, then empty passphrase
-*Warning* do not modify or save file that was decrypted with wrong password, otherwise it would be damaged!
+**Warning** do not modify or save file that was decrypted with wrong password, otherwise it would be damaged!
 
-== file ==
-=== current file ===
+## file
+### current file
 There are registers with file names:
 - `%` contains current file name
 - `#` contains alternate file name
@@ -472,30 +407,30 @@ modificators
 - `t` filename and extension
 - `r` removes extension
 - `e` file extansion
-=== encoding===
+### encoding===
 - `set fileencoding` - gets current encoding
 - `set fileencoding=utf8` - sets encoding to be saved
 - `:e! ++enc=utf8` - re-read file with specified encoding
 
-== macro ==
-=== save recordered macro ===
+## macro
+### save recordered macro
 macro are saved into named registers, so they can be simply pasted as common string (be careful with quotes, they should be escaped)
 add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
-== registers ==
-`^R<register>` in *insert* mode pastes content of register, e.g. `^R%` pastes current filename
-`"<register><command>` in *normal mode* sends register to command, e.g. `"%p` pastes current filename
-=== file ===
+## registers
+`^R<register>` in **insert mode** pastes content of register, e.g. `^R%` pastes current filename
+`"<register><command>` in **normal mode** sends register to command, e.g. `"%p` pastes current filename
+### file
 - `%` contains current file name
 - `#` contains alternate file name
 
-== session ==
+## session
 Vim can save current buffers, layout, etc into session file
 `:mksession <file>`
 to restore it: `:so <file>`
 
-== windows and panes ==
-=== resize window ===
+## windows and panes
+### resize window
 `:resize <number>`
 `:resie +<number>`
 `:resie -<number>`
@@ -509,6 +444,6 @@ also numbers could be used, e.g. `C-w 10+`
 `C-w |` maximum width
 `C-w =` equal sizes
 
-=== switch between horizontal and vertical splits ===
+### switch between horizontal and vertical splits
 `C-w` + `J` - vertical -> horizontal
 `C-w` + `H` or `L` - horizontal -> vertical
