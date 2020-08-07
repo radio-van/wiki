@@ -113,3 +113,6 @@ add mod2 = Num_Lock
 === swap mouse buttons ===
 `~/.Xmodmap`
 `pointer = 3 2 1`
+
+=== disable touchpad ===
+`xinput disable $(xinput list | grep -Eio '(touchpad|glidepoint)\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}')`
