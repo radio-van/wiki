@@ -1,3 +1,71 @@
+# Contents
+
+- [configuration](#configuration)
+    - [options & variables](#options-variables)
+    - [lines](#lines)
+    - [tips&trics](#tipstrics)
+        - [reload config](#reload-config)
+        - [backup settings](#backup-settings)
+        - [change cursor in different modes](#change-cursor-in-different-modes)
+- [plugins](#plugins)
+    - [dirs](#dirs)
+    - [package managers](#package-managers)
+        - [vim8 built-in](#vim8-built-in)
+        - [vim-plug](#vim-plug)
+    - [built-in](#built-in)
+        - [terminal](#terminal)
+            - [scroll](#scroll)
+    - [third-party plugins](#third-party-plugins)
+        - [fugitive](#fugitive)
+            - [merge conflict](#merge-conflict)
+        - [fzf](#fzf)
+- [usage](#usage)
+    - [buffers](#buffers)
+        - [close](#close)
+        - [list](#list)
+        - [switch](#switch)
+        - [save and restore](#save-and-restore)
+        - [execute commands](#execute-commands)
+    - [tabs](#tabs)
+        - [navigation](#navigation)
+        - [usage with buffers](#usage-with-buffers)
+        - [open files](#open-files)
+        - [re-arrange tabs](#re-arrange-tabs)
+    - [navigation](#navigation-2)
+        - [jumps](#jumps)
+        - [tags](#tags)
+    - [diff](#diff)
+    - [editing](#editing)
+        - [basic idea](#basic-idea)
+        - [toggle case](#toggle-case)
+        - [increase/decrease numbers](#increasedecrease-numbers)
+        - [regex](#regex)
+            - [lookahead / lookbehind](#lookahead-lookbehind)
+        - [ranges](#ranges)
+        - [ex/ed](#exed)
+        - [search patterns](#search-patterns)
+            - [examples](#examples)
+        - [tips&trics](#tipstrics-2)
+            - [comment several lines](#comment-several-lines)
+            - [global commands](#global-commands)
+            - [run normal mode commands on selected lines](#run-normal-mode-commands-on-selected-lines)
+            - [save with sudo](#save-with-sudo)
+            - [sort uniq lines](#sort-uniq-lines)
+            - [time travel](#time-travel)
+    - [encryption](#encryption)
+    - [file](#file)
+        - [current file](#current-file)
+        - [encoding](#encoding)
+        - [save as another file](#save-as-another-file)
+    - [macro](#macro)
+        - [save recordered macro](#save-recordered-macro)
+    - [registers](#registers)
+        - [file](#file-2)
+    - [session](#session)
+    - [windows and panes](#windows-and-panes)
+        - [resize window](#resize-window)
+        - [switch between horizontal and vertical splits](#switch-between-horizontal-and-vertical-splits)
+
 # configuration
 
 ## options & variables
@@ -245,6 +313,11 @@ open tags in windows, tabs, splits
 * `Ctrl-W ]` open tag in new window
 * `Ctrl-\` open definition in new tab
 * `Alt-]` open definition in vertical split
+
+## diff
+Open desired buffers and `:windo diffthis`
+To turn off diff mode `:windo diffoff`
+
 ## editing
 
 ### basic idea
@@ -414,10 +487,12 @@ modificators
 - `t` filename and extension
 - `r` removes extension
 - `e` file extansion
-### encoding===
+### encoding
 - `set fileencoding` - gets current encoding
 - `set fileencoding=utf8` - sets encoding to be saved
 - `:e! ++enc=utf8` - re-read file with specified encoding
+### save as another file
+`:saveas`
 
 ## macro
 ### save recordered macro
