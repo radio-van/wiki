@@ -71,20 +71,21 @@
 ## options & variables
 * `:set` is for setting _options_
 * `:let` is for setting _variables_
-* to check option state use `<option>?`
-* to invert boolean options use `no<option>`
+- to check option state use `<option>?`   
+- to invert boolean options use `no<option>`
 
 ## lines
-- `set number` - show line numbers (1 2 3)
-- `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
-- `set number relativenamber` - combine both
+* `set number` - show line numbers (1 2 3)
+* `set relativenumber` - show line numbers relative to current line (3 2 1 0 1 2 3)
+* `set number relativenamber` - combine both
 
 ## tips&trics
 ### reload config
 `:so` aka `:source` - reads any file as a sequence of vim commands
-tricks:
-`:so %` when editing `.vimrc` reloads `.vimrc`
-`:so $MYVIMRC` reloads `.vimrc` from any file
+
+tricks:   
+* `:so %` when editing `.vimrc` reloads `.vimrc`
+* `:so $MYVIMRC` reloads `.vimrc` from any file
 
 ### backup settings
 ```vim
@@ -145,11 +146,14 @@ vim8 packages
 
 ## package managers
 ### vim8 built-in
-`mkdir -p ~/.vim/pack/foobar/{opt,start}`
-`:helptags ~/.vim/pack/foobar/opt/<plugin>/doc`
-* `/start` - autoload
-* `/opt` - load on prompt
-To load _optional_ plugin `:packadd <plugin>`
+`mkdir -p ~/.vim/pack/foobar/{opt,start}`   
+
+`:helptags ~/.vim/pack/foobar/opt/<plugin>/doc`   
+
+- `/start` - autoload
+- `/opt` - load on prompt
+
+To load _optional_ plugin `:packadd <plugin>`   
 
 ### vim-plug
 Auto-install **vim-plug** manager
@@ -169,9 +173,8 @@ Make plugins section
 ## built-in
 ### terminal
 #### scroll
-`ctrl-W N` for scrolling
-`i` or `a` for resume as terminal
-
+- `ctrl-W N` for scrolling
+- `i` or `a` for resume as terminal
 
 ## third-party plugins
 ### fugitive
@@ -196,8 +199,6 @@ commands
 * `[c` - previous hunk
 * `]c` - next hunk
 
-`:g/^function!\? \(s:\)\?My/;/^endfunction/s/^/" /`
-
 e.g.
 * `1` is active, `:diffget 2` will get changes from `2` into `1`
 * `3` is active, `:diffput 1` will put changes from `3` into `1`
@@ -206,7 +207,8 @@ e.g.
 * `Ctrl-T` open in new tab
 * `Ctrl-X` open in new split
 * `Ctrl-V` open in new vertical split
-Bang `!` version of command opens `fzf` in full screen
+
+Bang `!` version of command opens `fzf` in full screen   
 
 | command             | description                                                   |
 |---------------------|---------------------------------------------------------------|
@@ -238,15 +240,16 @@ Bang `!` version of command opens `fzf` in full screen
 # usage
 ## buffers
 Buffers are loaded files. Windows are framebuffers for buffers.
+
 ### close
-* `:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
+`:bd buff1 buff2`, use `C-A` for expanding all names starting with smth
 `<range>bd`
 
-e.g.
+e.g.   
 `3,5bd` would close `3, 4, 5` buffers
 
 ### list
-* `:buffers`, `:ls`, `:files`
+`:buffers`, `:ls`, `:files`
 
 ### switch
 * `:b <number|name>`, use `Tab` for autocomplete
@@ -254,7 +257,7 @@ e.g.
 * `:vert sb <num|name>` opens buffer in vertical split
 
 * `<number>C-^` 
-`C-W ^` or `C-W C-^` opens buffer in new window
+   `C-W ^` or `C-W C-^` opens buffer in new window   
 
 * `:bfirst`, `:brewind`, `sbfirst`, `sbrewind` jumps to first buffer in list
 * `:blast`, `:sblast` jumps to last buffer
@@ -275,7 +278,7 @@ include `%` flag to `viminfo` option
 buffers could be saved per folder with local `viminfo` file
 
 ### execute commands
-* `:bufdo`
+`:bufdo`
 
 ## tabs
 Tabs are just another representation of the group of windows/splits
@@ -301,7 +304,8 @@ Tabs are just another representation of the group of windows/splits
 ### jumps
 * `gd` to local declaration
 * `gD` to global declaration
-* `g*`/`g#` search word under cursor (will search also for words that contain word under cursor as a part)
+* `g*`/`g#` search word under cursor
+   (will search also for words that contain word under cursor as a part)   
 * `gf` to file under cursor
 * `g]` to tag defenition
 * `gg` to first line
@@ -342,8 +346,8 @@ e.g. `dw` = `d`elete `w`ord
 * lowercase **HellO** to **hello** with `gu` then a movement. 
   
 ### increase/decrease numbers
-`C-a` increases number under cursor (whole number)
-`C-x` decreases number under cursor (whole number)
+* `C-a` increases number under cursor (whole number)
+* `C-x` decreases number under cursor (whole number)
 
 
 Examples
@@ -445,15 +449,15 @@ combine **search range** with **substitution**
     `/apples/;/peaches/ s/old/new/g`
 * Insert `# ` at the start of each line in the first block. 
     `/apples/,/peaches/ s/^/# /g`
-* Insert `# ` at the start of each line inside the block. 
 
-To do a global replace in all blocks with the same patterns, use :g:
-    `/apples/+1,/peaches/-1 s/^/# /g`
+To do a global replace in all blocks with the same patterns, use `:g`:
+    
 *  Insert `# ` at the start of each line in all identified blocks. 
-    :g/apples/ identifies each line containing `apples`. 
-    In each such line, .,/peaches/ s/^/# /g is executed 
-    (the . is assumed; it means the current line, where `apples` occurs). 
-    `g/apples/,/peaches/ s/^/# /g`
+    `:g/apples/` identifies each line containing `apples`. 
+    In each such line, `.,/peaches/ s/^/# /g` is executed 
+    (the `.` means the current line, where `apples` occurs). 
+
+    `:g/apples/,/peaches/ s/^/# /g`   
 
 ### tips&trics
 #### comment several lines
@@ -491,20 +495,25 @@ There are registers with file names:
 - `%` contains current file name
 - `#` contains alternate file name
 `:echo @<register>` displays register contents
-e.g.
+
+e.g.   
 `:echo @%` gets current file, relative to working dir
-to get more specific data, `:echo expand(<expression>)` could be used
-expression is `'<register>:<modificator>'`, e.g. `:echo expand('%:p')`
-modificators
+
+   to get more specific data, `:echo expand(<expression>)` could be used
+   expression is `'<register>:<modificator>'`, e.g. `:echo expand('%:p')`   
+   
+modificators   
 - `p` expand to full path
 - `h` remove last component (i.e. filename and separator)
 - `t` filename and extension
 - `r` removes extension
 - `e` file extansion
+
 ### encoding
 - `set fileencoding` - gets current encoding
 - `set fileencoding=utf8` - sets encoding to be saved
 - `:e! ++enc=utf8` - re-read file with specified encoding
+
 ### save as another file
 `:saveas`
 
@@ -522,7 +531,9 @@ add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 
 ## session
 Vim can save current buffers, layout, etc into session file
-    `:mksession <file>`
+    
+    `:mksession <file>`   
+    
 to restore it: `:so <file>`
 
 ## windows and panes
