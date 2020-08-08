@@ -1,24 +1,25 @@
 # Contents
-    - [[#configuration|configuration]]
-        - [[#configuration#basics|basics]]
-        - [[#configuration#history across all shells|history across all shells]]
-    - [[#scripting|scripting]]
-        - [[#scripting#set options|set options]]
-        - [[#scripting#recepies & examples|recepies & examples]]
-            - [[#scripting#recepies & examples#compare two dirs|compare two dirs]]
-            - [[#scripting#recepies & examples#get name of current function|get name of current function]]
-            - [[#scripting#recepies & examples#get name of current script?|get name of current script?]]
-            - [[#scripting#recepies & examples#get args|get args]]
-            - [[#scripting#recepies & examples#loop words in string|loop words in string]]
-            - [[#scripting#recepies & examples#run a command for each line of a file|run a command for each line of a file]]
-            - [[#scripting#recepies & examples#wait until command returns true|wait until command returns true]]
-    - [[#variables|variables]]
-        - [[#variables#variable modification|variable modification]]
-    - [[#usage|usage]]
-        - [[#usage#execute and source|execute and source]]
-        - [[#usage#parameters expansion|parameters expansion]]
-        - [[#usage#previous command and arguments|previous command and arguments]]
-        - [[#usage#replace symbols in last command|replace symbols in last command]]
+
+- [configuration](#configuration)
+    - [basics](#basics)
+    - [history across all shells](#history-across-all-shells)
+- [scripting](#scripting)
+    - [set options](#set-options)
+    - [recepies & examples](#recepies-examples)
+        - [compare two dirs](#compare-two-dirs)
+        - [get name of current function](#get-name-of-current-function)
+        - [get name of current script?](#get-name-of-current-script)
+        - [get args](#get-args)
+        - [loop words in string](#loop-words-in-string)
+        - [run a command for each line of a file](#run-a-command-for-each-line-of-a-file)
+        - [wait until command returns true](#wait-until-command-returns-true)
+- [variables](#variables)
+    - [variable modification](#variable-modification)
+- [usage](#usage)
+    - [execute and source](#execute-and-source)
+    - [parameters expansion](#parameters-expansion)
+    - [previous command and arguments](#previous-command-and-arguments)
+    - [replace symbols in last command](#replace-symbols-in-last-command)
 
 # configuration
 ## basics
@@ -133,6 +134,8 @@ e.g.
 * `source` aka `. <script>` runs script in _current_ shell (all changes to environment will be applied to current shell)
 
 ## parameters expansion
+| variable          | description                                         |
+| ---               | ---                                                 |
 | `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
 | `${VAR##pattern}` | delete longest match of pattern from the beginning  |
 | `${VAR%pattern}`  | delete shortest match of pattern from the end       |
