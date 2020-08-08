@@ -208,6 +208,7 @@ e.g.
 * `Ctrl-V` open in new vertical split
 Bang `!` version of command opens `fzf` in full screen
 
+| command             | description                                                   |
 |---------------------|---------------------------------------------------------------|
 | `:Files [PATH]`     | Files                                                         |
 | `:GFiles [OPTS]`    | Git files (git ls-files)                                      |
@@ -378,6 +379,7 @@ e.g.
 
 ### ranges
 
+| command | range                                       | example               |
 |---------|---------------------------------------------|-----------------------|
 | `N`     | line number N                               | `:21s/foo/bar/g`      |
 | `$`     | last line                                   | `:$s/foo/bar/g`       |
@@ -412,8 +414,8 @@ examples
 
 ### search patterns
 
+| command          | description                                                                              |
 |------------------|------------------------------------------------------------------------------------------|
-| Item             | Description                                                                              |
 | `/pattern/`      | next line where pattern matches                                                          |
 | `?pattern?`      | previous line where pattern matches                                                      |
 | `\/`             | next line where the previously used search pattern matches                               |
