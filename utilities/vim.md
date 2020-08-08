@@ -361,23 +361,23 @@ Examples
 `g~~`
 
 ### regex
+see [regex](../developing/regex.md)
+
 Vim's style of Regex is different from **PCRE**, all special characters must be escaped, e.g.
 - **PCRE** `(foo|bar)` means `foo` or `bar`
 - **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
 
 #### lookahead / lookbehind
-Instead of **PCRE** form `(?...)` **Vim** uses `\@` form
 * Positive lookahead `\@=`
 * Negative lookahead `\@!`
 * Positive lookbehind `\@<=`
 * Negative lookbehind `\@<!`
 
-**Positive lookahead** searches for some expression, but do not include that expression in result
-
 e.g.
 `/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
 
 ### ranges
+
 |---------|---------------------------------------------|-----------------------|
 | `N`     | line number N                               | `:21s/foo/bar/g`      |
 | `$`     | last line                                   | `:$s/foo/bar/g`       |
@@ -411,6 +411,7 @@ examples
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
 
 ### search patterns
+
 |------------------|------------------------------------------------------------------------------------------|
 | Item             | Description                                                                              |
 | `/pattern/`      | next line where pattern matches                                                          |

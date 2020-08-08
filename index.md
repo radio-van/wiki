@@ -4,6 +4,7 @@
   * [django](developing/django.md)
   * [python](developing/python.md)
   * [JS](developing/js.md)
+  * [regex](developing/regex.md)
 * Hardware
   * [android](hardware/android.md)
   * [usb-modems](hardware/modems.md)
