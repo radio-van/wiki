@@ -44,7 +44,7 @@
         - [pull from remote force](#pull-from-remote-force)
         - [push to remote](#push-to-remote)
         - [push to all remotes](#push-to-all-remotes)
-        - [push to remote (diff name)](#push-to-remote-diff-name)
+        - [push to remote diff name](#push-to-remote-diff-name)
     - [repo](#repo)
         - [init](#init)
     - [scripting](#scripting)
@@ -259,7 +259,7 @@ in both cases Git:
 `git push -u $remote $branch`
 ### push to all remotes
 `git remote | xargs -L1 git push --all`
-### push to remote (diff name)
+### push to remote diff name
 `git push -u $remote HEAD:$remote_branch`
 
 ## repo
