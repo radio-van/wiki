@@ -41,7 +41,7 @@
         - [undo add to stage](#undo-add-to-stage)
     - [remote](#remote)
         - [add remote with non-default ssh port](#add-remote-with-non-default-ssh-port)
-        - [pull from remote (force)](#pull-from-remote-force)
+        - [pull from remote force](#pull-from-remote-force)
         - [push to remote](#push-to-remote)
         - [push to all remotes](#push-to-all-remotes)
         - [push to remote (diff name)](#push-to-remote-diff-name)
@@ -253,7 +253,7 @@ in both cases Git:
 ## remote
 ### add remote with non-default ssh port
 `get remote add <name> ssh://git@<address>:<ssh_port>/<username>/<repo>.git`
-### pull from remote (force)
+### pull from remote force
 `git reset --hard <remote>/<branch>`
 ### push to remote
 `git push -u $remote $branch`
