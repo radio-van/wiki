@@ -1,53 +1,9 @@
-= CONTENTS =
-    - [[#concept|concept]]
-    - [[#configuration|configuration]]
-        - [[#configuration#gitignore|gitignore]]
-            - [[#configuration#gitignore#check why file ignored|check why file ignored]]
-            - [[#configuration#gitignore#exclude w/o .gitignore|exclude w/o .gitignore]]
-        - [[#configuration#hide utracked files|hide utracked files]]
-        - [[#configuration#test connection|test connection]]
-    - [[#usage|usage]]
-        - [[#usage#branch|branch]]
-            - [[#usage#branch#change base|change base]]
-            - [[#usage#branch#delete local branch|delete local branch]]
-            - [[#usage#branch#delete remote branch|delete remote branch]]
-            - [[#usage#branch#delete file from all commits history|delete file from all commits history]]
-            - [[#usage#branch#set upstream|set upstream]]
-        - [[#usage#checkout|checkout]]
-            - [[#usage#checkout#one file|one file]]
-            - [[#usage#checkout#remote branch|remote branch]]
-        - [[#usage#diff|diff]]
-            - [[#usage#diff#local from remote|local from remote]]
-            - [[#usage#diff#remote from local|remote from local]]
-            - [[#usage#diff#with branch|with branch]]
-        - [[#usage#index|index]]
-            - [[#usage#index#show files in index|show files in index]]
-            - [[#usage#index#remove file from index|remove file from index]]
-            - [[#usage#index#remove all files from index|remove all files from index]]
-            - [[#usage#index#skipping files|skipping files]]
-        - [[#usage#remote|remote]]
-            - [[#usage#remote#add remote with non-default ssh port|add remote with non-default ssh port]]
-            - [[#usage#remote#pull from remote (force)|pull from remote (force)]]
-            - [[#usage#remote#push to remote|push to remote]]
-            - [[#usage#remote#push to remote (diff name)|push to remote (diff name)]]
-        - [[#usage#repo|repo]]
-            - [[#usage#repo#init|init]]
-        - [[#usage#show|show]]
-        - [[#usage#stash|stash]]
-            - [[#usage#stash#apply 1 file|apply 1 file]]
-            - [[#usage#stash#clear|clear]]
-            - [[#usage#stash#show / diff|show / diff]]
-        - [[#usage#submodules|submodules]]
-            - [[#usage#submodules#update|update]]
-        - [[#usage#urls|urls]]
-            - [[#usage#urls#change remote url|change remote url]]
+# concept
+**workspace**:: is the directory tree of (source) files that you see and edit
+**index**:: is a single, large, binary file in `.git/index`, which lists all files in the current branch, their sha1 checksums, time stamps and the file name
+**local repository**:: is a hidden directory (`.git`) including an objects directory containing all versions of every file in the repo (local branches and copies of remote branches) as a compressed "blob" file
 
-= concept =
-*workspace*:: is the directory tree of (source) files that you see and edit
-*index*:: is a single, large, binary file in `.git/index`, which lists all files in the current branch, their sha1 checksums, time stamps and the file name
-*local repository*:: is a hidden directory (`.git`) including an objects directory containing all versions of every file in the repo (local branches and copies of remote branches) as a compressed "blob" file
-
-{{{
+```
 
       +------commit -a---------->>+
       |                           |
@@ -70,31 +26,32 @@
       |             |
       +<---diff---->+   
 
-}}}                                   
+```                                   
 
 Everything in git is reffered by hashes.
+
 e.g. after commiting 1 file, there will be 3 objects:
 - archived file itself, with its hash as a name
 - snapshot of working tree, with its hash
 - commit itself, also with hash
 
-Each *commit* object contains:
+Each **commit** object contains:
 - hash of working tree snapshot, e.g. `tree <hash>`
 - comment
 - author/creator info
 - parent commit hash
 
-`HEAD`, branches and tags are just refs to the appropriate *commit hash*, i.e. deletion of branch doesn't lead to deletion of other objects.
+`HEAD`, branches and tags are just refs to the appropriate **commit hash**, i.e. deletion of branch doesn't lead to deletion of other objects.
 
-= configuration =
+# configuration
 
-== aliases ==
+## aliases
 `git config --global alias.<name> '<command>'`
 `<command>`: for shell command use `!` *?*
 e.g.
 `git config --global alias.pushall '!git remote | xargs -L1 git push --all'`
 
-== folder structure ==
+## folder structure
 * `HEAD` contains path to `refs` and the hash of commit
 * `branches`
 * `config` contains author info, repos urls, etc
@@ -107,161 +64,172 @@ e.g.
     * `refs`
     * `tags`
 
-== gitignore ==
-{{{
+## gitignore
+```
   # exclude everything
   *
   # except
   !*.extension
   # even if they are in subfolders
   !*/
-}}}
-=== check why file ignored ===
+```
+### check why file ignored
 `git check-ignore -v $filename`
-=== exclude w/o .gitignore ===
+
+### exclude w/o .gitignore
 `.git/info/exclude`
 
-== hide utracked files ==
+## hide utracked files
 `git config --local status.showUntrackedFiles no`
-== test connection ==
+## test connection
 `ssh -T git@<address>`
 
-== aliases ==
+## aliases
 `git config --global alias.<name> '<command'>`
-e.g.
+
+e.g.   
+
 `git config --global alias.pushall '!git remote | xargs -L1 git push --all'`
 
-= usage =
-== branch ==
+# usage
+## branch
 
-=== change base ===
+### change base
 `git rebase <new_base>`
 `git rebase <new_base> <old_base>`
 
-=== delete local branch ===
+### delete local branch
 `git branch -d $branch`
 
-=== delete remote branch ===
+### delete remote branch
 `git push origin --delete $remote_branch`
 
-=== delete file from all commits history ===
+### delete file from all commits history
 `git filter-branch --tree-filter "rm -f <file>" -- --all`
 
-== rename branch ==
-`git branch -m <oldname> <newname>`
-if branch is already checkouted:
+## rename branch
+`git branch -m <oldname> <newname>`   
+
+if branch is already checkouted:   
+
 `git branch -M <newname>`
 
-=== set upstream ===
+### set upstream
 `git branch --set-upstream-to remote/branch-name`
 
-=== show graph ===
-`git log --all --decorate --oneline --graph`
-mnemonic: *A*ll *D*ecorate *O*neline *G*raph - *a dog*
+### show graph
+`git log --all --decorate --oneline --graph`   
 
-== checkout ==
-=== one file ===
+mnemonic: **A**ll **D**ecorate **O**neline **G**raph - **a dog**
+
+## checkout
+### one file
 `git checkout $commit_hash -- $filename`
-if file doesn't exist in current branch
+
+if file doesn't exist in current branch   
+
 `git show TREESH:/path/to/file > /path/to/file`
-=== remote branch ===
-`git checkout -t <remote>/<branch>`
+### remote branch
+`git checkout -t <remote>/<branch>`   
 `git checkout -b <local_branch> <remote>/<branch>`
 
-== commit ==
-=== squash two commits ===
-`git rebase --interactive HEAD~2`
-for the latest commit change `pick` to `squash`, e.g.
-{{{
+## commit
+### squash two commits
+`git rebase --interactive HEAD~2`   
+
+for the latest commit change `pick` to `squash`, e.g.   
+```
   pick <hash> commit1
   pick <hash> commit2
-}}}
+```
 then edit combined message for new commit
-{{{
+```
   message of commit1
   message of commit2
-}}}
+```
 
-== diff ==
-=== local from remote ===
+## diff
+### local from remote
 `git log <branch> ^<remote/branch>`
-=== remote from local ===
+### remote from local
 `git log ^<branch> <remote/branch>`
-=== with branch ===
+### with branch
 `git diff --name-only $branch`
 
-== fetch ==
+## fetch
 fetch downloads remote objects
-=== fetch remote branch w/o checkout ===
+
+### fetch remote branch w/o checkout
 `git fetch <remote> <remote_branch>:<local_branch>`
 
-== index ==
-=== show files in index ===
+## index
+### show files in index
 `git ls-tree -r master --name-only`
-=== show ignored files ===
+### show ignored files
 `git status --ignored`
-=== remove file from index ===
+### remove file from index
 `git reset $file`
-=== remove all files from index ===
+### remove all files from index
 `git reset`
-=== restore deleted file ===
+### restore deleted file
 `git restore <file>`
-=== restore file to state 2 commits back ===
+### restore file to state 2 commits back
 `git restore --source branch~2 <file>`
-=== skipping files ===
+### skipping files
 `git update-index`
-1. `--assume-unchanged`
+1. `--assume-unchanged`   
 Git assumes that files with this bit are not changed by user and skips their check 
-2. `--skip-worktree`
+2. `--skip-worktree`   
 Git assumes that working copy of files with this bit is up to date with index and use version from the index. Meanwhile the file in the working tree can be different or even absent. 
-<br>
-in both cases Git:
+
+in both cases Git:   
 - won't commit this file (even if it is added explicitly)
 - _can_ update working copy of the file if it's changed on remote side
 - will show merge conflict if file is changed on both sides
-=== undo add to stage ===
+### undo add to stage
 `git restore --staged <file>`
 
-== remote ==
-=== add remote with non-default ssh port ===
+## remote
+### add remote with non-default ssh port
 `get remote add <name> ssh://git@<address>:<ssh_port>/<username>/<repo>.git`
-=== pull from remote (force) ===
+### pull from remote (force)
 `git reset --hard <remote>/<branch>`
-=== push to remote ===
+### push to remote
 `git push -u $remote $branch`
-=== push to all remotes ===
+### push to all remotes
 `git remote | xargs -L1 git push --all`
-=== push to remote (diff name) ===
+### push to remote (diff name)
 `git push -u $remote HEAD:$remote_branch`
 
-== repo ==
-=== init ===
-* `git init <name>` creates *working* repository with a *working tree*.
+## repo
+### init
+* `git init <name>` creates **working** repository with a **working tree**.
 Supposed to be used when files in repository will be modified, i.e. common workflow case.
-* `git init --bare <name>` creates *bare* repository without *working tree*.
-Supposed to be used as centralized point to store changes from remote repos, i.e. for *sharing*.
-Assume it doesn't have a working tree, there will be no conflicts on pushing files into.
+* `git init --bare <name>` creates **bare** repository without **working tree**.
+Supposed to be used as centralized point to store changes from remote repos, i.e. for **sharing**.   
+
+Assume it doesn't have a working tree, there will be no conflicts on pushing files into.   
 That's how remote servers, e.g. GitHub, work.
 
-== scripting ==
-=== paths ===
+## scripting
+### paths
 * `git rev-parse --show-toplevel` shows root dir in git working tree
 * `git rev-parse --show-superproject-working-tree` if current repo is submodule, shows root dir of main repo
 * `git rev-parse --show-prefix` shows relative path from root folder of repo
 
-== show ==
+## show
 `git show branch:file` shows file from another branch
 
-== stash ==
-=== apply 1 file === 
+## stash
+### apply 1 file === 
 `git checkout stash@{0} -- $file`
-=== clear === 
+### clear === 
 `git stash clear`
-=== show / diff ===
+### show / diff
 `git stash show` use `-p` option to show diff
 
-== submodules ==
-=== update ===
+## submodules
+### update
 `git submodule update`
 - `--init` initialize all submodules, which haven't been yet (also resets them to state in latest commit)
 - `--checkout` checkout on commit, recorded in superproject (detached head)
@@ -269,10 +237,10 @@ That's how remote servers, e.g. GitHub, work.
 - `--recursive` update nested submodules
 - `--remote` use the status of the submodule's remote-tracking branch (branch name is taken from .gitmodules)
 
-e.g.
+e.g.   
 * checkout all submodules on commits in super-repo `git submodule update --recursive --checkout`
 * update all submodules to latest commits in remote repos `git submodule update --remote --recursive --checkout`
 
-== urls ==
-=== change remote url ===
+## urls
+### change remote url
 `git remote set-url $remote $new_url`
