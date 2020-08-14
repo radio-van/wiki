@@ -1,0 +1,132 @@
+## Contents =
+    - [[#bin folders|bin folders]]
+    - [[#etc folders|etc folders]]
+    - [[#crypt|crypt]]
+        - [[#crypt#LUKS|LUKS]]
+        - [[#crypt#create encrypted partition|create encrypted partition]]
+            - [[#crypt#create encrypted partition#keyfile on separate drive|keyfile on separate drive]]
+    - [[#volumes|volumes]]
+        - [[#volumes#LVM|LVM]]
+            - [[#volumes#LVM#workaround of stack LUKS+LVM volume|workaround of stack LUKS+LVM volume]]
+    - [[#mount|mount]]
+        - [[#mount#grant write permissions to user|grant write permissions to user]]
+        - [[#mount#allow user to mount|allow user to mount]]
+        - [[#mount#mount options|mount options]]
+        - [[#mount#mount ramfs|mount ramfs]]
+        - [[#mount#mount encrypted volumes|mount encrypted volumes]]
+
+## bin folders =
+`/bin` ::
+    system commands needed when no FS are mounted (e.g. single-user mode), like *cat*, *cp*, *dd*, *rm*, ...
+    _managed by Packet Manager_
+`/sbin` ::
+    system administration utilities, like *fdisk*, *ifconfig*, *mkfs*, *reboot*, ...
+`/usr/bin` ::
+    commands, typical for all company's servers (i.e. this dir is the same for all servers, even if OS are different)
+    also, links to interpreters (*Python*, *Perl*)
+    _managed by Packet Manager_
+`/usr/sbin` ::
+    the same, but contains administrative utilities
+`/usr/local/bin`, `/usr/local/sbin` ::
+    OS-depended, hardware-depended utilities
+    _not managed by Packet Manager_, *make install* _goes here_
+`/home/$USER/bin` ::
+    utilities for particular user, should be synced between hosts with the same user
+    
+## etc folders =
+`/etc/default` contains parameters that user is likely to change. Those modifications are preserved across package uprades.
+In `System V` for each service in `/etc/init.d/<service>` default file from `/etc/default/<service>` is being sourced.
+The purpose is to provide extra options on starting the service or override some aspects of the service's startup.
+
+## crypt =
+### LUKS ==
+### create encrypted partition ==
+* `cryptsetup luksFormat /dev/sdaX`
+* `cryptsetup open /dev/sdaX cryptlvm`
+* decrypted container is available at `/dev/mapper/cryptlvm`
+
+###= keyfile on separate drive ===
+`cryptsetup luksAddKey <device> <keyfile>`
+`keyfile` can be random file, passphrase, binary
+
+store key
+`dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=N`
+where 
+- `<device>` is third device (e.g. usb-flashdrive) to store key between/before partitions
+- `X` - offset on `<device>` (e.g. 2048 to preserve MBR header) in bytes
+- `Y` - size of key in bytes
+
+recover key
+`dd if=/dev/<device> of=<keyfile> bs=1 skip=X count=N`
+
+for root partition edit `/boot/loader/entries/<entry>.conf`
+`options cryptdevice=UUID=...:<LVMGroup> cryptkey=<keyfile>:<offset>:<size> root=/dev/<LVMGroup>/...`
+*NOTE*: if `<keyfile>` path contains `:`, they must be escaped with `\`
+
+for non-root filesystems `/etc/crypttab`
+`<Name> <UUID> <device-with-key> luks,timeout=180,keyfile-offset=Y,keyfile-size=N`
+or
+`crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
+
+## volumes =
+### LVM ==
+* create physical volume `pvcreate /dev/mapper/cryptlvm` 
+* create virtual volume group `vgcreate MyVolGroup /dev/mapper/cryptlvm`  
+* create partitions
+{{{
+  lvcreate -L 8G MyVolGroup -n swap
+  lvcreate -L 32G MyVolGroup -n root
+  lvcreate -l 100%FREE MyVolGroup -n home
+}}}
+* make filesystems
+{{{
+  mkfs.ext4 /dev/MyVolGroup/root
+  mkfs.ext4 /dev/MyVolGroup/home
+  mkswap /dev/MyVolGroup/swap
+}}}
+###= workaround of stack LUKS+LVM volume ===
+sympthoms: `device <device> still in use`
+`vgdisplay` shows all `VolumeGroup`s
+`vgchange -a n <name>` fix activation of `<name> VolumeGroup`
+`cryptsetup close <device>` can be used afterwards
+
+## mount =
+### grant write permissions to user ==
+`sudo shmod ugo+wx <mountpoint>`
+
+### allow user to mount ==
+`/etc/fstab`
+add `users` option to mount options
+
+### mount options ==
+* atime
+    * `strictatime` updates access time of every file (only useful for servers)
+    * `noatime` disables writing file access times every time you read a file (useful in most cases, but should not be used for apps like *Mutt* which need to know last time file was read
+    * `nodiratime` disables writing file access times for directories
+    * `relatime` updates atime only if previous was earlier than current modify/change time
+    * `lazytime` on-disk timestamps are updated only during file changes/sync/24 hours/etc. The rest of time timestamps are stored in memory.
+* auto
+    * `auto` allows mount with `mount -a`
+    * `noauto` requires explicit mount
+* `exec` permit execution of binaries
+* `async` async I/O
+
+* `owner`, `group` allows device to be mounted by the user/group with is same as device's
+* `user`, `users` allows to specific user (or all users) to mount this FS
+all 4 above options implie `nosuid, nodev`
+
+* `nofail` skips errors if device doesn't exests (useful for mount external drives during boot)
+* `remount` attempt to remount an already-mounted FS
+
+* `x-systemd.automount` mount not at a boot time, but at access moment
+* `x-systemd.mount-timeout=N` timeout if disk is not accessible
+
+### mount ramfs ==
+`mount ramfs <mountpoint> -t ramfs`
+
+### mount encrypted volumes ==
+`/etc/crypttab`
+`<name> UUID=<uuid of /dev/sdXY aka LUKS partition>    <password>    luks,timeout=N,[key options]`
+where
+* `<password>` is a path to keyfile, e.g. by physical position `/dev/disk/by-path/pci-...`
+* `key options` could be key offset/size `keyfile-offset=<bytes>,keyfile-size=<bytes>`

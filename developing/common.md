@@ -1,6 +1,5 @@
 # Contents
-
-- [race condition](#race-condition)
+    - [[#race condition|race condition]]
 
 # race condition
 Happens when program, to operate properly, depends on sequence or timing of the program's processes or threads,
