@@ -15,9 +15,9 @@
 ## configuration =
 ### plug-ins ==
 
-###= tmux-gitbar ===
+#### tmux-gitbar ===
 
-###== overview ====
+####= overview ====
 `branch - remote - ↑[sync to remote] | ●[staged files] x[merge conflict] ⚑[stash file] ✖︎+[changed, but not staged files]...[untracked files]`
 
 ## usage =
