@@ -8,7 +8,7 @@
 
 ### plugins ==
 
-###= convert ===
+#### convert ===
 notes:: _requires ffmpeg_
 configuration::
 * `auto` convert on import. default: `no`
@@ -42,7 +42,7 @@ options::
 - `-k` `--keep-new` replace files with converted ones, move old ones to destination folder
 - `--pretend` test before conversion
 
-###= embedart ===
+#### embedart ===
 notes:: _requires ImageMagic_
 configuration::
 :: `auto` embed on import
@@ -57,7 +57,7 @@ extract:: `beet extractart -o FILE QUERY` (`-y` w/o confirmation)
 :: `-a` associate with albums
 
 ### tips & tricks ==
-###= fix yaml.load bug ===
+#### fix yaml.load bug ===
 replace::
 {{{
    yaml.load(...)
@@ -69,7 +69,7 @@ replace::
    yaml.unsafe_load(...)
 }}}
 
-###= batch modifying attributes ===
+#### batch modifying attributes ===
 {{{
 find ./ -type f -name '*.m4a' -exec bash -c 'ffprobe -v error -select_streams a:0  -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 "$1" | xargs -I % beet modify -y bitrate='%' "$1"; echo "$1"' _ {} \;
 }}}
