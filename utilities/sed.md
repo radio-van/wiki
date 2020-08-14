@@ -43,7 +43,7 @@ to apply multiple commands to the same [[#ranges|range]], `<range> {command1, co
 ### substitute ==
 `s/pattern/value/[<flag>]` substitutes `pattern` with `value`, `flag` is optional
 
-###= flags ===
+#### flags ===
 * `g` substitute all of multiple occasions of `pattern` instead of just the first.
 * `p` prints substituded lines (useful with `-n`)
 
