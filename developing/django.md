@@ -79,6 +79,31 @@ Usually, for custom field two classes are needed:
 * `auto_now_add = True` is **not** overriding by explicit argument!
 
 # queryset
+## ArrayFiled
+List of items.   
+- `__contains` returns objects where the values passed are a subset of the data
+- `__contained_by` return objects where the data is a subset of the values passed
+- `__overlap` data shares any results with the values passed
+- `__len` length of array
+
+## subquery
+e.g.   
+annotate Posts with recent emails, get emails only for selected Posts   
+
+```python
+newest = Comment.objects.filter(post=OuterRef('pk')).order_by('-created_at')
+Post.objects.annotate(newest_commenter_email=Subquery(newest.values('email')[:1]))
+```
+
+## union
+get only uniq items from all querysets
+
+`qs_res = qs1 | qs2 | qs3`   
+
+or   
+
+`qs1.union(qs2)`
+
 ## values
 * `.values('<value1>', '<value2>', ...)` returns only particular values from queryset
 

@@ -1,3 +1,35 @@
+# Contents
+
+- [Classes](#classes)
+    - [general](#general)
+        - [initialization](#initialization)
+        - [importing](#importing)
+        - [__str__ and __repr__](#__str__-and-__repr__)
+        - [call parent class from child class with the same name](#call-parent-class-from-child-class-with-the-same-name)
+    - [strings](#strings)
+        - [format](#format)
+- [Tests](#tests)
+    - [assert](#assert)
+        - [check number of database calls](#check-number-of-database-calls)
+    - [mocking](#mocking)
+        - [basics](#basics)
+        - [return values](#return-values)
+        - [return different value on each call](#return-different-value-on-each-call)
+        - [mocking immutable built-ins](#mocking-immutable-built-ins)
+- [additional tools](#additional-tools)
+    - [virtual envs](#virtual-envs)
+        - [create venv](#create-venv)
+        - [create pyenv](#create-pyenv)
+        - [activate pyenv](#activate-pyenv)
+        - [install version of Python](#install-version-of-python)
+    - [package manager](#package-manager)
+        - [pip](#pip)
+            - [install requirements](#install-requirements)
+- [receipts](#receipts)
+    - [web server](#web-server)
+    - [decode base64](#decode-base64)
+    - [get python version](#get-python-version)
+
 # Classes
 ## general
 ### initialization
