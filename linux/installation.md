@@ -52,8 +52,8 @@ use `mkfs.ext4` for create filesystem
 
 if installing on system with existing `EFI system partition` (e.g. on Apple computer), it could be mounted and used
 
-###= crypt ===
-###== LVM on LUKS ====
+#### crypt ===
+####= LVM on LUKS ====
 {{{
    +----------------------------+
    | boot | luks [encrypted]... |
@@ -113,7 +113,7 @@ if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `d
 `mkinitcpio -P`
 
 ### bootloader ==
-###= systemd-boot ===
+#### systemd-boot ===
 * `esp/loader/loader.conf` (`esp` is `EFI System Partition`)
 {{{
     default  arch
@@ -141,7 +141,7 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
 `useradd -m -G <group> <user>`
 - `-m` will create home folder
 - `-G` will add to group (e.g. `wheel`)
-###= sudo ===
+#### sudo ===
 * add user to `sudo` (Debian-based distros) or `wheel` group `usermod -aG wheel` (`-a` preserves previous groups)
 * edit sudoers file with `visudo` add/uncomment `%wheel ALL=(ALL) ALL`
 
@@ -176,7 +176,7 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
          exec startx
      fi
   }}}
-###= configuration files ===
+#### configuration files ===
 * `~/.xinitrc` to run Window Manager, e.g. `exec i3` (add `&` to run smth in background), also sources `.xprofile`
 * `~/.xprofile` to run anything before Window manager, e.g. compositor `xcompmgr &`, used by login*?* managers
 * `~/.Xresources | ~/.Xdefaults` to set colors and options for different programs, e.g. [[../utilities/urxvt#Contents|urxvt]]
@@ -197,8 +197,8 @@ or enable composition:
     EndSection
 }}}
 
-###= known issues ===
-###== Fatal server error: (EE) AddScreen/ScreenInit ====
+#### known issues ===
+####= Fatal server error: (EE) AddScreen/ScreenInit ====
 Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|Early KMS start]]
 * add gpu (`amdgpu`, `radeon`, ...) to `MODULES=(...)` section of `/etc/mkinitcpio.conf`
 * `mkinitcpio -p linux`
@@ -206,13 +206,13 @@ Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|E
 ### background ==
 `feh --bg-scale /path/to/image`
 ### window manager ==
-###= i3 ===
+#### i3 ===
 useful additions:
   - `dmenu` dynamic menu to launch scripts and programs
 
 ## login =
 ### auto login ==
-###= manual ===
+#### manual ===
 1. override default service
     `/etc/systemd/system/getty@tty1.service.d/override.conf`
     {{{
@@ -233,7 +233,7 @@ useful additions:
       systemctl start autologin@tty1
     }}}
     
-###= using display manager ===
+#### using display manager ===
 [[https://github.com/spanezz/nodm|nodm]]
 
 ## configs =
