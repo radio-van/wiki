@@ -1,45 +1,18 @@
-= Contents =
-    - [[#Classes|Classes]]
-        - [[#Classes#general|general]]
-            - [[#Classes#general#initialization|initialization]]
-            - [[#Classes#general#importing|importing]]
-            - [[#Classes#general#__str__ and __repr__|__str__ and __repr__]]
-            - [[#Classes#general#call parent class from child class with the same name|call parent class from child class with the same name]]
-        - [[#Classes#strings|strings]]
-            - [[#Classes#strings#format|format]]
-    - [[#Tests|Tests]]
-        - [[#Tests#mocking|mocking]]
-            - [[#Tests#mocking#basics|basics]]
-            - [[#Tests#mocking#return values|return values]]
-            - [[#Tests#mocking#return different value on each call|return different value on each call]]
-            - [[#Tests#mocking#mocking immutable built-ins|mocking immutable built-ins]]
-    - [[#additional tools|additional tools]]
-        - [[#additional tools#virtual envs|virtual envs]]
-            - [[#additional tools#virtual envs#create venv|create venv]]
-            - [[#additional tools#virtual envs#create pyenv|create pyenv]]
-            - [[#additional tools#virtual envs#activate pyenv|activate pyenv]]
-            - [[#additional tools#virtual envs#install version of Python|install version of Python]]
-        - [[#additional tools#package manager|package manager]]
-            - [[#additional tools#package manager#pip|pip]]
-                - [[#additional tools#package manager#pip#install requirements|install requirements]]
-    - [[#receipts|receipts]]
-        - [[#receipts#web server|web server]]
-        - [[#receipts#decode base64|decode base64]]
-        - [[#receipts#get python version|get python version]]
-
-= Classes =
-== general ==
-=== initialization ===
+# Classes
+## general
+### initialization
 - `Foo(*args, **kwargs)` means `Foo.__call__(*args, **kwargs)`
 - object `Foo` is an instance of class `type`, so calling `Foo.__call__(*args, **kwargs)` is equal to `type.__call__(Foo, *args, **kwargs)`
 - calling `type.__call__(Foo, *args, **kwargs)` calls `type.__new__(Foo, *args, **kwargs)` which returns `obj`
 - `obj` is initialied during calling `obj.__init__(*args, **kwargs)`
 - result of the whole process - initialized `obj`
 
-`__new__` method allocates memory and returns object
-it could be customized to achive desired results
-*Singletone* pattern example
-{{{class="brush: python"
+`__new__` method allocates memory and returns object   
+
+it could be customized to achive desired results   
+
+**Singletone** pattern example
+```pythonclass="brush: python"
     class Singleton(object):
         _instance = None
         
@@ -47,17 +20,17 @@ it could be customized to achive desired results
             if cls._instance is None:
                 cls._instance = super().__new__(cls, *args, **kwargs)
             return cls._instance
-}}}
-{{{class="brush: python"
+```
+```pythonclass="brush: python"
     >>> s1 = Singleton()
     ... s2 = Singleton()
     ... s1 is s2
     True
-}}}
-returns the same instance if it's already has been created (note that `__init__` method would be called for each `Singletone()` call)
+```
+returns the same instance if it's already has been created (note that `__init__` method would be called for each `Singletone()` call)   
 
-*Borg* pattern example
-{{{class="brush: python"
+**Borg** pattern example   
+```pythonclass="brush: python"
     class Borg(object):
         _dict = None
 
@@ -68,8 +41,8 @@ returns the same instance if it's already has been created (note that `__init__`
             else:
                 obj.__dict__ = cls._dict
             return obj
-}}}
-{{{class="brush: python"
+```
+```pythonclass="brush: python"
     >>> b1 = Borg()
     ... b2 = Borg()
     ... b1 is b2
@@ -77,88 +50,100 @@ returns the same instance if it's already has been created (note that `__init__`
     >>> b1.x = 8
     ... b2.x
     8
-}}}
-instances would be different, but share same data
+```
+instances would be different, but share same data   
 
-=== importing ===
+### importing
 `package1.py`
-{{{
+```python
    class A(object):
      def __init__(self):
        ...
-}}}
+```
 `package2.py`
-{{{
+```python
    from package1 import A
    
    class B(object):
      def __init__(self):
        ...
-}}}
-in this case in `package2` a variable named `A` is created and points to actual `A` class in memory.<br>
-`package1` also contains a variable named `A` which also points to class `A` in memory.<b>
-{{{
+```
+in this case in `package2` a variable named `A` is created and points to actual `A` class in memory.
+`package1` also contains a variable named `A` which also points to class `A` in memory.
+```
    package1.A --+
                 |----> <actual class A>
    package2.A---+
-}}}
-now when `A` is referred from `B` class, interpreter will attempt to find an `A` variable in<br>
+```
+now when `A` is referred from `B` class, interpreter will attempt to find an `A` variable in   
 namespace of `package1` and use it to get to class in memory.
 
-=== __str__ and __repr__ ===
-They are useful to get information about object in log/debug.
+### __str__ and __repr__
+They are useful to get information about object in log/debug.   
+
 Instead of just the name of object's class, some useful info (like state of variables) can be represented.
-* `__repr__` should be unambiguous, e.g. `log("MyClass(this=%r, that=%r)" % (self.this, self.that))` (*NOTE*: `%r` is mandatory to get `__repr__` of objects)
+* `__repr__` should be unambiguous, e.g. `log("MyClass(this=%r, that=%r)" % (self.this, self.that))` (**NOTE**: `%r` is mandatory to get `__repr__` of objects)
 * `__str__` should be reliable, i.e. human-readable. If `__str__` is not implemented, `__str__ = _repr__` is assumed.
 
-=== call parent class from child class with the same name ===
+### call parent class from child class with the same name
 * Python 3
-{{{
+```python
    def method():
        super().method()
-}}}
+```
 * Pyhton 2
-{{{
+```python
     def method():
         super(ClassName, self).method()
-}}}
+```
 
-== strings ==
-=== format ===
+## strings
+### format
 * basic form (use only for python < 2.5)
-  `"string %s" % var`
-  takes only single *var* or *tuple*, so to avoid errors, if *var* can be list/tuple/etc `"string %s" % (var,)` must be used.
+  `"string %s" % var`   
+
+  takes only single **var** or **tuple**, so to avoid errors, if **var** can be list/tuple/etc `"string %s" % (var,)` must be used.
 * format
   `"string {}".format(var)`
 * f-string (use only for python >3)
   `f'string {var}'`
   
   
-= Tests =
-== mocking ==
-=== basics ===
-To patch *instance* attribute or method::
-{{{
+# Tests
+## assert
+### check number of database calls
+`assertNumQueries(<num>, <func>)`
+```python
+with assertNumQueries(<num>):
+    ...
+```
+**NOTE**: doesn't support `msg`!
+
+## mocking
+### basics
+To patch **instance** attribute or method::
+```python
    from package2 import B
    
    class TestB:
      @mock.patch('package2.A')  # replace the memory address that package2.A points to (now it's instance of the Mock class)
      def test_b(self, mock_A):
        test = B()
-}}}
-{{{
+```
+```python
    package1.A ------> <actual class A>
    package2.A---+
                 |----> <Mock object>
    mock_A-------+
-}}}
-`mock_A.return_value` contains instance of `mock_A`
-<br>
-`mock.patch(target, ...)`
-`target` must be in form `package.module.ClassName`
-<br>
+```
+`mock_A.return_value` contains instance of `mock_A`   
+
+`mock.patch(target, ...)`   
+
+`target` must be in form `package.module.ClassName`   
+
 It's important to do a proper import, because
-{{{
+```python
    import random
    from random import choice
    
@@ -171,22 +156,22 @@ It's important to do a proper import, because
     with mock.patch('random.choice', return_value=1000):
         print('a', a())
         print('b', b())
-}}}
+```
 result will be
-{{{
+```python
    >>> a 3
    >>> b 1000
-}}}
+```
 
-To patch *class* attribute or method::
-{{{class="brush: python"
+To patch **class** attribute or method
+```pythonclass="brush: python"
   @mock.patch.object(Class, 'attribute/method')
   def test(self, mocked_attribute/method):
     mocked_method.side_effect=...
     mocked_method.return_value=...
-}}}
-:: also, mocked object/method can be specified
-{{{class="brush: python"
+```
+also, mocked object/method can be specified
+```pythonclass="brush: python"
   def fake_method(self):
     ...
     
@@ -194,67 +179,70 @@ To patch *class* attribute or method::
   def test(self):
     mocked_method.side_effect=...
     mocked_method.return_value=...
-}}}
-<br>
-in this case `attribute` is *Class* attribute. To patch *instance* attribute<br>
-`@patch.object(Class, method)` must be used *?*
-=== return values ===
-to mock return value `mock_instance.some_method.return_value` could be used
+```
+
+in this case `attribute` is **Class** attribute. To patch **instance** attribute   
+
+`@patch.object(Class, method)` must be used **?**
+
+### return values
+to mock return value `mock_instance.some_method.return_value` could be used   
+
 to assign a function as a return value `mock_instance.some_method.side_effect` could be used
 
-=== return different value on each call ===
+### return different value on each call
 `mock_instance.some_method.side_effect = [<return_value_1>, <return_value_2>, ...]`
 
-=== mocking immutable built-ins ===
+### mocking immutable built-ins
 assuming:
 `some_module.py`
-{{{
+```python
 import datetime
 
 def some_method():
   now = datetime.datetime.utcnow()
   ...
-}}}
+```
 to patch built-in `utcnow()`:
 `test.py`
-{{{
+```python
 import some_module
 
 def test():
     with mock.patch('some_module.datetime.datetime', mock.Mock(utcnow=mock.Mock(return_value=<mocked_date>))):
       some_module.some_method()
       ...
-}}}
+```
 
-= additional tools =
+# additional tools
 
-== virtual envs ==
-=== create venv ===
+## virtual envs
+### create venv
 `python -m venv $venv`
-=== create pyenv ===
+### create pyenv
 `pyenv virtualenv $python_version $venv_name`
-=== activate pyenv ===
+### activate pyenv
 `pyenv activate $venv_name`
-=== install version of Python ===
+### install version of Python
 `pyenv install $version`
 
-== package manager ==
-=== pip ===
-==== install requirements ====
+## package manager
+### pip
+#### install requirements
 `pip install -r requirements.txt`
                 
-= receipts =
-== web server ==
+# receipts
+## web server
 `python -m http.server --cgi 8000`
-== decode base64 ==
-{{{
+## decode base64
+```python
     import base64
     coded_string = '''Q5YACgA...'''
     base64.b64decode(coded_string)
-}}}
-== get python version ==
-{{{
+```
+## get python version
+```python
     import sys
     print(sys.version)
     print(sys.executable)
-}}}
+```
