@@ -13,7 +13,7 @@ status: `/proc/acpi/button/lid/LID/state`
 config behavior: `/etc/systemd/logind.conf`
 
 ### acpi rules ==
-###= laptop lid hook ===
+#### laptop lid hook ===
 {{{
 button/lid)
   case "$3" in
