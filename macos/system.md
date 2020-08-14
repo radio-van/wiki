@@ -1,13 +1,14 @@
-## Contents =
-    - [[#add logs|add logs]]
-    - [[#reset user password|reset user password]]
-    - [[#unlock app|unlock app]]
+# Contents
 
-## add logs =
+- [add logs](#add-logs)
+- [reset user password](#reset-user-password)
+- [unlock app](#unlock-app)
+
+# add logs
 `/etc/syslog.conf`
 e.g. `cron.*  /var/log/cron.log`
 
-## reset user password =
+# reset user password
 * hold `command-S` on startup.
 * run `mount -uw /.`
 * load *plist*:
@@ -18,5 +19,5 @@ e.g. `cron.*  /var/log/cron.log`
 * run `passwd username`
 * run `reboot`
 
-## unlock app =
+# unlock app
 `sudo xattr -rd com.apple.quarantine /Applications/LockedApp.app`

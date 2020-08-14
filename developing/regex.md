@@ -1,3 +1,9 @@
+# Contents
+
+- [regex types](#regex-types)
+- [special character](#special-character)
+- [lookahead / lookbehind](#lookahead-lookbehind)
+
 # regex types
 - **PCRE** `(foo|bar)` means `foo` or `bar`
 - **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters

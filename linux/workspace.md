@@ -1,21 +1,22 @@
-## Contents =
-    - [[#bin folders|bin folders]]
-    - [[#etc folders|etc folders]]
-    - [[#crypt|crypt]]
-        - [[#crypt#LUKS|LUKS]]
-        - [[#crypt#create encrypted partition|create encrypted partition]]
-            - [[#crypt#create encrypted partition#keyfile on separate drive|keyfile on separate drive]]
-    - [[#volumes|volumes]]
-        - [[#volumes#LVM|LVM]]
-            - [[#volumes#LVM#workaround of stack LUKS+LVM volume|workaround of stack LUKS+LVM volume]]
-    - [[#mount|mount]]
-        - [[#mount#grant write permissions to user|grant write permissions to user]]
-        - [[#mount#allow user to mount|allow user to mount]]
-        - [[#mount#mount options|mount options]]
-        - [[#mount#mount ramfs|mount ramfs]]
-        - [[#mount#mount encrypted volumes|mount encrypted volumes]]
+# Contents
 
-## bin folders =
+- [bin folders](#bin-folders)
+- [etc folders](#etc-folders)
+- [crypt](#crypt)
+    - [LUKS](#luks)
+        - [create encrypted partition](#create-encrypted-partition)
+        - [keyfile on separate drive](#keyfile-on-separate-drive)
+- [volumes](#volumes)
+    - [LVM](#lvm)
+        - [workaround of stack LUKS+LVM volume](#workaround-of-stack-lukslvm-volume)
+- [mount](#mount)
+    - [grant write permissions to user](#grant-write-permissions-to-user)
+    - [allow user to mount](#allow-user-to-mount)
+    - [mount options](#mount-options)
+    - [mount ramfs](#mount-ramfs)
+    - [mount encrypted volumes](#mount-encrypted-volumes)
+
+# bin folders
 `/bin` ::
     system commands needed when no FS are mounted (e.g. single-user mode), like *cat*, *cp*, *dd*, *rm*, ...
     _managed by Packet Manager_
@@ -33,19 +34,19 @@
 `/home/$USER/bin` ::
     utilities for particular user, should be synced between hosts with the same user
     
-## etc folders =
+# etc folders
 `/etc/default` contains parameters that user is likely to change. Those modifications are preserved across package uprades.
 In `System V` for each service in `/etc/init.d/<service>` default file from `/etc/default/<service>` is being sourced.
 The purpose is to provide extra options on starting the service or override some aspects of the service's startup.
 
-## crypt =
-### LUKS ==
-### create encrypted partition ==
+# crypt
+## LUKS
+### create encrypted partition
 * `cryptsetup luksFormat /dev/sdaX`
 * `cryptsetup open /dev/sdaX cryptlvm`
 * decrypted container is available at `/dev/mapper/cryptlvm`
 
-#### keyfile on separate drive ===
+### keyfile on separate drive
 `cryptsetup luksAddKey <device> <keyfile>`
 `keyfile` can be random file, passphrase, binary
 
@@ -68,37 +69,37 @@ for non-root filesystems `/etc/crypttab`
 or
 `crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
 
-## volumes =
-### LVM ==
+# volumes
+## LVM
 * create physical volume `pvcreate /dev/mapper/cryptlvm` 
 * create virtual volume group `vgcreate MyVolGroup /dev/mapper/cryptlvm`  
 * create partitions
-{{{
+```
   lvcreate -L 8G MyVolGroup -n swap
   lvcreate -L 32G MyVolGroup -n root
   lvcreate -l 100%FREE MyVolGroup -n home
-}}}
+```
 * make filesystems
-{{{
+```
   mkfs.ext4 /dev/MyVolGroup/root
   mkfs.ext4 /dev/MyVolGroup/home
   mkswap /dev/MyVolGroup/swap
-}}}
-#### workaround of stack LUKS+LVM volume ===
+```
+### workaround of stack LUKS+LVM volume
 sympthoms: `device <device> still in use`
 `vgdisplay` shows all `VolumeGroup`s
 `vgchange -a n <name>` fix activation of `<name> VolumeGroup`
 `cryptsetup close <device>` can be used afterwards
 
-## mount =
-### grant write permissions to user ==
+# mount
+## grant write permissions to user
 `sudo shmod ugo+wx <mountpoint>`
 
-### allow user to mount ==
+## allow user to mount
 `/etc/fstab`
 add `users` option to mount options
 
-### mount options ==
+## mount options
 * atime
     * `strictatime` updates access time of every file (only useful for servers)
     * `noatime` disables writing file access times every time you read a file (useful in most cases, but should not be used for apps like *Mutt* which need to know last time file was read
@@ -121,10 +122,10 @@ all 4 above options implie `nosuid, nodev`
 * `x-systemd.automount` mount not at a boot time, but at access moment
 * `x-systemd.mount-timeout=N` timeout if disk is not accessible
 
-### mount ramfs ==
+## mount ramfs
 `mount ramfs <mountpoint> -t ramfs`
 
-### mount encrypted volumes ==
+## mount encrypted volumes
 `/etc/crypttab`
 `<name> UUID=<uuid of /dev/sdXY aka LUKS partition>    <password>    luks,timeout=N,[key options]`
 where

@@ -1,7 +1,6 @@
 # Contents
 
-- [Django Rest Framework](#django-rest-framework)
-    - [router](#router)
+- [router](#router)
 - [localization](#localization)
     - [make/update localization files](#makeupdate-localization-files)
 - [migrations](#migrations)
@@ -12,11 +11,13 @@
         - [custom fields](#custom-fields)
         - [DateTimeFiled](#datetimefiled)
 - [queryset](#queryset)
+    - [ArrayFiled](#arrayfiled)
+    - [subquery](#subquery)
+    - [union](#union)
     - [values](#values)
 - [timezone](#timezone)
 
-# Django Rest Framework
-## router
+# router
 
 | URL                                      | HTTP method                            | action                           | URL name                |
 | ---------------------------------------- | -------------------------------------- | -------------------------------- | ----------------------- |

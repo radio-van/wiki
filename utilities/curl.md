@@ -1,13 +1,13 @@
-## Contents =
-    - [[#usage|usage]]
-        - [[#usage#POST|POST]]
-        - [[#usage#POST with json data|POST with json data]]
-    - [[#tips|tips]]
-        - [[#tips#add line after response|add line after response]]
+# Contents
 
-## usage =
+- [usage](#usage)
+    - [POST](#post)
+    - [POST with json data](#post-with-json-data)
+- [tips](#tips)
+    - [add line after response](#add-line-after-response)
 
-### POST ==
+# usage
+## POST
 `curl --data "param1=<smth>&param2=<smth>" <url>`
 `curl --data "param1=<smth>" --data "param2=<smth>" <url>`
 
@@ -22,7 +22,7 @@ without data:
 `curl -X POST <url>`
 `curl --request POST <url>`
 
-### POST with json data ==
+## POST with json data
 
 required options: ::
 * `--header "Content-Type: application/json"`
@@ -31,7 +31,7 @@ required options: ::
 * `--cookie "<cookie>"`
 * `--data "{<json>}"`
 
-## tips =
+# tips
 
-### add line after response ==
+## add line after response
 `-w "\n"`

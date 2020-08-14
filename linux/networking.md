@@ -1,3 +1,23 @@
+# Contents
+
+- [interfaces](#interfaces)
+    - [TUN/TAP](#tuntap)
+    - [Predictable interfaces names](#predictable-interfaces-names)
+- [configuration](#configuration)
+    - [hostname](#hostname)
+    - [interfaces](#interfaces-2)
+        - [system V](#system-v)
+        - [systemd](#systemd)
+    - [firewall](#firewall)
+    - [DNS resolving](#dns-resolving)
+    - [ip address aliasing](#ip-address-aliasing)
+    - [wireless](#wireless)
+        - [wpa supplicant](#wpa-supplicant)
+    - [tips & trics](#tips-trics)
+        - [show process which is listening target port](#show-process-which-is-listening-target-port)
+        - [get ip](#get-ip)
+        - [capture trafic on particular port](#capture-trafic-on-particular-port)
+
 # interfaces
 
 ## TUN/TAP
@@ -55,8 +75,6 @@ use `systemd` units
 enable & start unit with `systemctl enable|start 20-<name>`
    
 ## firewall
-use [[iptables#Contents|iptables]]
-
 ## DNS resolving
 `/etc/resolv.conf`
 `nameserver X.X.X.X`

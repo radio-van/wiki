@@ -1,36 +1,32 @@
-## Contents =
-    - [[#configuration|configuration]]
-        - [[#configuration#plug-ins|plug-ins]]
-            - [[#configuration#plug-ins#tmux-gitbar|tmux-gitbar]]
-                - [[#configuration#plug-ins#tmux-gitbar#overview|overview]]
-    - [[#usage|usage]]
-        - [[#usage#panes|panes]]
-    - [[#scripting|scripting]]
-        - [[#scripting#basics|basics]]
-        - [[#scripting#windows & panes|windows & panes]]
-        - [[#scripting#conditions|conditions]]
-        - [[#scripting#send keys|send keys]]
-        - [[#scripting#example|example]]
+# Contents
 
-## configuration =
-### plug-ins ==
+- [configuration](#configuration)
+    - [plug-ins](#plug-ins)
+        - [tmux-gitbar](#tmux-gitbar)
+- [usage](#usage)
+    - [panes](#panes)
+    - [scripting](#scripting)
+        - [basics](#basics)
+        - [windows & panes](#windows-panes)
+        - [conditions](#conditions)
+        - [send keys](#send-keys)
+        - [example](#example)
 
-#### tmux-gitbar ===
-
-####= overview ====
+# configuration
+## plug-ins
+### tmux-gitbar
 `branch - remote - ↑[sync to remote] | ●[staged files] x[merge conflict] ⚑[stash file] ✖︎+[changed, but not staged files]...[untracked files]`
 
-## usage =
-### panes ==
+# usage
+## panes
 
 list panes & windows:: `^b s`, `tmux ls`
 
-## scripting =
-
-### basics ==
+## scripting
+### basics
 * **target** `-t` `session:window.pane`, blank means _current_
 
-### windows & panes ==
+### windows & panes
 * combine windows into one
 `join-pane -s <source> -t <target>`
 * separate panes into windows
@@ -40,19 +36,19 @@ list panes & windows:: `^b s`, `tmux ls`
 * restart command in pane, if `-k` given, kills current command
 `: respawn-pane [-k]`
 
-### conditions ==
+### conditions
 `if-shell 'tmux <condition>' 'result is true' 'result is false'`
 example: `if-shell 'tmux select-window -t :0' '' 'new-window -t :0'`
 
-### send keys ==
+### send keys
 `tmux send-keys -t "<target>" <shell-command> Enter`
 
-### example ==
+### example
 create session, run commands and attach to it
-{{{
+```bash
     tmux new-session -d '<shell-command>'
     tmux split-window -v '<another-shell-command>'
     tmux split-window -h
     tmux new-window '<third-shell-command>'
     tmux -2 attach-session -d
-}}}
+```

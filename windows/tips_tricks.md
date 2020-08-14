@@ -1,7 +1,8 @@
-## Contents =
-                - [[#fork bomb|fork bomb]]
+# Contents
 
-### fork bomb ==
-{{{
+- [fork bomb](#fork-bomb)
+
+# fork bomb
+```
    %0|%0
-}}}
+```

@@ -67,7 +67,6 @@
         - [switch between horizontal and vertical splits](#switch-between-horizontal-and-vertical-splits)
 
 # configuration
-
 ## options & variables
 * `:set` is for setting _options_
 * `:let` is for setting _variables_

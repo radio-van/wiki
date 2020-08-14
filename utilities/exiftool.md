@@ -1,8 +1,12 @@
-## EXIFTOOL =
+# Contents
 
-####= tags ====
+- [tags](#tags)
+    - [exclude metadata](#exclude-metadata)
+- [tips & tricks](#tips-tricks)
+    - [remove all metadata except date and location](#remove-all-metadata-except-date-and-location)
 
-####= exclude metadata ====
+# tags
+## exclude metadata
 --TAG::
 :: Exclude specified tag from extracted information. Same as the `-x` option.
     May also be used following a `-tagsFromFile` option to exclude tags from being copied,
@@ -12,18 +16,18 @@
     Instead, individual tags may be recovered using the `-tagsFromFile` option,
     i.e. `"-all= -tagsfromfile @ -artist"`.
     Wildcards are permitted as described above for `-TAG`. 
-{{{
+```
   exiftool -overwrite_original -all= -tagsFromFile @ -<tag_to_preserve> *.jpg
-}}}
+```
 
     What the command does?<br>
     `-all=` deletes all the tags<br>
     `-tagsFromFile @` takes the listed flags from the source file,<br>
     in this case `@` represents the current file and writes them to the destination.
 
-#### tips & tricks ===
+# tips & tricks
 
-####= remove all metadata except date and location ====
-{{{
+## remove all metadata except date and location
+```
   exiftool -all= -tagsFromFile @ -GPS* -File* -*Date* <file>.jpg
-}}}
+```

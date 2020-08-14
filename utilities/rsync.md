@@ -1,8 +1,8 @@
-## Contents =
-            - [[#options|options]]
+# Contents
 
-#### options ===
+- [options](#options)
 
+# options
 `-az` default options:  `archive`, `compression`
 `--progress` show progress of copying
 `-n --dry-run` do not copy, just test
@@ -11,5 +11,3 @@
 `--update` copy files only if they are newer than ones in the destination
 `--delete` delete files in destination
 `-P` combines `--progress` and `--partial`
-
-

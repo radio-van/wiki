@@ -1,12 +1,13 @@
-## Contents =
-    - [[#syntax|syntax]]
-    - [[#configuration|configuration]]
-    - [[#examples|examples]]
-        - [[#examples#newsboat crontab|newsboat crontab]]
-        - [[#examples#git fetch crontab|git fetch crontab]]
+# Contents
 
-## syntax =
-{{{
+- [syntax](#syntax)
+- [configuration](#configuration)
+- [examples](#examples)
+    - [newsboat crontab](#newsboat-crontab)
+    - [git fetch crontab](#git-fetch-crontab)
+
+# syntax
+```
 * * * * *  command to execute
 │ │ │ │ │
 │ │ │ │ └─── day of week (0 - 6) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)
@@ -14,14 +15,15 @@
 │ │ └───────────── day of month (1 - 31)
 │ └────────────────── hour (0 - 23)
 └─────────────────────── min (0 - 59)
-}}}
+```
 
-## configuration =
-to add logs on MacOS see [[../macos/system#add logs|add logs]]
+# configuration
+to add logs on MacOS see [add logs](../macos/system.md#add-logs)
 
-## examples =
-### newsboat crontab ==
-see [[wiki0:newsboat#auto reload by cron|newsboat]]
-### git fetch crontab ==
+# examples
+## newsboat crontab
+see [newsboat](newsboat.md)
+
+## git fetch crontab
 `* * * * * su -s /bin/sh nobody -c 'cd <path> && /usr/local/bin/git pull -q origin master'`
 for MacOS `* * * * * /bin/sh -c 'cd <path> && /usr/local/bin/git pull -q origin master'`

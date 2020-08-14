@@ -1,46 +1,47 @@
-## Contents =
-    - [[#base|base]]
-        - [[#base#pre-installation|pre-installation]]
-        - [[#base#partition|partition]]
-            - [[#base#partition#crypt|crypt]]
-                - [[#base#partition#crypt#LVM on LUKS|LVM on LUKS]]
-        - [[#base#install base system|install base system]]
-        - [[#base#generate fstab|generate fstab]]
-        - [[#base#chroot|chroot]]
-        - [[#base#adjust time|adjust time]]
-        - [[#base#locale|locale]]
-        - [[#base#hostname|hostname]]
-        - [[#base#initramfs|initramfs]]
-        - [[#base#bootloader|bootloader]]
-            - [[#base#bootloader#systemd-boot|systemd-boot]]
-        - [[#base#pacman|pacman]]
-        - [[#base#users|users]]
-            - [[#base#users#sudo|sudo]]
-    - [[#graphics|graphics]]
-        - [[#graphics#xorg|xorg]]
-            - [[#graphics#xorg#configuration files|configuration files]]
-            - [[#graphics#xorg#known issues|known issues]]
-                - [[#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit|Fatal server error: (EE) AddScreen/ScreenInit]]
-        - [[#graphics#background|background]]
-        - [[#graphics#window manager|window manager]]
-            - [[#graphics#window manager#i3|i3]]
-    - [[#login|login]]
-        - [[#login#auto login|auto login]]
-            - [[#login#auto login#manual|manual]]
-            - [[#login#auto login#using display manager|using display manager]]
-    - [[#configs|configs]]
-        - [[#configs#dotfiles|dotfiles]]
-    - [[#power management|power management]]
-        - [[#power management#sleep and hibernation|sleep and hibernation]]
-    - [[#additional hardware|additional hardware]]
-        - [[#additional hardware#Lenovo's bluetooth|Lenovo's bluetooth]]
+# Contents
 
-## base =
-### pre-installation ==
+    - [base](#base)
+        - [pre-installation](#pre-installation)
+        - [partition](#partition)
+            - [crypt](#crypt)
+                - [LVM on LUKS](#lvm-on-luks)
+        - [install base system](#install-base-system)
+        - [generate fstab](#generate-fstab)
+        - [chroot](#chroot)
+        - [adjust time](#adjust-time)
+        - [locale](#locale)
+        - [hostname](#hostname)
+        - [initramfs](#initramfs)
+        - [bootloader](#bootloader)
+            - [systemd-boot](#systemd-boot)
+        - [pacman](#pacman)
+        - [users](#users)
+            - [sudo](#sudo)
+    - [graphics](#graphics)
+        - [xorg](#xorg)
+            - [configuration files](#configuration-files)
+            - [known issues](#known-issues)
+                - [Fatal server error: (EE) AddScreen/ScreenInit](#fatal-server-error-ee-addscreenscreeninit)
+        - [background](#background)
+        - [window manager](#window-manager)
+            - [i3](#i3)
+    - [login](#login)
+        - [auto login](#auto-login)
+            - [manual](#manual)
+            - [using display manager](#using-display-manager)
+    - [configs](#configs)
+        - [dotfiles](#dotfiles)
+    - [power management](#power-management)
+        - [sleep and hibernation](#sleep-and-hibernation)
+    - [additional hardware](#additional-hardware)
+        - [Lenovo's bluetooth](#lenovos-bluetooth)
+
+## base
+### pre-installation
 * check if EFI is used `ls /sys/firmware/efi/efivars`
 * set ntp-time `timedatectl set-ntp true`
 
-### partition ==
+### partition
 default scheme is
 - `/boot` if EFI is used
 - `/root` ~20-30Gb, depends on amount of software
@@ -52,27 +53,27 @@ use `mkfs.ext4` for create filesystem
 
 if installing on system with existing `EFI system partition` (e.g. on Apple computer), it could be mounted and used
 
-#### crypt ===
-##### LVM on LUKS ====
-{{{
+#### crypt
+##### LVM on LUKS
+```
    +----------------------------+
    | boot | luks [encrypted]... |
    +------+----------+----------+
    | .... | lvm-part | lvm-part |
    +------+---------------------+
-}}}
+```
 
 1. [[workspace#create encrypted partition|create encrypted partition]]
 2. [[workspace#LVM|create LVM partitions]]
 3. mount partitions
    - mount `/boot` (existing, or create new one) `mount /dev/sdbN /mnt/boot`
    - mount the rest
-    {{{
+    ```
       mount /dev/MyVolGroup/root /mnt
       mkdir /mnt/home
       mount /dev/MyVolGroup/home /mnt/home
       swapon /dev/MyVolGroup/swap
-    }}}
+    ```
 4. set `mkinitcpio` hooks, install `lvm2` package
    `HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)`
    *ATTENTION* follow the order of hooks!
@@ -81,73 +82,73 @@ if installing on system with existing `EFI system partition` (e.g. on Apple comp
    * `<device-UUID>` can be checked with `lsblk -dno UUID /dev/sdaX`
    * if `systemd-boot` is used, config file is `<EFI System Partition>/loader/entries/<name>.conf`, `<name>` must be populated in `<EFI System Partition>/loader/loader.conf`
 
-### install base system ==
+### install base system
 `pacstrap /mnt base linux linux-firmware <any additional packages>`, e.g. `lvm2` for `LVM`
 
-### generate fstab ==
+### generate fstab
 `genfstab -U /mnt >> /mnt/etc/fstab`
 
-### chroot ==
+### chroot
 `arch-chroot /mnt`
 
-### adjust time ==
+### adjust time
 `ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`
 `hwclock --systohc`
 
-### locale ==
+### locale
 Uncomment `en_US.UTF-8 UTF-8` and other needed locales in `/etc/locale.gen`
 `locale-gen`
 `echo LANG=en_US.UTF-8 >> /etc/locale.conf`
 
-### hostname ==
+### hostname
 `echo hostname >> /etc/hostname`
 edit `/etc/hosts`
-{{{
+```
     127.0.0.1	localhost
     ::1		    localhost
     127.0.1.1	<hostname>.localdomain	<hostname>
-}}}
+```
 
-### initramfs ==
+### initramfs
 if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `dm-crypt`), creating new initramfs is required
 `mkinitcpio -P`
 
-### bootloader ==
-#### systemd-boot ===
+### bootloader
+#### systemd-boot
 * `esp/loader/loader.conf` (`esp` is `EFI System Partition`)
-{{{
+```
     default  arch
     timeout  4
     console-mode max
     editor   no
-}}}
+```
 * `esp/loader/entries/*.conf`
-{{{
+```
     title   Arch Linux
     linux   /vmlinuz-linux
     initrd  /initramfs-linux.img
     options root=LABEL=arch_os rw
-}}}
+```
 if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM and LUKS]]
 
-### pacman ==
+### pacman
 * initialize keys `pacman-key --init`
 * populate keys `pacman-key --populate <distro>`, `distro` can be found at `/usr/share/pacman/keyrings/`
 * upgrade `pacman -Syu`
 
 * delete orphans `pacman -Rusn $(pacman -Qtdq)` use `-Qttdq` for potential orphans
 
-### users ==
+### users
 `useradd -m -G <group> <user>`
 - `-m` will create home folder
 - `-G` will add to group (e.g. `wheel`)
-#### sudo ===
+#### sudo
 * add user to `sudo` (Debian-based distros) or `wheel` group `usermod -aG wheel` (`-a` preserves previous groups)
 * edit sudoers file with `visudo` add/uncomment `%wheel ALL=(ALL) ALL`
 
 
-## graphics =
-### xorg ==
+## graphics
+### xorg
 * install `xorg-server`
 * check video card `lspci | grep -e VGA -e 3D`
 * install appropriate driver
@@ -165,99 +166,82 @@ if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM a
 * edit `~/.xinitrc` to run *window manager* automatically
 * install fonts e.g. `ttf-droid`, hint: use `fc-list` to list installed fonts
 * autostart: add to `~/.bash_profile`
-  {{{
+  ```
       if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
           exec startx
       fi
-  }}}
+  ```
   or
-  {{{
+  ```
      if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
          exec startx
      fi
-  }}}
-#### configuration files ===
+  ```
+#### configuration files
 * `~/.xinitrc` to run Window Manager, e.g. `exec i3` (add `&` to run smth in background), also sources `.xprofile`
 * `~/.xprofile` to run anything before Window manager, e.g. compositor `xcompmgr &`, used by login*?* managers
-* `~/.Xresources | ~/.Xdefaults` to set colors and options for different programs, e.g. [[../utilities/urxvt#Contents|urxvt]]
-* `/etc/X11/xorg.conf` for different preferences, e.g. keyboard switcher:
-{{{
-    Section "InputClass"
-            Identifier "system-keyboard"
-            MatchIsKeyboard "on"
-            Option "XkbLayout" "us, ru"
-            Option "XkbModel" "pc104"
-            Option "XkbOptions" "grp:alt_shift_toggle"
-    EndSection
-}}}
-or enable composition:
-{{{
-    Section "Extensions"
-        Option "Composite" "true"
-    EndSection
-}}}
 
-#### known issues ===
-##### Fatal server error: (EE) AddScreen/ScreenInit ====
+#### known issues
+##### Fatal server error: (EE) AddScreen/ScreenInit
 Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|Early KMS start]]
 * add gpu (`amdgpu`, `radeon`, ...) to `MODULES=(...)` section of `/etc/mkinitcpio.conf`
 * `mkinitcpio -p linux`
 
-### background ==
+### background
 `feh --bg-scale /path/to/image`
-### window manager ==
-#### i3 ===
+### window manager
+#### i3
 useful additions:
   - `dmenu` dynamic menu to launch scripts and programs
 
-## login =
-### auto login ==
-#### manual ===
+## login
+### auto login
+#### manual
 1. override default service
     `/etc/systemd/system/getty@tty1.service.d/override.conf`
-    {{{
+    ```
        [Service]
-       ExecStart=
+       ExecStart
        ExecStart=-/usr/bin/agetty --autologin <username> --noclear %I $TERM
-    }}}
+    ```
 *OR*
 2. create additional service
     * copy default service `cp /usr/lib/systemd/system/getty@.service /etc/systemd/system/autologin@.service`
     * create symlink in place of original one `ln -s /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service`
     * modify `ExecStart=-/sbin/agetty -a USERNAME %I 38400`
     * apply 
-    {{{
+    ```
       systemctl daemon-reload
       systemctl disable getty@tty1
       systemctl enable autologin@tty1
       systemctl start autologin@tty1
-    }}}
+    ```
     
-#### using display manager ===
+#### using display manager
 [[https://github.com/spanezz/nodm|nodm]]
 
-## configs =
-### dotfiles ==
+## configs
+### dotfiles
 Repository with workdir in *home* folder.
 Initial:
-{{{
+```
     git init --bare $HOME/.dotfiles
     echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
     source .bashrc
     dotfiles config --local status.showUntrackedFiles no
-}}}
+```
 Sync existing:
-{{{
+```
     echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
     source .bashrc
     echo ".dotfiles" >> .gitignore
     git clone --bare <git-repo-url> $HOME/.dotfiles
     dotfiles checkout
     dotfiles config --local status.showUntrackedFiles no
-}}}
+```
 
-## power management =
-### sleep and hibernation ==
+## power management
+### sleep and hibernation
 * *sleep* aka *suspend-to-ram* writes state to RAM, significantly decrease power consumption
 * *hibernate* aka *suspend-to-swap* writes state to *swap* partition/file and powers off the machine
 * *hybrid-sleep* combines both, state is restored from RAM, in case of power loss - from swap
@@ -279,10 +263,10 @@ for security install `xss-lock` and add it to autostart (e.g. `.bash_profile`)
 `xss-lock -- <external locker> &` e.g. `i3locks`
 it will lock system after sleep/hibernation
 
-## additional hardware =
-### Lenovo's bluetooth ==
-{{{
+## additional hardware
+### Lenovo's bluetooth
+```
   pacman -S bluez bluez-utils
   modprobe btusb
   systemctl enable --now bluetooth
-}}}
+```

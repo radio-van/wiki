@@ -1,25 +1,25 @@
-## Contents =
-  - [[#configuration|configuration]]
-  - [[#usage|usage]]
-    - [[#usage#generate|generate]]
-    - [[#usage#list|list]]
-    - [[#usage#edit|edit]]
-    - [[#usage#export|export]]
-    - [[#usage#import|import]]
-    - [[#usage#delete|delete]]
-    - [[#usage#encrypt/decrypt|encrypt/decrypt]]
-    - [[#usage#git integration|git integration]]
-  - [[#gpg-agent|gpg-agent]]
-    - [[#gpg-agent#configuration|configuration]]
-    - [[#gpg-agent#ssh integration|ssh integration]]
+# Contents
+
+- [configuration](#configuration)
+- [usage](#usage)
+    - [generate](#generate)
+    - [list](#list)
+    - [edit](#edit)
+    - [export](#export)
+    - [import](#import)
+    - [delete](#delete)
+    - [encrypt/decrypt](#encryptdecrypt)
+    - [git integration](#git-integration)
+- [gpg-agent](#gpg-agent)
+    - [configuration](#configuration-2)
+    - [ssh integration](#ssh-integration)
 
     GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
     system, along with access modules for all kinds of public key directories.
     GnuPG, also known as GPG, is a command line tool with features for easy integration with other applications.
     A wealth of frontend applications and libraries are available.
-    GnuPG also provides support for S/MIME and [[ssh#Contents|ssh]].
-
-## configuration =
+    
+# configuration
 default storage is `~/.gnupg` and can be modified with `$GNUPGHOME` env variable
 default config files are `~/.gnupg/gpg.conf` and `~/.gnupg/dirmngr.conf`
 
@@ -31,14 +31,14 @@ Keys identities could be:
 - *keygrip* refers to both *private* and *public* keys in keypair. Must be used in `sshcontrol` file. Could be obtained by `--with-keygrip` option.
 
 useful config
-{{{
+```
     keyid-format 0xlong  # more robust IDs
     throw-keyids         # do not include key info into encrypted message
     no-emit-version      # do not include pgp version
     no-comments          # do not include comments
-}}}
-## usage =
-### generate ==
+```
+# usage
+## generate
 generate key `gpg --full-gen-key --expert`
 generate revocation certificate `gpg --gen-revoke --armor --output=revocation_certificate.asc user-id`
 for *ssh* additional *A* - *Auth* capability must be set for the key
@@ -46,7 +46,7 @@ for *ssh* additional *A* - *Auth* capability must be set for the key
 tip: for passphrase generation a dictionary + `shuf` could be used:
 `shuf --random-source=/dev/random -n 6 ./large_wordlist.txt`
 
-### list ==
+## list
 `gpg --list-keys`
 `gpg --list-secret-keys`
 add `--with-keygrip` to show *keygrip*
@@ -66,10 +66,10 @@ _second line_ - key fingerprint (must be verified with owner)
     E — encryption
     A — authentication (for e.g. *ssh*)
     
-### edit ==
+## edit
 `gpg --edit-key <user-id>`
 
-### export ==
+## export
 private `gpg --export-secret-keys --armor <user-id> > privkey.asc`
 public `gpg --output public.key --armor --export user-id`
 
@@ -78,51 +78,51 @@ tip: as QR code with `qrencode`:
 
 tip: export tiny private key as QR with `paperkey`:
 *WARNING!* recovery such private key is possible only with public key
-{{{
+```
     gpg --export-key <keygrip> > pubkey.asc
     gpg --export-secret-key <keygrip> | paperkey --output-type raw | qrencode --8bit --output secret-key.qr.png
-}}}
+```
 recovery:
-{{{
+```
     paperkey --pubring pubkey.asc --secrets from_qr.asc > secretkey.asc
     gpg --import ./secretkey.asc
-}}}
+```
 
-### import ==
+## import
 `gpg --import public.key`
 
-### delete ==
+## delete
 `gpg --delete-secret-key <keygrip>`
 
-### encrypt/decrypt ==
+## encrypt/decrypt
 encrypt `gpg --recipient user-id --encrypt doc`
 decrypt `gpg --output doc --decrypt doc.gpg`
 
-### git integration ==
+## git integration
 - export public key with `--armor` option
 - git config
-{{{
+```
     [commit]
             gpgsign = true
     [user]
             signingkey = <KeyID>
     [gpg]
             program = /bin/gpg
-}}}
+```
 * use `-S` option with `git commit` to sign
 * use `git log --show-signature -1` to show signatures
 * use `--verify-signatures` with `git pull` and `git merge`
 
 
-## gpg-agent =
-### configuration ==
+# gpg-agent
+## configuration
 `~/.gnupg/gpg-agent.conf`
 * program for entering passphrase `pinentry-program /usr/bin/pinentry-tty`
 * act as ssh agent `enable-ssh-support `
 
-### ssh integration ==
+## ssh integration
 key must be generated with *Auth* capability
-- add key [[#list|keygrip]] to `~/.gnupg/sshcontrol`
+- add key [keygrip](#list) to `~/.gnupg/sshcontrol`
 - export key `gpg --export-ssh-key <keygrip>`
 - export public key to github as *GPG* key `gpg --export --armor <keygrip>`
 - restart *gpg-agent* `gpg-connect-agent reloadagent /bye`

@@ -1,13 +1,14 @@
-= Contents =
-    - [[#basics|basics]]
-    - [[#allow sudo command|allow sudo command]]
+# Contents
 
-= basics =
-Rules for `sudo` command are determined in `sudoers` file.<br>
-This file must be always edited via `visudo` command.<br>
-Pass `EDITOR=<path_to_editor>` if needed.<br>
+- [basics](#basics)
+- [allow sudo command](#allow-sudo-command)
 
-= allow sudo command =
+# basics
+Rules for `sudo` command are determined in `sudoers` file.   
+This file must be always edited via `visudo` command.   
+Pass `EDITOR=<path_to_editor>` if needed.   
+
+# allow sudo command
 User must be in `sudo` or `wheel` group.<br>
 `usermod -aG <group> <user>` (`-a` for preserve existing list of groups, `-G` for new list of groups)
 

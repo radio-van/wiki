@@ -1,19 +1,19 @@
 # Contents
-    - [[#empty folders|empty folders]]
-    - [[#delete|delete]]
-    - [[#exec command|exec command]]
-    - [[#exec complex commands|exec complex commands]]
-    - [[#exec multiple commands|exec multiple commands]]
-    - [[#negative condition|negative condition]]
-    - [[#operations|operations]]
-    - [[#prune|prune]]
-    - [[#search pattern|search pattern]]
-    - [[#tips&trics|tips&trics]]
-        - [[#tips&trics#batch file ranaming|batch file ranaming]]
+
+- [empty folders](#empty-folders)
+- [delete](#delete)
+- [exec command](#exec-command)
+- [exec complex commands](#exec-complex-commands)
+- [exec multiple commands](#exec-multiple-commands)
+- [negative condition](#negative-condition)
+- [operations](#operations)
+- [prune](#prune)
+- [search pattern](#search-pattern)
+- [tips&trics](#tipstrics)
+    - [batch file ranaming](#batch-file-ranaming)
 
 # empty folders
 `find . -type d -empty`
-
 # delete
 `find . --delete`
 

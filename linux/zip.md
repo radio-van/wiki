@@ -1,11 +1,13 @@
-Zip is based on two general parts: *Lempel-Ziv* compression and *Haffman algorithm*.
+# Contents
 
-## Lempel-Ziv compression =
+    - [Lempel-Ziv compression](#lempel-ziv-compression)
+    - [Haffman algorithm](#haffman-algorithm)
+
 Uses an idea of dictionary for repeating words: a word can be put into a dictionary and all its occurs in text can be replaces with link.
 For eliminating separate dictionary, links can lead to the positions of words n the same text.
 `(pointer, length, [next_symbol])`
 
-## Haffman algorithm =
+## Haffman algorithm
 Encoding of each symbol as a fix-length code (like in ASCII) is convinient, but space-consuming.
 Instead, principle of Morse code can be used: more rare symbols are encoded with longer code.
 Plus special coding can be used, where shorter code do not correlate with longer (like in USA there are no numbers starting with 911).
@@ -25,7 +27,7 @@ Example:
 `[15]`
 
 Result: Haffman tree
-{{{
+```
    [15]
   /    \
  /      \
@@ -34,7 +36,7 @@ Result: Haffman tree
    [B/4]    [5]
            /   \
       [C/2]     [D/3]
-}}}
+```
 
 To represent shifts special numbers can be used: `0` to shift left and `1` to shift right:
 | symbol | code |

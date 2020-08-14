@@ -1,16 +1,17 @@
-## Contents =
-    - [[#getty|getty]]
-    - [[#tips&trics|tips&trics]]
-        - [[#tips&trics#restore root password|restore root password]]
-            - [[#tips&trics#restore root password#Ubuntu + GRUB|Ubuntu + GRUB]]
+# Contents
 
-## getty =
+- [getty](#getty)
+- [tips&trics](#tipstrics)
+    - [restore root password](#restore-root-password)
+        - [Ubuntu + GRUB](#ubuntu-grub)
+
+# getty
 `getty` is a program which detects connection to `tty` (virtual console) and
 launches another program (`login` by default).
 
-## tips&trics =
-### restore root password ==
-#### Ubuntu + GRUB ===
+# tips&trics
+## restore root password
+### Ubuntu + GRUB
 * hold `shift` after BIOS screen to enter `GRUB` menu
 * press e to edit boot commands
 * append `init=/bin/bash` to the end of the line starting with `linux`

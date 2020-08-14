@@ -1,20 +1,21 @@
-## Contents =
-    - [[#hardware related|hardware related]]
-        - [[#hardware related#laptop lid|laptop lid]]
-        - [[#hardware related#power buttons and lid|power buttons and lid]]
-        - [[#hardware related#acpi rules|acpi rules]]
-            - [[#hardware related#acpi rules#laptop lid hook|laptop lid hook]]
+# Contents
 
-## hardware related =
-### laptop lid ==
+- [hardware related](#hardware-related)
+    - [laptop lid](#laptop-lid)
+    - [power buttons and lid](#power-buttons-and-lid)
+    - [acpi rules](#acpi-rules)
+        - [laptop lid hook](#laptop-lid-hook)
+
+# hardware related
+## laptop lid
 status: `/proc/acpi/button/lid/LID/state`
 
-### power buttons and lid ==
+## power buttons and lid
 config behavior: `/etc/systemd/logind.conf`
 
-### acpi rules ==
-#### laptop lid hook ===
-{{{
+## acpi rules
+### laptop lid hook
+```
 button/lid)
   case "$3" in
     close)
@@ -25,4 +26,4 @@ button/lid)
       logger 'LID opened'
       /etc/acpi/scripts/lid-open &
       ;;
-}}}
+```

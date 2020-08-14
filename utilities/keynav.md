@@ -1,15 +1,15 @@
-## Contents =
-    - [[#configuration|configuration]]
-    - [[#keybindings|keybindings]]
+# Contents
 
-Navigate mouse cursor with keybindings.
+- [configuration](#configuration)
+- [keybindings](#keybindings)
 
-## configuration =
+# configuration
 `$HOME/.keynavrc`
-keybindings are keysequence plus list of commands
+
+keybindings are keysequence plus list of commands   
 `space warp,click 1,end`
 
-## keybindings =
+# keybindings
 * `^;` toggle keynav
 * `h` select the left half of the region
 * `j` select the bottom half of the region
