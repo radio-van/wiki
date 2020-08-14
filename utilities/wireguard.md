@@ -24,7 +24,7 @@
  
 ## Configuration =
 
-###= configs ===
+#### configs ===
 Server::
 {{{
   [Interface]
@@ -61,7 +61,7 @@ Client::
     The server configuration doesn't have any initial endpoints of its peers (the clients), it discovers the endpoint of its peers by examining from where correctly authenticated data originates.
     If the server itself changes its own endpoint, and sends data to the clients, the clients will discover the new server endpoint and update the configuration just the same.
     
-###= command line ===
+#### command line ===
 
 * create new interface
 `ip link add dev wg0 type wireguard`
@@ -82,7 +82,7 @@ additional commands::
 - `wg show`
 - `wg showconf`
 
-###= key generation ===
+#### key generation ===
 
 WireGuard requires base64-encoded public and private keys.
 {{{
@@ -98,7 +98,7 @@ This will read privatekey from stdin and write the corresponding public key to p
 You can do this all at once:
 `$ wg genkey | tee privatekey | wg pubkey > publickey`
 
-###= NAT ===
+#### NAT ===
     Because NAT and stateful firewalls keep track of "connections", if a peer behind NAT or a firewall wishes to receive incoming packets, he must keep the NAT/firewall mapping valid, by periodically sending keepalive packets.
     This is called _persistent keepalives_.
     When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is *25* seconds.
