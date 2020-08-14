@@ -53,7 +53,7 @@ use `mkfs.ext4` for create filesystem
 if installing on system with existing `EFI system partition` (e.g. on Apple computer), it could be mounted and used
 
 #### crypt ===
-####= LVM on LUKS ====
+##### LVM on LUKS ====
 {{{
    +----------------------------+
    | boot | luks [encrypted]... |
@@ -198,7 +198,7 @@ or enable composition:
 }}}
 
 #### known issues ===
-####= Fatal server error: (EE) AddScreen/ScreenInit ====
+##### Fatal server error: (EE) AddScreen/ScreenInit ====
 Use [[https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start|Early KMS start]]
 * add gpu (`amdgpu`, `radeon`, ...) to `MODULES=(...)` section of `/etc/mkinitcpio.conf`
 * `mkinitcpio -p linux`
