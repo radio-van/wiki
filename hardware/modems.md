@@ -18,12 +18,12 @@ There are two revisions of modems:
 * Е3372 *S* with *Stick* firmware (2 rows of contacts)
 * Е3372 *H* with *Hilink* firmware (1 row of contacts)
 
-###= recovery mode ===
+#### recovery mode ===
 Short *boot pin* with metal plate of *USB connector*
 * E3372S *boot pin* is the first pin in top row
 * E3372H *boot pin* is the most right in a row
 
-###= flashing ===
+#### flashing ===
 From recovery mode:
 - upload bootloader `balong-usbdload -p <port> <bootloader>`
 *WARNING* use custom bootloader (*balong* [[https://github.com/forth32/balongflash|usbsafe-3372X]]) otherwise _nvram_ would be lost
@@ -45,17 +45,17 @@ From noraml mode:
 * `SCSI.exe` switches modem mode (see [[#modes|below]]) to enable firmware update
 * `ZTE Software` firmware tool
 
-###= flashing ===
+#### flashing ===
 - run `SCSI` to switch modem to appropriate mode
 - run `ZTE Software`, flash `unlock`, then `firmware` (disconnect modem between flashing)
 - using terminal, switch to prefered [[#modes|mode]]
 
-###= modes ===
+#### modes ===
 * *MODE 0* works as modem + optical drive
 * *MODE 1* works as modem + `adb`
 * *MODE 2* firmware ready
 
-###= adb shell configuration ===
+#### adb shell configuration ===
 more info about [[../utilities/adb#Contents|adb]]
 `cfg show` show config
 `cfg set <property>=<value>` change configuration
