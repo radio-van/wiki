@@ -45,7 +45,7 @@ The purpose is to provide extra options on starting the service or override some
 * `cryptsetup open /dev/sdaX cryptlvm`
 * decrypted container is available at `/dev/mapper/cryptlvm`
 
-###= keyfile on separate drive ===
+#### keyfile on separate drive ===
 `cryptsetup luksAddKey <device> <keyfile>`
 `keyfile` can be random file, passphrase, binary
 
@@ -84,7 +84,7 @@ or
   mkfs.ext4 /dev/MyVolGroup/home
   mkswap /dev/MyVolGroup/swap
 }}}
-###= workaround of stack LUKS+LVM volume ===
+#### workaround of stack LUKS+LVM volume ===
 sympthoms: `device <device> still in use`
 `vgdisplay` shows all `VolumeGroup`s
 `vgchange -a n <name>` fix activation of `<name> VolumeGroup`
