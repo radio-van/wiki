@@ -12,16 +12,16 @@
 it could be customized to achive desired results   
 
 **Singletone** pattern example
-```pythonclass="brush: python"
+```python
     class Singleton(object):
         _instance = None
-        
+
         def __new__(cls, *args, **kwargs):
             if cls._instance is None:
                 cls._instance = super().__new__(cls, *args, **kwargs)
             return cls._instance
 ```
-```pythonclass="brush: python"
+```python
     >>> s1 = Singleton()
     ... s2 = Singleton()
     ... s1 is s2
@@ -30,7 +30,7 @@ it could be customized to achive desired results
 returns the same instance if it's already has been created (note that `__init__` method would be called for each `Singletone()` call)   
 
 **Borg** pattern example   
-```pythonclass="brush: python"
+```python
     class Borg(object):
         _dict = None
 
@@ -42,7 +42,7 @@ returns the same instance if it's already has been created (note that `__init__`
                 obj.__dict__ = cls._dict
             return obj
 ```
-```pythonclass="brush: python"
+```python
     >>> b1 = Borg()
     ... b2 = Borg()
     ... b1 is b2
@@ -124,18 +124,19 @@ with assertNumQueries(<num>):
 To patch **instance** attribute or method::
 ```python
    from package2 import B
-   
+
    class TestB:
      @mock.patch('package2.A')  # replace the memory address that package2.A points to (now it's instance of the Mock class)
      def test_b(self, mock_A):
        test = B()
 ```
-```python
+```
    package1.A ------> <actual class A>
    package2.A---+
                 |----> <Mock object>
    mock_A-------+
 ```
+
 `mock_A.return_value` contains instance of `mock_A`   
 
 `mock.patch(target, ...)`   
@@ -146,13 +147,13 @@ It's important to do a proper import, because
 ```python
    import random
    from random import choice
-   
+
    def a():
        return choice([1,2,3])
-   
+
    def b():
        return random.choice([1,2,3])
-       
+
     with mock.patch('random.choice', return_value=1000):
         print('a', a())
         print('b', b())
@@ -164,17 +165,17 @@ result will be
 ```
 
 To patch **class** attribute or method
-```pythonclass="brush: python"
+```python
   @mock.patch.object(Class, 'attribute/method')
   def test(self, mocked_attribute/method):
     mocked_method.side_effect=...
     mocked_method.return_value=...
 ```
 also, mocked object/method can be specified
-```pythonclass="brush: python"
+```python
   def fake_method(self):
     ...
-    
+
   @mock.patch.object(Class, 'attribute/method', faked_method)
   def test(self):
     mocked_method.side_effect=...
