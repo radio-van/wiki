@@ -13,6 +13,7 @@
     - [cut](#cut)
     - [concat](#concat)
     - [convert DVD](#convert-dvd)
+    - [convert to ogg](#convert-to-ogg)
     - [exctract frames](#exctract-frames)
     - [overlaying image on video](#overlaying-image-on-video)
     - [parallel](#parallel)
@@ -122,6 +123,9 @@ hint: add `-safe 0` before `-i` if file pathes are not relative
 
 ## convert DVD
 `cat *.VOB | ffmpeg -fflags +genpts -i - -c:v copy -c:a copy -c:s copy <output.mkv>`
+
+## convert to ogg
+`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 <output>`
 
 ## exctract frames
 * extract 3 frames `ffmpeg -i <input> -ss 00:00:07.000 -vframes 3 thumb%04d.jpg` 

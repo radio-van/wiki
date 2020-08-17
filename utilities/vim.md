@@ -39,12 +39,13 @@
         - [basic idea](#basic-idea)
         - [toggle case](#toggle-case)
         - [increase/decrease numbers](#increasedecrease-numbers)
-        - [regex](#regex)
-            - [lookahead / lookbehind](#lookahead-lookbehind)
-        - [ranges](#ranges)
         - [ex/ed](#exed)
-        - [search patterns](#search-patterns)
+            - [ranges](#ranges)
+            - [patterns](#patterns)
+            - [commands](#commands)
             - [examples](#examples)
+            - [regex](#regex)
+            - [lookahead / lookbehind](#lookahead-lookbehind)
         - [tips&trics](#tipstrics-2)
             - [comment several lines](#comment-several-lines)
             - [global commands](#global-commands)
@@ -364,23 +365,12 @@ Examples
 * toggle case of the current line (same as V~)
 `g~~`
 
-### regex
-see [regex](../developing/regex.md)
+### ex/ed
+*ex/ed* legacy
 
-Vim's style of Regex is different from **PCRE**, all special characters must be escaped, e.g.
-- **PCRE** `(foo|bar)` means `foo` or `bar`
-- **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
+`:<range>/<pattern>/<command>`
 
-#### lookahead / lookbehind
-* Positive lookahead `\@=`
-* Negative lookahead `\@!`
-* Positive lookbehind `\@<=`
-* Negative lookbehind `\@<!`
-
-e.g.
-`/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
-
-### ranges
+#### ranges
 
 | command | range                                       | example               |
 |---------|---------------------------------------------|-----------------------|
@@ -396,26 +386,15 @@ e.g.
 | `'a,'b` | from mark `a` to mark `b`                   | `:'a,'bs/foo/bar/g`   |
 
 range refinement:
-* `...g` - global (all occurtences), e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing `foo`
-* `...v` - reverse condition
 
-examples
+* `/pattern` searches for the first occur of `pattern`
 
-* `:.,+21g/foo/d` delete all lines with _foo_, from current line plus 21 more lines
-* `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
-* `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
+* `g/pattern/` works as global (i.e. find all lines with pattern)    
+e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing `foo`   
 
-### ex/ed
-*ex/ed* legacy
-* replace `:s/../../`
-* delete `:/.../d`
-* move `:/.../m`
-* join `:/.../j`
-* read from file `:r`
-* read from cli `:r!`
-* format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
+* `g!/pattern/` or `:v` inverts global (i.e. find all lines without patterns)
 
-### search patterns
+#### patterns
 
 | command          | description                                                                              |
 |------------------|------------------------------------------------------------------------------------------|
@@ -428,7 +407,21 @@ examples
 | `1;/that`        | first line after line 1 containing `that`                                                |
 | `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for **foo** not following **bar** |
 
+#### commands
+* replace `:s/../../`
+* delete `:/.../d`
+* move `:/.../m`
+* join `:/.../j`
+* read from file `:r`
+* read from cli `:r!`
+* format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
+
 #### examples
+
+* `:.,+21g/foo/d` delete all lines with _foo_, from current line plus 21 more lines
+* `:.,$v/bar/d` delete from here to the end lines which DO NOT contain _bar_
+* `:v/\(id\|name\)/d` delete all lines not containing _id_ or _name_
+
 combine **search range** with **substitution**
 
 * copy the lines from the current line to the next line containing 'green' (inclusive), to the end of the buffer. 
@@ -457,6 +450,22 @@ To do a global replace in all blocks with the same patterns, use `:g`:
     (the `.` means the current line, where `apples` occurs). 
 
     `:g/apples/,/peaches/ s/^/# /g`   
+
+#### regex
+see [regex](../developing/regex.md)
+
+Vim's style of Regex is different from **PCRE**, all special characters must be escaped, e.g.
+- **PCRE** `(foo|bar)` means `foo` or `bar`
+- **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
+
+#### lookahead / lookbehind
+* Positive lookahead `\@=`
+* Negative lookahead `\@!`
+* Positive lookbehind `\@<=`
+* Negative lookbehind `\@<!`
+
+e.g.
+`/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
 
 ### tips&trics
 #### comment several lines
