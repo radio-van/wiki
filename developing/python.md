@@ -1,34 +1,37 @@
 # Contents
 
-- [Classes](#classes)
-    - [general](#general)
-        - [initialization](#initialization)
-        - [importing](#importing)
-        - [__str__ and __repr__](#__str__-and-__repr__)
-        - [call parent class from child class with the same name](#call-parent-class-from-child-class-with-the-same-name)
-    - [strings](#strings)
-        - [format](#format)
-- [Tests](#tests)
-    - [assert](#assert)
-        - [check number of database calls](#check-number-of-database-calls)
-    - [mocking](#mocking)
-        - [basics](#basics)
-        - [return values](#return-values)
-        - [return different value on each call](#return-different-value-on-each-call)
-        - [mocking immutable built-ins](#mocking-immutable-built-ins)
-- [additional tools](#additional-tools)
-    - [virtual envs](#virtual-envs)
-        - [create venv](#create-venv)
-        - [create pyenv](#create-pyenv)
-        - [activate pyenv](#activate-pyenv)
-        - [install version of Python](#install-version-of-python)
-    - [package manager](#package-manager)
-        - [pip](#pip)
-            - [install requirements](#install-requirements)
+- [Classes](#Classes)
+    - [general](#Classes#general)
+        - [initialization](#Classes#general#initialization)
+        - [importing](#Classes#general#importing)
+        - [__str__ and __repr__](#Classes#general#__str__ and __repr__)
+        - [call parent class from child class with the same name](#Classes#general#call parent class from child class with the same name)
+    - [strings](#Classes#strings)
+        - [format](#Classes#strings#format)
+- [functions](#functions)
+    - [arguments](#functions#arguments)
+        - [default values](#functions#arguments#default values)
+- [Tests](#Tests)
+    - [assert](#Tests#assert)
+        - [check number of database calls](#Tests#assert#check number of database calls)
+    - [mocking](#Tests#mocking)
+        - [basics](#Tests#mocking#basics)
+        - [return values](#Tests#mocking#return values)
+        - [return different value on each call](#Tests#mocking#return different value on each call)
+        - [mocking immutable built-ins](#Tests#mocking#mocking immutable built-ins)
+- [additional tools](#additional tools)
+    - [virtual envs](#additional tools#virtual envs)
+        - [create venv](#additional tools#virtual envs#create venv)
+        - [create pyenv](#additional tools#virtual envs#create pyenv)
+        - [activate pyenv](#additional tools#virtual envs#activate pyenv)
+        - [install version of Python](#additional tools#virtual envs#install version of Python)
+    - [package manager](#additional tools#package manager)
+        - [pip](#additional tools#package manager#pip)
+            - [install requirements](#additional tools#package manager#pip#install requirements)
 - [receipts](#receipts)
-    - [web server](#web-server)
-    - [decode base64](#decode-base64)
-    - [get python version](#get-python-version)
+    - [web server](#receipts#web server)
+    - [decode base64](#receipts#decode base64)
+    - [get python version](#receipts#get python version)
 
 # Classes
 ## general
@@ -141,6 +144,27 @@ Instead of just the name of object's class, some useful info (like state of vari
   `f'string {var}'`
   
   
+# functions
+## arguments
+### default values
+```python
+b=1
+def foo(a=b):
+  print (a)
+
+foo()
+b=2
+foo()
+```
+output
+```
+1
+1
+```
+Default arguments getting values at the moment of function creation.
+But if argument's default is _mutable_ (e.g. `list`), value can be changed.
+
+
 # Tests
 ## assert
 ### check number of database calls
