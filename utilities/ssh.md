@@ -1,26 +1,27 @@
 # Contents
 
 - [configuration](#configuration)
-    - [disabling password auth](#disabling-password-auth)
-    - [disabling root login](#disabling-root-login)
-    - [do not ask about adding host keys](#do-not-ask-about-adding-host-keys)
-    - [limit login access](#limit-login-access)
+    - [disabling password auth](#configuration#disabling password auth)
+    - [disabling root login](#configuration#disabling root login)
+    - [do not ask about adding host keys](#configuration#do not ask about adding host keys)
+    - [limit login access](#configuration#limit login access)
 - [usage](#usage)
-    - [connection](#connection)
-        - [force using password](#force-using-password)
-    - [keys](#keys)
-        - [keygen](#keygen)
-        - [copy key](#copy-key)
-        - [generate public key from private](#generate-public-key-from-private)
-        - [storing keys](#storing-keys)
+    - [connection](#usage#connection)
+        - [force using password](#usage#connection#force using password)
+    - [keys](#usage#keys)
+        - [keygen](#usage#keys#keygen)
+        - [copy key](#usage#keys#copy key)
+        - [generate public key from private](#usage#keys#generate public key from private)
+        - [storing keys](#usage#keys#storing keys)
+        - [key fingerprint](#usage#keys#key fingerprint)
 - [ssh-agent](#ssh-agent)
-    - [overview](#overview)
-    - [usage](#usage-2)
-    - [agent-forwarding](#agent-forwarding)
-        - [overview](#overview-2)
-        - [configuration](#configuration-2)
+    - [overview](#ssh-agent#overview)
+    - [usage](#ssh-agent#usage)
+    - [agent-forwarding](#ssh-agent#agent-forwarding)
+        - [overview](#ssh-agent#agent-forwarding#overview)
+        - [configuration](#ssh-agent#agent-forwarding#configuration)
 - [scp](#scp)
-        - [ambiguous target](#ambiguous-target)
+        - [ambiguous target](#scp#ambiguous target)
 
 # configuration
 
@@ -67,6 +68,12 @@ apply: `service ssh restart`
 ### storing keys
 `chmod 700 ~/.ssh`
 `chmod 600 ~/.ssh/authorization_keys`
+
+### key fingerprint
+```
+ssh-keyscan -t rsa github.com | ssh-keygen -lf -
+```
+useful for compare with public key fingerprint, e.g. for [github](https://docs.github.com/en/github/authenticating-to-github/githubs-ssh-key-fingerprints)
 
 # ssh-agent
 ## overview
