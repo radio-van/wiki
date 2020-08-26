@@ -28,6 +28,7 @@
   * [tips&tricks](windows/tips_tricks.md)
 * Packages
   * [Home-Assistant](packages/home-assistant.md)
+  * [Retropie](packages/retropie.md)
 * Protocols
   * [email](protocols/email.md)
 * Utilities
