@@ -12,9 +12,6 @@
     - [package managers](#plugins#package managers)
         - [vim8 built-in](#plugins#package managers#vim8 built-in)
         - [vim-plug](#plugins#package managers#vim-plug)
-    - [built-in](#plugins#built-in)
-        - [terminal](#plugins#built-in#terminal)
-            - [scroll](#plugins#built-in#terminal#scroll)
     - [third-party plugins](#plugins#third-party plugins)
         - [fugitive](#plugins#third-party plugins#fugitive)
             - [merge conflict](#plugins#third-party plugins#fugitive#merge conflict)
@@ -64,6 +61,9 @@
     - [registers](#usage#registers)
         - [file](#usage#registers#file)
     - [session](#usage#session)
+    - [terminal](#usage#terminal)
+        - [scroll](#usage#terminal#scroll)
+        - [copy-paste](#usage#terminal#copy-paste)
     - [windows and panes](#usage#windows and panes)
         - [resize window](#usage#windows and panes#resize window)
         - [switch between horizontal and vertical splits](#usage#windows and panes#switch between horizontal and vertical splits)
@@ -170,12 +170,6 @@ Make plugins section
     call plug#begin('~/.vim/plugged')
     call plug#end()
 ```
-
-## built-in
-### terminal
-#### scroll
-- `ctrl-W N` for scrolling
-- `i` or `a` for resume as terminal
 
 ## third-party plugins
 ### fugitive
@@ -553,6 +547,13 @@ Vim can save current buffers, layout, etc into session file
     `:mksession <file>`   
     
 to restore it: `:so <file>`
+
+## terminal
+### scroll
+- `ctrl-W N` for scrolling
+- `i` or `a` for resume as terminal
+### copy-paste
+`ctrl-W"` follower by **register**
 
 ## windows and panes
 ### resize window
