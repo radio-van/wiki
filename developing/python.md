@@ -11,14 +11,15 @@
 - [functions](#functions)
     - [arguments](#functions#arguments)
         - [default values](#functions#arguments#default values)
-- [Tests](#Tests)
-    - [assert](#Tests#assert)
-        - [check number of database calls](#Tests#assert#check number of database calls)
-    - [mocking](#Tests#mocking)
-        - [basics](#Tests#mocking#basics)
-        - [return values](#Tests#mocking#return values)
-        - [return different value on each call](#Tests#mocking#return different value on each call)
-        - [mocking immutable built-ins](#Tests#mocking#mocking immutable built-ins)
+- [tests](#tests)
+    - [assert](#tests#assert)
+        - [check number of database calls](#tests#assert#check number of database calls)
+    - [mocking](#tests#mocking)
+        - [basics](#tests#mocking#basics)
+        - [return values](#tests#mocking#return values)
+        - [return different value on each call](#tests#mocking#return different value on each call)
+        - [mocking immutable built-ins](#tests#mocking#mocking immutable built-ins)
+        - [mocking models](#tests#mocking#mocking models)
 - [additional tools](#additional tools)
     - [virtual envs](#additional tools#virtual envs)
         - [create venv](#additional tools#virtual envs#create venv)
@@ -165,7 +166,7 @@ Default arguments getting values at the moment of function creation.
 But if argument's default is _mutable_ (e.g. `list`), value can be changed.
 
 
-# Tests
+# tests
 ## assert
 ### check number of database calls
 `assertNumQueries(<num>, <func>)`
@@ -269,6 +270,20 @@ def test():
     with mock.patch('some_module.datetime.datetime', mock.Mock(utcnow=mock.Mock(return_value=<mocked_date>))):
       some_module.some_method()
       ...
+```
+
+### mocking models
+`pip install model_bakery`
+```python
+from model_bakery import baker
+from ...models import Model
+
+class SomeTestCase(TestCase):
+    def setUp(self):
+        self.mocked_model = baker.make(
+            Model,
+            define_field='...',
+        )
 ```
 
 # additional tools
