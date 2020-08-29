@@ -58,6 +58,7 @@
         - [update](#usage#submodules#update)
     - [urls](#usage#urls)
         - [change remote url](#usage#urls#change remote url)
+    - [debug](#usage#debug)
 
 # concept
 **workspace**:: is the directory tree of (source) files that you see and edit
@@ -305,3 +306,6 @@ e.g.
 ## urls
 ### change remote url
 `git remote set-url $remote $new_url`
+
+## debug
+add `GIT_TRACE=1` before command
