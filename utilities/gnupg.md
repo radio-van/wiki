@@ -2,17 +2,18 @@
 
 - [configuration](#configuration)
 - [usage](#usage)
-    - [generate](#generate)
-    - [list](#list)
-    - [edit](#edit)
-    - [export](#export)
-    - [import](#import)
-    - [delete](#delete)
-    - [encrypt/decrypt](#encryptdecrypt)
-    - [git integration](#git-integration)
+    - [generate](#usage#generate)
+    - [list](#usage#list)
+    - [edit](#usage#edit)
+    - [export](#usage#export)
+    - [import](#usage#import)
+    - [delete](#usage#delete)
+    - [encrypt/decrypt](#usage#encrypt/decrypt)
+    - [git integration](#usage#git integration)
+    - [edit uid](#usage#edit uid)
 - [gpg-agent](#gpg-agent)
-    - [configuration](#configuration-2)
-    - [ssh integration](#ssh-integration)
+    - [configuration](#gpg-agent#configuration)
+    - [ssh integration](#gpg-agent#ssh integration)
 
     GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
     system, along with access modules for all kinds of public key directories.
@@ -113,6 +114,17 @@ decrypt `gpg --output doc --decrypt doc.gpg`
 * use `git log --show-signature -1` to show signatures
 * use `--verify-signatures` with `git pull` and `git merge`
 
+## edit uid
+This can be done via adding new uid
+```
+gpg ---edit-key <keyID>
+> adduid
+> uid <new uid>
+> trust
+> uid <old uid>
+> revuid
+> save
+```
 
 # gpg-agent
 ## configuration
