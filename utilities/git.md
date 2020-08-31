@@ -62,9 +62,9 @@
     - [debug](#usage#debug)
 
 # concept
-**workspace**:: is the directory tree of (source) files that you see and edit
-**index**:: is a single, large, binary file in `.git/index`, which lists all files in the current branch, their sha1 checksums, time stamps and the file name
-**local repository**:: is a hidden directory (`.git`) including an objects directory containing all versions of every file in the repo (local branches and copies of remote branches) as a compressed "blob" file
+* **workspace** is the directory tree of (source) files that you see and edit
+* **index** is a single, large, binary file in `.git/index`, which lists all files in the current branch, their sha1 checksums, time stamps and the file name
+* **local repository** is a hidden directory (`.git`) including an objects directory containing all versions of every file in the repo (local branches and copies of remote branches) as a compressed "blob" file
 
 ```
 

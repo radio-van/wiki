@@ -1,16 +1,16 @@
 # Contents
 
-- [empty folders](#empty-folders)
+- [empty folders](#empty folders)
 - [delete](#delete)
-- [exec command](#exec-command)
-- [exec complex commands](#exec-complex-commands)
-- [exec multiple commands](#exec-multiple-commands)
-- [negative condition](#negative-condition)
+- [exec command](#exec command)
+- [exec complex commands](#exec complex commands)
+- [exec multiple commands](#exec multiple commands)
+- [negative condition](#negative condition)
 - [operations](#operations)
 - [prune](#prune)
-- [search pattern](#search-pattern)
-- [tips&trics](#tipstrics)
-    - [batch file ranaming](#batch-file-ranaming)
+- [search pattern](#search pattern)
+- [tips&trics](#tips&trics)
+    - [batch file ranaming](#tips&trics#batch file ranaming)
 
 # empty folders
 `find . -type d -empty`
@@ -49,4 +49,4 @@ pattern is relative to start point directory
 # tips&trics
 ## batch file ranaming
 works with recursive paths
-* `find . -type d -name '<name>' -print0 | xargs --null -I{} sh -c 'echo {} | sed s/<name>/<new-name>/g | xargs -I% mv {} %'`
+* `find . -type f -name '<name>' -print0 | xargs --null -I{} sh -c 'echo {} | sed s/<name>/<new-name>/g | xargs -I% mv "{}" "%"'`
