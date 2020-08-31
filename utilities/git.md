@@ -24,6 +24,7 @@
         - [remote branch](#usage#checkout#remote branch)
     - [commit](#usage#commit)
         - [squash two commits](#usage#commit#squash two commits)
+        - [show files in commit](#usage#commit#show files in commit)
     - [diff](#usage#diff)
         - [local from remote](#usage#diff#local from remote)
         - [remote from local](#usage#diff#remote from local)
@@ -198,6 +199,9 @@ if file doesn't exist in current branch
 ## commit
 ### squash two commits
 `git rebase --interactive HEAD~2`   
+
+### show files in commit
+`git diff-tree --no-commit-id --name-only -r <commit>`
 
 for the latest commit change `pick` to `squash`, e.g.   
 ```
