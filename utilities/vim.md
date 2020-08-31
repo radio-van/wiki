@@ -30,6 +30,7 @@
         - [re-arrange tabs](#usage#tabs#re-arrange tabs)
     - [navigation](#usage#navigation)
         - [jumps](#usage#navigation#jumps)
+            - [changes](#usage#navigation#jumps#changes)
         - [tags](#usage#navigation#tags)
         - [quickfix](#usage#navigation#quickfix)
     - [diff](#usage#diff)
@@ -305,6 +306,19 @@ Tabs are just another representation of the group of windows/splits
 * `g]` to tag defenition
 * `gg` to first line
 * `NG` to line `N` (last line if `N` is not provided)
+
+#### changes
+```
+`.  jump to last change
+```
+
+```
+'[  `[                  To the first character of the previously changed
+                        or yanked text.
+                        
+']  `]                  To the last character of the previously changed or
+                        yanked text.
+```
 
 ### tags
 jump to tag
