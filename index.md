@@ -58,6 +58,7 @@
   * [sudo](utilities/sudo.md)
   * [systemd](utilities/systemd.md)
   * [tmux](utilities/tmux.md) 
+  * [top](utilities/top.md) 
   * [urxvt](utilities/urxvt.md)
   * [vim](utilities/vim.md)
   * [wireguard](utilities/wireguard.md)
