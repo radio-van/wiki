@@ -54,7 +54,7 @@
             - [time travel](#usage#editing#tips&trics#time travel)
     - [encryption](#usage#encryption)
     - [file](#usage#file)
-        - [current file](#usage#file#current file)
+        - [expand filename](#usage#file#expand filename)
         - [encoding](#usage#file#encoding)
         - [save as another file](#usage#file#save as another file)
     - [macro](#usage#macro)
@@ -516,7 +516,7 @@ Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfi
 **Warning** do not modify or save file that was decrypted with wrong password, otherwise it would be damaged!
 
 ## file
-### current file
+### expand filename
 There are registers with file names:
 - `%` contains current file name
 - `#` contains alternate file name

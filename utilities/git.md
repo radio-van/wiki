@@ -25,6 +25,7 @@
     - [commit](#usage#commit)
         - [squash two commits](#usage#commit#squash two commits)
         - [show files in commit](#usage#commit#show files in commit)
+        - [sign](#usage#commit#sign)
     - [diff](#usage#diff)
         - [local from remote](#usage#diff#local from remote)
         - [remote from local](#usage#diff#remote from local)
@@ -213,6 +214,11 @@ then edit combined message for new commit
   message of commit1
   message of commit2
 ```
+### sign
+* `gpg -k --keyid-format long`  
+* `[git](git) config user.signingkey <keyid>!`  
+`!` forces to use particular gpg key  
+identities don't have to be the same  
 
 ## diff
 ### local from remote
