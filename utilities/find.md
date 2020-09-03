@@ -9,8 +9,9 @@
 - [operations](#operations)
 - [prune](#prune)
 - [search pattern](#search pattern)
-- [tips&trics](#tips&trics)
-    - [batch file ranaming](#tips&trics#batch file ranaming)
+- [examples](#examples)
+    - [batch file ranaming](#examples#batch file ranaming)
+    - [install python requirements](#examples#install python requirements)
 
 # empty folders
 `find . -type d -empty`
@@ -46,7 +47,10 @@ to exclude `<pattern>` in root dir and all subdirs use:
 * `find . -path <pattern>` filename matches pattern
 pattern is relative to start point directory
 
-# tips&trics
+# examples
 ## batch file ranaming
 works with recursive paths
 * `find . -type f -name '<name>' -print0 | xargs --null -I{} sh -c 'echo {} | sed s/<name>/<new-name>/g | xargs -I% mv "{}" "%"'`
+
+## install python requirements
+`find ./ -name requirements.txt -exec pip install -r '{}' \;`
