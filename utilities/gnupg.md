@@ -74,6 +74,8 @@ _second line_ - key fingerprint (must be verified with owner)
 private `gpg --export-secret-keys --armor <user-id> > privkey.asc`
 public `gpg --output public.key --armor --export user-id`
 
+use `<keyid>!` to export particular subkey  
+
 tip: as QR code with `qrencode`:
 `gpg --export-secret-key <keygrip> | qrencode --8bit --output secret-key.qr.png`
 
