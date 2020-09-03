@@ -216,7 +216,8 @@ then edit combined message for new commit
 ```
 ### sign
 * `gpg -k --keyid-format long`  
-* `[git](git) config user.signingkey <keyid>!`  
+* `git config user.signingkey <keyid>!`  
+* `git config commit.gpgsign true`
 `!` forces to use particular gpg key  
 identities don't have to be the same  
 
