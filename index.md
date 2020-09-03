@@ -1,14 +1,14 @@
-* Developing
+# Developing
   * [common](developing/common.md)
   * [databases](developing/databases.md)
   * [django](developing/django.md)
   * [python](developing/python.md)
   * [JS](developing/js.md)
   * [regex](developing/regex.md)
-* Hardware
+# Hardware
   * [android](hardware/android.md)
   * [usb-modems](hardware/modems.md)
-* Linux
+# Linux
   * [installation](linux/installation.md)
   * [filesystem](linux/workspace.md)
   * [keyboard](linux/keyboard.md)
@@ -19,19 +19,19 @@
   * [sound](linux/sound.md)
   * [tips&tricks](linux/tips_tricks.md)
   * [system](linux/system.md)
-* Mac OS
+# Mac OS
   * [apps](macos/apps.md)
   * [installation](macos/installation.md)
   * [networking](macos/networking.md)
   * [system](macos/system.md)
-* Windows
+# Windows
   * [tips&tricks](windows/tips_tricks.md)
-* Packages
+# Packages
   * [Home-Assistant](packages/home-assistant.md)
   * [Retropie](packages/retropie.md)
-* Protocols
+# Protocols
   * [email](protocols/email.md)
-* Utilities
+# Utilities
   * [adb](utilities/adb.md)
   * [awk](utilities/awk.md)
   * [bash](utilities/bash.md)
