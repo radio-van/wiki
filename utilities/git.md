@@ -275,7 +275,7 @@ in both cases Git:
 ### push to remote diff name
 `git push -u $remote HEAD:$remote_branch`
 ### rename all remotes
-`rg --hidden 'remote "<old_name>"' --with-filename -c | sed s/:[0-9]// | xargs -I{} sh -c 'cd {} && git remote rename <old_name> <new_name> && cd <workdir>'`
+`rg --hidden 'remote "<old_name>"' --with-filename -c | sed s/config:[0-9]// | xargs -I{} sh -c 'cd {} && git remote rename <old_name> <new_name> && cd <workdir>'`
 
 ## repo
 ### init
