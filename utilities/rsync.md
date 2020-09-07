@@ -1,6 +1,9 @@
 # Contents
 
 - [options](#options)
+- [protocol](#protocol)
+    - [ssh](#ssh)
+        - [non-default ssh port](#non-default-ssh-port)
 
 # options
 `-az` default options:  `archive`, `compression`
@@ -11,3 +14,8 @@
 `--update` copy files only if they are newer than ones in the destination
 `--delete` delete files in destination
 `-P` combines `--progress` and `--partial`
+
+# protocol
+## ssh
+### non-default ssh port
+add `-e 'ssh -p <port>'` to **rsync** arrguments
