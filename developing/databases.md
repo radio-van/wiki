@@ -1,37 +1,37 @@
 # Contents
 
 - [tools](#tools)
-    - [pgcli](#pgcli)
-        - [connect](#connect)
-    - [psql](#psql)
-        - [dump](#dump)
-        - [restore](#restore)
-        - [write to file](#write-to-file)
+    - [pgcli](#tools#pgcli)
+        - [connect](#tools#pgcli#connect)
+    - [psql](#tools#psql)
+        - [dump](#tools#psql#dump)
+        - [restore](#tools#psql#restore)
+        - [write to file](#tools#psql#write to file)
 - [sql](#sql)
-    - [constraints](#constraints)
-    - [roles](#roles)
-    - [queries](#queries)
-        - [filter values](#filter-values)
-        - [search for partial value](#search-for-partial-value)
-        - [limit query](#limit-query)
-        - [sort order](#sort-order)
-        - [query from several tables](#query-from-several-tables)
-        - [aggregate data with same values](#aggregate-data-with-same-values)
-        - [JOINS](#joins)
-            - [inner join](#inner-join)
-            - [left join](#left-join)
-    - [tables](#tables)
-        - [add column](#add-column)
-        - [rename column](#rename-column)
-        - [create temp table](#create-temp-table)
-        - [read from CSV file](#read-from-csv-file)
-        - [write to CSV file](#write-to-csv-file)
-    - [values](#values)
-        - [duplicate](#duplicate)
-        - [insert](#insert)
-        - [partial update](#partial-update)
-        - [update](#update)
-        - [delete](#delete)
+    - [constraints](#sql#constraints)
+    - [roles](#sql#roles)
+    - [queries](#sql#queries)
+        - [filter values](#sql#queries#filter values)
+        - [search for partial value](#sql#queries#search for partial value)
+        - [limit query](#sql#queries#limit query)
+        - [sort order](#sql#queries#sort order)
+        - [query from several tables](#sql#queries#query from several tables)
+        - [aggregate data with same values](#sql#queries#aggregate data with same values)
+        - [JOINS](#sql#queries#JOINS)
+            - [inner join](#sql#queries#JOINS#inner join)
+            - [left join](#sql#queries#JOINS#left join)
+    - [tables](#sql#tables)
+        - [add column](#sql#tables#add column)
+        - [rename column](#sql#tables#rename column)
+        - [create temp table](#sql#tables#create temp table)
+        - [read from CSV file](#sql#tables#read from CSV file)
+        - [write to CSV file](#sql#tables#write to CSV file)
+    - [values](#sql#values)
+        - [duplicate](#sql#values#duplicate)
+        - [insert](#sql#values#insert)
+        - [partial update](#sql#values#partial update)
+        - [update](#sql#values#update)
+        - [delete](#sql#values#delete)
 
 # tools 
 ## pgcli 
@@ -40,12 +40,12 @@
 
 ## psql
 ### dump 
-`pg_dump -U username > filename` dump database
-`pg_dumpall -U username > filename` dump all databases
+`pg_dump -U username > filename` dump database  
+`pg_dumpall -U username > filename` dump all databases  
 
 ### restore 
-`psql dbname < filename` restore single database
-`psql -f <dump> -U <user>` full restore
+`psql dbname < filename` restore single database  
+`psql -f <dump> -U <user>` full restore  
 
 ### write to file 
 `\o filename`
