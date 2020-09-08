@@ -26,6 +26,7 @@
         - [squash two commits](#squash-two-commits)
         - [show files in commit](#show-files-in-commit)
         - [sign](#sign)
+        - [commit in wrong branch](#commit-in-wrong-branch)
     - [diff](#diff)
         - [local from remote](#local-from-remote)
         - [remote from local](#remote-from-local)
@@ -222,6 +223,11 @@ then edit combined message for new commit
 `!` forces to use particular gpg key  
 identities don't have to be the same  
 
+### commit in wrong branch
+* `git reset --soft origin/<wrong_branch>` roll-back changes to worktree
+* `git checkout -b <correct_branch> && git add ...` follow as usual
+
+git branch <correct_branch>  
 ## diff
 ### local from remote
 `git log <branch> ^<remote/branch>`
