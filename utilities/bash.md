@@ -19,7 +19,7 @@
     - [execute and source](#execute-and-source)
     - [parameters expansion](#parameters-expansion)
     - [previous command and arguments](#previous-command-and-arguments)
-    - [replace symbols in last command](#replace-symbols-in-last-command)
+    - [replace symbols in previous command](#replace-symbols-in-previous-command)
 
 # configuration
 ## basics
@@ -152,6 +152,6 @@ e.g.
 - `!:2-` second to last, *does not* includes last
 - `!:0` the command itself
 
-## replace symbols in last command
+## replace symbols in previous command
 - `^X^Y` replaces `X` with `Y` and executes last command
 - `!!:gs/foo/bar/` replace all `foo` with `bar` and executes previous command
