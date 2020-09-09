@@ -2,18 +2,19 @@
 
 - [configuration](#configuration)
 - [usage](#usage)
-    - [generate](#usage#generate)
-    - [list](#usage#list)
-    - [edit](#usage#edit)
-    - [export](#usage#export)
-    - [import](#usage#import)
-    - [delete](#usage#delete)
-    - [encrypt/decrypt](#usage#encrypt/decrypt)
-    - [git integration](#usage#git integration)
-    - [edit uid](#usage#edit uid)
+    - [generate](#generate)
+    - [list](#list)
+    - [edit](#edit)
+    - [export](#export)
+    - [import](#import)
+    - [delete](#delete)
+    - [encrypt/decrypt](#encryptdecrypt)
+    - [git integration](#git-integration)
+    - [edit uid](#edit-uid)
 - [gpg-agent](#gpg-agent)
-    - [configuration](#gpg-agent#configuration)
-    - [ssh integration](#gpg-agent#ssh integration)
+    - [configuration](#configuration-2)
+    - [restart](#restart)
+    - [ssh integration](#ssh-integration)
 
     GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
     system, along with access modules for all kinds of public key directories.
@@ -133,6 +134,9 @@ gpg ---edit-key <keyID>
 `~/.gnupg/gpg-agent.conf`
 * program for entering passphrase `pinentry-program /usr/bin/pinentry-tty`
 * act as ssh agent `enable-ssh-support `
+
+## restart
+`gpg-connect-agent reloadagent /bye`  
 
 ## ssh integration
 key must be generated with *Auth* capability
