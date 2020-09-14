@@ -5,6 +5,7 @@
     - [autologin in lightdm](#autologin-in-lightdm)
     - [locale](#locale)
     - [keyboard switch](#keyboard-switch)
+- [share terminal](#share-terminal)
 
 # fork bomb
 ```
@@ -44,3 +45,6 @@ aka
 ## keyboard switch
 `/etc/default/keyboard`
 `dpkg-reconfigure keyboard-configuration`
+
+# share terminal
+`<command> | nc seashells.io 1337`
