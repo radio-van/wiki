@@ -1,38 +1,39 @@
 # Contents
 
-- [Classes](#Classes)
-    - [general](#Classes#general)
-        - [initialization](#Classes#general#initialization)
-        - [importing](#Classes#general#importing)
-        - [__str__ and __repr__](#Classes#general#__str__ and __repr__)
-        - [call parent class from child class with the same name](#Classes#general#call parent class from child class with the same name)
-    - [strings](#Classes#strings)
-        - [format](#Classes#strings#format)
+- [Classes](#classes)
+    - [general](#general)
+        - [initialization](#initialization)
+        - [importing](#importing)
+        - [__str__ and __repr__](#__str__-and-__repr__)
+        - [call parent class from child class with the same name](#call-parent-class-from-child-class-with-the-same-name)
+        - [metaclasses](#metaclasses)
+    - [strings](#strings)
+        - [format](#format)
 - [functions](#functions)
-    - [arguments](#functions#arguments)
-        - [default values](#functions#arguments#default values)
+    - [arguments](#arguments)
+        - [default values](#default-values)
 - [tests](#tests)
-    - [assert](#tests#assert)
-        - [check number of database calls](#tests#assert#check number of database calls)
-    - [mocking](#tests#mocking)
-        - [basics](#tests#mocking#basics)
-        - [return values](#tests#mocking#return values)
-        - [return different value on each call](#tests#mocking#return different value on each call)
-        - [mocking immutable built-ins](#tests#mocking#mocking immutable built-ins)
-        - [mocking models](#tests#mocking#mocking models)
-- [additional tools](#additional tools)
-    - [virtual envs](#additional tools#virtual envs)
-        - [create venv](#additional tools#virtual envs#create venv)
-        - [create pyenv](#additional tools#virtual envs#create pyenv)
-        - [activate pyenv](#additional tools#virtual envs#activate pyenv)
-        - [install version of Python](#additional tools#virtual envs#install version of Python)
-    - [package manager](#additional tools#package manager)
-        - [pip](#additional tools#package manager#pip)
-            - [install requirements](#additional tools#package manager#pip#install requirements)
+    - [assert](#assert)
+        - [check number of database calls](#check-number-of-database-calls)
+    - [mocking](#mocking)
+        - [basics](#basics)
+        - [return values](#return-values)
+        - [return different value on each call](#return-different-value-on-each-call)
+        - [mocking immutable built-ins](#mocking-immutable-built-ins)
+        - [mocking models](#mocking-models)
+- [additional tools](#additional-tools)
+    - [virtual envs](#virtual-envs)
+        - [create venv](#create-venv)
+        - [create pyenv](#create-pyenv)
+        - [activate pyenv](#activate-pyenv)
+        - [install version of Python](#install-version-of-python)
+    - [package manager](#package-manager)
+        - [pip](#pip)
+            - [install requirements](#install-requirements)
 - [receipts](#receipts)
-    - [web server](#receipts#web server)
-    - [decode base64](#receipts#decode base64)
-    - [get python version](#receipts#get python version)
+    - [web server](#web-server)
+    - [decode base64](#decode-base64)
+    - [get python version](#get-python-version)
 
 # Classes
 ## general
@@ -99,7 +100,7 @@ instances would be different, but share same data
 `package2.py`
 ```python
    from package1 import A
-   
+
    class B(object):
      def __init__(self):
        ...
@@ -132,6 +133,23 @@ Instead of just the name of object's class, some useful info (like state of vari
     def method():
         super(ClassName, self).method()
 ```
+
+### metaclasses
+**Metaclasses** are class of classes.
+```python
+MyClass = MyMetaClass()
+my_object = MyClass()
+```
+`type` are actually metaclasses, used to create other classes.
+
+```python
+type(name, bases, attrs)
+```
+* `name` name of the class
+* `bases` tuple of the parent class (for inheritance, can be empty)
+* `attrs` dictionary containing attributes names and values
+
+[more](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python/6581949#6581949)
 
 ## strings
 ### format
