@@ -1,17 +1,18 @@
 # Contents
 
-- [empty folders](#empty folders)
+- [empty folders](#empty-folders)
 - [delete](#delete)
-- [exec command](#exec command)
-- [exec complex commands](#exec complex commands)
-- [exec multiple commands](#exec multiple commands)
-- [negative condition](#negative condition)
+- [exec command](#exec-command)
+- [exec complex commands](#exec-complex-commands)
+- [exec multiple commands](#exec-multiple-commands)
+- [negative condition](#negative-condition)
 - [operations](#operations)
 - [prune](#prune)
-- [search pattern](#search pattern)
+- [search pattern](#search-pattern)
 - [examples](#examples)
-    - [batch file ranaming](#examples#batch file ranaming)
-    - [install python requirements](#examples#install python requirements)
+    - [batch file ranaming](#batch-file-ranaming)
+    - [install python requirements](#install-python-requirements)
+    - [search by date](#search-by-date)
 
 # empty folders
 `find . -type d -empty`
@@ -54,3 +55,6 @@ works with recursive paths
 
 ## install python requirements
 `find ./ -name requirements.txt -exec pip install -r '{}' \;`
+
+## search by date
+`find ./ -newermt 2019-01-01 ! -newermt 2020-01-01`
