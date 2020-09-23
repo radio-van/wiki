@@ -12,7 +12,7 @@
     - [aliases](#aliases-2)
 - [usage](#usage)
     - [branch](#branch)
-        - [change base](#change-base)
+        - [rebase](#rebase)
         - [delete local branch](#delete-local-branch)
         - [delete remote branch](#delete-remote-branch)
         - [delete file from all commits history](#delete-file-from-all-commits-history)
@@ -160,9 +160,37 @@ e.g.
 # usage
 ## branch
 
-### change base
+### rebase
+**rebase** changes parent commit of the branch to the head commit of given branch.
+```
+C0 <- C1 <- C2 (master)
+       \               
+        C4 (feature)
+```
+`git checkout feature && git rebase master`
+```
+C0 <- C1 <- C2 (master)
+             \               
+              C4' (feature)
+```
+if `C2` and `C4` have conflicts, then after resolving them, `C4` commit will be changed (i.e. `C4'`)
+
+* **basic usage**
 `git rebase <new_base>`
 `git rebase <new_base> <old_base>`
+
+* **interactive usage**
+`git rebase --interactive`
+it will call text editor with all commits and gives opportunities to:
+* `pick` save commit as is
+* `reword` change commit's description
+* `squash` with previous commit (previous commit is on the bottom line)
+* `drop` delete commit
+* `edit` gives the same state as right after staging changes in work dir (i.e. it's possible to modify files, add more commits, etc.)
+
+`git rebase --abort` cancels rebase process
+
+to separate changes in one file `git rebase --interactive` + `git add --patch` can be used
 
 ### delete local branch
 `git branch -d $branch`
@@ -276,6 +304,10 @@ in both cases Git:
 `git reset --hard <remote>/<branch>`
 ### push to remote
 `git push -u $remote $branch`
+* `-f` rewrites remote history with local
+* `--force-with-lease` does the same but fails if remote repo contains another participant's commits
+**NOTE**: commits deleted by `--force` are not _deleted_, to clean repo from 'ghosts' use `git gc --prune`
+
 ### push to all remotes
 `git remote | xargs -L1 git push --all`
 ### push to remote diff name
