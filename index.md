@@ -7,6 +7,7 @@
   * [regex](developing/regex.md)
 # Hardware
   * [android](hardware/android.md)
+  * [mac](hardware/mac.md)
   * [usb-modems](hardware/modems.md)
 # Linux
   * [installation](linux/installation.md)
