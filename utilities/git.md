@@ -180,7 +180,8 @@ if `C2` and `C4` have conflicts, then after resolving them, `C4` commit will be 
 `git rebase <new_base> <old_base>`
 
 * **interactive usage**
-`git rebase --interactive`
+  - `git rebase --interactive <hash>` from the given commit
+  - `git rebase --interactive --root` from the very beginning
 it will call text editor with all commits and gives opportunities to:
 * `pick` save commit as is
 * `reword` change commit's description
