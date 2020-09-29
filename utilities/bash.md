@@ -3,6 +3,10 @@
 - [configuration](#configuration)
     - [basics](#basics)
     - [history across all shells](#history-across-all-shells)
+- [conditions](#conditions)
+    - [compare variables](#compare-variables)
+- [pipes](#pipes)
+    - [run several commands in condition](#run-several-commands-in-condition)
 - [scripting](#scripting)
     - [set options](#set-options)
     - [recepies & examples](#recepies-examples)
@@ -11,7 +15,7 @@
         - [get name of current script?](#get-name-of-current-script)
         - [get args](#get-args)
         - [loop words in string](#loop-words-in-string)
-        - [run a command for each line of a file](#run-a-command-for-each-line-of-a-file)
+        - [loop lines in file](#loop-lines-in-file)
         - [wait until command returns true](#wait-until-command-returns-true)
 - [variables](#variables)
     - [variable modification](#variable-modification)
@@ -47,6 +51,14 @@ Complex way
       When the shell exits, append to the history file instead of overwriting it
 `export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"`
       After each command, append to the history file and reread it
+
+# conditions
+## compare variables
+* `[ $var = 'string' ]` compare string variable
+
+# pipes
+## run several commands in condition
+`<condition> && ( this && will && run_only_on_success ; ) || ( this_will_run_only && on_fail ; )`
 
 # scripting
 ## set options
@@ -86,7 +98,7 @@ for <loop_var> in <string>; do
 done
 ```
 
-### run a command for each line of a file
+### loop lines in file
 ```bash
 while read -r <loop_var>
 do
