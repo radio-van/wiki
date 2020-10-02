@@ -10,8 +10,11 @@
         - [methods](#methods)
         - [custom fields](#custom-fields)
         - [DateTimeFiled](#datetimefiled)
-- [queryset](#queryset)
+- [queries](#queries)
     - [ArrayFiled](#arrayfiled)
+    - [related fields](#related-fields)
+        - [select_related](#select_related)
+        - [prefetch_related](#prefetch_related)
     - [subquery](#subquery)
     - [union](#union)
     - [values](#values)
@@ -79,7 +82,7 @@ Usually, for custom field two classes are needed:
 ### DateTimeFiled
 * `auto_now_add = True` is **not** overriding by explicit argument!
 
-# queryset
+# queries
 ## ArrayFiled
 List of items.   
 - `__contains` returns objects where the values passed are a subset of the data
@@ -87,6 +90,103 @@ List of items.
 - `__overlap` data shares any results with the values passed
 - `__len` length of array
 
+## related fields
+Related fields are **OneToOne**, **ManyToMany**, etc.
+If field of a related object is called, a separate DB call is executed:
+```python
+class Author(models.Model):
+    name = models.CharField()
+
+
+class Book(models.Model):
+    name = models.CharField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+
+class Store(models.Model):
+    name = models.CharField()
+    books = models.ManyToManyField(Book)
+
+
+qs = Book.objects.all()
+books = []
+for book in qs:  # author is a related object
+    books.append({'name': book.name, 'author_name': book.author.name})
+
+# result -> N calls to DB (N = number of books)
+
+qs = Store.objects.all()
+stores = []
+for store in qs:
+    books = [book.name for book in store.books.all()]
+    stores.append({'name': store.name, 'books': books}]
+
+# result -> N calls to DB (N = number of stores)
+```
+
+### select_related
+is used when single object is going to be selected, i.e. forwards `ForeignKey`, `OneToOne`.
+creates SQL **join** with fields of related object.
+```python
+# ...
+qs = Book.objects.select_related('author').all()
+# ...
+
+# result -> 1 call to DB
+```
+
+### prefetch_related
+is used when set of objects is going to be selected, i.e. forwards `ManyToMany`.
+does a separate lookup for each relationship, and performs **joining** in Python (not in SQL).
+```python
+# ...
+qs = Store.objects.prefetch_related('books')
+# ...
+
+# result -> 2 calls to DB
+```
+```python
+# ...
+for store in qs:
+    books = [book.name for book in store.books.filter(price__range=(200, 300))]
+    stores.append({'name': store.name, 'books': books}]
+# ...
+
+# result -> N+1 calls to DB (N iterates number of stores + 1 for prefetching)
+# iteration is made because .filter() changes prefetched query
+```
+```python
+# ...
+qs = Store.objects.prefetch_related(
+    Prefetch('books', queryset=Book.objects.filter(price__range=(200, 300))))
+# ...
+
+# result -> 2 calls to DB
+```
+
+To prevent additional queries (i.e. making SQL JOIN), `__` can be used:  
+```python
+books = Books.objects.all().values("name", "author__name")
+```
+
+If `QuerySet` is used to look in, it can lead to complex query:
+```python
+author_ids = Author.objects.filter(name__startwith='A').values_list("id", flat=True)
+for book in Books.objects.filter(author__id__in=author_ids):
+    print(book.name)
+```
+will produce:
+```sql
+select <fields> from books where books.author_id in (select author.id from authors where <condition>)
+```
+with great number of ids such query is very heavy.  
+Two lighter queries can be used instead, if result of the first query is already calculated:
+```python
+# ...
+for book in Books.object.filter(author__id__in=list(author_ids)):
+# ...
+```
+but `list()` will produce a list with repeating identical ids, better use `set()` instead.  
 ## subquery
 e.g.   
 annotate Posts with recent emails, get emails only for selected Posts   
@@ -117,7 +217,6 @@ Queryset[{'id': <id_value>, 'age': <age_value>}, {...}, ...]
 * `.values_list(...)` do the same thing, but returns a listof tuples
 
 e.g.
-
 ```python
 >>> qs.values_list('id', 'age')
 Queryset[(<id_value>, <age_value>), (...), ...]

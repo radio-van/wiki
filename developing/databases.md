@@ -111,6 +111,13 @@ see also `ALTER ROLE`, `DROP ROLE`
 ``` 
 
 ### JOINS 
+* **INNER** fetches data if present in both tables
+* **CROSS** fetches data from both tables
+* **OUTER**
+    * **LEFT** fetches data if present in the left table
+    * **RIGHT** fetches data if present in right table
+    * **FULL** fetches data if present in either of the two tables
+
 #### inner join 
 select smth from one table where particular values are the same in both tables
 ```sql
