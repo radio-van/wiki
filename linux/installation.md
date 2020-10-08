@@ -132,11 +132,7 @@ if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `d
 if `LUKS` and `LVM` are used, change `options` according to [[#LVM on LUKS|LVM and LUKS]]
 
 ### pacman
-* initialize keys `pacman-key --init`
-* populate keys `pacman-key --populate <distro>`, `distro` can be found at `/usr/share/pacman/keyrings/`
-* upgrade `pacman -Syu`
-
-* delete orphans `pacman -Rusn $(pacman -Qtdq)` use `-Qttdq` for potential orphans
+see [packages](packages.md)
 
 ### users
 `useradd -m -G <group> <user>`

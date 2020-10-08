@@ -277,6 +277,7 @@ fetch downloads remote objects
 ### show ignored files
 `git status --ignored`
 ### remove file from index
+unstage file aka undo `git add`  
 `git reset $file`
 ### remove all files from index
 `git reset`
