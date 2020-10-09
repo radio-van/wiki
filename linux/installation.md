@@ -115,6 +115,7 @@ if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `d
 
 ### bootloader
 #### systemd-boot
+installation: `bootctl install`
 * `esp/loader/loader.conf` (`esp` is `EFI System Partition`)
 ```
     default  arch
