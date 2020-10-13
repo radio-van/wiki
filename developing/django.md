@@ -43,12 +43,14 @@
 ## make/update localization files
 * create/update `.po` files
 `django-admin makemessages -l <lang>` (e.g. `ru_RU` or `ru`)
-or
+or  
 `./manage.py makemessages -l <lang>`
+
 * edit them (e.g. in `Poedit`)
+
 * compile `.mo` files
 `django-admin compilemessages`
-or
+or  
 `./manage.py compilemessages`
 
 # migrations
