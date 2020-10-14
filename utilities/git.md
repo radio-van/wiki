@@ -9,7 +9,7 @@
         - [exclude w/o .gitignore](#exclude-wo-gitignore)
     - [hide utracked files](#hide-utracked-files)
     - [test connection](#test-connection)
-    - [aliases](#aliases-2)
+    - [protocols](#protocols)
 - [usage](#usage)
     - [branch](#branch)
         - [rebase](#rebase)
@@ -150,12 +150,11 @@ e.g.
 ## test connection
 `ssh -T git@<address>`
 
-## aliases
-`git config --global alias.<name> '<command'>`
+## protocols
+By default `http, https, git, ssh, file` are allowed if no config specified.  
+`git config --global --add protocol.<name>.allow = [always, never, user]`
 
-e.g.   
-
-`git config --global alias.pushall '!git remote | xargs -L1 git push --all'`
+**NOTE**: if any protocol is specified, default ones are not allowed automatically.
 
 # usage
 ## branch

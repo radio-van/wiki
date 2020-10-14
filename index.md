@@ -60,6 +60,7 @@
   * [systemd](utilities/systemd.md)
   * [tmux](utilities/tmux.md) 
   * [top](utilities/top.md) 
+  * [tor](utilities/tor.md) 
   * [urxvt](utilities/urxvt.md)
   * [vim](utilities/vim.md)
   * [wireguard](utilities/wireguard.md)

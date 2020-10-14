@@ -1,14 +1,16 @@
 # Contents
 
 - [Xorg](#xorg)
-        - [frequently used XKB options](#frequently-used-xkb-options)
-        - [one-click key functions](#one-click-key-functions)
-        - [Xmodmap](#xmodmap)
-            - [modify keymap](#modify-keymap)
-            - [modifier keys](#modifier-keys)
-            - [reverse scrolling](#reverse-scrolling)
-            - [swap mouse buttons](#swap-mouse-buttons)
-            - [disable touchpad](#disable-touchpad)
+    - [frequently used XKB options](#frequently-used-xkb-options)
+    - [one-click key functions](#one-click-key-functions)
+    - [Xmodmap](#xmodmap)
+        - [modify keymap](#modify-keymap)
+        - [modifier keys](#modifier-keys)
+        - [reverse scrolling](#reverse-scrolling)
+        - [swap mouse buttons](#swap-mouse-buttons)
+        - [disable touchpad](#disable-touchpad)
+- [backlight](#backlight)
+    - [mackbook](#mackbook)
 
 # Xorg
 Options are made in several sets:
@@ -43,7 +45,7 @@ EndSection
 `localectl set-x11-keymap us,ru pc104 ,mac grp:alt_shift_toggle`
 it will also convert specified layout to closest match for console and applies to `vconsole.conf` (to avoid this, use `--no-convert`)
 
-### frequently used XKB options
+## frequently used XKB options
 * `grp:.*toggle` keybinding for switch layout
 * `terminate:.*` keybinding for terminate Xorg
 * `ctrl:.* | caps:.*` various swaps and substitutions for *caps lock* and modifiers keys
@@ -56,11 +58,11 @@ it will also convert specified layout to closest match for console and applies t
   ```
 * `lv3:lalt_switch` toggle 3rd layer, useful for various signs, e.g. `eurosign:5`
 
-### one-click key functions
+## one-click key functions
 use `setxkbmap` to set `caps_lock` key to act as `Ctrl` key when pressed and hold as modifier
 use `xcape -e 'Caps_Lock=Escape'` to set `caps_lock` to act as `Escape` key when it pressed once
 
-### Xmodmap
+## Xmodmap
 `xmodmap` settings are reset by `setxkbmap` 
 `xmodmap` settings are not applied to hotplug devices automatically
 
@@ -68,7 +70,7 @@ Types of keyboard values:
 * `keycode` numeric representation received by the kernel
 * `keysym` value assigned to `keycode`
 
-#### modify keymap
+### modify keymap
 `xmodmap -pke` shows current keymap table
 e.g. `keycode 57 = n N`
 keysym column corresponds to following combinations:
@@ -90,7 +92,7 @@ Custom table can be created with `xmodmap -pke > ~/.Xmodmap` and following line 
 `[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap`
 or temporary: `xmodmap -e "keycode 46 = l L l L lstroke Lstroke lstroke"`
 
-#### modifier keys
+### modifier keys
 defaults:
 - *mod1* `Alt_L`, `Meta_L`
 - *mod2* `Num_Lock`
@@ -118,13 +120,17 @@ add lock = Caps_Lock
 add mod2 = Num_Lock
 ```
 
-#### reverse scrolling
+### reverse scrolling
 `~/.Xmodmap`
 `pointer = 1 2 3 `*5* *4*` 7 6 8 9 10 11 12`
 
-#### swap mouse buttons
+### swap mouse buttons
 `~/.Xmodmap`
 `pointer = 3 2 1`
 
-#### disable touchpad
+### disable touchpad
 `xinput disable $(xinput list | grep -Eio '(touchpad|glidepoint)\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}')`
+
+# backlight
+## mackbook
+`/sys/class/leds/smc\:\:kbd_backlight/brightness`
