@@ -23,7 +23,7 @@
         - [one file](#one-file)
         - [remote branch](#remote-branch)
     - [commit](#commit)
-        - [squash two commits](#squash-two-commits)
+        - [squash commits](#squash-commits)
         - [show files in commit](#show-files-in-commit)
         - [sign](#sign)
         - [commit in wrong branch](#commit-in-wrong-branch)
@@ -228,8 +228,13 @@ if file doesn't exist in current branch
 `git checkout -b <local_branch> <remote>/<branch>`
 
 ## commit
-### squash two commits
-`git rebase --interactive HEAD~2`   
+### squash commits
+- `git reset --hard <initial commit>` resets work dir to state of choosen commit
+- `git merge --squash HEAD@{1}` merges commits into one from current (initial) to last (`HEAD@{1}` refers to previous `HEAD` position)
+- `git commit`
+
+or use  
+`git rebase --interactive HEAD~X`   
 
 ### show files in commit
 `git diff-tree --no-commit-id --name-only -r <commit>`
