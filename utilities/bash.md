@@ -14,9 +14,10 @@
         - [get name of current function](#get-name-of-current-function)
         - [get name of current script?](#get-name-of-current-script)
         - [get args](#get-args)
-        - [loop words in string](#loop-words-in-string)
-        - [loop lines in file](#loop-lines-in-file)
-        - [wait until command returns true](#wait-until-command-returns-true)
+        - [loops](#loops)
+            - [loop words in string](#loop-words-in-string)
+            - [loop lines in file](#loop-lines-in-file)
+            - [loop while command succeeded](#loop-while-command-succeeded)
 - [variables](#variables)
     - [variable modification](#variable-modification)
 - [usage](#usage)
@@ -90,7 +91,8 @@ Complex way
 `$@` - all args
 `$1, $2, ...` - first, second, etc arg
 
-### loop words in string
+### loops
+#### loop words in string
 ```bash
 IFS=' '
 for <loop_var> in <string>; do
@@ -98,7 +100,7 @@ for <loop_var> in <string>; do
 done
 ```
 
-### loop lines in file
+#### loop lines in file
 ```bash
 while read -r <loop_var>
 do
@@ -113,11 +115,17 @@ do
 done <<< <multiline_variable>
 ```
 
-### wait until command returns true
+#### loop while command succeeded
+```bash
+while ! (command1 && command2 && ...); do echo 'retrying'; done
+```
+
+or  
+
 ```bash
 until $(<command>)
 do
-  echo "Try again"
+  echo "retrying"
 done
 ```
 
