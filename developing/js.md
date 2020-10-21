@@ -4,6 +4,7 @@
     - [assert](#assert)
     - [clear](#clear)
     - [css](#css)
+    - [formatted strings](#formatted-strings)
     - [group](#group)
     - [json](#json)
     - [levels](#levels)
@@ -23,6 +24,11 @@ output only if assertion is *False*
 ## css
 `console.log('%c<text>','color: <color>; font-size: <size, e.g. x-large>');`
 `%c` should be before the part that is needed to be changed
+
+## formatted strings
+```js
+    console.log(`<text> ${<var>}`)
+```
 
 ## group
 ```js
