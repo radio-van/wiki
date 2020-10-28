@@ -57,6 +57,7 @@
         - [expand filename](#expand-filename)
         - [encoding](#encoding)
         - [save as another file](#save-as-another-file)
+    - [path](#path)
     - [macro](#macro)
         - [save recordered macro](#save-recordered-macro)
     - [registers](#registers)
@@ -543,6 +544,15 @@ modificators
 
 ### save as another file
 `:saveas`
+
+## path
+* `cd <path>` changes current working dir to `<path>`
+* `lcd <path>` does the same, but only for current window or split
+* `tcd <path>` does the same, but only for current tab
+
+switching to other window/tab in case of using `lcd/tcd` will restore their `path`  
+
+to switch to the current file's dir `cd|lcd|tcd %:h` can be used (see [filename expand](#expand-filename))  
 
 ## macro
 ### save recordered macro
