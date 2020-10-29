@@ -33,6 +33,10 @@
             - [changes](#changes)
         - [tags](#tags)
         - [quickfix](#quickfix)
+    - [commands](#commands)
+        - [shell command](#shell-command)
+        - [silent shell command](#silent-shell-command)
+        - [insert smth](#insert-smth)
     - [diff](#diff)
     - [editing](#editing)
         - [basic idea](#basic-idea)
@@ -41,7 +45,7 @@
         - [ex/ed](#exed)
             - [ranges](#ranges)
             - [patterns](#patterns)
-            - [commands](#commands)
+            - [commands](#commands-2)
             - [examples](#examples)
             - [regex](#regex)
             - [lookahead / lookbehind](#lookahead-lookbehind)
@@ -346,6 +350,22 @@ open tags in windows, tabs, splits
 * `:cp`    go to the previous error in the window
 * `:cnf`   go to the first error in the next file
 * `:.cc`   go to error under cursor (if cursor is in quickfix window)
+
+## commands
+### shell command
+`: !<shell command>`
+
+### silent shell command
+no *press Enter....* after  
+`:silent !<shell command>`
+
+### insert smth
+master key is `C-r`  
+then the number of register can be typed to insert it or one of the following:  
+* `C-f` file under cursor
+* `C-w` word under cursor
+* `C-a` WORD under cursor
+* `C-l` line under cursor
 
 ## diff
 Open desired buffers and `:windo diffthis`

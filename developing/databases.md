@@ -17,6 +17,7 @@
         - [sort order](#sort-order)
         - [query from several tables](#query-from-several-tables)
         - [aggregate data with same values](#aggregate-data-with-same-values)
+        - [EXCLUDE](#exclude)
         - [JOINS](#joins)
             - [inner join](#inner-join)
             - [left join](#left-join)
@@ -109,6 +110,13 @@ see also `ALTER ROLE`, `DROP ROLE`
   SELECT DISTINCT column FROM ...
   SELECT column2, MAX(column1) FROM ... GROUP BY column2;
 ``` 
+
+### EXCLUDE
+```sql
+  SELECT * FROM table WHERE ...
+  EXCLUDE
+  SELECT * FROM table WHERE ...
+```
 
 ### JOINS 
 * **INNER** fetches data if present in both tables
