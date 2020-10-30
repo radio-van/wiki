@@ -59,6 +59,7 @@
         - [clear](#clear)
         - [show diff](#show-diff)
     - [submodules](#submodules)
+        - [add](#add)
         - [update](#update)
     - [urls](#urls)
         - [change remote url](#change-remote-url)
@@ -349,6 +350,9 @@ That's how remote servers, e.g. GitHub, work.
 `git stash show` use `-p` option to show diff
 
 ## submodules
+### add
+`git submodule add -b <branch> <git url> <local path>`
+
 ### update
 `git submodule update`
 - `--init` initialize all submodules, which haven't been yet (also resets them to state in latest commit)
