@@ -3,7 +3,7 @@
     - [base](#base)
         - [pre-installation](#pre-installation)
         - [partition](#partition)
-            - [crypt](#crypt)
+            - [encryption](#encryption)
                 - [LVM on LUKS](#lvm-on-luks)
         - [install base system](#install-base-system)
         - [generate fstab](#generate-fstab)
@@ -53,7 +53,9 @@ use `mkfs.ext4` for create filesystem
 
 if installing on system with existing `EFI system partition` (e.g. on Apple computer), it could be mounted and used
 
-#### crypt
+more about [partitions](filesystem.md#partitions)  
+
+#### encryption
 ##### LVM on LUKS
 ```
    +----------------------------+
@@ -63,8 +65,8 @@ if installing on system with existing `EFI system partition` (e.g. on Apple comp
    +------+---------------------+
 ```
 
-1. [[workspace#create encrypted partition|create encrypted partition]]
-2. [[workspace#LVM|create LVM partitions]]
+1. [create encrypted partition](../utilities/luks.md#create-encrypted-partition)
+2. [create LVM partitions](../utilities/lvm.md#setup)
 3. mount partitions
    - mount `/boot` (existing, or create new one) `mount /dev/sdbN /mnt/boot`
    - mount the rest
@@ -77,10 +79,8 @@ if installing on system with existing `EFI system partition` (e.g. on Apple comp
 4. set `mkinitcpio` hooks, install `lvm2` package
    `HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)`
    *ATTENTION* follow the order of hooks!
-5. set bootloader options
-   `cryptdevice=UUID=<device-UUID>:cryptlvm root=/dev/MyVolGroup/root`
-   * `<device-UUID>` can be checked with `lsblk -dno UUID /dev/sdaX`
-   * if `systemd-boot` is used, config file is `<EFI System Partition>/loader/entries/<name>.conf`, `<name>` must be populated in `<EFI System Partition>/loader/loader.conf`
+5. [set bootloader option](../utilities/luks.md#set-bootloader-options)  
+   if `systemd-boot` is used, config file is `<EFI System Partition>/loader/entries/<name>.conf`, `<name>` must be populated in `<EFI System Partition>/loader/loader.conf`
 
 ### install base system
 `pacstrap /mnt base linux linux-firmware <any additional packages>`, e.g. `lvm2` for `LVM`
