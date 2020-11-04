@@ -24,7 +24,9 @@ without data:
 `curl --request POST <url>`
 
 ### post video to Telegram
-`curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`
+`curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
+`<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  
+
 ## POST with json data
 
 required options: ::

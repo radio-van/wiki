@@ -19,6 +19,7 @@
     - [union](#union)
     - [values](#values)
 - [timezone](#timezone)
+- [show raw SQL](#show-raw-sql)
 
 # router
 
@@ -241,3 +242,9 @@ Return object is `Queryset`, it can be converted to list with `list(...)`
   which date is `<offset>` days/weeks/hours from now
 - `timezone.now() - <datetime>` returns `timedelta` object,
   `timedelta.days` shows offset in days, etc
+  
+# show raw SQL
+```python
+q = <query>
+print q.query
+```

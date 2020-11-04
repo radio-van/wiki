@@ -65,6 +65,7 @@
     - [macro](#macro)
         - [save recordered macro](#save-recordered-macro)
     - [registers](#registers)
+        - [in insert mode](#in-insert-mode)
         - [named registers](#named-registers)
         - [special registers](#special-registers)
     - [session](#session)
@@ -360,12 +361,7 @@ no *press Enter....* after
 `:silent !<shell command>`
 
 ### insert smth
-master key is `C-r`  
-then the number of register can be typed to insert it or one of the following:  
-* `C-f` file under cursor
-* `C-w` word under cursor
-* `C-a` WORD under cursor
-* `C-l` line under cursor
+See [registers](#in-insert-mode)
 
 ## diff
 Open desired buffers and `:windo diffthis`
@@ -582,6 +578,13 @@ add to config: `let @MACRO_LETTER = 'PASTE_MACRO_HERE'`
 ## registers
 * `^r<register>` in **insert mode** or **command mode** pastes content of register, e.g. `^R%` pastes current filename
 * `"<register><command>` in **normal mode** sends register to command, e.g. `"%p` pastes current filename
+### in insert mode
+master key is `C-r`  
+then the number of register can be typed to insert it or one of the following:  
+* `C-f` file under cursor
+* `C-w` word under cursor
+* `C-a` WORD under cursor
+* `C-l` line under cursor
 
 ### named registers
 - `a-z` save to register
