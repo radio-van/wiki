@@ -7,6 +7,7 @@
     - [compare variables](#compare-variables)
 - [pipes](#pipes)
     - [run several commands in condition](#run-several-commands-in-condition)
+    - [run several commands simultaneously](#run-several-commands-simultaneously)
 - [scripting](#scripting)
     - [set options](#set-options)
     - [recepies & examples](#recepies-examples)
@@ -60,6 +61,8 @@ Complex way
 # pipes
 ## run several commands in condition
 `<condition> && ( this && will && run_only_on_success ; ) || ( this_will_run_only && on_fail ; )`
+## run several commands simultaneously
+`<command1> & <command2>`
 
 # scripting
 ## set options

@@ -10,14 +10,15 @@
         - [methods](#methods)
         - [custom fields](#custom-fields)
         - [DateTimeFiled](#datetimefiled)
-- [queries](#queries)
-    - [ArrayFiled](#arrayfiled)
-    - [related fields](#related-fields)
-        - [select_related](#select_related)
-        - [prefetch_related](#prefetch_related)
-    - [subquery](#subquery)
-    - [union](#union)
-    - [values](#values)
+    - [transactions](#transactions)
+    - [queries](#queries)
+        - [ArrayFiled](#arrayfiled)
+        - [related fields](#related-fields)
+            - [select_related](#select_related)
+            - [prefetch_related](#prefetch_related)
+        - [subquery](#subquery)
+        - [union](#union)
+        - [values](#values)
 - [timezone](#timezone)
 - [show raw SQL](#show-raw-sql)
 
@@ -85,15 +86,19 @@ Usually, for custom field two classes are needed:
 ### DateTimeFiled
 * `auto_now_add = True` is **not** overriding by explicit argument!
 
-# queries
-## ArrayFiled
+## transactions
+`transaction.atomic()`  
+Creates snapshot of state **before**, **after** and in **control points** and allows to roll-back all operations to given point, i.e. wraps several operations into one cancable *transaction*.  
+
+## queries
+### ArrayFiled
 List of items.   
 - `__contains` returns objects where the values passed are a subset of the data
 - `__contained_by` return objects where the data is a subset of the values passed
 - `__overlap` data shares any results with the values passed
 - `__len` length of array
 
-## related fields
+### related fields
 Related fields are **OneToOne**, **ManyToMany**, etc.
 If field of a related object is called, a separate DB call is executed:
 ```python
@@ -127,7 +132,7 @@ for store in qs:
 # result -> N calls to DB (N = number of stores)
 ```
 
-### select_related
+#### select_related
 is used when single object is going to be selected, i.e. forwards `ForeignKey`, `OneToOne`.
 creates SQL **join** with fields of related object.
 ```python
@@ -138,7 +143,7 @@ qs = Book.objects.select_related('author').all()
 # result -> 1 call to DB
 ```
 
-### prefetch_related
+#### prefetch_related
 is used when set of objects is going to be selected, i.e. forwards `ManyToMany`.
 does a separate lookup for each relationship, and performs **joining** in Python (not in SQL).
 ```python
@@ -190,7 +195,8 @@ for book in Books.object.filter(author__id__in=list(author_ids)):
 # ...
 ```
 but `list()` will produce a list with repeating identical ids, better use `set()` instead.  
-## subquery
+
+### subquery
 e.g.   
 annotate Posts with recent emails, get emails only for selected Posts   
 
@@ -199,7 +205,7 @@ newest = Comment.objects.filter(post=OuterRef('pk')).order_by('-created_at')
 Post.objects.annotate(newest_commenter_email=Subquery(newest.values('email')[:1]))
 ```
 
-## union
+### union
 get only uniq items from all querysets
 
 `qs_res = qs1 | qs2 | qs3`   
@@ -208,7 +214,7 @@ or
 
 `qs1.union(qs2)`
 
-## values
+### values
 * `.values('<value1>', '<value2>', ...)` returns only particular values from queryset
 
 e.g.

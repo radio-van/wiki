@@ -12,6 +12,7 @@
     - [placeholders](#placeholders)
     - [time](#time)
     - [trace](#trace)
+- [translations](#translations)
 
 # logging
 ## assert
@@ -69,3 +70,11 @@ measure time of code block execution
 ## trace
 ouptut call stack
 `console.trace()`
+
+# translations
+* create `.pot` file:  
+`./node_modules/.bin/gulp extract-strings`
+* update `.po` (e.g. `locale/angular/ru.po`) file from `.pot` file in `PoEdit`
+* enter new translations
+* compile new translations:  
+`./node_modules/.bin/gulp compile-translations`
