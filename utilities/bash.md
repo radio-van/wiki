@@ -23,7 +23,7 @@
     - [variable modification](#variable-modification)
 - [usage](#usage)
     - [execute and source](#execute-and-source)
-    - [parameters expansion](#parameters-expansion)
+    - [varibles expansion](#varibles-expansion)
     - [previous command and arguments](#previous-command-and-arguments)
     - [replace symbols in previous command](#replace-symbols-in-previous-command)
 
@@ -156,7 +156,7 @@ e.g.
 * `execute` aka `./<script>` runs script in _new_ shell (all changes to environment will stay in that shell)
 * `source` aka `. <script>` runs script in _current_ shell (all changes to environment will be applied to current shell)
 
-## parameters expansion
+## varibles expansion
 | variable          | description                                         |
 | ---               | ---                                                 |
 | `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
