@@ -4,6 +4,7 @@
     - [Huawei 827F](#huawei-827f)
         - [recovery mode](#recovery-mode)
         - [flashing](#flashing)
+        - [switch hilink to AT-mode](#switch-hilink-to-at-mode)
     - [ZTE modem 836F](#zte-modem-836f)
         - [flashing](#flashing-2)
         - [modes](#modes)
@@ -39,6 +40,14 @@ From noraml mode:
   use `-k` key if you flash *firmware* and *webui* separately
   use `-r` key if modem doen't return to normal mode after flashing
 
+### switch hilink to AT-mode
+`http://192.168.8.1/html/switchProjectMode.html`  
+*NOTE*: if modem is not shown as Ethernet card, `usb_modeswitch` must be installed.  
+
+Modem should be now accessable as `/dev/ttyUSBX`
+
+or use [4pda script](https://4pda.ru/forum/index.php?showtopic=582284&st=39980#entry76659248)
+
 ## ZTE modem 836F
 *Windows* software
 * `terminal` *COM* terminal for sending *AT* commands
@@ -58,15 +67,32 @@ From noraml mode:
 # AT commands
 ## overview
 To use *AT* commands on Linux try
-`socat - /dev/ttyUSB2,crnl`
-or `minicom`
+`socat - /dev/ttyUSBX,crnl`
+or `minicom /dev/ttyUSBX`
 
-use `ate1` command to turn on echo
+use `ate1` command to turn on echo  
+or type `Ctrl+A E` in `minicom`
+
+type `AT^CURC=0` in `minicom` to turn off data flow from modem.
 
 ## IMEI
+**IMEI** has first 8 meaningful digits and 6 random.
+For *Nokia* (because it's the easiest way to provide proper modem work on Windows PC),
+first digits would be `35365206`.
+The rest 6 are random and can be checked at [imei.info](http://www.imei.info/calc).
+
+**IMEI** must be written into hardware via AT commands.
+
 `at^modimei=<imei>`
 or
 `at^setimei=<imei>`
+
+For **E3372h**:  
+`AT^CIMEI="<imei>"`
+`AT^INFORBU`
+
+more info: [4pda](https://4pda.ru/forum/index.php?showtopic=582284&view=findpost&p=51716190)
+IMEI generator: [nokia](https://www.nokiaport.de/tacdatabase/index.php?s=imeitools&lng=)
 
 ## SMS
 `AT+CMGR=<index>` read SMS
