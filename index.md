@@ -54,6 +54,7 @@
   * [lvm](utilities/lvm.md)
   * [lxc](utilities/lxc.md) 
   * [keynav](utilities/keynav.md) 
+  * [netcat](utilities/netcat.md) 
   * [newsboat](utilities/newsboat.md) 
   * [pass](utilities/pass.md)
   * [rsync](utilities/rsync.md)

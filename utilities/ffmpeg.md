@@ -125,7 +125,11 @@ hint: add `-safe 0` before `-i` if file pathes are not relative
 `cat *.VOB | ffmpeg -fflags +genpts -i - -c:v copy -c:a copy -c:s copy <output.mkv>`
 
 ## convert to ogg
-`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 <output>`
+`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 <output>`  
+for smaller files:
+`ffmpeg -i <input> -vn -acodec libvorbis -ab 32k -ar 22050 <output>`  
+or  
+`ffmpeg -i <input> -vn -acodec libvopus -ab 16k -ar 16k -vbr on <output>`  
 
 ## exctract frames
 * extract 3 frames `ffmpeg -i <input> -ss 00:00:07.000 -vframes 3 thumb%04d.jpg` 

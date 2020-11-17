@@ -16,19 +16,21 @@
 
 # usage
 ## add rule
-`iptables -t <table> -A <chain> -p <protocol> -j <target>`
-useful options:
+`iptables -t <table> -A <chain> -p <protocol> -j <target>`  
+useful options:  
 * `--dport <port>` destination port of incoming traffic
 * `--to-destination <address>:<port>` destination for filtered traffic
 * `--match`, `-m` additional filters
 
 # list rules
-`iptables -n -t <table> -L --line-number`
-`-n` disables hostname conversion
+`iptables -n -t <table> -L --line-number`  
+* `-n` disables hostname conversion  
+* `-v` verbose, shows also interfaces for `MASQUERADE` rules  
 
 # delete rule
-list table with `--line-numbers`
-`iptables -D <CHAIN_NAME> <RULE_NUMBER>`
+list table with `--line-numbers`  
+`iptables -D <CHAIN_NAME> <RULE_NUMBER>`  
+
 also rule can be deleted if it is repeated with `-D` instead of `-A` option.
 
 # flush rules
@@ -37,10 +39,10 @@ also rule can be deleted if it is repeated with `-D` instead of `-A` option.
 
 # recepies
 ## port forwarding
-w/o NAT
-`iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $PORT -j REDIRECT --to-port $PORT`
-w/ NAT
-`iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`
+w/o NAT  
+`iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $PORT -j REDIRECT --to-port $PORT`  
+w/ NAT  
+`iptables -t nat -A PREROUTING -p tcp --dport $PORT -j DNAT --to-destination $ADDRESS:$PORT`  
 
 ## basic routing between eth0 and wlan0
 ```bash
