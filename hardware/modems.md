@@ -12,6 +12,7 @@
     - [overview](#overview)
     - [IMEI](#imei)
     - [SMS](#sms)
+- [recovering](#recovering)
 
 # firmware
 ## Huawei 827F
@@ -98,3 +99,18 @@ IMEI generator: [nokia](https://www.nokiaport.de/tacdatabase/index.php?s=imeitoo
 `AT+CMGR=<index>` read SMS
 `AT+CMGL="REC UNREAD"` list unread SMS
 `AT+CMGL="ALL"` list all SMS
+
+# recovering
+Most often case is corrupted flash.
+
+Install drivers for **adb**, **fc serial**, **huawei**
+
+- activate recovery mode with _pin_
+- remap bad blocks with `usbdload` from **4pda**
+- flash `usbsafe` from **balong**
+
+Now modem should be in composition with single COM port (COM3)
+
+- use **dc-...** to switch composition to `PC UC COM` (two COM ports)
+- use **balong flash** or _official_ flasher to install firmware
+- flash WEBUI
