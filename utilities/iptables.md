@@ -7,6 +7,7 @@
 - [delete rule](#delete-rule)
 - [flush rules](#flush-rules)
 - [recepies](#recepies)
+    - [open port](#open-port)
     - [port forwarding](#port-forwarding)
     - [basic routing between eth0 and wlan0](#basic-routing-between-eth0-and-wlan0)
 
@@ -38,6 +39,8 @@ also rule can be deleted if it is repeated with `-D` instead of `-A` option.
 `iptables -t <table> -F <chain>` flushes single chain
 
 # recepies
+## open port
+`iptables -A INPUT -p tcp --dport <PORT> -j ACCEPT`
 ## port forwarding
 w/o NAT  
 `iptables -t nat -A PREROUTING -i eth0 -p tcp --dport $PORT -j REDIRECT --to-port $PORT`  

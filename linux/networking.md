@@ -122,8 +122,7 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 
 ## tips & trics
 ### show process which is listening target port
-* `lsof -i :PORT`
-* `netstat -ltnp | grep -w ':PORT'`
+* `ss -ltnp | grep -w ':PORT'`
 ### get ip
 `ip -4 addr show <interface> | grep -oP '(?<=inet\s)\d+(\.\d+){3}`
 
