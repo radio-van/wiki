@@ -12,6 +12,7 @@
     - [verify](#verify)
     - [zipalign](#zipalign)
 - [flashing](#flashing)
+    - [bootloader without slots](#bootloader-without-slots)
     - [bootloader with slots](#bootloader-with-slots)
     - [Galaxy 4](#galaxy-4)
 
@@ -79,17 +80,25 @@ It is used for storing some app's data which must be accessible before user ente
 
 # flashing
 
-## bootloader with slots
 
 - activate Developer options (taps on build version)
-- allow OEM unlock
 - allow usb debugging
-- boot to `fastboot mode` (usb + volume down)
-- unlock bootloader (warranty void!)
-```
-fastboot flashing unlock
-```
-- reboot phone
+- allow OEM unlock
+  
+  several options are possible here, common one is:
+    - boot to `fastboot mode` (usb + volume down)
+    - unlock bootloader (warranty void!)
+    ```
+    fastboot flashing unlock
+    ```
+    - reboot phone
+
+## bootloader without slots
+* `fastboot flash recovery twrp-...img`
+* `fastboot reboot`
+
+## bootloader with slots
+
 - get current boot slot, `a` or `b`
 ```
 adb shell getprop ro.boot.slot_suffix
