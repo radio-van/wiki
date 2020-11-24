@@ -20,10 +20,10 @@
             - [loop lines in file](#loop-lines-in-file)
             - [loop while command succeeded](#loop-while-command-succeeded)
 - [variables](#variables)
+    - [varible expansion](#varible-expansion)
     - [variable modification](#variable-modification)
 - [usage](#usage)
     - [execute and source](#execute-and-source)
-    - [varibles expansion](#varibles-expansion)
     - [previous command and arguments](#previous-command-and-arguments)
     - [replace symbols in previous command](#replace-symbols-in-previous-command)
 
@@ -133,6 +133,14 @@ done
 ```
 
 # variables
+## varible expansion
+| variable          | description                                         |
+| ---               | ---                                                 |
+| `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
+| `${VAR##pattern}` | delete longest match of pattern from the beginning  |
+| `${VAR%pattern}`  | delete shortest match of pattern from the end       |
+| `${VAR%%pattern}` | delete longest match of pattern from the end        |
+
 ## variable modification
 `${VAR:N}` cuts first `N` symbols
 `${VAR:N:M}` cuts first `N` symbols and then output `M` symbols of what is rest.
@@ -155,14 +163,6 @@ e.g.
 ## execute and source
 * `execute` aka `./<script>` runs script in _new_ shell (all changes to environment will stay in that shell)
 * `source` aka `. <script>` runs script in _current_ shell (all changes to environment will be applied to current shell)
-
-## varibles expansion
-| variable          | description                                         |
-| ---               | ---                                                 |
-| `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
-| `${VAR##pattern}` | delete longest match of pattern from the beginning  |
-| `${VAR%pattern}`  | delete shortest match of pattern from the end       |
-| `${VAR%%pattern}` | delete longest match of pattern from the end        |
 
 ## previous command and arguments
 - `!!` whole previous command (useful with `sudo`)
