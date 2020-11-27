@@ -10,18 +10,19 @@
     - [run several commands simultaneously](#run-several-commands-simultaneously)
 - [scripting](#scripting)
     - [set options](#set-options)
-    - [recepies & examples](#recepies-examples)
-        - [compare two dirs](#compare-two-dirs)
-        - [get name of current function](#get-name-of-current-function)
-        - [get name of current script?](#get-name-of-current-script)
-        - [get args](#get-args)
-        - [loops](#loops)
-            - [loop words in string](#loop-words-in-string)
-            - [loop lines in file](#loop-lines-in-file)
-            - [loop while command succeeded](#loop-while-command-succeeded)
+    - [redirect output](#redirect-output)
+    - [compare two dirs](#compare-two-dirs)
+    - [get name of current function](#get-name-of-current-function)
+    - [get name of current script?](#get-name-of-current-script)
+    - [get args](#get-args)
+    - [loops](#loops)
+        - [loop words in string](#loop-words-in-string)
+        - [loop lines in file](#loop-lines-in-file)
+        - [loop while command succeeded](#loop-while-command-succeeded)
+    - [concat strings](#concat-strings)
 - [variables](#variables)
-    - [varible expansion](#varible-expansion)
-    - [variable modification](#variable-modification)
+    - [comparison](#comparison)
+    - [expansion](#expansion)
 - [usage](#usage)
     - [execute and source](#execute-and-source)
     - [previous command and arguments](#previous-command-and-arguments)
@@ -79,25 +80,28 @@ Complex way
 * `-u` treat unset variables as errors and exit, instead of empty output
 * `-x` print each command before executing (with proper arguments)
 
-## recepies & examples
-### compare two dirs
+## redirect output
+* `<command> &> <smth>` redirects everything
+* `<command> 2> <smth>` redirects `stderr`
+
+## compare two dirs
 * show same files in 2 dirs, ignoring extensions
 `comm -12 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
 * show different files in 2 dirs, ignoring extensions
 `comm -3 <(find dir1 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort) <(find dir2 -type f -exec bash -c 'basename "${0%.*}"' {} \; | sort)`
 
-### get name of current function
+## get name of current function
 `$FUNCNAME`
 
-### get name of current script?
+## get name of current script?
 `$0`
 
-### get args
+## get args
 `$@` - all args
 `$1, $2, ...` - first, second, etc arg
 
-### loops
-#### loop words in string
+## loops
+### loop words in string
 ```bash
 IFS=' '
 for <loop_var> in <string>; do
@@ -105,7 +109,7 @@ for <loop_var> in <string>; do
 done
 ```
 
-#### loop lines in file
+### loop lines in file
 ```bash
 while read -r <loop_var>
 do
@@ -120,7 +124,7 @@ do
 done <<< <multiline_variable>
 ```
 
-#### loop while command succeeded
+### loop while command succeeded
 ```bash
 while ! (command1 && command2 && ...); do echo 'retrying'; done
 ```
@@ -134,18 +138,28 @@ do
 done
 ```
 
-# variables
-## varible expansion
-| variable          | description                                         |
-| ---               | ---                                                 |
-| `${VAR#pattern}`  | delete shortest match of pattern from the beginning |
-| `${VAR##pattern}` | delete longest match of pattern from the beginning  |
-| `${VAR%pattern}`  | delete shortest match of pattern from the end       |
-| `${VAR%%pattern}` | delete longest match of pattern from the end        |
+## concat strings
+```bash
+foo="Hello"
+foo="${foo} World"
+```
+or  
+```bash
+foo+="<text>"
+```
 
-## variable modification
+# variables
+## comparison
+* string
+```bash
+[ $var = "<string>" ] && echo EQUALS || echo DIFF
+```
+
+## expansion
 `${VAR:N}` cuts first `N` symbols
-`${VAR:N:M}` cuts first `N` symbols and then output `M` symbols of what is rest.
+`${VAR:N:M}` cuts first `N` symbols and then output `M` symbols of what is rest.  
+e.g.  
+`${var:0:N}` returns first `N` symbols
 
 `${VAR#<pattern>}` delete `<pattern>` from the beginning (matches the minimal possible pattern)
 `${VAR%<pattern>}` delete `<pattern>` from the end (matches the minimal possible pattern)
