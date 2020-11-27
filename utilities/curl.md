@@ -2,10 +2,10 @@
 
 - [usage](#usage)
     - [POST](#post)
-        - [post video to Telegram](#post-video-to-telegram)
-    - [POST with json data](#post-with-json-data)
+- [cookie](#cookie)
 - [tips](#tips)
     - [add line after response](#add-line-after-response)
+    - [post video to Telegram](#post-video-to-telegram)
 
 # usage
 ## POST
@@ -23,20 +23,17 @@ without data:
 `curl -X POST <url>`
 `curl --request POST <url>`
 
-### post video to Telegram
-`curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
-`<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  
+json:  
+`curl -H "Content-Type: application/json" -d "{<json>}" <url>`
 
-## POST with json data
-
-required options: ::
-* `--header "Content-Type: application/json"`
-* `--header "X-CSRFtoken: <token>"`
-* `--referer "<base_url>"`
-* `--cookie "<cookie>"`
-* `--data "{<json>}"`
+# cookie
+`-c <cookie_file>`
 
 # tips
 
 ## add line after response
 `-w "\n"`
+
+## post video to Telegram
+`curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
+`<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  

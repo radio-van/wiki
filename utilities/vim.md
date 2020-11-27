@@ -340,8 +340,8 @@ open tags in windows, tabs, splits
 
 * `Ctrl-W }`, `:ptag` preview tag
 * `Ctrl-W ]` open tag in new window
-* `Ctrl-\` open definition in new tab
-* `Alt-]` open definition in vertical split
+* `Ctrl-\` open definition in new tab **?**
+* `Alt-]` open definition in vertical split **?**
 
 ### quickfix
 * `:copen` open the quickfix window

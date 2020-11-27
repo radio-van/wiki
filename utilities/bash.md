@@ -26,6 +26,8 @@
     - [execute and source](#execute-and-source)
     - [previous command and arguments](#previous-command-and-arguments)
     - [replace symbols in previous command](#replace-symbols-in-previous-command)
+    - [empty file](#empty-file)
+    - [check if file is empty](#check-if-file-is-empty)
 
 # configuration
 ## basics
@@ -178,3 +180,9 @@ e.g.
 ## replace symbols in previous command
 - `^X^Y` replaces `X` with `Y` and executes last command
 - `!!:gs/foo/bar/` replace all `foo` with `bar` and executes previous command
+
+## empty file
+`> <filename>`
+
+## check if file is empty
+`[ -s <filename> ]`
