@@ -20,6 +20,7 @@
     - [buffers](#buffers)
         - [close](#close)
         - [list](#list)
+        - [search](#search)
         - [switch](#switch)
         - [save and restore](#save-and-restore)
         - [execute commands](#execute-commands)
@@ -253,6 +254,9 @@ e.g.
 
 ### list
 `:buffers`, `:ls`, `:files`
+
+### search
+`:bufdo vimgrepadd <pattern> % | copen`
 
 ### switch
 * `:b <number|name>`, use `Tab` for autocomplete
