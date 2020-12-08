@@ -24,6 +24,7 @@
         - [switch](#switch)
         - [save and restore](#save-and-restore)
         - [execute commands](#execute-commands)
+        - [count words](#count-words)
     - [tabs](#tabs)
         - [navigation](#navigation)
         - [usage with buffers](#usage-with-buffers)
@@ -286,6 +287,9 @@ buffers could be saved per folder with local `viminfo` file
 
 ### execute commands
 `:bufdo`
+
+### count words
+`g` then `^g`
 
 ## tabs
 Tabs are just another representation of the group of windows/splits
