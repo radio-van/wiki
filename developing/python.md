@@ -309,6 +309,11 @@ class SomeTestCase(TestCase):
 ## virtual envs
 ### create venv
 `python -m venv $venv`
+
+useful options:  
+- `--system-site-packages`
+- `--prompt` changes venv prompt
+
 ### create pyenv
 `pyenv virtualenv $python_version $venv_name`
 ### activate pyenv
