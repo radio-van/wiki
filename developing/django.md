@@ -4,6 +4,7 @@
 - [localization](#localization)
     - [make/update localization files](#makeupdate-localization-files)
 - [migrations](#migrations)
+    - [fake migration](#fake-migration)
 - [models](#models)
     - [fields](#fields)
         - [attributes](#attributes)
@@ -60,6 +61,9 @@ Reflect current **Model**'s state to DB.
 			
 `./manage.py makemigrations`
 `./manage.py migrate`
+
+## fake migration
+`./manage.py migrate --fake <migration_name>`
 
 # models
 ## fields
