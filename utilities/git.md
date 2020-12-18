@@ -16,17 +16,19 @@
         - [delete local branch](#delete-local-branch)
         - [delete remote branch](#delete-remote-branch)
         - [delete file from all commits history](#delete-file-from-all-commits-history)
-    - [rename branch](#rename-branch)
+        - [rename branch](#rename-branch)
         - [set upstream](#set-upstream)
         - [show graph](#show-graph)
     - [checkout](#checkout)
+        - [last used branch](#last-used-branch)
         - [one file](#one-file)
         - [remote branch](#remote-branch)
+        - [separate worktree](#separate-worktree)
     - [commit](#commit)
         - [squash commits](#squash-commits)
         - [show files in commit](#show-files-in-commit)
-        - [sign](#sign)
         - [commit in wrong branch](#commit-in-wrong-branch)
+    - [sign](#sign)
     - [diff](#diff)
         - [local from remote](#local-from-remote)
         - [remote from local](#remote-from-local)
@@ -56,6 +58,7 @@
     - [show](#show)
     - [stash](#stash)
         - [apply 1 file](#apply-1-file)
+        - [apply and clear](#apply-and-clear)
         - [clear](#clear)
         - [show diff](#show-diff)
     - [submodules](#submodules)
@@ -202,7 +205,7 @@ to separate changes in one file `git rebase --interactive` + `git add --patch` c
 ### delete file from all commits history
 `git filter-branch --tree-filter "rm -f <file>" -- --all`
 
-## rename branch
+### rename branch
 `git branch -m <oldname> <newname>`   
 
 if branch is already checkouted:   
@@ -218,15 +221,28 @@ if branch is already checkouted:
 mnemonic: **A**ll **D**ecorate **O**neline **G**raph - **a dog**
 
 ## checkout
+### last used branch
+`git checkout -`
+
 ### one file
 `git checkout $commit_hash -- $filename`
 
 if file doesn't exist in current branch   
 
 `git show TREESH:/path/to/file > /path/to/file`
+
 ### remote branch
 `git checkout -t <remote>/<branch>`   
 `git checkout -b <local_branch> <remote>/<branch>`
+
+### separate worktree
+Creates second worktree, independend from the main.
+Useful when checkout is difficult (e.g. a lot of temp files)
+and cloning is time consumable.
+`git worktree add -b <branch> <path> <source-branch>`
+
+to remove:
+`git worktree remove <path>`
 
 ## commit
 ### squash commits
@@ -250,16 +266,17 @@ then edit combined message for new commit
   message of commit1
   message of commit2
 ```
-### sign
+
+### commit in wrong branch
+* `git reset --soft origin/<wrong_branch>` roll-back changes to worktree
+* `git checkout -b <correct_branch> && git add ...` follow as usual
+
+## sign
 * `gpg -k --keyid-format long`  
 * `git config user.signingkey <keyid>!`  
 * `git config commit.gpgsign true`
 `!` forces to use particular gpg key  
 identities don't have to be the same  
-
-### commit in wrong branch
-* `git reset --soft origin/<wrong_branch>` roll-back changes to worktree
-* `git checkout -b <correct_branch> && git add ...` follow as usual
 
 git branch <correct_branch>  
 ## diff
@@ -344,6 +361,8 @@ That's how remote servers, e.g. GitHub, work.
 ## stash
 ### apply 1 file
 `git checkout stash@{0} -- $file`
+### apply and clear
+`git stash pop`
 ### clear
 `git stash clear`
 ### show diff
