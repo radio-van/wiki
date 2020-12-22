@@ -34,6 +34,7 @@
         - [remote from local](#remote-from-local)
         - [with branch](#with-branch)
     - [fetch](#fetch)
+        - [clean local cache](#clean-local-cache)
         - [fetch remote branch w/o checkout](#fetch-remote-branch-wo-checkout)
     - [index](#index)
         - [show files in index](#show-files-in-index)
@@ -162,6 +163,11 @@ By default `http, https, git, ssh, file` are allowed if no config specified.
 
 # usage
 ## branch
+Branches are just references on particular commits. When a new commit is made, branch pointer advances on that commit.  
+Local branches are stored in `.git/refs/heads/`.  
+Remote branches are stored in `.git/refs/remotes/`.
+
+Despite the fact that *remote* branches are stored locally, they can't be changed directly, only as side effect of `git-push` or `git-fetch`.
 
 ### rebase
 **rebase** changes parent commit of the branch to the head commit of given branch.
@@ -289,6 +295,9 @@ git branch <correct_branch>
 
 ## fetch
 fetch downloads remote objects
+
+### clean local cache
+`git fetch --prune <remote>`
 
 ### fetch remote branch w/o checkout
 `git fetch <remote> <remote_branch>:<local_branch>`

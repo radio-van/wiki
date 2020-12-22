@@ -44,6 +44,9 @@
 # localization
 
 ## make/update localization files
+*NB* if there are several apps in one Django project, following commands must be ran
+in app's dir.  
+
 * create/update `.po` files
 `django-admin makemessages -l <lang>` (e.g. `ru_RU` or `ru`)
 or  

@@ -8,6 +8,7 @@
 # Hardware
   * [android](hardware/android.md)
   * [mac](hardware/mac.md)
+  * [thinkpad](hardware/thinkpad.md)
   * [usb-modems](hardware/modems.md)
 # Linux
   * [installation](linux/installation.md)
