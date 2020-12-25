@@ -5,6 +5,8 @@
   * [python](developing/python.md)
   * [JS](developing/js.md)
   * [regex](developing/regex.md)
+# General
+  * [encryption](general/encryption.md)
 # Hardware
   * [android](hardware/android.md)
   * [mac](hardware/mac.md)
@@ -32,6 +34,7 @@
   * [Home-Assistant](packages/home-assistant.md)
   * [Retropie](packages/retropie.md)
 # Protocols
+  * [DNS](protocols/DNS.md)
   * [email](protocols/email.md)
 # Utilities
   * [adb](utilities/adb.md)
