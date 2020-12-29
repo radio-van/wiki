@@ -1,6 +1,7 @@
 # Contents
 
 - [configuration](#configuration)
+    - [TODO](#todo)
     - [options & variables](#options-variables)
     - [lines](#lines)
     - [tips&trics](#tipstrics)
@@ -79,6 +80,10 @@
         - [switch between horizontal and vertical splits](#switch-between-horizontal-and-vertical-splits)
 
 # configuration
+## TODO
+`wildmode=longest,list,full`
+`spellcheck :setlocal spell! spelling=en_us<CR>`
+
 ## options & variables
 * `:set` is for setting _options_
 * `:let` is for setting _variables_
@@ -255,6 +260,7 @@ e.g.
 
 ### list
 `:buffers`, `:ls`, `:files`
+`:find *name_part<tab>`
 
 ### search
 `:bufdo vimgrepadd <pattern> % | copen`
@@ -322,6 +328,8 @@ Tabs are just another representation of the group of windows/splits
 * `gg` to first line
 * `NG` to line `N` (last line if `N` is not provided)
 
+* `gk/gj` go up/down visible line
+
 #### changes
 ```
 `.  jump to last change
@@ -381,8 +389,10 @@ To turn off diff mode `:windo diffoff`
 `operation` `range` `object`
 
 e.g. `ci"` = `c`hange `i`nside `"`
-
 e.g. `dw` = `d`elete `w`ord
+e.g. `ciw` = `c`hange `i`nside `w`ord
+e.g. `das` = `d`elete `a`round `s`entence
+e.g. `dap` = `d`elete `a`round `p`aragraph
 
 ### toggle case
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
