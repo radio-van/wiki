@@ -119,6 +119,8 @@ see also `ALTER ROLE`, `DROP ROLE`
 ```
 
 ### JOINS 
+**JOIN** adds columns and values from table *B* to selection from table *A*.
+
 * **INNER** fetches data if present in both tables
 * **CROSS** fetches data from both tables
 * **OUTER**
