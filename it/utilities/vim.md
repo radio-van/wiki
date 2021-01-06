@@ -40,11 +40,13 @@
         - [shell command](#shell-command)
         - [silent shell command](#silent-shell-command)
         - [insert smth](#insert-smth)
+        - [abbreveation](#abbreveation)
     - [diff](#diff)
     - [editing](#editing)
         - [basic idea](#basic-idea)
-        - [toggle case](#toggle-case)
         - [increase/decrease numbers](#increasedecrease-numbers)
+        - [change search result](#change-search-result)
+        - [toggle case](#toggle-case)
         - [ex/ed](#exed)
             - [ranges](#ranges)
             - [patterns](#patterns)
@@ -379,6 +381,9 @@ no *press Enter....* after
 ### insert smth
 See [registers](#in-insert-mode)
 
+### abbreveation
+`:ab <abbreveation> <expansion>`
+
 ## diff
 Open desired buffers and `:windo diffthis`
 To turn off diff mode `:windo diffoff`
@@ -393,18 +398,20 @@ e.g. `dw` = `d`elete `w`ord
 e.g. `ciw` = `c`hange `i`nside `w`ord
 e.g. `das` = `d`elete `a`round `s`entence
 e.g. `dap` = `d`elete `a`round `p`aragraph
-
-### toggle case
-* toggle case **HellO** to **hELLo** with `g~` then a movement. 
-* uppercase **HellO** to **HELLO** with `gU` then a movement. 
-* lowercase **HellO** to **hello** with `gu` then a movement. 
   
 ### increase/decrease numbers
 * `C-a` increases number under cursor (whole number)
 * `C-x` decreases number under cursor (whole number)
 
+### change search result
+`cgn` changes the next search result
 
-Examples
+### toggle case
+* toggle case **HellO** to **hELLo** with `g~` then a movement. 
+* uppercase **HellO** to **HELLO** with `gU` then a movement. 
+* lowercase **HellO** to **hello** with `gu` then a movement. 
+
+e.g.  
 
 * toggle case of the character under the cursor, or all visually-selected characters
 `~`
@@ -426,18 +433,18 @@ Examples
 
 #### ranges
 
-| command | range                                       | example               |
-|---------|---------------------------------------------|-----------------------|
-| `N`     | line number N                               | `:21s/foo/bar/g`      |
-| `$`     | last line                                   | `:$s/foo/bar/g`       |
-| `.`     | current line                                | `:.w single_line.txt` |
-| `%`     | all lines                                   | `:%s/foo/bar/g`       |
-| `N,M`   | line range                                  | `:21,25d`             |
-| `.,$`   | from current to the end                     | `:.,$s/foo/bar/g`     |
-| `.+1,$` | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
-| `.,.+5` | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
-| `'<,'>` | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
-| `'a,'b` | from mark `a` to mark `b`                   | `:'a,'bs/foo/bar/g`   |
+| range | meaning                                     | example               |
+|-------|---------------------------------------------|-----------------------|
+| N     | line number N                               | `:21s/foo/bar/g`      |
+| $     | last line                                   | `:$s/foo/bar/g`       |
+| .     | current line                                | `:.w single_line.txt` |
+| %     | all lines                                   | `:%s/foo/bar/g`       |
+| N,M   | line range                                  | `:21,25d`             |
+| .,$   | from current to the end                     | `:.,$s/foo/bar/g`     |
+| .+1,$ | from line _after_ current to the end        | `:.+1,$s/foo/bar/g`   |
+| .,.+5 | 6 lines: from current to +5 inclusive       | `:.,.+5s/foo/bar/g`   |
+| '<,'> | last selected lines (inserts automatically) | `:'<,'>s/foo/bar/g`   |
+| 'a,'b | from mark `a` to mark `b`                   | `:'a,'bs/foo/bar/g`   |
 
 range refinement:
 
@@ -464,11 +471,12 @@ e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing
 #### commands
 * replace `:s/../../`
 * delete `:/.../d`
-* move `:/.../m`
+* move `:/.../m`, e.g. `:/foo/m-2` moves line with `foo` 2 lines above
 * join `:/.../j`
 * read from file `:r`
 * read from cli `:r!`
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
+* `<` / `>` make intendation
 
 #### examples
 

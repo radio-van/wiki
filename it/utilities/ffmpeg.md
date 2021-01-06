@@ -100,6 +100,7 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 
 ## concat images to video
 * `ffmpeg -r 60 -f image2 -s 1280x720 -i pic%04d.png -i MP3FILE.mp3 -vcodec libx264 -c:a copy <output>`
+* `ffmpeg -framerate 10 -pattern_type glob -i '*.jpg' -c:v libx264 <output>`
 where:
 - `-r 60` framerate
 - `-s <width>x<height>` frame size
