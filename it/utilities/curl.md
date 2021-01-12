@@ -27,7 +27,8 @@ json:
 `curl -H "Content-Type: application/json" -d "{<json>}" <url>`
 
 # cookie
-`-c <cookie_file>`
+* save cookies `-c, --cookie-jar <cookie_file>`
+* use stored cookies `-b, --cookie <cookie_file`
 
 # tips
 
