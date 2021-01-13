@@ -73,5 +73,6 @@
   * [tor](utilities/tor.md) 
   * [urxvt](utilities/urxvt.md)
   * [vim](utilities/vim.md)
+  * [wget](utilities/wget.md)
   * [wireguard](utilities/wireguard.md)
   * [zip](utilities/zip.md)
