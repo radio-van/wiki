@@ -15,6 +15,7 @@
         - [vim-plug](#vim-plug)
     - [third-party plugins](#third-party-plugins)
         - [fugitive](#fugitive)
+            - [log changes of current file](#log-changes-of-current-file)
             - [merge conflict](#merge-conflict)
         - [fzf](#fzf)
 - [usage](#usage)
@@ -190,6 +191,10 @@ Make plugins section
 
 ## third-party plugins
 ### fugitive
+
+#### log changes of current file
+`:Glog -- %` loads list of commits where current file was changed into quickfix list  
+and opens commit file with diffs  
 
 #### merge conflict
 splits order

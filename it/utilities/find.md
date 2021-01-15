@@ -13,6 +13,7 @@
     - [batch file ranaming](#batch-file-ranaming)
     - [install python requirements](#install-python-requirements)
     - [search by date](#search-by-date)
+    - [output multiple files in one line](#output-multiple-files-in-one-line)
 
 # empty folders
 `find . -type d -empty`
@@ -58,3 +59,9 @@ works with recursive paths
 
 ## search by date
 `find ./ -newermt 2019-01-01 ! -newermt 2020-01-01`
+
+## output multiple files in one line
+`find <path> <criteria> -printf '%p '`  
+e.g.  
+add multiple books in html to *Calibre* (it accepts book in format `calibre <path-to-bbok1> <path-to-book2> ...`)  
+`find <path> -type f -name 'index.html' -printf '%p ' | xargs calibre`
