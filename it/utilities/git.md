@@ -48,6 +48,7 @@
     - [remote](#remote)
         - [add remote with non-default ssh port](#add-remote-with-non-default-ssh-port)
         - [pull from remote force](#pull-from-remote-force)
+        - [pull with submodules](#pull-with-submodules)
         - [push to remote](#push-to-remote)
         - [push to all remotes](#push-to-all-remotes)
         - [push to remote diff name](#push-to-remote-diff-name)
@@ -335,6 +336,8 @@ in both cases Git:
 `get remote add <name> ssh://git@<address>:<ssh_port>/<username>/<repo>.git`
 ### pull from remote force
 `git reset --hard <remote>/<branch>`
+### pull with submodules
+`git pull --recurse-submodules` pulls main repo and all submodules (i.e. submodules will be on their lates commits)
 ### push to remote
 `git push -u $remote $branch`
 * `-f` rewrites remote history with local
