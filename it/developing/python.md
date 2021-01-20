@@ -24,9 +24,10 @@
 - [additional tools](#additional-tools)
     - [virtual envs](#virtual-envs)
         - [create venv](#create-venv)
+        - [install version of Python](#install-version-of-python)
         - [create pyenv](#create-pyenv)
         - [activate pyenv](#activate-pyenv)
-        - [install version of Python](#install-version-of-python)
+        - [auto-activate](#auto-activate)
     - [package manager](#package-manager)
         - [pip](#pip)
             - [install requirements](#install-requirements)
@@ -314,12 +315,14 @@ useful options:
 - `--system-site-packages`
 - `--prompt` changes venv prompt
 
-### create pyenv
-`pyenv virtualenv $python_version $venv_name`
-### activate pyenv
-`pyenv activate $venv_name`
 ### install version of Python
-`pyenv install $version`
+`pyenv install <version>`
+### create pyenv
+`pyenv virtualenv <python_version> <venv_name>`
+### activate pyenv
+`pyenv activate <venv_name>`
+### auto-activate
+add `<venv_name>` to `.python-version` in dir
 
 ## package manager
 ### pip
