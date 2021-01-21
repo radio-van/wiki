@@ -11,10 +11,11 @@
         - [methods](#methods)
         - [custom fields](#custom-fields)
         - [DateTimeFiled](#datetimefiled)
+        - [related fields](#related-fields)
+            - [on_delete](#on_delete)
     - [transactions](#transactions)
     - [queries](#queries)
         - [ArrayFiled](#arrayfiled)
-        - [related fields](#related-fields)
             - [select_related](#select_related)
             - [prefetch_related](#prefetch_related)
         - [subquery](#subquery)
@@ -93,18 +94,6 @@ Usually, for custom field two classes are needed:
 ### DateTimeFiled
 * `auto_now_add = True` is **not** overriding by explicit argument!
 
-## transactions
-`transaction.atomic()`  
-Creates snapshot of state **before**, **after** and in **control points** and allows to roll-back all operations to given point, i.e. wraps several operations into one cancable *transaction*.  
-
-## queries
-### ArrayFiled
-List of items.   
-- `__contains` returns objects where the values passed are a subset of the data
-- `__contained_by` return objects where the data is a subset of the values passed
-- `__overlap` data shares any results with the values passed
-- `__len` length of array
-
 ### related fields
 Related fields are **OneToOne**, **ManyToMany**, etc.
 If field of a related object is called, a separate DB call is executed:
@@ -138,6 +127,30 @@ for store in qs:
 
 # result -> N calls to DB (N = number of stores)
 ```
+
+#### on_delete
+Detrmines behaviour when *referenced* object is deleted.
+Possible options are:
+- `CASCADE` When the referenced object is deleted, also delete the objects that have references to it (when you remove a blog post for instance, you might want to delete comments as well). *SQL equivalent*: `CASCADE`
+- `PROTECT` Forbid the deletion of the referenced object. To delete it you will have to delete all objects that reference it manually. *SQL equivalent*: `RESTRICT`
+- `RESTRICT` Similar behavior as PROTECT that matches SQL's RESTRICT more accurately
+- `SET_NULL` Set the reference to NULL (requires the field to be nullable). For instance, when you delete a User, you might want to keep the comments he posted on blog posts, but say it was posted by an anonymous (or deleted) user. *SQL equivalent*: `SET NULL`
+- `SET_DEFAULT` Set the default value. *SQL equivalent*: `SET DEFAULT`
+- `SET(...)` Set a given value. This one is not part of the SQL standard and is entirely handled by Django
+- `DO_NOTHING` Probably a very bad idea since this would create integrity issues in your database (referencing an object that actually doesn't exist). *SQL equivalent*: `NO ACTION`
+
+## transactions
+`transaction.atomic()`  
+Creates snapshot of state **before**, **after** and in **control points** and allows to roll-back all operations to given point, i.e. wraps several operations into one cancable *transaction*.  
+
+## queries
+### ArrayFiled
+List of items.   
+- `__contains` returns objects where the values passed are a subset of the data
+- `__contained_by` return objects where the data is a subset of the values passed
+- `__overlap` data shares any results with the values passed
+- `__len` length of array
+
 
 #### select_related
 is used when single object is going to be selected, i.e. forwards `ForeignKey`, `OneToOne`.
