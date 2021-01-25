@@ -1,17 +1,20 @@
 # Contents
 
 - [logging](#logging)
-    - [assert](#assert)
-    - [clear](#clear)
-    - [css](#css)
-    - [formatted strings](#formatted-strings)
-    - [group](#group)
-    - [json](#json)
-    - [levels](#levels)
-    - [memory](#memory)
-    - [placeholders](#placeholders)
-    - [time](#time)
-    - [trace](#trace)
+    - [assert](#logging#assert)
+    - [clear](#logging#clear)
+    - [css](#logging#css)
+    - [formatted strings](#logging#formatted strings)
+    - [group](#logging#group)
+    - [json](#logging#json)
+    - [levels](#logging#levels)
+    - [memory](#logging#memory)
+    - [placeholders](#logging#placeholders)
+    - [time](#logging#time)
+    - [trace](#logging#trace)
+- [tests](#tests)
+    - [mocha](#tests#mocha)
+        - [select one test](#tests#mocha#select one test)
 - [translations](#translations)
 
 # logging
@@ -70,6 +73,22 @@ measure time of code block execution
 ## trace
 ouptut call stack
 `console.trace()`
+
+# tests
+## mocha
+* `npm install`
+* `npm test -- <path>/<project>`
+[mocha](https://mochajs.org) is used as test runner, so its options are accepted after `npm test --`
+
+### select one test
+`-g <test_name>`  
+
+`<test_name>` can be found in:
+```javascript
+it('<test_name>', function(...) {
+  ...
+});
+```
 
 # translations
 * create `.pot` file:  

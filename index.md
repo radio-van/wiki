@@ -8,7 +8,7 @@
 
 * [IT](it/index.md)
 
+* [statistics](statistics/index.md)
+
 ## languages
 - [english](english/index.md)
-
-* [statistics](statistics/index.md)
