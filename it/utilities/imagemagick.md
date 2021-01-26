@@ -1,6 +1,10 @@
 # Contents
 
+- [crop](#crop)
 - [montage](#montage)
+
+# crop
+`convert -crop <width>x<height>+<x>+<y> <input> <output>`
 
 # montage
 Creates collages.
