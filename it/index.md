@@ -1,5 +1,6 @@
 # Developing
   * [common](developing/common.md)
+  * [compilation](developing/compilation.md)
   * [databases](developing/databases.md)
   * [django](developing/django.md)
   * [python](developing/python.md)
