@@ -10,6 +10,7 @@
   * [encryption](general/encryption.md)
 # Hardware
   * [android](hardware/android.md)
+  * [CPU](hardware/cpu.md)
   * [GPU](hardware/gpu.md)
   * [mac](hardware/mac.md)
   * [thinkpad](hardware/thinkpad.md)
