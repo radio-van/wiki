@@ -1,11 +1,15 @@
 # Developing
+## general
   * [common](developing/common.md)
   * [compilation](developing/compilation.md)
+  * [regex](developing/regex.md)
+## backend
   * [databases](developing/databases.md)
   * [django](developing/django.md)
   * [python](developing/python.md)
+## frontend
   * [JS](developing/js.md)
-  * [regex](developing/regex.md)
+  * [requests](developing/requests.md)
 # General
   * [encryption](general/encryption.md)
 # Hardware

@@ -1,47 +1,49 @@
 # Contents
-  - [Grammar](#Grammar)
+
+- [Grammar](#Grammar)
     - [quantifiers](#Grammar#quantifiers)
-      - [all](#Grammar#quantifiers#all)
-      - [the whole](#Grammar#quantifiers#the whole)
-      - [either / neither](#Grammar#quantifiers#either / neither)
-      - [some](#Grammar#quantifiers#some)
-      - [each](#Grammar#quantifiers#each)
-      - [every](#Grammar#quantifiers#every)
-      - [combinations](#Grammar#quantifiers#combinations)
+        - [all](#Grammar#quantifiers#all)
+        - [the whole](#Grammar#quantifiers#the whole)
+        - [either / neither](#Grammar#quantifiers#either / neither)
+        - [some](#Grammar#quantifiers#some)
+        - [each](#Grammar#quantifiers#each)
+        - [every](#Grammar#quantifiers#every)
+        - [combinations](#Grammar#quantifiers#combinations)
     - [continuous forms](#Grammar#continuous forms)
     - [comparing](#Grammar#comparing)
     - [compound adjectives and nouns](#Grammar#compound adjectives and nouns)
-      - [Compound adj](#Grammar#compound adjectives and nouns#Compound adj)
-      - [Compound nouns](#Grammar#compound adjectives and nouns#Compound nouns)
+        - [Compound adj](#Grammar#compound adjectives and nouns#Compound adj)
+        - [Compound nouns](#Grammar#compound adjectives and nouns#Compound nouns)
     - [modal verbs](#Grammar#modal verbs)
-      - [advice](#Grammar#modal verbs#advice)
-      - [against rules / laws](#Grammar#modal verbs#against rules / laws)
-      - [not necessary](#Grammar#modal verbs#not necessary)
-      - [obligation](#Grammar#modal verbs#obligation)
+        - [advice](#Grammar#modal verbs#advice)
+        - [against rules / laws](#Grammar#modal verbs#against rules / laws)
+        - [not necessary](#Grammar#modal verbs#not necessary)
+        - [obligation](#Grammar#modal verbs#obligation)
     - [noun phrases](#Grammar#noun phrases)
     - [perfect tense](#Grammar#perfect tense)
-      - [present infinitive](#Grammar#perfect tense#present infinitive)
-      - [perfect infinitive](#Grammar#perfect tense#perfect infinitive)
-      - [present perfect continuous](#Grammar#perfect tense#present perfect continuous)
-      - [indicators](#Grammar#perfect tense#indicators)
+        - [present infinitive](#Grammar#perfect tense#present infinitive)
+        - [perfect infinitive](#Grammar#perfect tense#perfect infinitive)
+        - [present perfect continuous](#Grammar#perfect tense#present perfect continuous)
+        - [indicators](#Grammar#perfect tense#indicators)
     - [relative clause](#Grammar#relative clause)
-      - [identifying r.c.](#Grammar#relative clause#identifying r.c.)
-      - [non-identifying r.c.](#Grammar#relative clause#non-identifying r.c.)
+        - [identifying r.c.](#Grammar#relative clause#identifying r.c.)
+        - [non-identifying r.c.](#Grammar#relative clause#non-identifying r.c.)
     - [would](#Grammar#would)
-      - [common usage](#Grammar#would#common usage)
-      - [conditionals](#Grammar#would#conditionals)
-      - [past tense and would for unreal situations](#Grammar#would#past tense and would for unreal situations)
-  - [vocabulary](#vocabulary)
+        - [common usage](#Grammar#would#common usage)
+        - [conditionals](#Grammar#would#conditionals)
+        - [past tense and would for unreal situations](#Grammar#would#past tense and would for unreal situations)
+    - [word order](#Grammar#word order)
+- [vocabulary](#vocabulary)
     - [care](#vocabulary#care)
     - [difference between inf and -ing](#vocabulary#difference between inf and -ing)
     - [age](#vocabulary#age)
     - [speech](#vocabulary#speech)
     - [ot to the point](#vocabulary#ot to the point)
     - [quantifiers](#vocabulary#quantifiers)
-      - [too much](#vocabulary#quantifiers#too much)
-      - [a lot](#vocabulary#quantifiers#a lot)
-      - [not much](#vocabulary#quantifiers#not much)
-      - [not enough](#vocabulary#quantifiers#not enough)
+        - [too much](#vocabulary#quantifiers#too much)
+        - [a lot](#vocabulary#quantifiers#a lot)
+        - [not much](#vocabulary#quantifiers#not much)
+        - [not enough](#vocabulary#quantifiers#not enough)
 
 # Grammar 
 
@@ -464,6 +466,10 @@ __i.e__
 
    __I wish__ people would listen to what I have to say  
    
+## word order
+**Op**inion - **S**ize - **A**ge - **Sh**ape - **C**olor - **O**rigin - **M**aterial  
+**OPSASHCOM**
+
 # vocabulary
 
 ## care
