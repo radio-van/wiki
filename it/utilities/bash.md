@@ -1,34 +1,35 @@
 # Contents
 
 - [configuration](#configuration)
-    - [basics](#basics)
-    - [history across all shells](#history-across-all-shells)
+    - [basics](#configuration#basics)
+    - [history across all shells](#configuration#history across all shells)
 - [conditions](#conditions)
-    - [compare variables](#compare-variables)
+    - [compare variables](#conditions#compare variables)
 - [pipes](#pipes)
-    - [run several commands in condition](#run-several-commands-in-condition)
-    - [run several commands simultaneously](#run-several-commands-simultaneously)
+    - [run several commands in condition](#pipes#run several commands in condition)
+    - [run several commands simultaneously](#pipes#run several commands simultaneously)
 - [scripting](#scripting)
-    - [set options](#set-options)
-    - [redirect output](#redirect-output)
-    - [compare two dirs](#compare-two-dirs)
-    - [get name of current function](#get-name-of-current-function)
-    - [get name of current script?](#get-name-of-current-script)
-    - [get args](#get-args)
-    - [loops](#loops)
-        - [loop words in string](#loop-words-in-string)
-        - [loop lines in file](#loop-lines-in-file)
-        - [loop while command succeeded](#loop-while-command-succeeded)
-    - [concat strings](#concat-strings)
+    - [set options](#scripting#set options)
+    - [redirect output](#scripting#redirect output)
+    - [compare two dirs](#scripting#compare two dirs)
+    - [get name of current function](#scripting#get name of current function)
+    - [get name of current script?](#scripting#get name of current script?)
+    - [get args](#scripting#get args)
+    - [loops](#scripting#loops)
+        - [loop words in string](#scripting#loops#loop words in string)
+        - [loop lines in file](#scripting#loops#loop lines in file)
+        - [loop while command succeeded](#scripting#loops#loop while command succeeded)
+    - [concat strings](#scripting#concat strings)
 - [variables](#variables)
-    - [comparison](#comparison)
-    - [expansion](#expansion)
+    - [comparison](#variables#comparison)
+    - [expansion](#variables#expansion)
 - [usage](#usage)
-    - [execute and source](#execute-and-source)
-    - [previous command and arguments](#previous-command-and-arguments)
-    - [replace symbols in previous command](#replace-symbols-in-previous-command)
-    - [empty file](#empty-file)
-    - [check if file is empty](#check-if-file-is-empty)
+    - [execute and source](#usage#execute and source)
+    - [previous command and arguments](#usage#previous command and arguments)
+    - [replace symbols in previous command](#usage#replace symbols in previous command)
+    - [empty file](#usage#empty file)
+    - [check if file is empty](#usage#check if file is empty)
+    - [get basename of file](#usage#get basename of file)
 
 # configuration
 ## basics
@@ -200,3 +201,6 @@ e.g.
 
 ## check if file is empty
 `[ -s <filename> ]`
+
+## get basename of file
+`basename <path>`
