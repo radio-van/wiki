@@ -2,27 +2,28 @@
 
 - [router](#router)
 - [localization](#localization)
-    - [make/update localization files](#makeupdate-localization-files)
+    - [make/update localization files](#localization#make/update localization files)
 - [migrations](#migrations)
-    - [fake migration](#fake-migration)
+    - [fake migration](#migrations#fake migration)
 - [models](#models)
-    - [fields](#fields)
-        - [attributes](#attributes)
-        - [methods](#methods)
-        - [custom fields](#custom-fields)
-        - [DateTimeFiled](#datetimefiled)
-        - [related fields](#related-fields)
-            - [on_delete](#on_delete)
-    - [transactions](#transactions)
-    - [queries](#queries)
-        - [ArrayFiled](#arrayfiled)
-            - [select_related](#select_related)
-            - [prefetch_related](#prefetch_related)
-        - [subquery](#subquery)
-        - [union](#union)
-        - [values](#values)
+    - [fields](#models#fields)
+        - [attributes](#models#fields#attributes)
+        - [methods](#models#fields#methods)
+        - [custom fields](#models#fields#custom fields)
+        - [DateTimeFiled](#models#fields#DateTimeFiled)
+        - [related fields](#models#fields#related fields)
+            - [on_delete](#models#fields#related fields#on_delete)
+    - [transactions](#models#transactions)
+    - [queries](#models#queries)
+        - [ArrayFiled](#models#queries#ArrayFiled)
+            - [select_related](#models#queries#ArrayFiled#select_related)
+            - [prefetch_related](#models#queries#ArrayFiled#prefetch_related)
+        - [subquery](#models#queries#subquery)
+        - [union](#models#queries#union)
+        - [values](#models#queries#values)
+- [tests](#tests)
 - [timezone](#timezone)
-- [show raw SQL](#show-raw-sql)
+- [show raw SQL](#show raw SQL)
 
 # router
 
@@ -258,6 +259,10 @@ if `flat=True` is used, then return object will contain only values
 `Queryset[<value>, <value>, ...]`
 
 Return object is `Queryset`, it can be converted to list with `list(...)`
+
+# tests
+* `./manage.py test`
+* `DJANGO_MODULE_SETTINGS=<module>.settings pytest`
 
 # timezone
 * `timezone.now()` returns `datetime` object with current timestamp according to Time Zone

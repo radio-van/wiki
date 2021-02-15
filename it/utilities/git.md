@@ -68,6 +68,7 @@
         - [show diff](#usage#stash#show diff)
     - [submodules](#usage#submodules)
         - [add](#usage#submodules#add)
+        - [sync](#usage#submodules#sync)
         - [update](#usage#submodules#update)
     - [urls](#usage#urls)
         - [change remote url](#usage#urls#change remote url)
@@ -402,6 +403,11 @@ That's how remote servers, e.g. GitHub, work.
 ## submodules
 ### add
 `git submodule add -b <branch> <git url> <local path>`
+
+### sync
+`git submodule sync -- <submodule>`
+sets upstream URL of current remote to the one specified in `.gitmodules`.
+**NOTE**: it overrides URL of current remote, not adds the new one
 
 ### update
 `git submodule update`
