@@ -70,6 +70,7 @@
         - [add](#usage#submodules#add)
         - [sync](#usage#submodules#sync)
         - [update](#usage#submodules#update)
+        - [recursive push](#usage#submodules#recursive push)
     - [urls](#usage#urls)
         - [change remote url](#usage#urls#change remote url)
     - [debug](#usage#debug)
@@ -420,6 +421,10 @@ sets upstream URL of current remote to the one specified in `.gitmodules`.
 e.g.   
 * checkout all submodules on commits in super-repo `git submodule update --recursive --checkout`
 * update all submodules to latest commits in remote repos `git submodule update --remote --recursive --checkout`
+
+### recursive push
+`git push --recurse-submodules=on-demand` will push all submodules (if submodule's state behind remote).  
+**NOTE**: This will not automatically create new commits.
 
 ## urls
 ### change remote url
