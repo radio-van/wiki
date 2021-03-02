@@ -56,6 +56,7 @@
             - [regex](#usage#editing#ex/ed#regex)
             - [lookahead / lookbehind](#usage#editing#ex/ed#lookahead / lookbehind)
         - [tips&trics](#usage#editing#tips&trics)
+            - [align part of lines](#usage#editing#tips&trics#align part of lines)
             - [comment several lines](#usage#editing#tips&trics#comment several lines)
             - [global commands](#usage#editing#tips&trics#global commands)
             - [run normal mode commands on selected lines](#usage#editing#tips&trics#run normal mode commands on selected lines)
@@ -535,6 +536,22 @@ e.g.
 `/foo\(bar\)\@=/` will search for `foo` following `bar` but won't include `bar` in result
 
 ### tips&trics
+#### align part of lines
+assuming that goal is
+```
+aa = 123,
+bbbb = 321,
+c = 222
+```
+=>  
+```
+aa    = 123,
+bbbbb = 321,
+c     = 222
+```
+with help of *GNU column*:
+`% ! column -t -s= -o=`
+
 #### comment several lines
 - `C-v` (visual block selection)
 - select lines with arrow keys

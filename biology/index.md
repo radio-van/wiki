@@ -11,6 +11,7 @@
 
 # medicine
 - [diseases](medicine/diseases.md)
+- [history](medicine/history.md)
 - [nutrition](../food/)
 - [radiation](medicine/radiation.md)
 - [teeth](medicine/teeth.md)

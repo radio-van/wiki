@@ -9,6 +9,7 @@
 - [expressions](#expressions)
 - [usecases](#usecases)
     - [batch](#usecases#batch)
+    - [capture screen](#usecases#capture screen)
     - [concat images to video](#usecases#concat images to video)
     - [cut](#usecases#cut)
     - [concat](#usecases#concat)
@@ -98,6 +99,12 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 # usecases
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
+
+## capture screen
+video only:  
+`ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+<x>,<y> <output>`
+with audio (mic):  
+`ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i pulse -acodec aac -strict experimental <output>`
 
 ## concat images to video
 * `ffmpeg -r 60 -f image2 -s 1280x720 -i pic%04d.png -i MP3FILE.mp3 -vcodec libx264 -c:a copy <output>`

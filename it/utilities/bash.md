@@ -30,6 +30,7 @@
     - [empty file](#usage#empty file)
     - [check if file is empty](#usage#check if file is empty)
     - [get basename of file](#usage#get basename of file)
+    - [print current terminal emulator](#usage#print current terminal emulator)
 
 # configuration
 ## basics
@@ -204,3 +205,6 @@ e.g.
 
 ## get basename of file
 `basename <path>`
+
+## print current terminal emulator
+`ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))"`
