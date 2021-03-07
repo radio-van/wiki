@@ -17,6 +17,10 @@ Tool for creating encrypted partitions.
        `<device-UUID>` can be checked with `lsblk -dno UUID /dev/sdaX`  
        if [keyfile](#keyfile-on-separate-drive) is used, add it to **boot options**
 # keys
+## generate random key
+* `dd if=/dev/urandom of=<keyfile> bs=512 count=8`
+* `tr -dc A-Za-z0-9 </dev/urandom | head -c 64 ; echo ''`
+
 ## keyfile on separate drive
 `keyfile` can be random file, passphrase, binary
 
@@ -43,3 +47,22 @@ Tool for creating encrypted partitions.
 
 * open w/o automounting
 `crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
+
+## use TPM
+`TPM` is a secure chip that is present on most modern PCs.  
+* check support: `journalctl -k --grep=tpm`
+* install:
+    * `libpwquality` provides `pwmake`
+    * `tpm2-tools`
+    * `clevis` for binding **LUKS** partitions
+* `clevis luks bind -d /dev/sdX tpm2 '{}'`  
+  `{}` is configuration, e.g. `'{"pcr_ids":"1,7"}'` will check UEFI/Secure Boot consistency
+* enable `clevis-luks-askpass.path` **systemd** unit for  
+  automatic decryption via `/etc/crypttab`
+  
+Manual decryption: `clevis luks unlock /dev/sdX -n MAPPER`
+
+## potentially useful stuff
+* `decrypt_keyctl` allows to use script for **LUKS** key generation (?)
+* `booster` is an alternative **initramfs** generator
+* `secure boot` can be used with **TPM2**

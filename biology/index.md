@@ -12,6 +12,10 @@
 # medicine
 - [diseases](medicine/diseases.md)
 - [history](medicine/history.md)
-- [nutrition](../food/)
+- [nutrition](medicine/nutrition.md)
 - [radiation](medicine/radiation.md)
 - [teeth](medicine/teeth.md)
+
+# plants
+- [bananas](plants/bananas.md)
+- [tomatoes](plants/tomatoes.md)

@@ -8,7 +8,10 @@
 
 * [IT](it/index.md)
 
+* [self](self/index.md)
+
 * [statistics](statistics/index.md)
 
 ## languages
+
 - [english](english/index.md)

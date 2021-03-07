@@ -8,4 +8,3 @@
 As they are clones, all deseases endanger the whole plantation and  
 preventing them is a hard task as selective reproduction (to create  
 more resistant bananas) is uneffective (1 seed per 300 bananas).
-

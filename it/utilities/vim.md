@@ -278,6 +278,9 @@ e.g.
 * `:sb <num|name>` opens buffer in horizontal split
 * `:vert sb <num|name>` opens buffer in vertical split
 
+* `gf` goto file
+* 
+* `C-^` alternate buffer (`#`)
 * `<number>C-^` 
    `C-W ^` or `C-W C-^` opens buffer in new window   
 
@@ -338,6 +341,13 @@ Tabs are just another representation of the group of windows/splits
 
 * `gk/gj` go up/down visible line
 
+* `C-o` / `C-i` cycle through `:jumps`
+* `g;` / `g,` cycle through `:changes`
+
+* `C-y` / `C-e` up/down 1 line
+
+* `gi` jumps to last insert-mode edit and switches to *insert* mode
+
 #### changes
 ```
 `.  jump to last change
@@ -351,7 +361,7 @@ Tabs are just another representation of the group of windows/splits
                         yanked text.
 ```
 
-### tags
+#### tags
 jump to tag
 
 * `Ctrl-]`, `Ctrl-click`, `g-click`, `:tag` jump to tag
@@ -411,6 +421,15 @@ e.g. `dap` = `d`elete `a`round `p`aragraph
 
 ### change search result
 `cgn` changes the next search result
+
+### completions
+`:h ins-completion`
+
+* `C-n` keywords from file
+* `C-x C-f` list of filenames
+* `C-x s` spell suggestions
+* `C-x C-v` Vim keywords
+* `C-x C-l` complete line
 
 ### toggle case
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
