@@ -256,6 +256,12 @@ Bang `!` version of command opens `fzf` in full screen
 | `:Filetypes`        | File types                                                    |
 
 # usage
+## autocommands
+`au <event> <pattern> <command>`  
+* `<event>` `:h autocommand-events`, e.g. `VimLeave`, `BufWritePost`
+* `<pattern>` `:h autocommand-patterns`, e.g. `*.py`
+* `<command>` for shell command `!<shell command>` or `silent! !<shell command>`
+
 ## buffers
 Buffers are loaded files. Windows are framebuffers for buffers.
 
