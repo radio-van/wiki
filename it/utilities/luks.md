@@ -1,16 +1,20 @@
 # Contents
 
-- [create encrypted partition](#create-encrypted-partition)
-- [set bootloader options](#set-bootloader-options)
+- [create encrypted partition](#create encrypted partition)
+- [set bootloader options](#set bootloader options)
 - [keys](#keys)
-    - [keyfile on separate drive](#keyfile-on-separate-drive)
+    - [generate random key](#keys#generate random key)
+    - [keyfile on separate drive](#keys#keyfile on separate drive)
+    - [use TPM](#keys#use TPM)
+    - [potentially useful stuff](#keys#potentially useful stuff)
 
 Tool for creating encrypted partitions.  
 
 # create encrypted partition
 * `cryptsetup luksFormat /dev/sdaX`
-* `cryptsetup open /dev/sdaX cryptlvm`
-* decrypted container is available at `/dev/mapper/cryptlvm`
+* `cryptsetup open /dev/sdaX <crypt_vol>`
+* decrypted partition at `/dev/mapper/<crypt_vol>` can be formatted and used as usual
+  e.g. `mkfs.ext4 /dev/mapper/...`
 
 # set bootloader options
    `options cryptdevice=UUID=<device-UUID>:cryptlvm root=/dev/MyVolGroup/root`  
@@ -60,7 +64,7 @@ Tool for creating encrypted partitions.
 * enable `clevis-luks-askpass.path` **systemd** unit for  
   automatic decryption via `/etc/crypttab`
   
-Manual decryption: `clevis luks unlock /dev/sdX -n MAPPER`
+Manual decryption: `clevis luks unlock -d /dev/sdX -n MAPPER`
 
 ## potentially useful stuff
 * `decrypt_keyctl` allows to use script for **LUKS** key generation (?)
