@@ -1,14 +1,14 @@
 # Contents
 
 - [init](#init)
-- [conflicts on sysupgrade](#conflicts-on-sysupgrade)
-- [installation log](#installation-log)
-- [downgrade package](#downgrade-package)
-- [save to list](#save-to-list)
-- [install from list](#install-from-list)
+- [conflicts on sysupgrade](#conflicts on sysupgrade)
+- [installation log](#installation log)
+- [downgrade package](#downgrade package)
+- [save to list](#save to list)
+- [install from list](#install from list)
 - [upgrade](#upgrade)
-- [delete orphans](#delete-orphans)
-- [AUR packages](#aur-packages)
+- [delete orphans](#delete orphans)
+- [AUR packages](#AUR packages)
 
 # init
 * initialize keys `pacman-key --init`

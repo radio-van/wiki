@@ -10,8 +10,10 @@
 ## frontend
   * [JS](developing/js.md)
   * [requests](developing/requests.md)
+
 # General
   * [encryption](general/encryption.md)
+
 # Hardware
   * [android](hardware/android.md)
   * [CPU](hardware/cpu.md)
@@ -19,6 +21,7 @@
   * [mac](hardware/mac.md)
   * [thinkpad](hardware/thinkpad.md)
   * [usb-modems](hardware/modems.md)
+
 # Linux
   * [installation](linux/installation.md)
   * [filesystem](linux/filesystem.md)
@@ -31,19 +34,24 @@
   * [sound](linux/sound.md)
   * [tips&tricks](linux/tips_tricks.md)
   * [system](linux/system.md)
+
 # Mac OS
   * [apps](macos/apps.md)
   * [installation](macos/installation.md)
   * [networking](macos/networking.md)
   * [system](macos/system.md)
+
 # Windows
   * [tips&tricks](windows/tips_tricks.md)
+
 # Packages
   * [Home-Assistant](packages/home-assistant.md)
   * [Retropie](packages/retropie.md)
+
 # Protocols
   * [DNS](protocols/DNS.md)
   * [email](protocols/email.md)
+
 # Utilities
   * [adb](utilities/adb.md)
   * [awk](utilities/awk.md)
