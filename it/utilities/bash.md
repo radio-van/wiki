@@ -103,6 +103,13 @@ Complex way
 `$1, $2, ...` - first, second, etc arg
 
 ## loops
+### loop list
+```bash
+for <loop_var> in <word1> <word2> <word3>; do
+  <command>
+done
+```
+
 ### loop words in string
 ```bash
 IFS=' '
@@ -150,13 +157,16 @@ or
 foo+="<text>"
 ```
 
-# variables
-## comparison
-* string
+## compare strings
+```bash
+[[ $var == "string" ]] && <equal> || <not equal>
+```
+
 ```bash
 [ $var = "<string>" ] && echo EQUALS || echo DIFF
 ```
 
+# variables
 ## expansion
 `${VAR:N}` cuts first `N` symbols
 `${VAR:N:M}` cuts first `N` symbols and then output `M` symbols of what is rest.  
