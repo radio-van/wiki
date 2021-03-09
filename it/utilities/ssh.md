@@ -1,28 +1,28 @@
 # Contents
 
 - [configuration](#configuration)
-    - [disabling password auth](#disabling-password-auth)
-    - [disabling root login](#disabling-root-login)
-    - [do not ask about adding host keys](#do-not-ask-about-adding-host-keys)
-    - [limit login access](#limit-login-access)
+    - [disabling password auth](#configuration#disabling password auth)
+    - [disabling root login](#configuration#disabling root login)
+    - [do not ask about adding host keys](#configuration#do not ask about adding host keys)
+    - [limit login access](#configuration#limit login access)
 - [usage](#usage)
-    - [connection](#connection)
-        - [force using password](#force-using-password)
-    - [keys](#keys)
-        - [keygen](#keygen)
-        - [copy key](#copy-key)
-        - [generate public key from private](#generate-public-key-from-private)
-        - [storing keys](#storing-keys)
-        - [key fingerprint](#key-fingerprint)
+    - [connection](#usage#connection)
+        - [force using password](#usage#connection#force using password)
+    - [keys](#usage#keys)
+        - [keygen](#usage#keys#keygen)
+        - [copy key](#usage#keys#copy key)
+        - [generate public key from private](#usage#keys#generate public key from private)
+        - [storing keys](#usage#keys#storing keys)
+        - [key fingerprint](#usage#keys#key fingerprint)
 - [ssh-agent](#ssh-agent)
-    - [overview](#overview)
-    - [usage](#usage-2)
-    - [agent-forwarding](#agent-forwarding)
-        - [overview](#overview-2)
-        - [configuration](#configuration-2)
+    - [overview](#ssh-agent#overview)
+    - [usage](#ssh-agent#usage)
+    - [agent-forwarding](#ssh-agent#agent-forwarding)
+        - [overview](#ssh-agent#agent-forwarding#overview)
+        - [configuration](#ssh-agent#agent-forwarding#configuration)
 - [scp](#scp)
-    - [ambiguous target](#ambiguous-target)
-- [additional security](#additional-security)
+    - [ambiguous target](#scp#ambiguous target)
+- [additional security](#additional security)
 
 # configuration
 
@@ -53,6 +53,11 @@ apply: `service ssh restart`
 ## connection
 ### force using password
 `ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no $host`
+### force using IdentityOnly
+When using `gpg-agent` instead of `ssh-agent` it's required to explicitly use IdentityFile:  
+`ssh -o IdentitiesOnly=yes -i <identity_file> <user>@<host>`
+
+`gpg-agent` will ask for passphrase to securely store this identity
 
 ## keys
 
