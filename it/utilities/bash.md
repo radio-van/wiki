@@ -101,6 +101,7 @@ Complex way
 ## get args
 `$@` - all args
 `$1, $2, ...` - first, second, etc arg
+`${@:-1}` last arg
 
 ## pass args to func
 ```
