@@ -102,6 +102,14 @@ Complex way
 `$@` - all args
 `$1, $2, ...` - first, second, etc arg
 
+## pass args to func
+```
+inner_func() { <do smth>; }
+outer_func() { <do smth>; "$@"; <do smth>; }
+
+outer_func inner_func arg1 arg2
+```
+
 ## loops
 ### loop list
 ```bash
