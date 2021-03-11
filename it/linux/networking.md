@@ -1,22 +1,22 @@
 # Contents
 
 - [interfaces](#interfaces)
-    - [TUN/TAP](#tuntap)
-    - [Predictable interfaces names](#predictable-interfaces-names)
+    - [TUN/TAP](#interfaces#TUN/TAP)
+    - [Predictable interfaces names](#interfaces#Predictable interfaces names)
 - [configuration](#configuration)
-    - [hostname](#hostname)
-    - [interfaces](#interfaces-2)
-        - [system V](#system-v)
-        - [systemd](#systemd)
-    - [firewall](#firewall)
-    - [DNS resolving](#dns-resolving)
-    - [ip address aliasing](#ip-address-aliasing)
-    - [wireless](#wireless)
-        - [wpa supplicant](#wpa-supplicant)
-    - [tips & trics](#tips-trics)
-        - [show process which is listening target port](#show-process-which-is-listening-target-port)
-        - [get ip](#get-ip)
-        - [capture trafic on particular port](#capture-trafic-on-particular-port)
+    - [hostname](#configuration#hostname)
+    - [interfaces](#configuration#interfaces)
+        - [system V](#configuration#interfaces#system V)
+        - [systemd](#configuration#interfaces#systemd)
+    - [firewall](#configuration#firewall)
+    - [DNS resolving](#configuration#DNS resolving)
+    - [ip address aliasing](#configuration#ip address aliasing)
+    - [wireless](#configuration#wireless)
+        - [wpa supplicant](#configuration#wireless#wpa supplicant)
+    - [tips & trics](#configuration#tips & trics)
+        - [show process which is listening target port](#configuration#tips & trics#show process which is listening target port)
+        - [get ip](#configuration#tips & trics#get ip)
+        - [capture trafic on particular port](#configuration#tips & trics#capture trafic on particular port)
 
 # interfaces
 
@@ -79,6 +79,20 @@ enable & start unit with `systemctl enable|start 20-<name>`
 `/etc/resolv.conf`
 `nameserver X.X.X.X`
 
+## DHCP server
+* assign static address to interface
+* install `dhcp`
+* config:
+```
+option domain-name-servers 9.9.9.9;
+option subnet-mask 255.255.255.0;
+option routers 172.16.0.1;
+subnet 172.16.0.0 netmask 255.255.255.0 {
+  range 172.16.0.2 172.16.0.250;
+}
+```
+* `systemctl enable --now dhcpd4` (optionally `dhcpd6`)
+
 ## ip address aliasing
 ArchLinux   
 * `ip addr add 10.200.10.1/24 dev lo label lo:0`
@@ -86,7 +100,7 @@ CentOS
 * `/etc/sysconfig/network-scripts`
 * `cp ifcfg-ethX icfg-ethX:N`
   
-necessary fields in alias interface are:   
+Necessary fields in alias interface are:   
 ```bash
 DEVICE="ethX:N"
 BOOTPROTO=static
@@ -98,6 +112,24 @@ GATEWAY=...
 * `/etc/init.d/network restart`
 
 ## wireless
+### AP
+* install `hostapd`
+* config:
+```
+ssid=<SSID>
+interface=<interface>
+driver=nl80211
+hw_mode=g
+channel=1
+auth_algs=1 #WPA ?
+wpa=2
+wpa_passphrase=<PASSPHRASE>
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+```
+* enable `hostapd` service
+
 ### wpa supplicant
 * create initial config
 `/etc/wpa_supplicant/wpa_supplicant.conf`
