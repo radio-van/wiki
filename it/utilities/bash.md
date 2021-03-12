@@ -64,8 +64,20 @@ Complex way
 * `[ $var = 'string' ]` compare string variable
 
 # pipes
-## run several commands in condition
+## conditions
+* successful (i.e. one that returns `0`) command passes the sequence to the first command after `&&`
+* unsuccessful command (return != `0`) passes sequence to the first command after `||`
+* the next "choice" of following command is based on return signal of the second command
+
+e.g.  
+`<com0> && <comYES> || <comNO> && <comNEXT>`
+- if `com0` returns `0`, `comYES` and `comNEXT` will be executed
+- if `com0` return != `0`, `comNO` and `comNEXT` will be executed
+- if `cmm0` is OK and `comYES` fails, `comNO` and `comNEXT` are executed
+
+## group conditions
 `<condition> && ( this && will && run_only_on_success ; ) || ( this_will_run_only && on_fail ; )`
+
 ## run several commands simultaneously
 `<command1> & <command2>`
 
