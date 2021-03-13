@@ -100,7 +100,10 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
 
-## capture screen
+## record audio
+`ffmpeg -f pulse -i <ID of source> -f pulse <out>`
+
+## record screen
 video only:  
 `ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+<x>,<y> <output>`
 with audio (mic):  
