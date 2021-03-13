@@ -426,6 +426,10 @@ e.g.
 `git push --recurse-submodules=on-demand` will push all submodules (if submodule's state behind remote).  
 **NOTE**: This will not automatically create new commits.
 
+## tags
+### push local tags
+`git push --tags`
+
 ## urls
 ### change remote url
 `git remote set-url $remote $new_url`
