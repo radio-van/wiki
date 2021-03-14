@@ -52,3 +52,6 @@ create session, run commands and attach to it
     tmux new-window '<third-shell-command>'
     tmux -2 attach-session -d
 ```
+
+# useful links
+* 
