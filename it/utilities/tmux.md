@@ -1,16 +1,17 @@
 # Contents
 
 - [configuration](#configuration)
-    - [plug-ins](#plug-ins)
-        - [tmux-gitbar](#tmux-gitbar)
+    - [plug-ins](#configuration#plug-ins)
+        - [tmux-gitbar](#configuration#plug-ins#tmux-gitbar)
 - [usage](#usage)
-    - [panes](#panes)
-    - [scripting](#scripting)
-        - [basics](#basics)
-        - [windows & panes](#windows-panes)
-        - [conditions](#conditions)
-        - [send keys](#send-keys)
-        - [example](#example)
+    - [panes](#usage#panes)
+    - [scripting](#usage#scripting)
+        - [basics](#usage#scripting#basics)
+        - [windows & panes](#usage#scripting#windows & panes)
+        - [conditions](#usage#scripting#conditions)
+        - [send keys](#usage#scripting#send keys)
+        - [example](#usage#scripting#example)
+- [useful links](#useful links)
 
 # configuration
 ## plug-ins
@@ -54,4 +55,14 @@ create session, run commands and attach to it
 ```
 
 # useful links
-* 
+* [How to start tmux with several panes open at the same time?](https://askubuntu.com/questions/830484/how-to-start-tmux-with-several-panes-open-at-the-same-time)
+* [tmux shortcuts & cheatsheet](https://gist.github.com/MohamedAlaa/2961058)
+* [Start up tmux with custom windows, panes and applications running](https://gist.github.com/todgru/6224848)
+* [tmux-config: Tmux configuration](https://github.com/samoshkin/tmux-config)
+* [tmux-resurrect: Persists tmux environment](https://github.com/tmux-plugins/tmux-resurrect)
+* [Getting started with Tmux](https://linuxize.com/post/getting-started-with-tmux/)
+* [Bash scripts with tmux to launch a 4-paned window](https://stackoverflow.com/questions/5447278/bash-scripts-with-tmux-to-launch-a-4-paned-window)
+* [shell - How to set up tmux so that it starts up with specified windows opened?](https://stackoverflow.com/questions/5609192/how-to-set-up-tmux-so-that-it-starts-up-with-specified-windows-opened)
+* [optionally run several commands when starting tmux](https://superuser.com/questions/575909/optionally-run-several-commands-when-starting-tmux)
+* [tmux - How to send keys to "other pane"?](https://superuser.com/questions/744857/how-to-send-keys-to-other-pane)
+* [Tmux - Execute command in session on startup](https://superuser.com/questions/863538/tmux-execute-command-in-session-on-startup)
