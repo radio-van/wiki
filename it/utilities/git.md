@@ -29,6 +29,7 @@
         - [squash commits](#usage#commit#squash commits)
         - [show files in commit](#usage#commit#show files in commit)
         - [commit in wrong branch](#usage#commit#commit in wrong branch)
+        - [commit part of the file](#usage#commit#commit part of the file)
     - [sign](#usage#sign)
     - [diff](#usage#diff)
         - [local from remote](#usage#diff#local from remote)
@@ -71,6 +72,8 @@
         - [sync](#usage#submodules#sync)
         - [update](#usage#submodules#update)
         - [recursive push](#usage#submodules#recursive push)
+    - [tags](#usage#tags)
+        - [push local tags](#usage#tags#push local tags)
     - [urls](#usage#urls)
         - [change remote url](#usage#urls#change remote url)
     - [debug](#usage#debug)
@@ -286,6 +289,9 @@ then edit combined message for new commit
 ### commit in wrong branch
 * `git reset --soft origin/<wrong_branch>` roll-back changes to worktree
 * `git checkout -b <correct_branch> && git add ...` follow as usual
+
+### commit part of the file
+`git add --patch <file>`
 
 ## sign
 * `gpg -k --keyid-format long`  
