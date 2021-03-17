@@ -4,9 +4,10 @@
     - [basics](#configuration#basics)
     - [history across all shells](#configuration#history across all shells)
 - [conditions](#conditions)
-    - [compare variables](#conditions#compare variables)
+    - [compare strings](#conditions#compare strings)
 - [pipes](#pipes)
-    - [run several commands in condition](#pipes#run several commands in condition)
+    - [conditions](#pipes#conditions)
+    - [group conditions](#pipes#group conditions)
     - [run several commands simultaneously](#pipes#run several commands simultaneously)
 - [scripting](#scripting)
     - [set options](#scripting#set options)
@@ -15,13 +16,14 @@
     - [get name of current function](#scripting#get name of current function)
     - [get name of current script?](#scripting#get name of current script?)
     - [get args](#scripting#get args)
+    - [pass args to func](#scripting#pass args to func)
     - [loops](#scripting#loops)
+        - [loop list](#scripting#loops#loop list)
         - [loop words in string](#scripting#loops#loop words in string)
         - [loop lines in file](#scripting#loops#loop lines in file)
         - [loop while command succeeded](#scripting#loops#loop while command succeeded)
     - [concat strings](#scripting#concat strings)
 - [variables](#variables)
-    - [comparison](#variables#comparison)
     - [expansion](#variables#expansion)
 - [usage](#usage)
     - [execute and source](#usage#execute and source)
@@ -60,8 +62,10 @@ Complex way
       After each command, append to the history file and reread it
 
 # conditions
-## compare variables
-* `[ $var = 'string' ]` compare string variable
+## compare strings
+```bash
+[[ $var == "string" ]] && <equal> || <not equal>
+```
 
 # pipes
 ## conditions
@@ -176,15 +180,6 @@ foo="${foo} World"
 or  
 ```bash
 foo+="<text>"
-```
-
-## compare strings
-```bash
-[[ $var == "string" ]] && <equal> || <not equal>
-```
-
-```bash
-[ $var = "<string>" ] && echo EQUALS || echo DIFF
 ```
 
 # variables
