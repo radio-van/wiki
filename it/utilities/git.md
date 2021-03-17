@@ -228,7 +228,7 @@ if branch is already checkouted:
 `git branch -M <newname>`
 
 ### rename remote branch
-* [delete it](#delete_remote_branch)
+* [delete it](#delete remote branch)
 * push new one
 
 ### set upstream
