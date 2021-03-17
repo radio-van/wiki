@@ -5,6 +5,7 @@
     - [history across all shells](#configuration#history across all shells)
 - [conditions](#conditions)
     - [compare strings](#conditions#compare strings)
+    - [substring in string](#conditions#substring in string)
 - [pipes](#pipes)
     - [conditions](#pipes#conditions)
     - [group conditions](#pipes#group conditions)
@@ -65,6 +66,10 @@ Complex way
 ## compare strings
 ```bash
 [[ $var == "string" ]] && <equal> || <not equal>
+```
+## substring in string
+```bash
+[[ $substring == *"string"* ]] && <included> || <not included>
 ```
 
 # pipes
