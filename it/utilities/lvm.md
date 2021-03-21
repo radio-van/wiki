@@ -1,8 +1,8 @@
 # Contents
 
 - [setup](#setup)
-- [workaround on stack LUKS+LVM volume](#workaround-on-stack-lukslvm-volume)
-- [mount volume group with the same name](#mount-volume-group-with-the-same-name)
+- [workaround on stack LUKS+LVM volume](#workaround on stack LUKS+LVM volume)
+- [mount volume group with the same name](#mount volume group with the same name)
 
 # setup
 * create physical volume `pvcreate /dev/mapper/cryptlvm` 
