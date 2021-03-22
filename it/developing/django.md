@@ -22,6 +22,7 @@
         - [union](#models#queries#union)
         - [values](#models#queries#values)
 - [tests](#tests)
+    - [selective tests](#tests#selective tests)
 - [timezone](#timezone)
 - [show raw SQL](#show raw SQL)
 
@@ -263,6 +264,10 @@ Return object is `Queryset`, it can be converted to list with `list(...)`
 # tests
 * `./manage.py test`
 * `DJANGO_MODULE_SETTINGS=<module>.settings pytest`
+
+## selective tests
+* `./manage.py test -k <test method name>`
+* `./manage.py test -p <test file name>`
 
 # timezone
 * `timezone.now()` returns `datetime` object with current timestamp according to Time Zone
