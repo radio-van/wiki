@@ -34,6 +34,7 @@
 - [receipts](#receipts)
     - [web server](#receipts#web server)
     - [decode base64](#receipts#decode base64)
+    - [decode cyrillic](#receipts#decode cyrillic)
     - [get python version](#receipts#get python version)
 
 # Classes
@@ -330,14 +331,22 @@ add `<venv_name>` to `.python-version` in dir
 `pip install -r requirements.txt`
                 
 # receipts
+
 ## web server
 `python -m http.server --cgi 8000`
+
 ## decode base64
 ```python
     import base64
     coded_string = '''Q5YACgA...'''
     base64.b64decode(coded_string)
 ```
+
+## decode cyrillic
+```python
+<raw string>.encode('l1').decode()
+```
+
 ## get python version
 ```python
     import sys
