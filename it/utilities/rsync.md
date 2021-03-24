@@ -2,8 +2,8 @@
 
 - [options](#options)
 - [protocol](#protocol)
-    - [ssh](#ssh)
-        - [non-default ssh port](#non-default-ssh-port)
+    - [ssh](#protocol#ssh)
+        - [non-default ssh port](#protocol#ssh#non-default ssh port)
 
 # options
 `-az` default options:  `archive`, `compression`  
