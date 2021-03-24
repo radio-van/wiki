@@ -34,6 +34,7 @@
   * [sound](linux/sound.md)
   * [tips&tricks](linux/tips_tricks.md)
   * [system](linux/system.md)
+  * [video](linux/video.md)
 
 # Mac OS
   * [apps](macos/apps.md)
