@@ -2,14 +2,14 @@
 
 - [configuration](#configuration)
 - [usage](#usage)
-    - [add rule](#add-rule)
-- [list rules](#list-rules)
-- [delete rule](#delete-rule)
-- [flush rules](#flush-rules)
+    - [add rule](#usage#add rule)
+- [list rules](#list rules)
+- [delete rule](#delete rule)
+- [flush rules](#flush rules)
 - [recepies](#recepies)
-    - [open port](#open-port)
-    - [port forwarding](#port-forwarding)
-    - [basic routing between eth0 and wlan0](#basic-routing-between-eth0-and-wlan0)
+    - [open port](#recepies#open port)
+    - [port forwarding](#recepies#port forwarding)
+    - [basic routing between eth0 and wlan0](#recepies#basic routing between eth0 and wlan0)
 
 # configuration
 * save rules `iptables-save > /etc/iptables/iptables.rules`
