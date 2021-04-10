@@ -80,8 +80,8 @@ Complex way
 
 e.g.  
 `<com0> && <comYES> || <comNO> && <comNEXT>`
-- if `com0` returns `0`, `comYES` and `comNEXT` will be executed
-- if `com0` return != `0`, `comNO` and `comNEXT` will be executed
+- if `com0` returns `0`, `comYES` and `comNEXT` are executed
+- if `com0` return != `0`, `comNO` and `comNEXT` are executed
 - if `cmm0` is OK and `comYES` fails, `comNO` and `comNEXT` are executed
 
 ## group conditions
