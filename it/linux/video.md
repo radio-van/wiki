@@ -1,6 +1,7 @@
 # Contents
 
 - [different monitor resolutions](#different monitor resolutions)
+- [stucked VIRTUAL monitor](#stucked VIRTUAL monitor)
 
 # different monitor resolutions
 e.g.
@@ -15,3 +16,7 @@ xrandr --output INT_DISPLAY --scale 1x1 --mode 1920x1200 --pos 0x1620
 ```
 * `--fb` container for both screens
 * `--pos` position from top-left corner
+
+# stucked VIRTUAL monitor
+* `xrandr --listmonitors` to find out which output is still in use (e.g. `HDMI1`)
+* `xrandr --output <NAME> --off` 
