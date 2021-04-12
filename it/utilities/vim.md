@@ -19,6 +19,7 @@
             - [merge conflict](#plugins#third-party plugins#fugitive#merge conflict)
         - [fzf](#plugins#third-party plugins#fzf)
 - [usage](#usage)
+    - [autocommands](#usage#autocommands)
     - [buffers](#usage#buffers)
         - [close](#usage#buffers#close)
         - [list](#usage#buffers#list)
@@ -35,7 +36,7 @@
     - [navigation](#usage#navigation)
         - [jumps](#usage#navigation#jumps)
             - [changes](#usage#navigation#jumps#changes)
-        - [tags](#usage#navigation#tags)
+            - [tags](#usage#navigation#jumps#tags)
         - [quickfix](#usage#navigation#quickfix)
     - [commands](#usage#commands)
         - [shell command](#usage#commands#shell command)
@@ -47,6 +48,7 @@
         - [basic idea](#usage#editing#basic idea)
         - [increase/decrease numbers](#usage#editing#increase/decrease numbers)
         - [change search result](#usage#editing#change search result)
+        - [completions](#usage#editing#completions)
         - [toggle case](#usage#editing#toggle case)
         - [ex/ed](#usage#editing#ex/ed)
             - [ranges](#usage#editing#ex/ed#ranges)
@@ -198,6 +200,8 @@ Make plugins section
 and opens commit file with diffs  
 
 #### merge conflict
+`Gdiffsplit!`
+
 splits order
 
 - left (top) - **target branch** _aka master_ `2`
