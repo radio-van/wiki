@@ -80,6 +80,7 @@
   * [keynav](utilities/keynav.md) 
   * [kubernetes](utilities/kubernetes.md) 
   * [mitm](utilities/mitm.md) 
+  * [mpv](utilities/mpv.md) 
   * [netcat](utilities/netcat.md) 
   * [newsboat](utilities/newsboat.md) 
   * [pass](utilities/pass.md)
