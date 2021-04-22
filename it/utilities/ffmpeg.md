@@ -9,7 +9,8 @@
 - [expressions](#expressions)
 - [usecases](#usecases)
     - [batch](#usecases#batch)
-    - [capture screen](#usecases#capture screen)
+    - [record audio](#usecases#record audio)
+    - [record screen](#usecases#record screen)
     - [concat images to video](#usecases#concat images to video)
     - [cut](#usecases#cut)
     - [concat](#usecases#concat)
@@ -81,6 +82,8 @@ Codecs are determined by `-c` argument
 # quality
 - `-b <number><measure>` sets bitrate, e.g. `-b 4M`, `-b 64k`
 - `-preset <name>` e.g. `-preset medium`
+    - `veryslow` - smaller file
+    - `veryfast` - faster conversion
 - `-crf <number>` lower `<number>` means better quality, 15-25 is usually good
 
 # output
