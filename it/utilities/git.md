@@ -29,6 +29,8 @@
         - [squash commits](#usage#commit#squash commits)
         - [show files in commit](#usage#commit#show files in commit)
         - [commit in wrong branch](#usage#commit#commit in wrong branch)
+            - [one file](#usage#commit#commit in wrong branch#one file)
+            - [more commits](#usage#commit#commit in wrong branch#more commits)
         - [commit part of the file](#usage#commit#commit part of the file)
     - [sign](#usage#sign)
     - [diff](#usage#diff)
@@ -287,8 +289,14 @@ then edit combined message for new commit
 ```
 
 ### commit in wrong branch
+#### one file
 * `git reset --soft origin/<wrong_branch>` roll-back changes to worktree
 * `git checkout -b <correct_branch> && git add ...` follow as usual
+#### more commits
+* remember **hash** of current commit
+* `git reset --hard <origin/branch | HEAD~X>`
+* `git checkout -b <new branch>`
+* `git reset --hard <remembered hash>`
 
 ### commit part of the file
 `git add --patch <file>`
