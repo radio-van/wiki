@@ -8,6 +8,9 @@
 - [output](#output)
 - [expressions](#expressions)
 - [usecases](#usecases)
+    - [archive](#usecases#archive)
+        - [audio](#usecases#archive#audio)
+        - [video](#usecases#archive#video)
     - [batch](#usecases#batch)
     - [record audio](#usecases#record audio)
     - [record screen](#usecases#record screen)
@@ -100,6 +103,15 @@ sometimes `,` in expression should be escaped with `\`
 full list of expressions is available in [documentation](https://ffmpeg.org/ffmpeg-utils.html)
 
 # usecases
+## archive
+**NOTE:** this is personal preferences for saving podcasts/videos
+
+### audio
+`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 -filter:a "atempo=2.0" <output>`
+
+### video
+`ffmpeg -i <input> -c:v libx264 -c:a libvorbis -crf 30 -preset veryslow -vf scale=-2:480 <output>`
+
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
 
