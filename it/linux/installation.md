@@ -1,40 +1,40 @@
 # Contents
 
     - [base](#base)
-        - [pre-installation](#pre-installation)
-        - [partition](#partition)
-            - [encryption](#encryption)
-                - [LVM on LUKS](#lvm-on-luks)
-        - [install base system](#install-base-system)
-        - [generate fstab](#generate-fstab)
-        - [chroot](#chroot)
-        - [adjust time](#adjust-time)
-        - [locale](#locale)
-        - [hostname](#hostname)
-        - [initramfs](#initramfs)
-        - [bootloader](#bootloader)
-            - [systemd-boot](#systemd-boot)
-        - [pacman](#pacman)
-        - [users](#users)
-            - [sudo](#sudo)
+        - [pre-installation](#base#pre-installation)
+        - [partition](#base#partition)
+            - [encryption](#base#partition#encryption)
+                - [LVM on LUKS](#base#partition#encryption#LVM on LUKS)
+        - [install base system](#base#install base system)
+        - [generate fstab](#base#generate fstab)
+        - [chroot](#base#chroot)
+        - [adjust time](#base#adjust time)
+        - [locale](#base#locale)
+        - [hostname](#base#hostname)
+        - [initramfs](#base#initramfs)
+        - [bootloader](#base#bootloader)
+            - [systemd-boot](#base#bootloader#systemd-boot)
+        - [pacman](#base#pacman)
+        - [users](#base#users)
+            - [sudo](#base#users#sudo)
     - [graphics](#graphics)
-        - [xorg](#xorg)
-            - [configuration files](#configuration-files)
-            - [known issues](#known-issues)
-                - [Fatal server error: (EE) AddScreen/ScreenInit](#fatal-server-error-ee-addscreenscreeninit)
-        - [background](#background)
-        - [window manager](#window-manager)
-            - [i3](#i3)
+        - [xorg](#graphics#xorg)
+            - [configuration files](#graphics#xorg#configuration files)
+            - [known issues](#graphics#xorg#known issues)
+                - [Fatal server error: (EE) AddScreen/ScreenInit](#graphics#xorg#known issues#Fatal server error: (EE) AddScreen/ScreenInit)
+        - [background](#graphics#background)
+        - [window manager](#graphics#window manager)
+            - [i3](#graphics#window manager#i3)
     - [login](#login)
-        - [auto login](#auto-login)
-            - [manual](#manual)
-            - [using display manager](#using-display-manager)
+        - [auto login](#login#auto login)
+            - [manual](#login#auto login#manual)
+            - [using display manager](#login#auto login#using display manager)
     - [configs](#configs)
-        - [dotfiles](#dotfiles)
-    - [power management](#power-management)
-        - [sleep and hibernation](#sleep-and-hibernation)
-    - [additional hardware](#additional-hardware)
-        - [Lenovo's bluetooth](#lenovos-bluetooth)
+        - [dotfiles](#configs#dotfiles)
+    - [power management](#power management)
+        - [sleep and hibernation](#power management#sleep and hibernation)
+    - [additional hardware](#additional hardware)
+        - [Lenovo's bluetooth](#additional hardware#Lenovo's bluetooth)
 
 ## base
 ### pre-installation
@@ -112,6 +112,10 @@ edit `/etc/hosts`
 ### initramfs
 if any changes (e.g. hooks) are made in `/etc/mkinitcpio.conf` (e.g. `LVM` or `dm-crypt`), creating new initramfs is required
 `mkinitcpio -P`
+
+force rebuild:  
+`mkinitcpio -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img -k <kernel version>`  
+*NOTE:* `<kernel version>` can be looked up at `/usr/lib/modules`  
 
 ### bootloader
 #### systemd-boot
