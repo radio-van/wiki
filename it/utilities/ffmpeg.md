@@ -169,7 +169,8 @@ or
 ## resize
 * `ffmpeg -i <input> -s 720x480 -c:a copy <output>`
 * `ffmpeg -i <input> -filter:v scale=width:height -c:a copy <output>`
-use `-1` instead of `height` or `width` to automatic calculation
+use `-1` instead of `height` or `width` to automatic calculation  
+use `-2` if codec requires
 
 ## rotate
 ### via metadata
