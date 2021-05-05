@@ -28,6 +28,7 @@
     - [commit](#usage#commit)
         - [squash commits](#usage#commit#squash commits)
         - [show files in commit](#usage#commit#show files in commit)
+        - [undo amend](#usage#commit#undo amend)
         - [commit in wrong branch](#usage#commit#commit in wrong branch)
             - [one file](#usage#commit#commit in wrong branch#one file)
             - [more commits](#usage#commit#commit in wrong branch#more commits)
@@ -287,6 +288,10 @@ then edit combined message for new commit
   message of commit1
   message of commit2
 ```
+
+### undo amend
+`git reset --soft HEAD@{1}`  
+*NOTE*: `HEAD@{1}` = commit that `HEAD` pointed at before it was moved to anywhere it is pointed now
 
 ### commit in wrong branch
 #### one file
