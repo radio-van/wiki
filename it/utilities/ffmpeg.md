@@ -104,7 +104,13 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 
 # usecases
 ## archive
-**NOTE:** this is personal preferences for saving podcasts/videos
+**NOTE:** this is personal preferences for saving podcasts/videos  
+- `-vbr on` option doesn't really impact filesize
+- `1.8` speed is okay
+- `crf 30` significantly decreases filesize
+- conversion with `libvorbis` and then `libopus` produces the same file as with `libopus` from the start
+- `libopus` allows to use `-ab 16k` and `-ar 16k` to decrease filesize
+- `-aq 7` **increases** filesize
 
 ### audio
 `ffmpeg -i <input> -vn -acodec libvorbis -aq 7 -filter:a "atempo=2.0" <output>`
