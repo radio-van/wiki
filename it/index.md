@@ -24,6 +24,7 @@
 
 # Linux
   * [installation](linux/installation.md)
+  * [history](linux/history.md)
   * [filesystem](linux/filesystem.md)
   * [keyboard](linux/keyboard.md)
   * [logs](linux/logs.md)
@@ -32,6 +33,7 @@
   * [networking](linux/networking.md)
   * [packages](linux/packages.md)
   * [sound](linux/sound.md)
+  * [terminal](linux/terminal.md)
   * [tips&tricks](linux/tips_tricks.md)
   * [system](linux/system.md)
   * [video](linux/video.md)

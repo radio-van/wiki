@@ -6,6 +6,8 @@
 
 * [food](food/index.md)
 
+* [history](history/index.md)
+
 * [IT](it/index.md)
 
 * [self](self/index.md)
