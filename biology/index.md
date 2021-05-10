@@ -11,6 +11,7 @@
 - [modification](genetics/modification.md)
 
 # medicine
+- [bacteria](medicine/bacteria.md)
 - [diseases](medicine/diseases.md)
 - [history](medicine/history.md)
 - [nutrition](medicine/nutrition.md)
