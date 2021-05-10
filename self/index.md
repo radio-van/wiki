@@ -1,3 +1,11 @@
+# Contents
+
+- [GTD](#GTD)
+    - [key ideas](#GTD#key ideas)
+    - [method](#GTD#method)
+    - [inboxes](#GTD#inboxes)
+- [Laws](#Laws)
+
 # GTD
 
 ## key ideas
@@ -36,3 +44,8 @@
 * **Next list**, tasks from here should be picked up as soon as previous is finished
 * **Future list** for smth useful you want to do, but not now
 * **References**, place for useful information
+
+# Laws
+Показания в суде - лишь указание, где искать настоящие факты.
+
+Странные законы в США - из-за прецедентного права. Существует закон, что все, сказанное на выборах - ненаказуемо.
