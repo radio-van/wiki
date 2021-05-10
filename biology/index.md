@@ -2,6 +2,7 @@
 - [herbivores](animals/herbivores.md)
 - [apes](animals/apes.md)
 - [birds](animals/birds.md)
+- [crabs](animals/crabs.md)
 - [shark](animals/shark.md)
 
 # genetics
