@@ -13,6 +13,9 @@
 - [usage](#usage)
     - [branch](#usage#branch)
         - [rebase](#usage#branch#rebase)
+            - [basic usage](#usage#branch#rebase#basic usage)
+            - [interactive usage](#usage#branch#rebase#interactive usage)
+            - [revert rebase](#usage#branch#rebase#revert rebase)
         - [delete local branch](#usage#branch#delete local branch)
         - [delete remote branch](#usage#branch#delete remote branch)
         - [delete file from all commits history](#usage#branch#delete file from all commits history)
@@ -196,11 +199,11 @@ C0 <- C1 <- C2 (master)
 ```
 if `C2` and `C4` have conflicts, then after resolving them, `C4` commit will be changed (i.e. `C4'`)
 
-* **basic usage**
+#### basic usage
 `git rebase <new_base>`
 `git rebase <new_base> <old_base>`
 
-* **interactive usage**
+#### interactive usage
   - `git rebase --interactive <hash>` from the given commit
   - `git rebase --interactive --root` from the very beginning
 it will call text editor with all commits and gives opportunities to:
@@ -213,6 +216,10 @@ it will call text editor with all commits and gives opportunities to:
 `git rebase --abort` cancels rebase process
 
 to separate changes in one file `git rebase --interactive` + `git add --patch` can be used
+
+#### revert rebase
+* `git reflog` -> search for rebase hunk
+* `git reset --hard HEAD@{<hunk>}`
 
 ### delete local branch
 `git branch -d $branch`
