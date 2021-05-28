@@ -29,11 +29,12 @@
         - [execute commands](#usage#buffers#execute commands)
         - [count words](#usage#buffers#count words)
     - [tabs](#usage#tabs)
-        - [navigation](#usage#tabs#navigation)
+        - [switching](#usage#tabs#switching)
         - [usage with buffers](#usage#tabs#usage with buffers)
         - [open files](#usage#tabs#open files)
         - [re-arrange tabs](#usage#tabs#re-arrange tabs)
     - [navigation](#usage#navigation)
+        - [movements](#usage#navigation#movements)
         - [jumps](#usage#navigation#jumps)
             - [changes](#usage#navigation#jumps#changes)
             - [tags](#usage#navigation#jumps#tags)
@@ -49,6 +50,7 @@
         - [increase/decrease numbers](#usage#editing#increase/decrease numbers)
         - [change search result](#usage#editing#change search result)
         - [completions](#usage#editing#completions)
+        - [wraps](#usage#editing#wraps)
         - [toggle case](#usage#editing#toggle case)
         - [ex/ed](#usage#editing#ex/ed)
             - [ranges](#usage#editing#ex/ed#ranges)
@@ -321,7 +323,7 @@ buffers could be saved per folder with local `viminfo` file
 ## tabs
 Tabs are just another representation of the group of windows/splits
 
-### navigation
+### switching
 * `gt` next tab
 * `gT` previous tab
 * `<number>gt` tab in `<number>` position (from 1)
@@ -339,17 +341,21 @@ Tabs are just another representation of the group of windows/splits
 * `:tabm <position>` moves current tab to position (`0` for first)
 
 ## navigation
+
+`g` is modifier for many common commands.  
+
+### movements
+* `gj`, `gk`, `g0`, `g$` acts the same as `j, k, 0, $` but do not consider wraps.  
+
 ### jumps
 * `gd` to local declaration
 * `gD` to global declaration
 * `g*`/`g#` search word under cursor
    (will search also for words that contain word under cursor as a part)   
 * `gf` to file under cursor
-* `g]` to tag defenition
+* `g]` to tag definition
 * `gg` to first line
 * `NG` to line `N` (last line if `N` is not provided)
-
-* `gk/gj` go up/down visible line
 
 * `C-o` / `C-i` cycle through `:jumps`
 * `g;` / `g,` cycle through `:changes`
@@ -372,8 +378,6 @@ Tabs are just another representation of the group of windows/splits
 ```
 
 #### tags
-jump to tag
-
 * `Ctrl-]`, `Ctrl-click`, `g-click`, `:tag` jump to tag
 * `:tselect <tag>`, `g]` list locations with a tag if multiple
 * `Ctrl-t`, `:pop`, `Ctrl-right_click`, `g-right_click` jump back
@@ -440,6 +444,9 @@ e.g. `dap` = `d`elete `a`round `p`aragraph
 * `C-x s` spell suggestions
 * `C-x C-v` Vim keywords
 * `C-x C-l` complete line
+
+### wraps
+* `gq<motion>` splits long line to fit the screen.  
 
 ### toggle case
 * toggle case **HellO** to **hELLo** with `g~` then a movement. 
