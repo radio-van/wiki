@@ -404,6 +404,10 @@ open tags in windows, tabs, splits
 * `:.cc`   go to error under cursor (if cursor is in quickfix window)
 
 ## commands
+* `q:` commands history
+* `@:` repeat last command
+* `q/` / `q?` command-line history (commands from shell)
+
 ### shell command
 `: !<shell command>`
 
@@ -433,8 +437,9 @@ e.g. `das` = `d`elete `a`round `s`entence
 e.g. `dap` = `d`elete `a`round `p`aragraph
   
 ### increase/decrease numbers
-* `C-a` increases number under cursor (whole number)
-* `C-x` decreases number under cursor (whole number)
+* `C-a` increases number under cursor (whole number) or at the right of the cursor
+* `C-x` decreases number under cursor (whole number) or at the right of the cursor
+* `gX-a` / `gC-x` do the same, but increase/decrease incrementaly, i.e. +1, +2, +3... **?**
 
 ### change search result
 `cgn` changes the next search result
@@ -620,6 +625,7 @@ untested: `:%!uniq`
 - `later:<time>` reverts file to the state later `<time>` from now
 
 ## selection
+* `o` / `O` move cursor to the beginning/end of visual selection (or corner of visual block)
 * `gv` re-selects previously selected stuff
 
 ## encryption
