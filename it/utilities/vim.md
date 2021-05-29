@@ -50,8 +50,9 @@
         - [increase/decrease numbers](#usage#editing#increase/decrease numbers)
         - [change search result](#usage#editing#change search result)
         - [completions](#usage#editing#completions)
-        - [wraps](#usage#editing#wraps)
-        - [toggle case](#usage#editing#toggle case)
+        - [lines](#usage#editing#lines)
+            - [wraps](#usage#editing#lines#wraps)
+        - [toggle case capitalization](#usage#editing#toggle case capitalization)
         - [ex/ed](#usage#editing#ex/ed)
             - [ranges](#usage#editing#ex/ed#ranges)
             - [patterns](#usage#editing#ex/ed#patterns)
@@ -67,6 +68,7 @@
             - [save with sudo](#usage#editing#tips&trics#save with sudo)
             - [sort uniq lines](#usage#editing#tips&trics#sort uniq lines)
             - [time travel](#usage#editing#tips&trics#time travel)
+    - [selection](#usage#selection)
     - [encryption](#usage#encryption)
     - [file](#usage#file)
         - [expand filename](#usage#file#expand filename)
@@ -291,7 +293,8 @@ e.g.
 * `:vert sb <num|name>` opens buffer in vertical split
 
 * `gf` goto file
-* 
+* `^` returns back
+
 * `C-^` alternate buffer (`#`)
 * `<number>C-^` 
    `C-W ^` or `C-W C-^` opens buffer in new window   
@@ -445,15 +448,19 @@ e.g. `dap` = `d`elete `a`round `p`aragraph
 * `C-x C-v` Vim keywords
 * `C-x C-l` complete line
 
-### wraps
+### lines
+* `gJ` joins lines without spaces
+
+#### wraps
 * `gq<motion>` splits long line to fit the screen.  
 
-### toggle case
-* toggle case **HellO** to **hELLo** with `g~` then a movement. 
-* uppercase **HellO** to **HELLO** with `gU` then a movement. 
-* lowercase **HellO** to **hello** with `gu` then a movement. 
+### toggle case capitalization
+* `~` switches case of one letter
+* `g~<motion>` acts on text objects, `g~~` acts on the whole line
+* `gU<motion>` toggles upper-case, `gUU` acts on the whole line
+* `gu<motion>` toggles lower-case, `guu` acts on the whole line
 
-e.g.  
+E.g.  
 
 * toggle case of the character under the cursor, or all visually-selected characters
 `~`
@@ -519,6 +526,7 @@ e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing
 * read from cli `:r!`
 * format/filter with external command `...!`, e.g. `1,$!sort` uses extermal command `sort` (also useful `fmt`, `fold`, `intend`, e.g `{!}fmt` to format current paragraph)
 * `<` / `>` make intendation
+* `g&` applies previous **substitution** command to the whole document
 
 #### examples
 
@@ -610,6 +618,9 @@ untested: `:%!uniq`
 #### time travel
 - `earlier:<time>`, `<time>` e.g. `1m` for 1 minute. Reverts file to `<time>` back
 - `later:<time>` reverts file to the state later `<time>` from now
+
+## selection
+* `gv` re-selects previously selected stuff
 
 ## encryption
 Encryption method can be set with `set cryptmethod=...` or `set cm=...`, `blowfish2` is recommended
