@@ -6,6 +6,7 @@
 - [conditions](#conditions)
     - [compare strings](#conditions#compare strings)
     - [substring in string](#conditions#substring in string)
+- [escape sequences](#escape sequences)
 - [pipes](#pipes)
     - [conditions](#pipes#conditions)
     - [group conditions](#pipes#group conditions)
@@ -71,6 +72,20 @@ Complex way
 ```bash
 [[ $substring == *"string"* ]] && <included> || <not included>
 ```
+
+# escape sequences
+* `\e[1A` go to previous line
+* `\e[<N><D>` go `N` lines/columns in direction `<D>`:
+    * `A` up
+    * `B` down
+    * `C` forward
+    * `D` backward
+* `\e[K` clear line
+* `\033[0m` default color
+* `\033[0;3<N>m` color `N`
+* `\033[2J` clear the screen
+* `\033[s` save cursor position
+* `\033[u` restore cursor position
 
 # pipes
 ## conditions
