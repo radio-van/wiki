@@ -3,13 +3,15 @@
 - [basics](#basics)
 - [arguments](#arguments)
 - [commands](#commands)
-    - [delete](#delete)
-    - [print](#print)
-    - [quit](#quit)
-    - [substitute](#substitute)
-        - [flags](#flags)
+    - [delete](#commands#delete)
+    - [print](#commands#print)
+    - [quit](#commands#quit)
+    - [substitute](#commands#substitute)
+        - [flags](#commands#substitute#flags)
 - [patterns](#patterns)
 - [ranges](#ranges)
+- [recepies](#recepies)
+    - [delete everything except alpha-numerical chars](#recepies#delete everything except alpha-numerical chars)
 
 # basics
 `sed -> awk -> perl`
@@ -55,3 +57,9 @@ to apply multiple commands to the same [[#ranges|range]], `<range> {command1, co
 * `start,end<command>` apply commands to lines from `start` to `end`
 * `/pattern1/,/pattern2/<command>` apply commands from first occasion of `pattern1` to last occasion of `pattern2`
 * `$` marks the end of the file
+
+# recepies
+
+## delete everything except alpha-numerical chars
+`sed 's/[^[:alnum:]]\+//g'`  
+*NOTE:* cyrillic chars are included

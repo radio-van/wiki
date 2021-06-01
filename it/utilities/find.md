@@ -14,6 +14,7 @@
     - [install python requirements](#examples#install python requirements)
     - [search by date](#examples#search by date)
     - [output multiple files in one line](#examples#output multiple files in one line)
+    - [loop through list of filenames with spaces](#examples#loop through list of filenames with spaces)
 
 # empty folders
 `find . -type d -empty`
@@ -65,3 +66,12 @@ works with recursive paths
 e.g.  
 add multiple books in html to *Calibre* (it accepts book in format `calibre <path-to-bbok1> <path-to-book2> ...`)  
 `find <path> -type f -name 'index.html' -printf '%p ' | xargs calibre`
+
+## loop through list of filenames with spaces
+```sh
+find . -type f -name '<pattern>' -exec sh -c '
+  for file do
+    ...
+  done
+' exec-sh {} +
+```
