@@ -35,6 +35,7 @@
     - [check if file is empty](#usage#check if file is empty)
     - [get basename of file](#usage#get basename of file)
     - [print current terminal emulator](#usage#print current terminal emulator)
+    - [generate random password](#usage#generate random password)
 
 # configuration
 ## basics
@@ -254,3 +255,6 @@ e.g.
 
 ## print current terminal emulator
 `ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))"`
+
+## generate random password
+`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`
