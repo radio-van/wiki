@@ -75,6 +75,8 @@ Complex way
 ```
 
 # escape sequences
+`\e` and `\033` are equal  
+
 * `\e[1A` go to previous line
 * `\e[<N><D>` go `N` lines/columns in direction `<D>`:
     * `A` up
@@ -82,11 +84,12 @@ Complex way
     * `C` forward
     * `D` backward
 * `\e[K` clear line
-* `\033[0m` default color
-* `\033[0;3<N>m` color `N`
-* `\033[2J` clear the screen
-* `\033[s` save cursor position
-* `\033[u` restore cursor position
+* `\e[0m` default color
+* `\e[0;3<N>m` color `N`
+* `\e[1;3<N>m` **bright** color `N`
+* `\e[2J` clear the screen
+* `\e[s` save cursor position
+* `\e[u` restore cursor position
 
 # pipes
 ## conditions
