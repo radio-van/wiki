@@ -122,7 +122,7 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
 
 ## record audio
-`ffmpeg -f pulse -i <ID of source> -f pulse <out>`
+`ffmpeg -f pulse -i <ID of source> <out>`
 
 ## record screen
 video only:  
