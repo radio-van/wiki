@@ -1,8 +1,8 @@
 # Contents
 
-- [regex types](#regex-types)
-- [special character](#special-character)
-- [lookahead / lookbehind](#lookahead-lookbehind)
+- [regex types](#regex types)
+- [special character](#special character)
+- [lookahead / lookbehind](#lookahead / lookbehind)
 
 # regex types
 - **PCRE** `(foo|bar)` means `foo` or `bar`
@@ -20,6 +20,7 @@
 * `( )` captive grouping, group can be used later as `$<group number>` [`\( \)` and `\<group number` in **vim**]
 * `(? )` non-captive grouping, see [lookahead/lookbehind](#lookahead-/-lookbehind)
 * `[ ]` characters range, `[a-zA-Z0-9]`
+* `[:alnum:]` only letters and numbers (not including russian)
 
 # lookahead / lookbehind
 **Positive lookahead** searches for some expression, but do not include that expression in result
