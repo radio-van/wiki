@@ -36,6 +36,7 @@
     - [get basename of file](#usage#get basename of file)
     - [print current terminal emulator](#usage#print current terminal emulator)
     - [generate random password](#usage#generate random password)
+    - [get output from process executed by another thread](#usage#get output from process executed by another thread)
 
 # configuration
 ## basics
@@ -261,3 +262,8 @@ e.g.
 
 ## generate random password
 `< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`
+
+## get output from process executed by another thread
+`strace -p<PID> -s9999 -e write`  
+- `write` means capture output
+- `-s9999` avoids truncating to 32 chars
