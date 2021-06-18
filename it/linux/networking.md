@@ -17,10 +17,12 @@
     - [wireless](#configuration#wireless)
         - [AP](#configuration#wireless#AP)
         - [wpa supplicant](#configuration#wireless#wpa supplicant)
-    - [tips & trics](#configuration#tips & trics)
-        - [show process which is listening target port](#configuration#tips & trics#show process which is listening target port)
-        - [get ip](#configuration#tips & trics#get ip)
-        - [capture trafic on particular port](#configuration#tips & trics#capture trafic on particular port)
+- [tips & trics](#tips & trics)
+    - [show process which is listening target port](#tips & trics#show process which is listening target port)
+    - [get ip](#tips & trics#get ip)
+    - [capture trafic on particular port](#tips & trics#capture trafic on particular port)
+- [statistics](#statistics)
+    - [traffic consumption](#statistics#traffic consumption)
 
 # interfaces
 
@@ -162,11 +164,15 @@ rsn_pairwise=CCMP
 
 for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obtain configuration
 
-## tips & trics
-### show process which is listening target port
+# tips & trics
+## show process which is listening target port
 * `ss -ltnp | grep -w ':PORT'`
-### get ip
+## get ip
 `ip -4 addr show <interface> | grep -oP '(?<=inet\s)\d+(\.\d+){3}`
 
-### capture trafic on particular port
+## capture trafic on particular port
 `ngrep port 53`
+
+# statistics
+## traffic consumption
+* `Discord` ~3Mb in 5 minutes, ~12Mb in 15 minutes => ~700Kb/min
