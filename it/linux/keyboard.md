@@ -26,7 +26,12 @@
 - **keysum** is what is sent to *XKeyEvent*, where it is obtained by *client* via *XLookupString*  
 
 ## modifiers
-`Shift, Lock, Control, Mod1-Mod5`  
+Keypresses in **X** have 8 modifiers bits: `Shift, Lock, Control, Mod1-Mod5`  
+Both `Shift` *keys* are bound to `Shift` *modifier*, as `Ctrl` *keys* are bound to `Control` *modifier*.  
+`Alt` *key* is usually `Mod1` *modifier*.
+
+**X** still has internal keycodes for `Super`, `Meta` and `Hyper` keys from *Symbolics* keyboard.  
+`Super` is usually `Mod4`.  
 
 ## xkb
 works at *XLookupString* level and transforms incoming *keycodes* into *keysums* according to defined rules  
