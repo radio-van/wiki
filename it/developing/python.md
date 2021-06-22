@@ -17,6 +17,8 @@
         - [check number of database calls](#tests#assert#check number of database calls)
     - [mocking](#tests#mocking)
         - [basics](#tests#mocking#basics)
+            - [patch class attribute or method](#tests#mocking#basics#patch class attribute or method)
+            - [patch stand alone function and test arguments](#tests#mocking#basics#patch stand alone function and test arguments)
         - [return values](#tests#mocking#return values)
         - [return different value on each call](#tests#mocking#return different value on each call)
         - [mocking immutable built-ins](#tests#mocking#mocking immutable built-ins)
@@ -198,7 +200,7 @@ with assertNumQueries(<num>):
 
 ## mocking
 ### basics
-To patch **instance** attribute or method::
+To patch **instance** attribute or method  
 ```python
    from package2 import B
 
@@ -241,6 +243,20 @@ result will be
    >>> b 1000
 ```
 
+**NOTE** be aware if mocked function is inside a `.py` file inside folder,  
+the file **should not** be called as one of methods inside it, e.g.  
+```python
+<project>/<folder>/__init__.py
+
+from .some_module import some_module
+
+<project>/<folder>/some_module.py
+def some_module():
+  ...
+```
+In this case, `some_module` method won't be patched!
+
+#### patch class attribute or method
 To patch **class** attribute or method
 ```python
   @mock.patch.object(Class, 'attribute/method')
@@ -250,7 +266,7 @@ To patch **class** attribute or method
 ```
 also, mocked object/method can be specified
 ```python
-  def fake_method(self):
+  def faked_method(self):
     ...
 
   @mock.patch.object(Class, 'attribute/method', faked_method)
@@ -262,6 +278,13 @@ also, mocked object/method can be specified
 in this case `attribute` is **Class** attribute. To patch **instance** attribute   
 
 `@patch.object(Class, method)` must be used **?**
+
+#### patch stand alone function and test arguments
+```python
+@mock.patch('<project>.<path>.<module>.<method>')
+def test(self, m_method):
+    m_method.assert_called_with(<attributes>)
+```
 
 ### return values
 to mock return value `mock_instance.some_method.return_value` could be used   
