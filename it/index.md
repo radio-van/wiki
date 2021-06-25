@@ -6,6 +6,7 @@
 ## backend
   * [databases](developing/databases.md)
   * [django](developing/django.md)
+  * [celery](developing/celery.md)
   * [python](developing/python.md)
 ## frontend
   * [JS](developing/js.md)
