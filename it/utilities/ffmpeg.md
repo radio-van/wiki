@@ -9,7 +9,8 @@
 - [expressions](#expressions)
 - [usecases](#usecases)
     - [archive](#usecases#archive)
-        - [audio](#usecases#archive#audio)
+        - [music](#usecases#archive#music)
+        - [podcasts](#usecases#archive#podcasts)
         - [video](#usecases#archive#video)
     - [batch](#usecases#batch)
     - [record audio](#usecases#record audio)
@@ -18,7 +19,6 @@
     - [cut](#usecases#cut)
     - [concat](#usecases#concat)
     - [convert DVD](#usecases#convert DVD)
-    - [convert to ogg](#usecases#convert to ogg)
     - [exctract frames](#usecases#exctract frames)
     - [overlaying image on video](#usecases#overlaying image on video)
     - [parallel](#usecases#parallel)
@@ -112,8 +112,16 @@ full list of expressions is available in [documentation](https://ffmpeg.org/ffmp
 - `libopus` allows to use `-ab 16k` and `-ar 16k` to decrease filesize
 - `-aq 7` **increases** filesize
 
-### audio
-`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 -filter:a "atempo=2.0" <output>`
+### music
+`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 <output>`
+
+### podcasts
+`ffmpeg -i <input> -vn -acodec libvorbis -filter:a "atempo=2.0" <output>`
+
+for smaller files:
+`ffmpeg -i <input> -vn -acodec libvorbis -ab 32k -ar 22050 <output>`  
+or  
+`ffmpeg -i <input> -vn -acodec libvopus -ab 16k -ar 16k -vbr on <output>`  
 
 ### video
 `ffmpeg -i <input> -c:v libx264 -c:a libvorbis -crf 30 -preset veryslow -vf scale=-2:480 <output>`
@@ -156,13 +164,6 @@ hint: add `-safe 0` before `-i` if file pathes are not relative
 
 ## convert DVD
 `cat *.VOB | ffmpeg -fflags +genpts -i - -c:v copy -c:a copy -c:s copy <output.mkv>`
-
-## convert to ogg
-`ffmpeg -i <input> -vn -acodec libvorbis -aq 7 <output>`  
-for smaller files:
-`ffmpeg -i <input> -vn -acodec libvorbis -ab 32k -ar 22050 <output>`  
-or  
-`ffmpeg -i <input> -vn -acodec libvopus -ab 16k -ar 16k -vbr on <output>`  
 
 ## exctract frames
 * extract 3 frames `ffmpeg -i <input> -ss 00:00:07.000 -vframes 3 thumb%04d.jpg` 
