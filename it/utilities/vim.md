@@ -91,8 +91,19 @@
 
 # configuration
 ## TODO
-`wildmode=longest,list,full`
-`spellcheck :setlocal spell! spelling=en_us<CR>`
+* `wildmode=longest,list,full`
+* `spellcheck :setlocal spell! spelling=en_us<CR>`
+* `set undofile`
+* `set suffixesadd=str`
+* `:co`
+* `:g <regex> norm f dw` do on each line with regex
+* `:g <regex> d` del all regex
+* `:v <regex> d` del all not-regex
+* `inoremap ;a aaaa` paste in insert mode => breakpoint snippet
+* `-"- ;1 c-oma` mark from insert mode
+* `gu` ? chronologicat undo? also: `undo tree`
+* `dV /` line in search?
+
 
 ## options & variables
 * `:set` is for setting _options_
