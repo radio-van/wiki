@@ -12,6 +12,7 @@
     - [constraints](#sql#constraints)
     - [roles](#sql#roles)
     - [queries](#sql#queries)
+        - [dates](#sql#queries#dates)
         - [filter values](#sql#queries#filter values)
         - [search for partial value](#sql#queries#search for partial value)
         - [limit query](#sql#queries#limit query)
@@ -88,6 +89,10 @@ CREATE TABLE COMPANY(
 see also `ALTER ROLE`, `DROP ROLE`
 
 ## queries 
+### dates
+```sql
+  SELECT * FROM table WHERE some_date_field > now(0 - interval 'N hours';
+```
 ### filter values 
 ```sql
   SELECT * FROM table WHERE string IN (value1, value2,...);
