@@ -12,6 +12,9 @@
   * [JS](developing/js.md)
   * [requests](developing/requests.md)
 
+# Facts
+  * [facts](general/facts.md)
+
 # General
   * [encryption](general/encryption.md)
 
