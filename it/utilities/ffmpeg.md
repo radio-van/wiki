@@ -12,6 +12,7 @@
         - [music](#usecases#archive#music)
         - [podcasts](#usecases#archive#podcasts)
         - [video](#usecases#archive#video)
+        - [for iOS](#usecases#archive#for iOS)
     - [batch](#usecases#batch)
     - [record audio](#usecases#record audio)
     - [record screen](#usecases#record screen)
@@ -125,6 +126,9 @@ or
 
 ### video
 `ffmpeg -i <input> -c:v libx264 -c:a libvorbis -crf 30 -preset veryslow -vf scale=-2:480 <output>`
+
+### for iOS
+`ffmpeg -i <input> -vcodec libx264 -profile:v main -level 3.1 -preset medium -crf 23 -x264-params ref=4 -acodec copy -movflags +faststart <output>`
 
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
