@@ -8,6 +8,7 @@
 - [usage](#usage)
     - [connection](#usage#connection)
         - [force using password](#usage#connection#force using password)
+        - [force using IdentityOnly](#usage#connection#force using IdentityOnly)
     - [keys](#usage#keys)
         - [keygen](#usage#keys#keygen)
         - [copy key](#usage#keys#copy key)
@@ -20,6 +21,7 @@
     - [agent-forwarding](#ssh-agent#agent-forwarding)
         - [overview](#ssh-agent#agent-forwarding#overview)
         - [configuration](#ssh-agent#agent-forwarding#configuration)
+- [port forwarding](#port forwarding)
 - [scp](#scp)
     - [ambiguous target](#scp#ambiguous target)
 - [additional security](#additional security)
@@ -112,6 +114,9 @@ useful for compare with public key fingerprint, e.g. for [github](https://docs.g
 * autostart `eval ssh-agent` (`eval` is used due to exporting env variable)
 * `SSH_ASKPASS` determines which program would be used for asking user's confirmation for key reading
     
+# port forwarding
+* `-N` prevents opening remote shell
+
 # scp
 ## ambiguous target
 All spaces in target path must be escaped with `\\` and path itself must be enclosed with `"`
