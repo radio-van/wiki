@@ -27,6 +27,7 @@
   * [usb-modems](hardware/modems.md)
 
 # Linux
+  * [clipboard](linux/clipboard.md)
   * [installation](linux/installation.md)
   * [history](linux/history.md)
   * [filesystem](linux/filesystem.md)
