@@ -1,13 +1,17 @@
 # Contents
 
 - [usage](#usage)
-    - [POST](#post)
+    - [auth](#usage#auth)
+    - [POST](#usage#POST)
 - [cookie](#cookie)
 - [tips](#tips)
-    - [add line after response](#add-line-after-response)
-    - [post video to Telegram](#post-video-to-telegram)
+    - [add line after response](#tips#add line after response)
+    - [post video to Telegram](#tips#post video to Telegram)
 
 # usage
+## auth
+`curl -u username:password ...`
+
 ## POST
 `curl --data "param1=<smth>&param2=<smth>" <url>`
 `curl --data "param1=<smth>" --data "param2=<smth>" <url>`
