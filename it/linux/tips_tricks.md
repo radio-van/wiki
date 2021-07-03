@@ -1,11 +1,12 @@
 # Contents
 
-- [fork bomb](#fork-bomb)
-- [Debian](#debian)
-    - [autologin in lightdm](#autologin-in-lightdm)
-    - [locale](#locale)
-    - [keyboard switch](#keyboard-switch)
-- [share terminal](#share-terminal)
+- [fork bomb](#fork bomb)
+- [Debian](#Debian)
+    - [autologin in lightdm](#Debian#autologin in lightdm)
+    - [locale](#Debian#locale)
+    - [keyboard switch](#Debian#keyboard switch)
+- [share terminal](#share terminal)
+    - [get output from process executed by another thread](#share terminal#get output from process executed by another thread)
 
 # fork bomb
 ```
@@ -48,3 +49,8 @@ aka
 
 # share terminal
 `<command> | nc seashells.io 1337`
+
+## get output from process executed by another thread
+`strace -p<PID> -s9999 -e write`  
+- `write` means capture output
+- `-s9999` avoids truncating to 32 chars
