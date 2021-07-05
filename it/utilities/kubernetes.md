@@ -6,6 +6,7 @@
     - [cli](#create pod#cli)
     - [frontend](#create pod#frontend)
 - [edit deployment](#edit deployment)
+- [edit secrets](#edit secrets)
 - [postgres pod](#postgres pod)
 - [gpu pod](#gpu pod)
 - [delete pod](#delete pod)
@@ -37,6 +38,11 @@ replace
 with  
 `-command: ['sleep', '500m']`  
 to be able to connect to pod (instead it will fall into recreating loop)  
+
+# edit secrets
+* `kubectl -n <namespace> get secrets`
+* `kubectl -n <namespace> edit secret <secret>`
+* paste secret in base64: `echo 'string' | base64`
 
 # postgres pod
 * create pod  
