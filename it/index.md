@@ -28,6 +28,7 @@
 
 # Linux
   * [clipboard](linux/clipboard.md)
+  * [containers](linux/containers.md)
   * [installation](linux/installation.md)
   * [history](linux/history.md)
   * [filesystem](linux/filesystem.md)
