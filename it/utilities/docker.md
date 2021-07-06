@@ -11,7 +11,10 @@
     - [rm all containers](#Containers#rm all containers)
 - [Managing](#Managing)
     - [unused stuff](#Managing#unused stuff)
-    - [location](#Managing#location)
+- [Configuration](#Configuration)
+    - [runtime](#Configuration#runtime)
+    - [data location](#Configuration#data location)
+        - [transfer to new location](#Configuration#data location#transfer to new location)
 
 # build
 ## UnionFS
@@ -68,13 +71,39 @@ to remove selectively, use:
   * `docker volume prune` remove unused volumes
   * `docker build prune` remove unused cache
 
-## location
+# Configuration
+## runtime
+`/etc/docker/daemon.json`
+```
+{
+  "default-runtime": "runc",
+  "runtimes": {
+    "kata-runtime": {
+      "path": "/opt/kata/bin/kata-runtime",
+      "runtimeArgs": [
+              "--kata-config /etc/kata/configuration.toml"
+      ]
+    },
+    "crun": {
+      "path": "/usr/local/bin/crun"
+    }
+  }
+}
+```
+## data location
+`/etc/docker/daemon.json`
+```
+{
+  "data-root": "<path>"
+}
+```
+OR  
 `/lib/systemd/system/docker.service`
 `ExecStart=/usr/bin/dockerd -g <new/path> -H fd://`
 
-`systemctl stop docker`
-`systemctl daemon-reload`
-
-`rsync -aqxP /var/lib/docker/ /new/path/docker`
-
-`systemctl start docker`
+### transfer to new location
+* `systemctl stop docker`
+* *edit config*
+* `systemctl daemon-reload`
+* `rsync -aqxP /var/lib/docker/ /new/path/docker`
+* `systemctl start docker`
