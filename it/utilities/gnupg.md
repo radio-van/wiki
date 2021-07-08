@@ -141,8 +141,18 @@ gpg ---edit-key <keyID>
 # gpg-agent
 ## configuration
 `~/.gnupg/gpg-agent.conf`
-* program for entering passphrase `pinentry-program /usr/bin/pinentry-tty`
-* act as ssh agent `enable-ssh-support `
+```
+default-cache-ttl 43200  # expire cache if it wasn't accessed for given seconds
+default-cache-ttl-ssh 43200  # expire ssh keys if they weren't accessed for given seconds
+max-cache-ttl 86400  # expire cache (even if it was accessed recently)
+max-cache-ttl-ssh 86400  # expire cache for ssh keys (even if they were accessed recently)
+
+enable-ssh-support  # act as ssh agent
+
+pinentry-program /usr/bin/pinentry-dmenu  # program to enter passphrase
+
+allow-preset-passphrase  # ? allows to cache passphrase
+```
 
 ## restart
 `gpg-connect-agent reloadagent /bye`  
