@@ -19,9 +19,10 @@
     - [overview](#ssh-agent#overview)
     - [usage](#ssh-agent#usage)
     - [agent-forwarding](#ssh-agent#agent-forwarding)
-        - [overview](#ssh-agent#agent-forwarding#overview)
+        - [basics](#ssh-agent#agent-forwarding#basics)
         - [configuration](#ssh-agent#agent-forwarding#configuration)
 - [port forwarding](#port forwarding)
+- [proxy command](#proxy command)
 - [scp](#scp)
     - [ambiguous target](#scp#ambiguous target)
 - [additional security](#additional security)
@@ -94,11 +95,13 @@ useful for compare with public key fingerprint, e.g. for [github](https://docs.g
 * `ssh-add <key>` add key, add `-c` option to require confirmation each time key would be read
 * `ssh-add -l` list added keys
 ## agent-forwarding
-### overview
+### basics
     `ssh-agent forwarding` allows to use local `ssh-agent` on client machine as it is local for host machine.
     i.e. if user connects from machine *A* to machine *B* via intermediate server *S*, it's not necessary that
     server's key is authorized on machine *B*. With agent-forwarding *A*'s key must be authorized on *B* and *S*
     and *S* can has no access to *B*.
+    However, while such connection is active, there is an opened socket, that allows `ssh-client` on server *S*  
+    to connect to `ssh-agent` on host *A*, i.e. anyone with sufficient rights on server *S* can use it.  
 ```
    
       +-------key A----------------------+
@@ -116,6 +119,27 @@ useful for compare with public key fingerprint, e.g. for [github](https://docs.g
     
 # port forwarding
 * `-N` prevents opening remote shell
+
+# proxy command
+Specifies a *ProxyCommand* to connect to specified host.  
+In general it could be any command. Useful for more secure than [agent-forwarding](#agent-forwarding)  
+connection to host **B** which is accessible only from host **A**.  
+```
+Host A
+  User ...
+  Hostname ...
+  
+Host B
+  User ...
+  Hostname ...
+  ProxyCommand ssh -q -W %h:%p A
+```
+Connection to host **B** will do a connection to host **A** first and then forwards ssh-client to `host:port`  
+defined by `-W` option (i.e. to host and port of `B`).  
+`-W` option forwards *stdin* and *stdout* to defined host via secure channel. It implies `-T` and `-N`,  
+the last one prevents executing remote command (i.e. shell) and just forwards ports.  
+Therefore, there is no classic ssh connection to host `A`, it used only for port-forwarding (in this  
+case, *stdin/stdout* forwarding).  
 
 # scp
 ## ambiguous target
