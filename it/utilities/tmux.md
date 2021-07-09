@@ -11,6 +11,8 @@
         - [conditions](#usage#scripting#conditions)
         - [send keys](#usage#scripting#send keys)
         - [example](#usage#scripting#example)
+- [troubleshooting](#troubleshooting)
+    - [ssh-agent forwarding](#troubleshooting#ssh-agent forwarding)
 - [useful links](#useful links)
 
 # configuration
@@ -54,6 +56,10 @@ create session, run commands and attach to it
     tmux -2 attach-session -d
 ```
 
+# troubleshooting
+## ssh-agent forwarding
+If **Tmux** session existed before connection with **ssh-agent** forwarding, it lacks the value of `SSH_AUTH_SOCK`  
+env variable. It can be exported manually or added to file which is sourced via `.ssh/rc`.
 # useful links
 * [How to start tmux with several panes open at the same time?](https://askubuntu.com/questions/830484/how-to-start-tmux-with-several-panes-open-at-the-same-time)
 * [tmux shortcuts & cheatsheet](https://gist.github.com/MohamedAlaa/2961058)
