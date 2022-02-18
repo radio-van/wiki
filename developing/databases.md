@@ -285,7 +285,9 @@ Note that:
 ```
 * multiple rows:
 ```sql
-   INSERT INTO table (col1, col2) VALUES (val1, val2), (val3, val4);
+   INSERT INTO table (col1, col2) VALUES
+       (val1, val2),
+       (val3, val4);
 ```
 ### partial update 
 ```sql
