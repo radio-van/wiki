@@ -138,6 +138,8 @@ or
 ## record audio
 `ffmpeg -f pulse -i <ID of source> <out>`
 
+`<ID of source>` - full name of sink, can be obtained via `pactl list sinks`
+
 ## record screen
 video only:  
 `ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+<x>,<y> <output>`

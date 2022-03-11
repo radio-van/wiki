@@ -10,6 +10,8 @@
     - [binary](#Classes#binary)
         - [convert decimal to binary](#Classes#binary#convert decimal to binary)
         - [shift](#Classes#binary#shift)
+    - [dictionaries](#Classes#dictionaries)
+        - [setdefault](#Classes#dictionaries#setdefault)
     - [strings](#Classes#strings)
         - [format](#Classes#strings#format)
 - [functions](#functions)
@@ -197,6 +199,16 @@ or
 
 01000 & 00100 => 00000 => 0
 ```
+
+## dictionaries
+
+### setdefault
+Returns specified key. If key doesn't exist, inserts the key with a given value.  
+```python
+x = my_dict.setdefault('some_key', 'default_value')
+```
+will return the real value, if `some_key` presents in dict, otherwise `default_value`
+
 
 ## strings
 
