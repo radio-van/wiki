@@ -40,6 +40,7 @@
             - [one file](#usage#commit#commit in wrong branch#one file)
             - [more commits](#usage#commit#commit in wrong branch#more commits)
         - [commit part of the file](#usage#commit#commit part of the file)
+        - [split commit](#usage#commit#split commit)
     - [sign](#usage#sign)
     - [diff](#usage#diff)
         - [local from remote](#usage#diff#local from remote)
@@ -333,6 +334,12 @@ then edit combined message for new commit
 
 ### commit part of the file
 `git add --patch <file>`
+
+### split commit
+* `rebase` and mark commit for editing `e`
+* `git reset HEAD^`
+* `git add ...`
+* `git commit -c ORIG_HEAD` (to keep original message)
 
 ## sign
 * `gpg -k --keyid-format long`  
