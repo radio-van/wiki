@@ -339,7 +339,8 @@ then edit combined message for new commit
 * `rebase` and mark commit for editing `e`
 * `git reset HEAD^`
 * `git add ...`
-* `git commit -c ORIG_HEAD` (to keep original message)
+* (optional) `git commit -c ORIG_HEAD` (to keep original message)
+* `git rebase --continue`
 
 ## sign
 * `gpg -k --keyid-format long`  
