@@ -98,6 +98,7 @@
   * [exiftool](utilities/exiftool.md)
   * [ffmpeg](utilities/ffmpeg.md)
   * [find](utilities/find.md)
+  * [firefox](utilities/firefox.md)
   * [frida](utilities/frida.md)
   * [fzf](utilities/fzf.md)
   * [git](utilities/git.md) 
