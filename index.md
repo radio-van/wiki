@@ -116,6 +116,7 @@
   * [mutt](utilities/mutt.md) 
   * [netcat](utilities/netcat.md) 
   * [newsboat](utilities/newsboat.md) 
+  * [nmap](utilities/nmap.md) 
   * [pass](utilities/pass.md)
   * [rsync](utilities/rsync.md)
   * [sed](utilities/sed.md)
