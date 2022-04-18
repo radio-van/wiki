@@ -45,8 +45,11 @@
     - [generate random password](#usage#generate random password)
     - [get output from process executed by another thread](#usage#get output from process executed by another thread)
     - [date in unix time](#usage#date in unix time)
+    - [days betweem dates](#usage#days betweem dates)
     - [file modification date in unix time](#usage#file modification date in unix time)
     - [generate random number](#usage#generate random number)
+    - [edit command in editor](#usage#edit command in editor)
+    - [command history](#usage#command history)
 
 # configuration
 ## basics
@@ -274,6 +277,7 @@ e.g.
 
 ## previous command and arguments
 - `!!` whole previous command (useful with `sudo`)
+- `!<n>` `n`th command (from history)
 - `!^` first argument
 - `!$` last argument
 - `!*` all arguments
@@ -282,6 +286,8 @@ e.g.
 - `!:2-$`, `!:2*` second to last
 - `!:2-` second to last, *does not* includes last
 - `!:0` the command itself
+
+_TIP_: look `man history expansion`
 
 ## replace symbols in previous command
 - `^X^Y` replaces `X` with `Y` and executes last command
@@ -310,8 +316,21 @@ e.g.
 ## date in unix time
 `date +%s`
 
+## days betweem dates
+`echo $(( ($(date --date="<date1>" +%s) - $(date --date="<date2>" +%s) )/(60*60*24) ))`  
+where `<date>` in format `YYMMDD`  
+* command `date --date="<date>" +%s` gives particular `<date>` in unix time
+* `(... - ...)` gives delta in seconds
+* `.../(60*60*24)` gives delta in days
+
 ## file modification date in unix time
 `stat -c '%Y' <file>`
 
 ## generate random number
 `$(($RANDOM % 10))` from `0` to `9`
+
+## edit command in editor
+`c-x c-e` or `esc v`
+
+## command history
+`history`

@@ -2,6 +2,7 @@
 ## general
   * [common](developing/common.md)
   * [compilation](developing/compilation.md)
+  * [network](developing/network.md)
   * [regex](developing/regex.md)
 ## backend
   * [celery](developing/celery.md)
@@ -131,3 +132,44 @@
   * [wget](utilities/wget.md)
   * [wireguard](utilities/wireguard.md)
   * [zip](utilities/zip.md)
+
+
+# TODO
+* nohup
+* rename/repren
+* shuf
+* sort `c-v` tab
+* strings
+* iconv
+* uconv
+* split
+* datediff
+* add
+* strptime
+* iostat -mxz
+* dstat
+* mtr
+* iftop
+* nethogs
+* siege
+* strace
+* ltrace
+* ldd
+* sar
+* expr
+* look
+* paste
+* join
+* fmt
+* pr
+* fold
+* column
+* seq
+* toe
+* slurm
+* logrotate
+* comm
+* pv
+* apg
+* cssh
+* dstat

@@ -18,6 +18,7 @@
         - [users](#base#users)
             - [sudo](#base#users#sudo)
     - [graphics](#graphics)
+        - [fonts](#graphics#fonts)
         - [xorg](#graphics#xorg)
             - [configuration files](#graphics#xorg#configuration files)
             - [known issues](#graphics#xorg#known issues)
@@ -149,6 +150,12 @@ see [packages](packages.md)
 
 
 ## graphics
+### fonts
+* `terminus-font` - font for console
+* `ttf-fira-code` - nice font for most cases, has ligatures, **no italic**
+* `noto-fonts-emoji` - emoji support, e.g. in Discord
+* `nerd-fonts-jetbrains-mono` - patched `jetbrains-mono` font with glyph collection (font awesome, weather, material, etc)
+
 ### xorg
 * install `xorg-server`
 * check video card `lspci | grep -e VGA -e 3D`

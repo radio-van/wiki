@@ -17,6 +17,7 @@
     - [record audio](#usecases#record audio)
     - [record screen](#usecases#record screen)
     - [reverse](#usecases#reverse)
+    - [capture USB video](#usecases#capture USB video)
     - [concat images to video](#usecases#concat images to video)
     - [cut](#usecases#cut)
     - [concat](#usecases#concat)
@@ -148,6 +149,10 @@ with audio (mic):
 
 ## reverse
 `ffmpeg -i <input> -vf reverse <output`
+
+## capture USB video
+`ffplay -f video4linux2 /dev/video0`  
+**NOTE**: make sure `uvcvideo` kernel module is loaded (device should be at `/dev/video0`)
 
 ## concat images to video
 * `ffmpeg -r 60 -f image2 -s 1280x720 -i pic%04d.png -i MP3FILE.mp3 -vcodec libx264 -c:a copy <output>`

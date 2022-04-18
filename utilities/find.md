@@ -43,12 +43,26 @@ use `!`
 * `expr1 -o expr2` `expr2` is not evaluated if `expr1` is true
   
 # prune
-if file is a directory, do not descend into it.
-can't be used with `-delete` because it implies `-depth`
+if file is a directory, do not descend into it, i.e.  
+skip all files and folders under this directory.
 e.g.
-* `find . -path <pattern> -prune -o -print` will exclude folder `<pattern>`
-to exclude `<pattern>` in root dir and all subdirs use:
+
+* `find . -path <pattern> -prune` will exclude files and dirs under dir with name`<pattern>`  
+
+The result will be only a folder itself, because `-path` tells `find` to print only files  
+and dirs which path matches `-path <pattern>`.  
+To print all results that doesn't match `<pattern>` expression operator can be used:  
+`expr1 -o expr2`   
+which executes `expr2` only if `expr1` failed, e.g.:
+
+* `find . -path <pattern> -prune -o -print`
+
+If file path contains `<pattern>` it is pruned, otherwise - printed.
+
+To exclude `<pattern>` in root dir and all subdirs use:
 * `find . -path "./<pattern>" -prune`
+
+**NOTE**: can't be used with `-delete` because it implies `-depth`
 
 # search pattern
 * `find . -path <pattern>` filename matches pattern
