@@ -9,6 +9,7 @@
     - [import](#usage#import)
     - [delete](#usage#delete)
     - [encrypt/decrypt](#usage#encrypt/decrypt)
+        - [use multiple keys](#usage#encrypt/decrypt#use multiple keys)
     - [git integration](#usage#git integration)
     - [edit uid](#usage#edit uid)
 - [gpg-agent](#gpg-agent)
@@ -113,6 +114,9 @@ recovery:
 ## encrypt/decrypt
 encrypt `gpg --recipient user-id --encrypt doc`
 decrypt `gpg --output doc --decrypt doc.gpg`
+
+### use multiple keys
+`gpg --encrypt --recipient alice@example.com --recipient bob@example.com <file>`
 
 ## git integration
 - export public key with `--armor` option

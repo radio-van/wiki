@@ -34,6 +34,8 @@
         - [mocking models](#tests#mocking#mocking models)
         - [check method call without mocking](#tests#mocking#check method call without mocking)
 - [additional tools](#additional tools)
+    - [pytest](#additional tools#pytest)
+        - [supress warnings](#additional tools#pytest#supress warnings)
     - [virtual envs](#additional tools#virtual envs)
         - [create venv](#additional tools#virtual envs#create venv)
         - [install version of Python](#additional tools#virtual envs#install version of Python)
@@ -427,6 +429,10 @@ side_effect='path.to.method',
 
 
 # additional tools
+
+## pytest
+### supress warnings
+`pytest -p no:warnings`
 
 ## virtual envs
 ### create venv
