@@ -21,6 +21,7 @@
     - [concat images to video](#usecases#concat images to video)
     - [cut](#usecases#cut)
     - [concat](#usecases#concat)
+        - [embed cover](#usecases#concat#embed cover)
     - [convert DVD](#usecases#convert DVD)
     - [crop](#usecases#crop)
     - [exctract frames](#usecases#exctract frames)
@@ -177,6 +178,13 @@ file '2.mp4'
 run::
 `ffmpeg -f concat -i list -c copy output`
 hint: add `-safe 0` before `-i` if file pathes are not relative
+
+**OR**
+
+`ffmpeg -f concat -safe 0 -i <(for f in ./*.mp3; do echo "file '$PWD/$f'; done) <output>`
+
+### embed cover
+`ffmpeg -i input.m4a -i image.jpg -map 0 -map 1 -c copy -disposition:v:1 attached_pic output.m4a`
 
 ## convert DVD
 `cat *.VOB | ffmpeg -fflags +genpts -i - -c:v copy -c:a copy -c:s copy <output.mkv>`

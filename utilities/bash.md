@@ -300,7 +300,8 @@ _TIP_: look `man history expansion`
 `[ -s <filename> ]`
 
 ## get basename of file
-`basename <path>`
+* `basename <path>`  
+* `basename <path> <ext>` will give basename w/o `<ext>`
 
 ## print current terminal emulator
 `ps -o comm= -p "$(($(ps -o ppid= -p "$(($(ps -o sid= -p "$$")))")))"`

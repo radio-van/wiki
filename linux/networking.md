@@ -10,6 +10,7 @@
     - [interfaces](#configuration#interfaces)
         - [system V](#configuration#interfaces#system V)
         - [systemd](#configuration#interfaces#systemd)
+        - [netctl](#configuration#interfaces#netctl)
     - [firewall](#configuration#firewall)
     - [DNS resolving](#configuration#DNS resolving)
     - [DHCP server](#configuration#DHCP server)
@@ -85,6 +86,32 @@ use `systemd` units
 ```
 enable & start unit with `systemctl enable|start 20-<name>`
    
+### netctl
+`/etc/netctl/...`  
+```
+Description='...'
+Interface=<interface>
+Connection=wireless
+Security=wpa-configsection
+IP=dhcp
+WPAConfigSection=(
+    'ssid="..."'
+    'psk="..."'
+    'priority=<N>'
+)
+```
+* higher `<N>` number in priority means that this network will be connected if several networks are present
+* `psk` can be obfuscated with `wpa_passphrase <SSID>` (sometimes it causes connection troubles)
+
+Automatic network switching can be enabled by enabling:  
+* `netctl-ifplugd@<interface>.service` service for ethernet (requires `ifplugd`)
+* `netctl-auto@<interface>.service` service for wireless
+* if `WPAConfigSection` is used, most `netctl` options in profile config are ignored, see `WPASupplicant` for proper options  
+  for **hidden** network it's better to use `Security=wpa` with `Hidden=yes, Key=... and ESSID=...` options
+
+Automatic networks can be listed with `netctl-auto list` and manually switched with `netctl-auto switch-to <profile>`
+
+
 ## firewall
 
 ```
