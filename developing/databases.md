@@ -30,6 +30,9 @@
         - [create temp table](#postgres#tables#create temp table)
         - [read from CSV file](#postgres#tables#read from CSV file)
         - [write to CSV file](#postgres#tables#write to CSV file)
+        - [drop comstraint](#postgres#tables#drop comstraint)
+        - [copy column](#postgres#tables#copy column)
+        - [add primary key](#postgres#tables#add primary key)
     - [values](#postgres#values)
         - [duplicate](#postgres#values#duplicate)
         - [insert](#postgres#values#insert)
@@ -274,6 +277,19 @@ Note that:
 ### write to CSV file 
 ```sql
   \copy (SELECT ...) to 'filename' with csv;
+```
+### drop comstraint
+```sql
+ALTER TABLE <table> DROP CONTRAINT <field>_pkey;
+```
+### copy column
+```sql
+ALTER TABLE <table> ADD COLUMN <new_column> <data type>;
+UPDATE <table> SET <new_column> = <old_column>;
+```
+### add primary key
+```sql
+ALTER TABLE <table> ADD COLUMN id SERIAL PRIMARY KEY;
 ```
 
 ## values 
