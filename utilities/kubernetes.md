@@ -1,5 +1,7 @@
 # Contents
 
+- [basics](#basics)
+    - [Ingress](#basics#Ingress)
 - [frontend](#frontend)
 - [deployment](#deployment)
     - [edit deployment](#deployment#edit deployment)
@@ -11,6 +13,18 @@
 - [examples](#examples)
     - [gpu pod](#examples#gpu pod)
     - [postgres pod](#examples#postgres pod)
+- [k3s](#k3s)
+
+# basics
+Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
+They use internal network for communication and can be exposed to Internet with special  
+services with type `NodePort` or `LoadBalancer`. For **HTTP/HTTPS** `Ingress` (w/ IngressController)  
+is used.
+
+## Ingress
+Is an **API resource** used as _load balancer_, _SSL terminator_, _virtual hosting_.  
+Besides **resource** an Ingress Controller is required, e.g. `ingress-nginx`.
+
 
 # frontend
 ```bash
@@ -94,3 +108,10 @@ example: [GPU node performance](../hardware/gpu.md#GPU-node-performance-measurme
     `kubectl run -n <namespace> --image=postgres:9.2 tmp-psql`
 * connect to database (from the pod)  
   `psql -h <database> -U postgres`
+  
+  
+# k3s
+
+* config file with auth (i.e. `kubeconfig`) is at `/etc/rancher/k3s/k3s.yaml`
+  can be copied with: `sudo k3s kubectl config view --raw | tee <local config>`
+* node token can be obtained from `/var/lib/rancher/k3s/server/node-token`

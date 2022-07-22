@@ -2,6 +2,7 @@
 
 - [interfaces](#interfaces)
     - [TUN/TAP](#interfaces#TUN/TAP)
+    - [tunneling](#interfaces#tunneling)
     - [bridge](#interfaces#bridge)
     - [veth pair](#interfaces#veth pair)
     - [Predictable interfaces names](#interfaces#Predictable interfaces names)
@@ -31,6 +32,11 @@ overview:: both of them are virtual network kernel interfaces
 
 * **TUN** devices work at the _IP level_ or _layer 3_ level of the network stack and are usually point-to-point connections. A typical use for a TUN device is establishing VPN connections since it gives the VPN software a chance to encrypt the data before it gets put on the wire. Since a *TUN* device works at _layer 3_ it can only accept IP packets and in some cases only IPv4. Additionally because TUN devices work at layer 3 they can’t be used in bridges and don’t typically support broadcasting.
 * **TAP** devices work at the _Ethernet level_ or _layer 2_ and therefore behave like a real network adaptor. Since they are running at _layer 2_ they can transport any _layer 3_ protocol and aren’t limited to point-to-point connections. *TAP* devices can be part of a bridge and are commonly used in virtualization systems to provide virtual network adaptors to multiple guest machines. Since *TAP* devices work at _layer 2_ they will forward broadcast traffic which normally makes them a poor choice for VPN connections as the VPN link is typically much narrower than a LAN network (and usually more expensive). But VPN clients using *TAP* interfaces will be in the same subnet and therefor no additional routing is needed (VPN acts as ethernet switch).
+
+## tunneling
+**Tunnel** works by using a data portion of a packet (the _payload_) to carry packets that actually provide the service.  
+E.g. _SSH tunnel_ picks _TCP_ packets as a payload of own _SSH_ packets and deliver them over _SSH_ connection.  
+Another example is sending _IPv6_ packets over _IPv4_.  
 
 ## bridge
 **Bridge** acts as virtual switch + STP protocol and some other stuff

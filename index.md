@@ -31,6 +31,7 @@
   * [GPU](hardware/gpu.md)
   * [KaiOS](hardware/kaios.md)
   * [mac](hardware/mac.md)
+  * [power](hardware/power.md)
   * [thinkpad](hardware/thinkpad.md)
   * [usb-modems](hardware/modems.md)
   * [xiaomi vacuum](hardware/xiaomi_vacuum.md)

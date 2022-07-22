@@ -2,11 +2,14 @@
 
 - [regex types](#regex types)
 - [special character](#special character)
+- [groups](#groups)
+    - [non capturing group](#groups#non capturing group)
 - [lookahead / lookbehind](#lookahead / lookbehind)
 
 # regex types
 - **PCRE** `(foo|bar)` means `foo` or `bar`
 - **Vim** `\(foo\|\bar\)` otherwise `(`, `)` and `|` will be interpreted as regular characters
+
 
 # special character
 * `\` escaping
@@ -22,10 +25,26 @@
 * `[ ]` characters range, `[a-zA-Z0-9]`
 * `[:alnum:]` only letters and numbers (not including russian)
 
+
+# groups
+
+## non capturing group
+Won't be captured as a match.  
+`(?:...)`
+
+
 # lookahead / lookbehind
-**Positive lookahead** searches for some expression, but do not include that expression in result
+**Positive lookahead/behind** searches for some expression,
+that _is_ followed/preceded by expression in lookahead/behind
+
+**Negative lookahead/behind** searches for some expression,
+that _is not_ followed/preceded by expression in lookahead/behind
 
 **PCRE** uses form `(?...)`
+* Positive lookahead `(?=...)`
+* Negative lookahead `(?!...)`
+* Positive lookbehind `(?<=...)`
+* Negative lookbehind `(?<!...)`
 
 **Vim** uses form `\@`
 * Positive lookahead `\@=`

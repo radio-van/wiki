@@ -7,6 +7,7 @@
         - [laptop lid hook](#hardware related#acpi rules#laptop lid hook)
 - [hibernation](#hibernation)
     - [swapfile](#hibernation#swapfile)
+- [os release](#os release)
 
 # hardware related
 ## laptop lid
@@ -38,3 +39,7 @@ button/lid)
 * boot options must be added: `resume=/path/to/partition/with/swapfile resume_offset=<N>`
     * offset can be obtained: `filefrag -v /swapfile | awk '{ if($1=="0:"){print substr($4, 1, length($4)-2)} }'`
     * `resume=` should point to the required partition the same way as `root=` does, i.e. path to unencrypted volume if `LUKS` is used
+
+
+# os release
+`cat /etc/issue`

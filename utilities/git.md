@@ -41,6 +41,7 @@
             - [more commits](#usage#commit#commit in wrong branch#more commits)
         - [commit part of the file](#usage#commit#commit part of the file)
         - [split commit](#usage#commit#split commit)
+        - [show changes in one commit](#usage#commit#show changes in one commit)
     - [sign](#usage#sign)
     - [diff](#usage#diff)
         - [local from remote](#usage#diff#local from remote)
@@ -341,6 +342,9 @@ then edit combined message for new commit
 * `git add ...`
 * (optional) `git commit -c ORIG_HEAD` (to keep original message)
 * `git rebase --continue`
+
+### show changes in one commit
+* `git show <hash>`
 
 ## sign
 * `gpg -k --keyid-format long`  

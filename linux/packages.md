@@ -11,6 +11,7 @@
     - [install from list](#PACMAN#install from list)
     - [upgrade](#PACMAN#upgrade)
     - [delete orphans](#PACMAN#delete orphans)
+    - [delete cache](#PACMAN#delete cache)
     - [AUR packages](#PACMAN#AUR packages)
 
 # PACMAN
@@ -60,6 +61,10 @@ to prevent further updates
  
 ## delete orphans
 * `pacman -Rusn $(pacman -Qtdq)` use `-Qttdq` for potential orphans
+
+## delete cache
+use `paccache` package.  
+* `paccache -rk 1` for keeping only 1 package version (default 3)
 
 ## AUR packages
 requires `base-devel`, `git`  

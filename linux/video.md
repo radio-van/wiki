@@ -3,6 +3,7 @@
 - [different monitor resolutions](#different monitor resolutions)
 - [stucked VIRTUAL monitor](#stucked VIRTUAL monitor)
 - [get window class or name](#get window class or name)
+- [get iGPU memory](#get iGPU memory)
 
 # different monitor resolutions
 e.g.
@@ -25,3 +26,8 @@ xrandr --output INT_DISPLAY --scale 1x1 --mode 1920x1200 --pos 0x1620
 # get window class or name
 * `xprop | grep -i wm_class`
 * `xprop | grep -i wm_name`
+
+
+# get iGPU memory
+- `lspci` to get VGA domain
+- `lspci -v -s <domain>` where `<domain>` is e.g. `00:02.0`

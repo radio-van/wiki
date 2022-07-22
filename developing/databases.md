@@ -156,6 +156,9 @@ FROM
 ```sql
   SELECT * FROM table WHERE now() - some_date_field > interval '1 day');
 ```
+```sql
+  SELECT * FROM table WHERE date_trunc('day', some_date_field)=date_trunc('day', now());
+```
 ### filter values 
 ```sql
   SELECT * FROM table WHERE string IN (value1, value2,...);
