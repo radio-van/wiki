@@ -34,6 +34,7 @@
         - [write to CSV file](#postgres#tables#write to CSV file)
         - [copy column](#postgres#tables#copy column)
         - [add primary key](#postgres#tables#add primary key)
+        - [check if column exists](#postgres#tables#check if column exists)
     - [values](#postgres#values)
         - [duplicate](#postgres#values#duplicate)
         - [insert](#postgres#values#insert)
@@ -296,6 +297,12 @@ UPDATE <table> SET <new_column> = <old_column>;
 ### add primary key
 ```sql
 ALTER TABLE <table> ADD COLUMN id SERIAL PRIMARY KEY;
+```
+### check if column exists
+```sql
+SELECT column_name 
+FROM information_schema.columns 
+WHERE table_name='your_table' and column_name='your_column';
 ```
 
 ## values 
