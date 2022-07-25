@@ -8,6 +8,8 @@
     - [suitable for](#clickhouse#suitable for)
 - [postgres](#postgres)
     - [constraints](#postgres#constraints)
+        - [add to existing table](#postgres#constraints#add to existing table)
+        - [drop constraint](#postgres#constraints#drop constraint)
     - [roles](#postgres#roles)
     - [index](#postgres#index)
     - [queries](#postgres#queries)
@@ -30,7 +32,6 @@
         - [create temp table](#postgres#tables#create temp table)
         - [read from CSV file](#postgres#tables#read from CSV file)
         - [write to CSV file](#postgres#tables#write to CSV file)
-        - [drop comstraint](#postgres#tables#drop comstraint)
         - [copy column](#postgres#tables#copy column)
         - [add primary key](#postgres#tables#add primary key)
     - [values](#postgres#values)
@@ -124,6 +125,15 @@ CREATE TABLE COMPANY(
   NAME              TEXT    NOT NULL UNIQUE,
   AGE               INT     NOT NULL CHECK(AGE > 18),
   SALARY            REAL    DEFAULT 50000.00
+```
+
+### add to existing table
+```sql
+ALTER TABLE <table> ADD CONSTRAINT <const name> UNIQUE (columns);
+```
+### drop constraint
+```sql
+ALTER TABLE <table> DROP CONSTRAINT <table>_pkey;
 ```
 
 ## roles 
@@ -277,10 +287,6 @@ Note that:
 ### write to CSV file 
 ```sql
   \copy (SELECT ...) to 'filename' with csv;
-```
-### drop comstraint
-```sql
-ALTER TABLE <table> DROP CONTRAINT <field>_pkey;
 ```
 ### copy column
 ```sql
