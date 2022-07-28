@@ -10,6 +10,7 @@
     - [constraints](#postgres#constraints)
         - [add to existing table](#postgres#constraints#add to existing table)
         - [drop constraint](#postgres#constraints#drop constraint)
+        - [list constraints](#postgres#constraints#list constraints)
     - [roles](#postgres#roles)
     - [index](#postgres#index)
     - [queries](#postgres#queries)
@@ -135,6 +136,10 @@ ALTER TABLE <table> ADD CONSTRAINT <const name> UNIQUE (columns);
 ### drop constraint
 ```sql
 ALTER TABLE <table> DROP CONSTRAINT <table>_pkey;
+```
+### list constraints
+```sql
+\d+ <table_name>
 ```
 
 ## roles 
