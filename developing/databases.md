@@ -135,7 +135,7 @@ ALTER TABLE <table> ADD CONSTRAINT <const name> UNIQUE (columns);
 ```
 ### drop constraint
 ```sql
-ALTER TABLE <table> DROP CONSTRAINT <table>_pkey;
+ALTER TABLE <table> DROP CONSTRAINT <constraint_name>;
 ```
 ### list constraints
 ```sql
