@@ -14,6 +14,7 @@
   * [rabbitMQ](developing/rabbitmq.md)
   * [redis](developing/redis.md)
 ## frontend
+  * [domains](developing/domains.md)
   * [JS](developing/js.md)
   * [HTML](developing/html.md)
   * [requests](developing/requests.md)
