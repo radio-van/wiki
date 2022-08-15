@@ -14,28 +14,26 @@
         - [setdefault](#Classes#dictionaries#setdefault)
     - [strings](#Classes#strings)
         - [format](#Classes#strings#format)
-- [Functions](#Functions)
-    - [arguments](#Functions#arguments)
-        - [default values](#Functions#arguments#default values)
-    - [get function signature](#Functions#get function signature)
-- [Decorators](#Decorators)
-    - [decorator with args](#Decorators#decorator with args)
-- [Tests](#Tests)
-    - [assert](#Tests#assert)
-        - [check number of database calls](#Tests#assert#check number of database calls)
-        - [assertRaises](#Tests#assert#assertRaises)
-    - [mocking](#Tests#mocking)
-        - [basics](#Tests#mocking#basics)
-            - [patch class attribute or method](#Tests#mocking#basics#patch class attribute or method)
-            - [patch stand alone function and test arguments](#Tests#mocking#basics#patch stand alone function and test arguments)
-        - [return values](#Tests#mocking#return values)
-        - [return different value on each call](#Tests#mocking#return different value on each call)
-        - [mocking immutable built-ins](#Tests#mocking#mocking immutable built-ins)
-        - [mocking models](#Tests#mocking#mocking models)
-        - [check method call without mocking](#Tests#mocking#check method call without mocking)
+- [functions](#functions)
+    - [arguments](#functions#arguments)
+        - [default values](#functions#arguments#default values)
+    - [get function signature](#functions#get function signature)
+- [decorators](#decorators)
+    - [decorator with args](#decorators#decorator with args)
+- [tests](#tests)
+    - [assert](#tests#assert)
+        - [check number of database calls](#tests#assert#check number of database calls)
+        - [assertRaises](#tests#assert#assertRaises)
+    - [mocking](#tests#mocking)
+        - [basics](#tests#mocking#basics)
+            - [patch class attribute or method](#tests#mocking#basics#patch class attribute or method)
+            - [patch stand alone function and test arguments](#tests#mocking#basics#patch stand alone function and test arguments)
+        - [return values](#tests#mocking#return values)
+        - [return different value on each call](#tests#mocking#return different value on each call)
+        - [mocking immutable built-ins](#tests#mocking#mocking immutable built-ins)
+        - [mocking models](#tests#mocking#mocking models)
+        - [check method call without mocking](#tests#mocking#check method call without mocking)
 - [additional tools](#additional tools)
-    - [libs](#additional tools#libs)
-        - [recommended and deprecated](#additional tools#libs#recommended and deprecated)
     - [pytest](#additional tools#pytest)
         - [test dir](#additional tools#pytest#test dir)
         - [supress warnings](#additional tools#pytest#supress warnings)
@@ -60,7 +58,6 @@
     - [set dictionary value if it isn't set](#receipts#set dictionary value if it isn't set)
 
 # Classes
-
 ## general
 ### initialization
 - `Foo(*args, **kwargs)` means `Foo.__call__(*args, **kwargs)`
@@ -227,9 +224,10 @@ will return the real value, if `some_key` presents in dict, otherwise `default_v
   `"string {}".format(var)`
 * f-string (use only for python >3)
   `f'string {var}'`
+  
 
 
-# Functions
+# functions
 
 ## arguments
 ### default values
@@ -258,7 +256,7 @@ inspect.signature(<func>)
 ```
 
 
-# Decorators
+# decorators
 
 ## decorator with args
 ```python
@@ -274,7 +272,7 @@ def decorator(decorator_arg):
 ```
 
 
-# Tests
+# tests
 
 ## assert
 ### check number of database calls
@@ -432,13 +430,6 @@ side_effect='path.to.method',
 
 
 # additional tools
-
-## libs
-### recommended and deprecated
-* `os.path` -> `pathlib.Path`
-* `os.urandom` -> `secrets`
-* `zoneinfo` - for timezones
-* `namedtuple` -> `dataclasses` / `from typing import NamedTuple`
 
 ## pytest
 ### test dir

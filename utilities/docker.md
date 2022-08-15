@@ -16,7 +16,6 @@
     - [runtime](#Configuration#runtime)
     - [data location](#Configuration#data location)
         - [transfer to new location](#Configuration#data location#transfer to new location)
-- [Logs](#Logs)
 - [Tools](#Tools)
     - [docker-compose](#Tools#docker-compose)
         - [set ARG from .env](#Tools#docker-compose#set ARG from .env)
@@ -124,11 +123,6 @@ OR
 * `systemctl daemon-reload`
 * `rsync -aqxP /var/lib/docker/ /new/path/docker`
 * `systemctl start docker`
-
-
-# Logs
-* `docker-compose logs` is unrelable, sometimes it freezes, use `docker logs` instead
-* add `ENV COLUMNS=<X>` to Dockerfile to set wider logs output for Python
 
 
 # Tools

@@ -4,7 +4,6 @@
   * [compilation](developing/compilation.md)
   * [network](developing/network.md)
   * [regex](developing/regex.md)
-  * [yaml](developing/yaml.md)
 ## backend
   * [celery](developing/celery.md)
   * [databases](developing/databases.md)
@@ -14,7 +13,6 @@
   * [rabbitMQ](developing/rabbitmq.md)
   * [redis](developing/redis.md)
 ## frontend
-  * [domains](developing/domains.md)
   * [JS](developing/js.md)
   * [HTML](developing/html.md)
   * [requests](developing/requests.md)
