@@ -50,6 +50,7 @@
     - [generate random number](#usage#generate random number)
     - [edit command in editor](#usage#edit command in editor)
     - [command history](#usage#command history)
+    - [upper and lower case string](#usage#upper and lower case string)
 
 # configuration
 ## basics
@@ -335,3 +336,6 @@ where `<date>` in format `YYMMDD`
 
 ## command history
 `history`
+
+## upper and lower case string
+`... | tr [:lower:] [:upper:]`
