@@ -16,6 +16,7 @@
 - [k3s](#k3s)
 - [delete everything from namespace](#delete everything from namespace)
 - [delete node](#delete node)
+- [delete stuck namespace](#delete stuck namespace)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -127,3 +128,12 @@ example: [GPU node performance](../hardware/gpu.md#GPU-node-performance-measurme
 # delete node
 - `kubectl drain <node-name> --ignore-daemonsets --delete-local-data`
 - `kubectl delete node <node-name>`
+
+
+# delete stuck namespace
+```
+NAMESPACE=
+kubectl get namespace $NAMESPACE -o json > $NAMESPACE.json
+sed -i -e 's/"kubernetes"//' $NAMESPACE.json
+kubectl replace --raw "/api/v1/namespaces/$NAMESPACE/finalize" -f ./$NAMESPACE.json
+```
