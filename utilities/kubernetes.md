@@ -14,6 +14,8 @@
     - [gpu pod](#examples#gpu pod)
     - [postgres pod](#examples#postgres pod)
 - [k3s](#k3s)
+- [delete everything from namespace](#delete everything from namespace)
+- [delete node](#delete node)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -115,3 +117,13 @@ example: [GPU node performance](../hardware/gpu.md#GPU-node-performance-measurme
 * config file with auth (i.e. `kubeconfig`) is at `/etc/rancher/k3s/k3s.yaml`
   can be copied with: `sudo k3s kubectl config view --raw | tee <local config>`
 * node token can be obtained from `/var/lib/rancher/k3s/server/node-token`
+
+
+# delete everything from namespace
+* `kubectl delete all --all -n <namespace>`
+* `kubectl delete namespace <namespace>`
+
+
+# delete node
+- `kubectl drain <node-name> --ignore-daemonsets --delete-local-data`
+- `kubectl delete node <node-name>`
