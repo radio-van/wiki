@@ -212,8 +212,16 @@ Make plugins section
 ### fugitive
 
 #### log changes of current file
-`:Glog -- %` loads list of commits where current file was changed into quickfix list  
-and opens commit file with diffs  
+Basically `Gclog` does two things:
+- loads commits to quickfix list
+- opens temp buffer with `git log` output
+
+using that various behaviour can be obtained:
+* `:Gclog -- %` loads list of commits where current file was changed into quickfix list  
+  and opens `git log` output (it will contain all changes, not only for current file)
+* `:Git log --patch -- %` load in temp buffer a log of changes for current file 
+* `0Gclog` opens a quickfix list with all changes of the current file (w/o diffs)
+  `0` actually means a whole file, particular line range can be specified.
 
 #### merge conflict
 `Gdiffsplit!`

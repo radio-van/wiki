@@ -23,6 +23,7 @@
     - [get name of current script?](#scripting#get name of current script?)
     - [get args](#scripting#get args)
     - [pass args to func](#scripting#pass args to func)
+    - [parse options](#scripting#parse options)
     - [loops](#scripting#loops)
         - [loop list](#scripting#loops#loop list)
         - [loop words in string](#scripting#loops#loop words in string)
@@ -50,6 +51,7 @@
     - [generate random number](#usage#generate random number)
     - [edit command in editor](#usage#edit command in editor)
     - [command history](#usage#command history)
+    - [upper and lower case string](#usage#upper and lower case string)
 
 # configuration
 ## basics
@@ -187,6 +189,31 @@ inner_func() { <do smth>; }
 outer_func() { <do smth>; "$@"; <do smth>; }
 
 outer_func inner_func arg1 arg2
+```
+
+## parse options
+```bash
+while getopts "fn:" options; do
+  case "${options}" in
+    a)
+      # do something
+      ;;
+    b)
+      # this option requires value, it is written to ${OPTARG}
+      ;;
+    :)
+      # Error: arg passed w/o value
+      ;;
+    ?)
+      # Error: unknown arg
+      ;;
+    *)
+      # No args (?)
+  esac
+done
+
+# pop args, leave the rest
+shift $(($OPTIND - 1))
 ```
 
 ## loops
@@ -335,3 +362,6 @@ where `<date>` in format `YYMMDD`
 
 ## command history
 `history`
+
+## upper and lower case string
+`... | tr [:lower:] [:upper:]`

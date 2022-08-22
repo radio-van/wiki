@@ -35,6 +35,7 @@
         - [check method call without mocking](#tests#mocking#check method call without mocking)
 - [additional tools](#additional tools)
     - [pytest](#additional tools#pytest)
+        - [test dir](#additional tools#pytest#test dir)
         - [supress warnings](#additional tools#pytest#supress warnings)
     - [virtual envs](#additional tools#virtual envs)
         - [create venv](#additional tools#virtual envs#create venv)
@@ -431,6 +432,17 @@ side_effect='path.to.method',
 # additional tools
 
 ## pytest
+### test dir
+if source code is in e.g. `./src` and tests are in `./tests`, either:
+- `export PYTHONPATH="$PYTHONPATH:$PWD"`
+- add to test `.py`
+    ```
+    import sys
+    import os
+    sys.path.append(os.path.abspath('../src/pkg'))
+    ```
+is needed
+
 ### supress warnings
 `pytest -p no:warnings`
 
