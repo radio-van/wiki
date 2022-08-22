@@ -8,9 +8,6 @@
     - [suitable for](#clickhouse#suitable for)
 - [postgres](#postgres)
     - [constraints](#postgres#constraints)
-        - [add to existing table](#postgres#constraints#add to existing table)
-        - [drop constraint](#postgres#constraints#drop constraint)
-        - [list constraints](#postgres#constraints#list constraints)
     - [roles](#postgres#roles)
     - [index](#postgres#index)
     - [queries](#postgres#queries)
@@ -33,9 +30,6 @@
         - [create temp table](#postgres#tables#create temp table)
         - [read from CSV file](#postgres#tables#read from CSV file)
         - [write to CSV file](#postgres#tables#write to CSV file)
-        - [copy column](#postgres#tables#copy column)
-        - [add primary key](#postgres#tables#add primary key)
-        - [check if column exists](#postgres#tables#check if column exists)
     - [values](#postgres#values)
         - [duplicate](#postgres#values#duplicate)
         - [insert](#postgres#values#insert)
@@ -127,19 +121,6 @@ CREATE TABLE COMPANY(
   NAME              TEXT    NOT NULL UNIQUE,
   AGE               INT     NOT NULL CHECK(AGE > 18),
   SALARY            REAL    DEFAULT 50000.00
-```
-
-### add to existing table
-```sql
-ALTER TABLE <table> ADD CONSTRAINT <const name> UNIQUE (columns);
-```
-### drop constraint
-```sql
-ALTER TABLE <table> DROP CONSTRAINT <constraint_name>;
-```
-### list constraints
-```sql
-\d+ <table_name>
 ```
 
 ## roles 
@@ -293,21 +274,6 @@ Note that:
 ### write to CSV file 
 ```sql
   \copy (SELECT ...) to 'filename' with csv;
-```
-### copy column
-```sql
-ALTER TABLE <table> ADD COLUMN <new_column> <data type>;
-UPDATE <table> SET <new_column> = <old_column>;
-```
-### add primary key
-```sql
-ALTER TABLE <table> ADD COLUMN id SERIAL PRIMARY KEY;
-```
-### check if column exists
-```sql
-SELECT column_name 
-FROM information_schema.columns 
-WHERE table_name='your_table' and column_name='your_column';
 ```
 
 ## values 
