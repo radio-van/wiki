@@ -157,6 +157,7 @@ Use `'\''` to define a single-quote inside `sh -c '<command>'`
 ## redirect output
 * `<command> &> <smth>` redirects everything
 * `<command> 2> <smth>` redirects `stderr`
+* `<command> 2> >( <another_command> )` redirects `stderr` to subshell
 
 ## compare two dirs
 * show same files in 2 dirs, ignoring extensions
