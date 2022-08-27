@@ -124,6 +124,7 @@ e.g. of `OR`:
 
 ## group conditions
 `<condition> && ( this && will && run_only_on_success ; ) || ( this_will_run_only && on_fail ; )`
+see also [group commands](##group commands)
 
 ## run several commands simultaneously
 `<command1> & <command2>`
