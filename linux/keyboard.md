@@ -29,6 +29,10 @@ FONT=ter-u18n
 KEYMAP=ruwin_cplk-UTF-8
 ```
 
+Each _keymap_ file represents one or several layouts (with a switch key).  
+Each _keysum_ in _keymap_ file can do up to 256 actions. List of available actions  
+can be obtained with `dumpkeys -l`.
+
 # Xorg
 ## keycodes
 `xev-xorg` can be used to get *key codes*.  
