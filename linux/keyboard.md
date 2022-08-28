@@ -33,6 +33,9 @@ Each _keymap_ file represents one or several layouts (with a switch key).
 Each _keysum_ in _keymap_ file can do up to 256 actions. List of available actions  
 can be obtained with `dumpkeys -l`.
 
+There are `9` modifiers with different _weights_, order of actions corresponding to  
+these modifiers are defined in _keysum_ line.
+
 # Xorg
 ## keycodes
 `xev-xorg` can be used to get *key codes*.  
