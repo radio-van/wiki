@@ -43,7 +43,7 @@ init password store `pass init <gpg-id or email>`
 e.g. for use with multiple keys:  
 * `cd <password-store>`  
 * `pass init <OLD_KEY_1!> <NEW_KEY_2!>`
-
+**NOTE**: if reducing/changing the only encryption key, first remove old key from `gpg`
 
 # sync
 
