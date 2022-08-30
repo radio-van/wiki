@@ -5,6 +5,8 @@
 - [keys](#keys)
     - [generate random key](#keys#generate random key)
     - [keyfile on separate drive](#keys#keyfile on separate drive)
+        - [keyfile between partitions](#keys#keyfile on separate drive#keyfile between partitions)
+        - [keyfile as a file](#keys#keyfile on separate drive#keyfile as a file)
     - [use TPM](#keys#use TPM)
     - [potentially useful stuff](#keys#potentially useful stuff)
 - [LUKS container on remote host](#LUKS container on remote host)
@@ -29,29 +31,36 @@ Tool for creating encrypted partitions.
 ## keyfile on separate drive
 `keyfile` can be random file, passphrase, binary
 
-1. `cryptsetup luksAddKey <device> <keyfile>` allow to decrypt partition with a given **keyfile**
+`cryptsetup luksAddKey <device> <keyfile>` allow to decrypt partition with a given **keyfile**
 
-2. save **keyfile** somewhere  
-    - store key between partitions
-        `dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=N`
-        where 
-        - `<device>` is third device (e.g. usb-flashdrive) to store key between/before partitions
-        - `X` - offset on `<device>` (e.g. 2048 to preserve MBR header) in bytes
-        - `Y` - size of key in bytes
+### keyfile between partitions
+`dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=N`  
+where:
+- `<device>` is third device (e.g. usb-flashdrive) to store key between/before partitions
+- `X` - offset on `<device>` (e.g. 2048 to preserve MBR header) in bytes
+- `Y` - size of key in bytes
 
-    - recover key
-        `dd if=/dev/<device> of=<keyfile> bs=1 skip=X count=N`
+**TIP:** recover key:
+  `dd if=/dev/<device> of=<keyfile> bs=1 skip=X count=N`
 
-* setup automounting
-    - for root partition edit `/boot/loader/entries/<entry>.conf`
-        `options cryptdevice=UUID=...:<LVMGroup> cryptkey=<keyfile>:<offset>:<size> root=/dev/<LVMGroup>/...`
+* for root partition edit `/boot/loader/entries/<entry>.conf`
+    `options cryptdevice=UUID=...:<LVMGroup> cryptkey=<keyfile>:<offset>:<size> root=/dev/<LVMGroup>/...`
+    *NOTE*: if `<keyfile>` path contains `:`, they must be escaped with `\`
+
+* for non-root filesystems `/etc/crypttab`
+  `<Name> <UUID> <device-with-key> luks,timeout=180,keyfile-offset=Y,keyfile-size=N`
+    
+* open w/o automounting
+  `crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
+    
+### keyfile as a file
+* for root partition edit `/boot/loader/entries/<entry>.conf`
+  `options cryptdevice=UUID=...:<LVMGroup> cryptkey=UUID=...:auto:<keyfile name> root=/dev/<LVMGroup>/...`
         *NOTE*: if `<keyfile>` path contains `:`, they must be escaped with `\`
-
-    - for non-root filesystems `/etc/crypttab`
-    `<Name> <UUID> <device-with-key> luks,timeout=180,keyfile-offset=Y,keyfile-size=N`
+* add `vfat` to `mkinitcpio.conf`'s `MODULES=(...)`
 
 * open w/o automounting
-`crypttab open <device> --key-file <device-with-key> --keyfile-offset=Y --keyfile-size=N`
+  `crypttab open <device> --key-file <path/to/keyfile>`
 
 ## use TPM
 `TPM` is a secure chip that is present on most modern PCs.  
