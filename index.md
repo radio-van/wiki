@@ -85,6 +85,7 @@
     curl -T <file> temp.sh
     ```
 * encoding converter [0xcc.net](http://0xcc.net/jsescape/)
+* search engine [yacy](yacy.net)
 
 # Utilities
   * [adb](utilities/adb.md)
