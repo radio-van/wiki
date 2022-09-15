@@ -26,8 +26,10 @@
         - [assertRaises](#tests#assert#assertRaises)
     - [mocking](#tests#mocking)
         - [basics](#tests#mocking#basics)
-            - [patch class attribute or method](#tests#mocking#basics#patch class attribute or method)
-            - [patch stand alone function and test arguments](#tests#mocking#basics#patch stand alone function and test arguments)
+        - [usage](#tests#mocking#usage)
+        - [examples](#tests#mocking#examples)
+            - [patch class attribute or method](#tests#mocking#examples#patch class attribute or method)
+            - [patch stand alone function and test arguments](#tests#mocking#examples#patch stand alone function and test arguments)
         - [return values](#tests#mocking#return values)
         - [return different value on each call](#tests#mocking#return different value on each call)
         - [mocking immutable built-ins](#tests#mocking#mocking immutable built-ins)
@@ -289,6 +291,7 @@ with assertNumQueries(<num>):
 it is important to pass `<callable>`, not `<function()>`
 
 ## mocking
+
 ### basics
 To patch **instance** attribute or method  
 ```python
@@ -346,6 +349,29 @@ def some_module():
   ...
 ```
 In this case, `some_module` method won't be patched!
+
+### usage
+
+* straightforward:
+```python
+'<some>.<module>.<func>' = mock.Mock(return_value='<something>')
+'<some>.<module>.<func>' = mock.Mock(side_effect='<some_mock_func>')
+```
+
+* as context manager:
+```python
+with mock.patch('some.module.func', return_value='<something>':
+    some.module.func()
+```
+
+* as decorator:
+```python
+@mock.patch('some.module.func', return_value='<something>')
+def test(self, m_func):
+    some.module.func()
+```
+
+### examples
 
 #### patch class attribute or method
 To patch **class** attribute or method
