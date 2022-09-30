@@ -39,6 +39,7 @@
     - [pytest](#additional tools#pytest)
         - [test dir](#additional tools#pytest#test dir)
         - [supress warnings](#additional tools#pytest#supress warnings)
+        - [supress excessive logs](#additional tools#pytest#supress excessive logs)
     - [virtual envs](#additional tools#virtual envs)
         - [create venv](#additional tools#virtual envs#create venv)
         - [install version of Python](#additional tools#virtual envs#install version of Python)
@@ -471,6 +472,9 @@ is needed
 
 ### supress warnings
 `pytest -p no:warnings`
+
+### supress excessive logs
+`pytest  --show-capture=no`
 
 ## virtual envs
 ### create venv
