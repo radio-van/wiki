@@ -8,6 +8,7 @@
     - [limit login access](#configuration#limit login access)
     - [set shell](#configuration#set shell)
     - [override settings](#configuration#override settings)
+    - [listen to specific interface](#configuration#listen to specific interface)
 - [usage](#usage)
     - [connection](#usage#connection)
         - [force using password](#usage#connection#force using password)
@@ -75,6 +76,18 @@ to restrict user to `git` only:
 ```
 Match Address <ip/mask>
   <setting>
+```
+
+## listen to specific interface
+`/etc/ssh/sshd_config`
+```
+ListenAddress <ip>
+```
+If `<ip>` is e.g. Wireguard interface, **sshd** should wait until it's active:
+`/ets/systemd/system/sshd.service`
+```
+After=network.target wg-quick@wg0.service
+Requires=sys-devices-virtual-net-wg0.device
 ```
 
 
