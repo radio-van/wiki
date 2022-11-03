@@ -4,6 +4,7 @@
 - [stucked VIRTUAL monitor](#stucked VIRTUAL monitor)
 - [get window class or name](#get window class or name)
 - [get iGPU memory](#get iGPU memory)
+- [touchscreen](#touchscreen)
 
 # different monitor resolutions
 e.g.
@@ -31,3 +32,8 @@ xrandr --output INT_DISPLAY --scale 1x1 --mode 1920x1200 --pos 0x1620
 # get iGPU memory
 - `lspci` to get VGA domain
 - `lspci -v -s <domain>` where `<domain>` is e.g. `00:02.0`
+
+
+# touchscreen
+* `xinput --list` to get names of touch controllers, smth with **stylus** and **eraser** is required
+* `xinput --map-to-output '<NAME>' $DISPLAY` map to display
