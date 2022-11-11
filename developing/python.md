@@ -37,6 +37,7 @@
         - [check method call without mocking](#tests#mocking#check method call without mocking)
 - [additional tools](#additional tools)
     - [pytest](#additional tools#pytest)
+        - [fix databases](#additional tools#pytest#fix databases)
         - [test dir](#additional tools#pytest#test dir)
         - [supress warnings](#additional tools#pytest#supress warnings)
         - [supress excessive logs](#additional tools#pytest#supress excessive logs)
@@ -459,6 +460,10 @@ side_effect='path.to.method',
 # additional tools
 
 ## pytest
+### fix databases
+If no db is used and Django is used, than `SimpleTestCase` should be used.  
+And `DATABASES = {}` in `settings.py`
+
 ### test dir
 if source code is in e.g. `./src` and tests are in `./tests`, either:
 - `export PYTHONPATH="$PYTHONPATH:$PWD"`
