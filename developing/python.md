@@ -41,6 +41,8 @@
         - [test dir](#additional tools#pytest#test dir)
         - [supress warnings](#additional tools#pytest#supress warnings)
         - [supress excessive logs](#additional tools#pytest#supress excessive logs)
+    - [poetry](#additional tools#poetry)
+        - [use system packages](#additional tools#poetry#use system packages)
     - [virtual envs](#additional tools#virtual envs)
         - [create venv](#additional tools#virtual envs#create venv)
         - [install version of Python](#additional tools#virtual envs#install version of Python)
@@ -480,6 +482,11 @@ is needed
 
 ### supress excessive logs
 `pytest  --show-capture=no`
+
+## poetry
+### use system packages
+`<venv>/pyvenv.conf`:  
+`include-system-site-packages = true`
 
 ## virtual envs
 ### create venv
