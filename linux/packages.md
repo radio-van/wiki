@@ -36,6 +36,15 @@ Update keyring: `pacman -Sy archlinux-keyring`
 
 **NOTE**: always follow this by `pacman -Syu` as [partial upgrades](##partial upgrade) is a bad idea
 
+if doesn't help, additional steps are required:
+```
+rm -R /etc/pacman.d/gnupg/
+rm -R /root/.gnupg/ 
+gpg --refresh-keys
+pacman-key --init && pacman-key --populate archlinux
+# pacman-key --refresh-keys  # optional
+```
+
 ## partial upgrade
 **NEVER** use `pacman -Sy / pacman -Sy <package>` **!**  
 The way around is to download [pacman-static](https://aur.archlinux.org/pacman-static.git) from **AUR** [built version](https://pkgbuild.com/~eschwartz/repo/x86_64-extracted/pacman-static )
