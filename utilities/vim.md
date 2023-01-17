@@ -213,7 +213,7 @@ Make plugins section
 ### fugitive
 
 #### load current file N commits ago
-`:Gedit HEAD~N`  
+`:Gedit HEAD~N:%`  
 
 #### log changes of current file
 Basically `Gclog` does two things:
