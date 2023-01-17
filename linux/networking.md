@@ -1,29 +1,30 @@
 # Contents
 
 - [interfaces](#interfaces)
-    - [TUN/TAP](#interfaces#TUN/TAP)
-    - [tunneling](#interfaces#tunneling)
-    - [bridge](#interfaces#bridge)
-    - [veth pair](#interfaces#veth pair)
-    - [Predictable interfaces names](#interfaces#Predictable interfaces names)
+    - [TUN/TAP](#tuntap)
+    - [tunneling](#tunneling)
+    - [bridge](#bridge)
+    - [veth pair](#veth-pair)
+    - [Predictable interfaces names](#predictable-interfaces-names)
 - [configuration](#configuration)
-    - [hostname](#configuration#hostname)
-    - [interfaces](#configuration#interfaces)
-        - [system V](#configuration#interfaces#system V)
-        - [systemd](#configuration#interfaces#systemd)
-        - [netctl](#configuration#interfaces#netctl)
-    - [firewall](#configuration#firewall)
-    - [DNS resolving](#configuration#DNS resolving)
-    - [DHCP server](#configuration#DHCP server)
-    - [ip address aliasing](#configuration#ip address aliasing)
-    - [wireless](#configuration#wireless)
-        - [AP](#configuration#wireless#AP)
-        - [wpa supplicant](#configuration#wireless#wpa supplicant)
-- [tips & trics](#tips & trics)
-    - [show process which is listening target port](#tips & trics#show process which is listening target port)
-    - [get ip](#tips & trics#get ip)
-    - [capture trafic on particular port](#tips & trics#capture trafic on particular port)
-    - [turn off ipv6](#tips & trics#turn off ipv6)
+    - [hostname](#hostname)
+    - [interfaces](#interfaces-2)
+        - [system V](#system-v)
+        - [systemd](#systemd)
+        - [netctl](#netctl)
+    - [firewall](#firewall)
+    - [DNS resolving](#dns-resolving)
+    - [DHCP server](#dhcp-server)
+    - [ip address aliasing](#ip-address-aliasing)
+    - [wireless](#wireless)
+        - [AP](#ap)
+        - [wpa supplicant](#wpa-supplicant)
+- [tips & trics](#tips-trics)
+    - [show process which is listening target port](#show-process-which-is-listening-target-port)
+    - [get ip](#get-ip)
+    - [capture trafic on particular port](#capture-trafic-on-particular-port)
+    - [turn off ipv6](#turn-off-ipv6)
+    - [dumb Wi-Fi access point](#dumb-wi-fi-access-point)
 
 # interfaces
 
@@ -244,3 +245,18 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 ## turn off ipv6
 `sysctl net.ipv6.conf.default.disable_ipv6=1`
 `sysctl net.ipv6.conf.all.disable_ipv6=1`
+
+## dumb Wi-Fi access point
+on Openwrt  
+```
+    1. Disconnect the (soon-to-be) Dumb AP from your network, and connect your computer to it with an Ethernet cable.
+    2. Use the web interface to go to Network → Interfaces and select the LAN interface.
+    3. Enter an IP address “next to” your main router on the field “IPv4 address”. (If your main router has IP 192.168.1.1, enter 192.168.1.2). Set DNS and gateway to point into your main router to enable internet access for the dumb AP itself
+    4. Then scroll down and select the checkbox “Ignore interface: Disable DHCP for this interface.”
+    5. Click “IPv6 Settings” tab and set everything to “disabled”.
+    6. In the top menu go to System → Startup, and disable firewall, dnsmasq and odhcpd in the list of startup scripts.
+    7. Click the Save and Apply button. Hard-Restart your router if you're not able to connect anymore.
+    8. Go to http://192.168.1.2 (or whatever address you specified) and check if the settings for the LAN interface are the same.
+    9. Use an Ethernet to connect one of the LAN ports on your main router to one of the LAN/switch ports of your “new” dumb AP. (There's no need to connect the WAN port of the Dumb AP.)
+    10. You are done.
+```
