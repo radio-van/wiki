@@ -56,6 +56,7 @@
   * [system](linux/system.md)
   * [usb](linux/usb.md)
   * [video](linux/video.md)
+  * [proxmox](linux/proxmox.md)
 
 # Mac OS
   * [apps](macos/apps.md)
