@@ -1,54 +1,56 @@
 # Contents
 
 - [basics](#basics)
-    - [layers](#basics#layers)
-    - [types](#basics#types)
+    - [layers](#layers)
+    - [types](#types)
 - [clickhouse](#clickhouse)
-    - [disadvantages](#clickhouse#disadvantages)
-    - [suitable for](#clickhouse#suitable for)
+    - [disadvantages](#disadvantages)
+    - [suitable for](#suitable-for)
 - [postgres](#postgres)
-    - [constraints](#postgres#constraints)
-        - [add to existing table](#postgres#constraints#add to existing table)
-        - [drop constraint](#postgres#constraints#drop constraint)
-        - [list constraints](#postgres#constraints#list constraints)
-    - [roles](#postgres#roles)
-    - [index](#postgres#index)
-    - [queries](#postgres#queries)
-        - [logic](#postgres#queries#logic)
-        - [dates](#postgres#queries#dates)
-        - [filter values](#postgres#queries#filter values)
-        - [search for partial value](#postgres#queries#search for partial value)
-        - [limit query](#postgres#queries#limit query)
-        - [sort order](#postgres#queries#sort order)
-        - [query from several tables](#postgres#queries#query from several tables)
-        - [aggregate data with same values](#postgres#queries#aggregate data with same values)
-        - [EXCLUDE](#postgres#queries#EXCLUDE)
-        - [JOINS](#postgres#queries#JOINS)
-            - [inner join](#postgres#queries#JOINS#inner join)
-            - [left join](#postgres#queries#JOINS#left join)
-        - [WHERE and HAVING](#postgres#queries#WHERE and HAVING)
-    - [tables](#postgres#tables)
-        - [add column](#postgres#tables#add column)
-        - [rename column](#postgres#tables#rename column)
-        - [create temp table](#postgres#tables#create temp table)
-        - [read from CSV file](#postgres#tables#read from CSV file)
-        - [write to CSV file](#postgres#tables#write to CSV file)
-        - [copy column](#postgres#tables#copy column)
-        - [add primary key](#postgres#tables#add primary key)
-        - [check if column exists](#postgres#tables#check if column exists)
-    - [values](#postgres#values)
-        - [duplicate](#postgres#values#duplicate)
-        - [insert](#postgres#values#insert)
-        - [partial update](#postgres#values#partial update)
-        - [update](#postgres#values#update)
-        - [update on conflict](#postgres#values#update on conflict)
-        - [delete](#postgres#values#delete)
-    - [tools](#postgres#tools)
-        - [connect](#postgres#tools#connect)
-        - [dump](#postgres#tools#dump)
-        - [restore](#postgres#tools#restore)
-        - [write to file](#postgres#tools#write to file)
-        - [type of field](#postgres#tools#type of field)
+    - [constraints](#constraints)
+        - [add to existing table](#add-to-existing-table)
+        - [drop constraint](#drop-constraint)
+        - [list constraints](#list-constraints)
+    - [roles](#roles)
+    - [index](#index)
+    - [queries](#queries)
+        - [logic](#logic)
+        - [dates](#dates)
+        - [filter values](#filter-values)
+        - [search for partial value](#search-for-partial-value)
+        - [limit query](#limit-query)
+        - [sort order](#sort-order)
+        - [query from several tables](#query-from-several-tables)
+        - [aggregate data with same values](#aggregate-data-with-same-values)
+        - [EXCLUDE](#exclude)
+        - [JOINS](#joins)
+            - [inner join](#inner-join)
+            - [left join](#left-join)
+        - [WHERE and HAVING](#where-and-having)
+    - [tables](#tables)
+        - [add column](#add-column)
+        - [rename column](#rename-column)
+        - [create temp table](#create-temp-table)
+        - [read from CSV file](#read-from-csv-file)
+        - [write to CSV file](#write-to-csv-file)
+        - [copy column](#copy-column)
+        - [add primary key](#add-primary-key)
+        - [check if column exists](#check-if-column-exists)
+    - [values](#values)
+        - [duplicate](#duplicate)
+        - [insert](#insert)
+        - [partial update](#partial-update)
+        - [update](#update)
+        - [update on conflict](#update-on-conflict)
+        - [delete](#delete)
+    - [tools](#tools)
+        - [connect](#connect)
+        - [dump](#dump)
+        - [restore](#restore)
+        - [write to file](#write-to-file)
+        - [type of field](#type-of-field)
+        - [find duplicates](#find-duplicates)
+        - [delete duplicates](#delete-duplicates)
 
 # basics
 Data is stored in *pages* in RAM. If data is changed, then *page* is marked as *durty*.  
@@ -365,3 +367,27 @@ WHERE table_name='your_table' and column_name='your_column';
 
 ### type of field
 `SELECT pg_typeof(<field>) from ...;`
+
+### find duplicates
+```sql
+select Column1, Column2, count(*)
+from <TABLE>
+group by Column1, Column2
+HAVING count(*) > 1
+```
+
+### delete duplicates
+```sql
+delete from <TABLE>
+where <PK> not in (
+  select min(<PK>) from <TABLE>
+  group by <Col must be uniq>
+);
+```
+
+on heavy data:
+```sql
+create table tmp as select min(id) from <TABLE> group by <UNIQ Column>;  /* a table with the first row from duplicates */
+create table tmp2 as select * from <TABLE> left join tmp on <TABLE>.id=tmp.min where tmp.min is null;  /* a table with the rest of duplicates */
+delete from <TABLE> where id in (select id from tmp2);  /* delete duplicates */
+```
