@@ -8,45 +8,45 @@
 - [output](#output)
 - [expressions](#expressions)
 - [usecases](#usecases)
-    - [archive](#usecases#archive)
-        - [music](#usecases#archive#music)
-        - [podcasts](#usecases#archive#podcasts)
-        - [video](#usecases#archive#video)
-        - [for iOS](#usecases#archive#for iOS)
-    - [batch](#usecases#batch)
-    - [record audio](#usecases#record audio)
-    - [record screen](#usecases#record screen)
-    - [reverse](#usecases#reverse)
-    - [capture USB video](#usecases#capture USB video)
-    - [concat images to video](#usecases#concat images to video)
-    - [cut](#usecases#cut)
-    - [concat](#usecases#concat)
-        - [embed cover](#usecases#concat#embed cover)
-    - [convert DVD](#usecases#convert DVD)
-    - [crop](#usecases#crop)
-    - [exctract frames](#usecases#exctract frames)
-    - [overlaying image on video](#usecases#overlaying image on video)
-    - [parallel](#usecases#parallel)
-    - [remove audio](#usecases#remove audio)
-    - [resize](#usecases#resize)
-    - [rotate](#usecases#rotate)
-        - [via metadata](#usecases#rotate#via metadata)
-        - [transpose](#usecases#rotate#transpose)
-    - [specifying start and end frames](#usecases#specifying start and end frames)
+    - [archive](#archive)
+        - [music](#music)
+        - [podcasts](#podcasts)
+        - [video](#video)
+        - [for iOS](#for-ios)
+    - [batch](#batch)
+    - [record audio](#record-audio)
+    - [record screen](#record-screen)
+    - [reverse](#reverse)
+    - [capture USB video](#capture-usb-video)
+    - [concat images to video](#concat-images-to-video)
+    - [cut](#cut)
+    - [concat](#concat)
+        - [embed cover](#embed-cover)
+    - [convert DVD](#convert-dvd)
+    - [crop](#crop)
+    - [exctract frames](#exctract-frames)
+    - [overlaying image on video](#overlaying-image-on-video)
+    - [parallel](#parallel)
+    - [remove audio](#remove-audio)
+    - [resize](#resize)
+    - [rotate](#rotate)
+        - [via metadata](#via-metadata)
+        - [transpose](#transpose)
+    - [specifying start and end frames](#specifying-start-and-end-frames)
 - [filters](#filters)
-    - [select](#filters#select)
-    - [segmented output](#filters#segmented output)
-    - [speed](#filters#speed)
-        - [audio](#filters#speed#audio)
-        - [video](#filters#speed#video)
-        - [together](#filters#speed#together)
+    - [select](#select)
+    - [segmented output](#segmented-output)
+    - [speed](#speed)
+        - [audio](#audio)
+        - [video](#video-2)
+        - [together](#together)
 - [info](#info)
-    - [bitrate](#info#bitrate)
-    - [framerate](#info#framerate)
+    - [bitrate](#bitrate)
+    - [framerate](#framerate)
 - [generate](#generate)
-    - [color noise](#generate#color noise)
-    - [monochrome noise](#generate#monochrome noise)
-    - [black without sound](#generate#black without sound)
+    - [color noise](#color-noise)
+    - [monochrome noise](#monochrome-noise)
+    - [black without sound](#black-without-sound)
 - [experiments](#experiments)
 
 # streams
@@ -169,13 +169,13 @@ where:
 `<time>` in format `HH:MM:SS`
 
 ## concat
-prepare list of files::
+prepare list of files:
 ```
 file '1.mp4'
 file '2.mp4'
 . . .
 ```
-run::
+run:
 `ffmpeg -f concat -i list -c copy output`
 hint: add `-safe 0` before `-i` if file pathes are not relative
 
