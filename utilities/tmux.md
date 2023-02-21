@@ -1,20 +1,20 @@
 # Contents
 
-- [Configuration](#Configuration)
-    - [plug-ins](#Configuration#plug-ins)
-        - [tmux-gitbar](#Configuration#plug-ins#tmux-gitbar)
-- [Usage](#Usage)
-    - [keybindings](#Usage#keybindings)
-    - [panes](#Usage#panes)
-    - [scripting](#Usage#scripting)
-        - [basics](#Usage#scripting#basics)
-        - [windows & panes](#Usage#scripting#windows & panes)
-        - [conditions](#Usage#scripting#conditions)
-        - [send keys](#Usage#scripting#send keys)
-        - [example](#Usage#scripting#example)
-- [Troubleshooting](#Troubleshooting)
-    - [ssh-agent forwarding](#Troubleshooting#ssh-agent forwarding)
-- [Useful links](#Useful links)
+- [Configuration](#configuration)
+    - [plug-ins](#plug-ins)
+        - [tmux-gitbar](#tmux-gitbar)
+- [Usage](#usage)
+    - [keybindings](#keybindings)
+    - [panes](#panes)
+    - [scripting](#scripting)
+        - [basics](#basics)
+        - [windows & panes](#windows-panes)
+        - [conditions](#conditions)
+        - [send keys](#send-keys)
+        - [example](#example)
+- [Troubleshooting](#troubleshooting)
+    - [ssh-agent forwarding](#ssh-agent-forwarding)
+- [Useful links](#useful-links)
 
 # Configuration
 
@@ -66,8 +66,9 @@ create session, run commands and attach to it
 # Troubleshooting
 
 ## ssh-agent forwarding
-If **Tmux** session existed before connection with **ssh-agent** forwarding, it lacks the value of `SSH_AUTH_SOCK`  
-env variable. It can be exported manually or added to file which is sourced via `.ssh/rc`.
+If **Tmux** session existed before connection with **ssh-agent** forwarding, 
+it lacks the value of `SSH_AUTH_SOCK` env variable.  
+It can be exported manually or added to file which is sourced via `.ssh/rc`.
 In this case, add
 ```
 Host *
@@ -75,6 +76,15 @@ Host *
 ```
 to `.ssh/config` on remote host.
 
+`.ssh/rc` on remote host can be:
+```bash
+#!/bin/bash
+# update SSH_AUTH_SOCK on each connection
+
+if test "$SSH_AUTH_SOCK"; then
+  ln -sf $SSH_AUTH_SOCK ~/.ssh/auth_sock
+fi
+```
 
 # Useful links
 * [How to start tmux with several panes open at the same time?](https://askubuntu.com/questions/830484/how-to-start-tmux-with-several-panes-open-at-the-same-time)
