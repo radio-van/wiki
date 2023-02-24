@@ -132,7 +132,10 @@ or
 `ffmpeg -i <input> -c:v libx264 -c:a libvorbis -crf 30 -preset veryslow -vf scale=-2:480 <output>`
 
 ### for iOS
-`ffmpeg -i <input> -vcodec libx264 -level 3.1 -preset medium -crf 23 -x264-params ref=4 -acodec copy -movflags +faststart <output>`
+```
+ffmpeg -i <input> -vcodec libx264 -level 3.1 -preset medium -crf 23 \
+       -x264-params ref=4 -acodec copy -movflags +faststart <output>
+```
 
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
