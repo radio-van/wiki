@@ -58,7 +58,7 @@ To preserve all tracks, explicit `map` assigment should be passed.
 External tracks should be passed with `-i`
 
 e.g.
-* `ffmpeg -i <video> -i <audio> -map 0:v -map 0:a -c:v copy -c:a copy <output>`
+* `ffmpeg -i <video> -i <audio> -map 0:v -map 1:a -c:v copy -c:a copy -shortest <output>`
 
 # subtitles
 External subtitles could be passed to `-c:s`:
