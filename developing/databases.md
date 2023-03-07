@@ -279,6 +279,10 @@ Note that:
 ```sql
   ALTER TABLE table ADD column_name datatype; 
 ```
+### change column type
+```sql
+  ALTER TABLE table ALTER COLUMN column_name TYPE column_new_type; 
+```
 ### rename column 
 ```sql
   ALTER TABLE table RENAME COLUMN column_name TO column_new_name; 
