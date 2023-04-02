@@ -123,6 +123,7 @@
   * [netctl](utilities/netctl.md) 
   * [nmap](utilities/nmap.md) 
   * [pass](utilities/pass.md)
+  * [qemu](utilities/qemu.md)
   * [rsync](utilities/rsync.md)
   * [sed](utilities/sed.md)
   * [ssh](utilities/ssh.md)
