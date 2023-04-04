@@ -52,6 +52,7 @@
     - [edit command in editor](#edit-command-in-editor)
     - [command history](#command-history)
     - [upper and lower case string](#upper-and-lower-case-string)
+    - [convert dec to binary](#convert-dec-to-binary)
 
 # configuration
 ## basics
@@ -367,3 +368,6 @@ where `<date>` in format `YYMMDD`
 
 ## upper and lower case string
 `... | tr [:lower:] [:upper:]`
+
+## convert dec to binary
+`echo "$((<BASE>#<NUMBER>))"`
