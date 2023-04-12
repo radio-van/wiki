@@ -13,6 +13,7 @@
         - [send keys](#send-keys)
         - [example](#example)
 - [Troubleshooting](#troubleshooting)
+    - [env vars](#env-vars)
     - [ssh-agent forwarding](#ssh-agent-forwarding)
 - [Useful links](#useful-links)
 
@@ -64,6 +65,10 @@ create session, run commands and attach to it
 ```
 
 # Troubleshooting
+
+## env vars
+When attaching from other machine, session's env vars are cleared/replaced.
+Re-init env var can be done with `tmux set-env <VAR> <VALUE>`
 
 ## ssh-agent forwarding
 If **Tmux** session existed before connection with **ssh-agent** forwarding, 
