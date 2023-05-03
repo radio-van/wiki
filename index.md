@@ -110,6 +110,7 @@
   * [gnupg](utilities/gnupg.md) 
   * [imagemagick](utilities/imagemagick.md) 
   * [iptables](utilities/iptables.md) 
+  * [ledger](utilities/ledger.md)
   * [luks](utilities/luks.md)
   * [lvm](utilities/lvm.md)
   * [lxc](utilities/lxc.md) 
