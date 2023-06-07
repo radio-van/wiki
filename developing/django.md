@@ -2,31 +2,33 @@
 
 - [router](#router)
 - [localization](#localization)
-    - [make/update localization files](#localization#make/update localization files)
+    - [make/update localization files](#makeupdate-localization-files)
 - [migrations](#migrations)
-    - [fake migration](#migrations#fake migration)
+    - [fake migration](#fake-migration)
 - [models](#models)
-    - [fields](#models#fields)
-        - [attributes](#models#fields#attributes)
-        - [methods](#models#fields#methods)
-        - [custom fields](#models#fields#custom fields)
-        - [DateTimeFiled](#models#fields#DateTimeFiled)
-        - [related fields](#models#fields#related fields)
-            - [on_delete](#models#fields#related fields#on_delete)
-    - [transactions](#models#transactions)
-    - [queries](#models#queries)
-        - [ArrayFiled](#models#queries#ArrayFiled)
-            - [select_related](#models#queries#ArrayFiled#select_related)
-            - [prefetch_related](#models#queries#ArrayFiled#prefetch_related)
-        - [subquery](#models#queries#subquery)
-        - [union](#models#queries#union)
-        - [values](#models#queries#values)
+    - [fields](#fields)
+        - [attributes](#attributes)
+        - [methods](#methods)
+        - [custom fields](#custom-fields)
+        - [DateTimeFiled](#datetimefiled)
+        - [related fields](#related-fields)
+            - [on_delete](#on_delete)
+    - [transactions](#transactions)
+    - [queries](#queries)
+        - [ArrayFiled](#arrayfiled)
+            - [select_related](#select_related)
+            - [prefetch_related](#prefetch_related)
+        - [subquery](#subquery)
+        - [union](#union)
+        - [values](#values)
 - [tests](#tests)
-    - [selective tests](#tests#selective tests)
-    - [dummy files](#tests#dummy files)
+    - [selective tests](#selective-tests)
+    - [dummy files](#dummy-files)
 - [timezone](#timezone)
-- [show raw SQL](#show raw SQL)
-- [change password](#change password)
+- [show raw SQL](#show-raw-sql)
+- [change password](#change-password)
+- [troubleshooting](#troubleshooting)
+    - [AssertionError: database connection isn't set to UTC](#assertionerror-database-connection-isnt-set-to-utc)
 
 # router
 
@@ -309,3 +311,9 @@ print q.query
 # change password
 `manage.py changepassword *username*`  
 `username` can be email
+
+
+# troubleshooting
+
+## AssertionError: database connection isn't set to UTC
+`psycopg2` >= 2.9 has this bug, downgrade it or set `USE_TZ=False` in settings
