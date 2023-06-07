@@ -63,6 +63,9 @@
     - [convert list to list of pairs](#convert-list-to-list-of-pairs)
     - [get first item from list with condition](#get-first-item-from-list-with-condition)
     - [set dictionary value if it isn't set](#set-dictionary-value-if-it-isnt-set)
+- [troubleshooting](#troubleshooting)
+    - [no pip in venv](#no-pip-in-venv)
+    - [psycopg2](#psycopg2)
 
 # Classes
 ## general
@@ -573,3 +576,12 @@ item = next(filter(<condition, e.g. lambda>, list), <default value>)
 ```python
 some_dict.setdefault(<key>, <value>)
 ```
+
+
+# troubleshooting
+
+## no pip in venv
+`python -m venv --upgrade venv`
+
+## psycopg2
+* `pg_config` not found: install `postgresql-libs` (Arch) or `libqp-dev` (Ubuntu) or `libpqxx-devel` (Fedora)

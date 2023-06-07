@@ -1,27 +1,28 @@
 # Contents
 
-- [Build](#Build)
-    - [UnionFS](#Build#UnionFS)
-    - [Base image](#Build#Base image)
-    - [Dockerfile](#Build#Dockerfile)
-    - [transfer images](#Build#transfer images)
-- [Containers](#Containers)
-    - [recreate container](#Containers#recreate container)
-    - [removing container](#Containers#removing container)
-    - [stop all containers](#Containers#stop all containers)
-    - [rm all containers](#Containers#rm all containers)
-- [Managing](#Managing)
-    - [cleanup](#Managing#cleanup)
-- [Configuration](#Configuration)
-    - [runtime](#Configuration#runtime)
-    - [data location](#Configuration#data location)
-        - [transfer to new location](#Configuration#data location#transfer to new location)
-- [Tools](#Tools)
-    - [docker-compose](#Tools#docker-compose)
-        - [set ARG from .env](#Tools#docker-compose#set ARG from .env)
-        - [color in logs](#Tools#docker-compose#color in logs)
-    - [podman](#Tools#podman)
-        - [replace Docker with podman](#Tools#podman#replace Docker with podman)
+- [Build](#build)
+    - [UnionFS](#unionfs)
+    - [Base image](#base-image)
+    - [Dockerfile](#dockerfile)
+    - [transfer images](#transfer-images)
+- [Containers](#containers)
+    - [recreate container](#recreate-container)
+    - [removing container](#removing-container)
+    - [stop all containers](#stop-all-containers)
+    - [rm all containers](#rm-all-containers)
+- [Managing](#managing)
+    - [cleanup](#cleanup)
+- [Configuration](#configuration)
+    - [runtime](#runtime)
+    - [data location](#data-location)
+        - [transfer to new location](#transfer-to-new-location)
+- [Tools](#tools)
+    - [docker-compose](#docker-compose)
+        - [set ARG from .env](#set-arg-from-env)
+        - [color in logs](#color-in-logs)
+    - [podman](#podman)
+        - [replace Docker with podman](#replace-docker-with-podman)
+    - [troubleshootig](#troubleshootig)
 
 # Build
 
@@ -154,3 +155,6 @@ add `tty: true` to `docker-compose.yaml`
 * `export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"`
 * edit `/etc/containers/registries.conf`:
     * `unqualified-search-registries = ['docker.io']`
+
+## troubleshootig
+* **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option

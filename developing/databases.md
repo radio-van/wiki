@@ -29,6 +29,7 @@
         - [WHERE and HAVING](#where-and-having)
     - [tables](#tables)
         - [add column](#add-column)
+        - [change column type](#change-column-type)
         - [rename column](#rename-column)
         - [create temp table](#create-temp-table)
         - [read from CSV file](#read-from-csv-file)
