@@ -155,6 +155,7 @@ add `tty: true` to `docker-compose.yaml`
 * `export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"`
 * edit `/etc/containers/registries.conf`:
     * `unqualified-search-registries = ['docker.io']`
+    * `network_backend = "netavark"` (install corresponding package)
 
 ## troubleshootig
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option

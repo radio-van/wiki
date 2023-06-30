@@ -66,6 +66,9 @@
 - [troubleshooting](#troubleshooting)
     - [no pip in venv](#no-pip-in-venv)
     - [psycopg2](#psycopg2)
+- [Machine Learning](#machine-learning)
+    - [cor function](#cor-function)
+    - [try](#try)
 
 # Classes
 ## general
@@ -585,3 +588,22 @@ some_dict.setdefault(<key>, <value>)
 
 ## psycopg2
 * `pg_config` not found: install `postgresql-libs` (Arch) or `libqp-dev` (Ubuntu) or `libpqxx-devel` (Fedora)
+
+
+# Machine Learning
+
+## cor function
+```
+plt.figure(figsize=(11,5))
+cor = data.corr()['target'].sort_values(ascending = True)
+plt.barh(cor.index[:-1], cor[:-1])
+plt.yticks(fontsize = 15)
+plt.xticks(fontsize = 12)
+plt.xlabel('Correaltion', fontsize = 15)
+plt.ylabel('Feature', fontsize = 15)
+plt.title (label='correlation', fontsize = 20)
+plt.show()
+```
+
+## try
+* SAM model from META AI

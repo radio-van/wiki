@@ -2,6 +2,7 @@
 ## general
   * [common](developing/common.md)
   * [compilation](developing/compilation.md)
+  * [math](developing/math.md)
   * [network](developing/network.md)
   * [regex](developing/regex.md)
 ## backend
