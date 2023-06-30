@@ -394,7 +394,7 @@ Tabs are just another representation of the group of windows/splits
 * `gi` jumps to last insert-mode edit and switches to *insert* mode
 
 #### changes
-``.  jump to last change`
+`.  jump to last change`
 
 ```
 '[  `[                  To the first character of the previously changed
@@ -697,7 +697,7 @@ modificators
 - `:e! ++enc=utf8` - re-read file with specified encoding
 
 ### save as another file
-`:saveas`
+* `:saveas` does **not** delete original file, `fugitive`'s `GMove/Gwrite` can be used instead
 
 ## path
 * `cd <path>` changes current working dir to `<path>`
