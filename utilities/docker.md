@@ -152,6 +152,10 @@ add `tty: true` to `docker-compose.yaml`
 * `usermod --add-subuids 100000-165535 --add-subgids 100000-165535 <username>`
 * `systemctl --user start podman.service`
 * `pacman -S podman-dnsname`
+  since `4.0` **netavark** becomes the default instead of **CNI**, additional packages are required:
+  * `netavark`
+  * `aardvark-dns`
+  * set `network_backend = "netavark"` in `/etc/containers/containers.conf`
 * `export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"`
 * edit `/etc/containers/registries.conf`:
     * `unqualified-search-registries = ['docker.io']`
