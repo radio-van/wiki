@@ -20,6 +20,8 @@
     - [get function signature](#get-function-signature)
 - [decorators](#decorators)
     - [decorator with args](#decorator-with-args)
+- [log](#log)
+    - [Logger](#logger)
 - [tests](#tests)
     - [assert](#assert)
         - [check number of database calls](#check-number-of-database-calls)
@@ -283,6 +285,19 @@ def decorator(decorator_arg):
         return wrapper
     return actual_decorator
 ```
+
+
+# log
+
+`<log_message> -> Logger -> Handler -> <destination>`
+
+* `Filter` controls log output
+* `Formatter` controls how output is formatted
+
+## Logger
+    Loggers should NEVER be instantiated directly,
+    but always through the module-level function `logging.getLogger(name)`.
+    Multiple calls to `getLogger()` with the same name will always return a reference to the same `Logger` object.
 
 
 # tests
