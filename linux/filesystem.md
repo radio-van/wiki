@@ -2,19 +2,22 @@
 
 - [encryption](#encryption)
 - [folders](#folders)
-    - [bin folders](#folders#bin folders)
-    - [etc folders](#folders#etc folders)
+    - [bin folders](#bin-folders)
+    - [etc folders](#etc-folders)
 - [mount](#mount)
-    - [grant write permissions to user](#mount#grant write permissions to user)
-    - [allow user to mount](#mount#allow user to mount)
-    - [mount options](#mount#mount options)
-    - [mount ramfs](#mount#mount ramfs)
-    - [mount encrypted volumes](#mount#mount encrypted volumes)
+    - [grant write permissions to user](#grant-write-permissions-to-user)
+    - [allow user to mount](#allow-user-to-mount)
+    - [mount options](#mount-options)
+    - [mount ramfs](#mount-ramfs)
+    - [mount encrypted volumes](#mount-encrypted-volumes)
 - [partitions](#partitions)
-    - [copy partition](#partitions#copy partition)
-    - [virtual partitions](#partitions#virtual partitions)
+    - [copy partition](#copy-partition)
+    - [virtual partitions](#virtual-partitions)
 - [swap](#swap)
-    - [increase size of swapfile](#swap#increase size of swapfile)
+    - [increase size of swapfile](#increase-size-of-swapfile)
+- [ZFS](#zfs)
+    - [RAID](#raid)
+    - [recommendations](#recommendations)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -99,3 +102,19 @@ See [LVM](../utilities/lvm.md)
 * `fallocate -l <new size> <swapfile path>`
 * `mkswap <swapfile path>`
 * `swapon <swapfile path>`
+
+
+# ZFS
+
+**ZFS** keeps hashes for all data and cheks on read or while doing **scrub** task.  
+**Copy-on-write** file copied only when it is actually changed.
+
+* `pool` объединение физических дисков (с разной топологией, e.g. RAID0)
+* `dataset` i.e. dir, can be nested, supports snapshots (read-only)
+
+## RAID
+* `RAIDZ` = `RAID5`, impossible to add disks, 80% capacity for 4 drives
+
+## recommendations
+* turn off `atime` per dataset
+* set dataset attributes: `quotas`, `mountpoints`, `deduplication` (requires hashtable for all blocks), `compress`
