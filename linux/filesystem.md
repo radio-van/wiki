@@ -18,6 +18,8 @@
 - [ZFS](#zfs)
     - [RAID](#raid)
     - [recommendations](#recommendations)
+- [tmpfs](#tmpfs)
+    - [increase size](#increase-size)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -118,3 +120,9 @@ See [LVM](../utilities/lvm.md)
 ## recommendations
 * turn off `atime` per dataset
 * set dataset attributes: `quotas`, `mountpoints`, `deduplication` (requires hashtable for all blocks), `compress`
+
+
+# tmpfs
+
+## increase size
+`mount -o remount,size=<X>G /tmp`
