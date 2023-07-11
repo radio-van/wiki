@@ -1,9 +1,21 @@
 # Contents
 
-- [simple web server](#simple web server)
-    - [output command](#simple web server#output command)
-- [one-time file server](#one-time file server)
-- [simple proxy](#simple proxy)
+- [send via netcat](#send-via-netcat)
+- [listen on port](#listen-on-port)
+- [simple web server](#simple-web-server)
+    - [output command](#output-command)
+- [one-time file server](#one-time-file-server)
+- [simple proxy](#simple-proxy)
+
+# send via netcat
+* TCP `echo 'TEXT' | nc <IP> <PORT>`
+* UPD `echo 'TEXT'| nc -u <IP> <PORT>`
+
+
+# listen on port
+* TCP `netcat -l -p <PORT>`
+* UDP `netcat -l -u -p <PORT>`
+
 
 # simple web server
 
