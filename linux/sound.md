@@ -2,12 +2,13 @@
 
 - [software](#software)
 - [usecases](#usecases)
-    - [store alsa settings](#usecases#store alsa settings)
-    - [mute/unmute](#usecases#mute/unmute)
-    - [get volume in %](#usecases#get volume in %)
-    - [get current output device](#usecases#get current output device)
+    - [store alsa settings](#store-alsa-settings)
+    - [mute/unmute](#muteunmute)
+    - [get volume in %](#get-volume-in-)
+    - [get current output device](#get-current-output-device)
+    - [output to all sinks](#output-to-all-sinks)
 - [bluetooth](#bluetooth)
-    - [switch profiles](#bluetooth#switch profiles)
+    - [switch profiles](#switch-profiles)
 
 # software
 cli:
@@ -36,6 +37,13 @@ noise filter:
 ## get current output device
 `pactl info`
 
+## output to all sinks
+`pactl load-module module-combine-sink`  
+for permanent: `.config/pipewire/pipewire-pulse.conf`
+```context.exec = [
+    { path = "pactl"  args = "load-module module-combine-sink" }
+]
+```
 # bluetooth
 ## switch profiles
 Supported profiles can be viewed with `pacm list-cards`, along with `<ID>`.  
