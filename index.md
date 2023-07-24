@@ -33,9 +33,13 @@
   * [KaiOS](hardware/kaios.md)
   * [mac](hardware/mac.md)
   * [power](hardware/power.md)
+  * [Remarkable](hardware/Remarkable.md)
   * [thinkpad](hardware/thinkpad.md)
   * [usb-modems](hardware/modems.md)
   * [xiaomi vacuum](hardware/xiaomi_vacuum.md)
+
+# BSD
+  * [pfsense](bsd/pfsense.md)
 
 # Linux
   * [clipboard](linux/clipboard.md)

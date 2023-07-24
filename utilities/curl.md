@@ -1,12 +1,13 @@
 # Contents
 
 - [usage](#usage)
-    - [auth](#usage#auth)
-    - [POST](#usage#POST)
+    - [auth](#auth)
+    - [POST](#post)
 - [cookie](#cookie)
 - [tips](#tips)
-    - [add line after response](#tips#add line after response)
-    - [post video to Telegram](#tips#post video to Telegram)
+    - [add line after response](#add-line-after-response)
+    - [post video to Telegram](#post-video-to-telegram)
+    - [ignore SSL certificate](#ignore-ssl-certificate)
 
 # usage
 ## auth
@@ -42,3 +43,6 @@ json:
 ## post video to Telegram
 `curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
 `<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  
+
+## ignore SSL certificate
+`-k`
