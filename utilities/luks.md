@@ -1,15 +1,16 @@
 # Contents
 
-- [create encrypted partition](#create encrypted partition)
-- [set bootloader options](#set bootloader options)
+- [create encrypted partition](#create-encrypted-partition)
+- [set bootloader options](#set-bootloader-options)
 - [keys](#keys)
-    - [generate random key](#keys#generate random key)
-    - [keyfile on separate drive](#keys#keyfile on separate drive)
-        - [keyfile between partitions](#keys#keyfile on separate drive#keyfile between partitions)
-        - [keyfile as a file](#keys#keyfile on separate drive#keyfile as a file)
-    - [use TPM](#keys#use TPM)
-    - [potentially useful stuff](#keys#potentially useful stuff)
-- [LUKS container on remote host](#LUKS container on remote host)
+    - [generate random key](#generate-random-key)
+    - [keyfile on separate drive](#keyfile-on-separate-drive)
+        - [keyfile between partitions](#keyfile-between-partitions)
+        - [keyfile as a file](#keyfile-as-a-file)
+    - [use TPM](#use-tpm)
+    - [potentially useful stuff](#potentially-useful-stuff)
+- [LUKS container on remote host](#luks-container-on-remote-host)
+- [resize](#resize)
 
 Tool for creating encrypted partitions.  
 
@@ -88,3 +89,7 @@ Manual decryption: `clevis luks unlock -d /dev/sdX -n MAPPER`
 * `cryptsetup luksFormat <mount point>/<container file>`
 * `cryptsetup luksOpen <mount point>/<container file> <name>`
 * `mkfs.ext4 -m0 -E lazy_itable_init=0,lazy_journal_init=0 /dev/mapper/<name>`
+
+
+# resize
+`cryptsetup resize <crypt>`
