@@ -226,6 +226,13 @@ for <loop_var> in <word1> <word2> <word3>; do
   <command>
 done
 ```
+or  
+```bash
+for <loop_var> in (n..m); do
+  <command>
+done
+```
+
 
 ### loop words in string
 ```bash
