@@ -41,6 +41,7 @@
 # BSD
   * [pfsense](bsd/pfsense.md)
 
+
 # Linux
   * [clipboard](linux/clipboard.md)
   * [containers](linux/containers.md)
@@ -61,7 +62,11 @@
   * [system](linux/system.md)
   * [usb](linux/usb.md)
   * [video](linux/video.md)
+
+## specific distro
   * [proxmox](linux/proxmox.md)
+  * [openwrt](linux/openwrt.md)
+
 
 # Mac OS
   * [apps](macos/apps.md)
