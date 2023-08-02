@@ -53,6 +53,7 @@
     - [command history](#command-history)
     - [upper and lower case string](#upper-and-lower-case-string)
     - [convert dec to binary](#convert-dec-to-binary)
+    - [batch rename](#batch-rename)
 
 # configuration
 ## basics
@@ -378,3 +379,6 @@ where `<date>` in format `YYMMDD`
 
 ## convert dec to binary
 `echo "$((<BASE>#<NUMBER>))"`
+
+## batch rename
+`find ./ -name “*.wiki” | sed -e ‘s/\(.*\)\(wiki\)/mv \1\2 \1md/g’ | sh`
