@@ -23,6 +23,7 @@
     - [show process which is listening target port](#show-process-which-is-listening-target-port)
     - [get ip](#get-ip)
     - [capture trafic on particular port](#capture-trafic-on-particular-port)
+    - [turn on forwarding](#turn-on-forwarding)
     - [turn off ipv6](#turn-off-ipv6)
     - [dumb Wi-Fi access point](#dumb-wi-fi-access-point)
 
@@ -241,6 +242,9 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 
 ## capture trafic on particular port
 `ngrep port 53`
+
+## turn on forwarding
+`sysctl -w net.ipv4.ip_forward=1`
 
 ## turn off ipv6
 `sysctl net.ipv6.conf.default.disable_ipv6=1`
