@@ -162,3 +162,4 @@ add `tty: true` to `docker-compose.yaml`
 
 ## troubleshootig
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option
+* **crun: setrlimit RLIMIT_NPROC: Operation not permitted: OCI permission denied**: use `--force-recreate` with compose command
