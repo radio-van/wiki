@@ -62,6 +62,7 @@
   * [system](linux/system.md)
   * [usb](linux/usb.md)
   * [video](linux/video.md)
+  * [XDG](linux/XDG.md)
 
 ## specific distro
   * [proxmox](linux/proxmox.md)
