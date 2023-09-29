@@ -1,18 +1,21 @@
 # Contents
 
-- [PACMAN](#PACMAN)
-    - [init](#PACMAN#init)
-    - [conflicts on sysupgrade](#PACMAN#conflicts on sysupgrade)
-    - [corrupted packages](#PACMAN#corrupted packages)
-    - [partial upgrade](#PACMAN#partial upgrade)
-    - [installation log](#PACMAN#installation log)
-    - [downgrade package](#PACMAN#downgrade package)
-    - [save to list](#PACMAN#save to list)
-    - [install from list](#PACMAN#install from list)
-    - [upgrade](#PACMAN#upgrade)
-    - [delete orphans](#PACMAN#delete orphans)
-    - [delete cache](#PACMAN#delete cache)
-    - [AUR packages](#PACMAN#AUR packages)
+- [PACMAN](#pacman)
+    - [init](#init)
+    - [conflicts on sysupgrade](#conflicts-on-sysupgrade)
+    - [corrupted packages](#corrupted-packages)
+    - [partial upgrade](#partial-upgrade)
+    - [installation log](#installation-log)
+    - [downgrade package](#downgrade-package)
+    - [save to list](#save-to-list)
+    - [install from list](#install-from-list)
+    - [upgrade](#upgrade)
+    - [delete orphans](#delete-orphans)
+    - [delete cache](#delete-cache)
+    - [AUR packages](#aur-packages)
+- [Flatpak](#flatpak)
+    - [cleanup](#cleanup)
+    - [pathes](#pathes)
 
 # PACMAN
 
@@ -82,3 +85,13 @@ git clone https://aur.archlinux.org/<package name>.git
 cd <package name>
 makepkg -fsri
 ```
+
+
+# Flatpak
+
+## cleanup
+- `flatpak uninstall --unused`
+- `sudo ostree prune --repo=/var/lib/flatpak/repo`
+
+## pathes
+`$HOME/.var`
