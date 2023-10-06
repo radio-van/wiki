@@ -4,6 +4,7 @@
     - [basics](#basics)
     - [history across all shells](#history-across-all-shells)
 - [conditions](#conditions)
+    - [[ and [[](#-and-)
     - [compare strings](#compare-strings)
     - [substring in string](#substring-in-string)
 - [escape sequences](#escape-sequences)
@@ -83,6 +84,15 @@ Complex way
       After each command, append to the history file and reread it
 
 # conditions
+## [ and [[
+* `[` aka `test` is shell command
+* `[[` is _bash_ improvement
+
+- `[[` doesn't require to quote variables
+- `[[` allows `||`, `&&`, `<`, `>`
+- `[[` allows `~=` for regex match
+- `[[` allows globbing
+
 ## compare strings
 ```bash
 [[ $var == "string" ]] && <equal> || <not equal>

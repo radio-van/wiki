@@ -26,6 +26,7 @@
     - [turn on forwarding](#turn-on-forwarding)
     - [turn off ipv6](#turn-off-ipv6)
     - [dumb Wi-Fi access point](#dumb-wi-fi-access-point)
+    - [measure speed](#measure-speed)
 
 # interfaces
 
@@ -264,3 +265,7 @@ on Openwrt
     9. Use an Ethernet to connect one of the LAN ports on your main router to one of the LAN/switch ports of your “new” dumb AP. (There's no need to connect the WAN port of the Dumb AP.)
     10. You are done.
 ```
+
+## measure speed
+* server `iperf -B <interface ip> -s -f m`
+* client `iperf -c <ip> -f m`
