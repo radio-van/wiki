@@ -2,9 +2,9 @@
 
 - [options](#options)
 - [progress](#progress)
-- [protocol](#protocol)
-    - [ssh](#protocol#ssh)
-        - [non-default ssh port](#protocol#ssh#non-default ssh port)
+- [tips and tricks](#tips-and-tricks)
+    - [non-default ssh port](#non-default-ssh-port)
+    - [sudo on other side](#sudo-on-other-side)
 
 # options
 `-az` default options:  `archive`, `compression`  
@@ -17,10 +17,15 @@
 `-P` combines `--progress` and `--partial`  
 `--remove-source-files` remove source after transfer  
 
+
 # progress
 `--info=progress2` without `-v` and `-P` flags shows overall progress
 
-# protocol
-## ssh
-### non-default ssh port
+
+# tips and tricks
+## non-default ssh port
 add `-e 'ssh -p <port>'` to **rsync** arrguments
+
+## sudo on other side
+* add `<username> ALL=NOPASSWD:/usr/bin/rsync` to sudoers on the other side
+* use `--rsync-path='sudo rsync'`
