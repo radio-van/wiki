@@ -4,6 +4,7 @@
 - [assymmetric](#assymmetric)
 - [signing](#signing)
 - [password entropy](#password-entropy)
+- [Wi-Fi crack costs](#wi-fi-crack-costs)
 
 # symmetric
 One key is used to *encrypt* and *decrypt* message.
@@ -52,3 +53,14 @@ To grant that **certificate** owner is the same real person, two approaches exis
 | All ASCII                  | printable   | 2      | 5       | 7       | 10      | 13      | 15      | 20       | 25       | 30       | 35       | 39       |
 | All Extended ASCII         |             | 2      | 5       | 6       | 9       | 11      | 13      | 17       | 21       | 25       | 29       | 33       |
 | Diceware word list         |             | 1      | 3       | 4       | 5       | 7       | 8       | 10       | 13       | 15       | 18       | 20       |
+
+# Wi-Fi crack costs
+Формула рассчета стоимости взлома Wi-Fi:  
+`кол-во_вариаций ^ кол-во_символов / 10^9 * 0.045`  
+где:
+- кол-во вариаций считается из используемых символов (например, только англ. буквы в обоих регистрах и цифры = 26+26+10)
+- кол-во символов это длина пароля
+- 10^9 перевод в гигахэши
+- 0.045 цена перебора гигахеша на арендованой в облаке Nvidia 4090 (самый дешевый вариант)
+
+Для примера, взлом 8-значного пароля только из цифр обойдется в $0.01, если добавить буквы в обоих регистрах, то уже $9.79, а если добавить спецсимволы - $274
