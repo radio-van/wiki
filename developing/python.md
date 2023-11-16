@@ -46,6 +46,7 @@
         - [supress excessive logs](#supress-excessive-logs)
     - [poetry](#poetry)
         - [use system packages](#use-system-packages)
+        - [add files from private git repo](#add-files-from-private-git-repo)
     - [virtual envs](#virtual-envs)
         - [create venv](#create-venv)
         - [install version of Python](#install-version-of-python)
@@ -514,6 +515,11 @@ is needed
 ### use system packages
 `<venv>/pyvenv.conf`:  
 `include-system-site-packages = true`
+
+### add files from private git repo
+`poetry add git+ssh://git@github.com:<owner>/<repo>.git#<branch>&subdirectory=<path>'`
+or in `pyproject.toml`: `<package> = {git = "git@github.com:<owner>/<repo>.git", rev = "<branch>", subdirectory = "<path>"}`
+`
 
 ## virtual envs
 ### create venv

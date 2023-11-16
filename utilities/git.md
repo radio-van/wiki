@@ -295,7 +295,8 @@ to remove:
 
 ## commit
 ### search for string in whole git history
-`git log -S <string>`
+* for commit message `git log -S <string>`
+* for line in file `git grep 'git@' $(git rev-list --all)`
 
 ### squash commits
 - `git reset --hard <initial commit>` resets work dir to state of choosen commit
