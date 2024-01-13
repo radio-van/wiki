@@ -141,6 +141,7 @@
   * [sed](utilities/sed.md)
   * [ssh](utilities/ssh.md)
   * [sudo](utilities/sudo.md)
+  * [syncthing](utilities/syncthing.md)
   * [systemd](utilities/systemd.md)
   * [tmux](utilities/tmux.md) 
   * [top](utilities/top.md) 

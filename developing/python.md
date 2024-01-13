@@ -57,6 +57,7 @@
         - [pip](#pip)
             - [install requirements](#install-requirements)
             - [upgrade all](#upgrade-all)
+            - [space](#space)
 - [receipts](#receipts)
     - [web server](#web-server)
     - [decode base64](#decode-base64)
@@ -519,7 +520,7 @@ is needed
 ### add files from private git repo
 `poetry add git+ssh://git@github.com:<owner>/<repo>.git#<branch>&subdirectory=<path>'`
 or in `pyproject.toml`: `<package> = {git = "git@github.com:<owner>/<repo>.git", rev = "<branch>", subdirectory = "<path>"}`
-`
+
 
 ## virtual envs
 ### create venv
@@ -546,6 +547,9 @@ add `<venv_name>` to `.python-version` in dir
                 
 #### upgrade all
 `pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U`
+
+#### space
+`TMPDIR=/home/user/tmp/ python3 -m pip install a_package`
 
 
 # receipts
