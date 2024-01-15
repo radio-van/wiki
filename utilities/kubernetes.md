@@ -1,22 +1,23 @@
 # Contents
 
 - [basics](#basics)
-    - [Ingress](#basics#Ingress)
+    - [Ingress](#ingress)
 - [frontend](#frontend)
 - [deployment](#deployment)
-    - [edit deployment](#deployment#edit deployment)
-    - [restart deployment](#deployment#restart deployment)
-    - [delete deployment](#deployment#delete deployment)
+    - [edit deployment](#edit-deployment)
+    - [restart deployment](#restart-deployment)
+    - [delete deployment](#delete-deployment)
 - [secrets](#secrets)
-    - [edit secrets](#secrets#edit secrets)
-    - [secret from file](#secrets#secret from file)
+    - [edit secrets](#edit-secrets)
+    - [secret from file](#secret-from-file)
 - [examples](#examples)
-    - [gpu pod](#examples#gpu pod)
-    - [postgres pod](#examples#postgres pod)
+    - [gpu pod](#gpu-pod)
+    - [postgres pod](#postgres-pod)
 - [k3s](#k3s)
-- [delete everything from namespace](#delete everything from namespace)
-- [delete node](#delete node)
-- [delete stuck namespace](#delete stuck namespace)
+- [delete everything from namespace](#delete-everything-from-namespace)
+- [delete node](#delete-node)
+- [delete stuck namespace](#delete-stuck-namespace)
+- [Pod](#pod)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -137,3 +138,30 @@ kubectl get namespace $NAMESPACE -o json > $NAMESPACE.json
 sed -i -e 's/"kubernetes"//' $NAMESPACE.json
 kubectl replace --raw "/api/v1/namespaces/$NAMESPACE/finalize" -f ./$NAMESPACE.json
 ```
+
+
+# Pod
+A simple pod can be created with `kubectl apply -f pod.yaml` with following contents:
+```yaml
+apiVersion: v1
+kind: Pod           
+                    
+metadata:
+  name: <pod_name>
+
+spec:
+  containers:
+  - name: <container_name>
+    image: <base image>
+
+  nodeSelector:
+    ...
+
+  tolerations:
+    ...
+```
+
+and deleted with `kubectl delete pod <pod_name>`
+
+to make it persistent it can be run directly:
+* `kubectl run -it --image <image> <name> --overrides='{"spec": {...}}'`
