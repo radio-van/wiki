@@ -1,6 +1,6 @@
 # Contents
 
-- [PACMAN](#pacman)
+- [Pacman](#pacman)
     - [init](#init)
     - [conflicts on sysupgrade](#conflicts-on-sysupgrade)
     - [corrupted packages](#corrupted-packages)
@@ -16,8 +16,10 @@
 - [Flatpak](#flatpak)
     - [cleanup](#cleanup)
     - [pathes](#pathes)
+- [Apt](#apt)
+    - [skip all interaction](#skip-all-interaction)
 
-# PACMAN
+# Pacman
 
 ## init
 * initialize keys `pacman-key --init`
@@ -95,3 +97,9 @@ makepkg -fsri
 
 ## pathes
 `$HOME/.var`
+
+
+# Apt
+
+## skip all interaction
+`DEBIAN_FRONTEND=noninteractive apt-get install -y <packages>`
