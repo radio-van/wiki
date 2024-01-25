@@ -5,6 +5,7 @@
     - [Base image](#base-image)
     - [Dockerfile](#dockerfile)
     - [transfer images](#transfer-images)
+    - [ONBUILD](#onbuild)
 - [Containers](#containers)
     - [recreate container](#recreate-container)
     - [removing container](#removing-container)
@@ -54,6 +55,9 @@ Docker image size could be reduced with `DockerSlim` utility
 ## transfer images
 * `docker save <image> > <image_file>.tar`
 * `docker load < <image_file>.tar>`
+
+## ONBUILD
+`ONBUILD <command>` allows to run `<command>` during building _another_ image based on this one
 
 
 # Containers
