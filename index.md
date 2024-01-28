@@ -143,6 +143,7 @@
   * [sudo](utilities/sudo.md)
   * [syncthing](utilities/syncthing.md)
   * [systemd](utilities/systemd.md)
+  * [tailscale](utilities/tailscale.md)
   * [tmux](utilities/tmux.md) 
   * [top](utilities/top.md) 
   * [tor](utilities/tor.md) 

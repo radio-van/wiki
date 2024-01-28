@@ -27,6 +27,8 @@
     - [turn off ipv6](#turn-off-ipv6)
     - [dumb Wi-Fi access point](#dumb-wi-fi-access-point)
     - [measure speed](#measure-speed)
+    - [flush routing cache](#flush-routing-cache)
+    - [which route is used](#which-route-is-used)
 
 # interfaces
 
@@ -269,3 +271,9 @@ on Openwrt
 ## measure speed
 * server `iperf -B <interface ip> -s -f m`
 * client `iperf -c <ip> -f m`
+
+## flush routing cache
+`ip r flush cache`
+
+## which route is used
+`ip r get <address>`
