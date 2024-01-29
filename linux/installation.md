@@ -213,7 +213,8 @@ useful additions:
     ```
        [Service]
        ExecStart
-       ExecStart=-/usr/bin/agetty --autologin <username> --noclear %I $TERM
+       ExecStart=-/sbin/agetty -o '-p -- <username>' --noclear --skip-login - $TERM
+ 
     ```
 *OR*
 2. create additional service
