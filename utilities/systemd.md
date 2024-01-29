@@ -2,8 +2,10 @@
 
 - [configuration](#configuration)
 - [maintain](#maintain)
-    - [reset failed service](#maintain#reset failed service)
-- [restart service on file changed](#restart service on file changed)
+    - [list enabled units](#list-enabled-units)
+    - [reset failed service](#reset-failed-service)
+    - [investigation](#investigation)
+- [restart service on file changed](#restart-service-on-file-changed)
 
 # configuration
 if option can be executed several times (e.g. `ExecStart`) it probably should be cleared,  
@@ -18,10 +20,20 @@ ExecStart=-<command>
 ```
 otherwise, if command fails, following comands are not executed  
 
+
 # maintain
+
+## list enabled units
+`systemctl list-unit-files --state=enabled`
+
 ## reset failed service
 if a service failed with `start-limit-hit`
 it can be restarted with `systemctl reset-failed <unit>`
+
+## investigation
+* `systemd-analyze blame`
+* `systemd-analyze critical-chain`
+* `systemctl --failed`
 
 # restart service on file changed
 `/etc/systemd/system/<service>.service`
