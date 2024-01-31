@@ -6,6 +6,7 @@
     - [reset failed service](#reset-failed-service)
     - [investigation](#investigation)
 - [restart service on file changed](#restart-service-on-file-changed)
+- [create drop-in files](#create-drop-in-files)
 
 # configuration
 if option can be executed several times (e.g. `ExecStart`) it probably should be cleared,  
@@ -75,3 +76,21 @@ PathModified=<workdir path>
 [Install]
 WantedBy=multi-user.target
 ```
+
+
+# create drop-in files
+`systemctl edit <service> --drop-in=<drop-in config>`
+
+In drop-in some additions/overrides can be added, e.g.  
+- to override `ExecStart`:
+    ```
+    [Service]
+    ExecStart=
+    ExecStart=<new command>
+    ```
+- to append:
+    ```
+    [Service]
+    ExecStart=<new command>
+    ```
+    or `ExecStartPre` / `ExecStartPost` if unit is one _oneshot_ and multiple `ExecStart` are unsupported

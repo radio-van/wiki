@@ -29,6 +29,7 @@
     - [measure speed](#measure-speed)
     - [flush routing cache](#flush-routing-cache)
     - [which route is used](#which-route-is-used)
+    - [priority of route](#priority-of-route)
 
 # interfaces
 
@@ -277,3 +278,9 @@ on Openwrt
 
 ## which route is used
 `ip r get <address>`
+
+## priority of route
+`ip route add ... metric N` where route with lower `N` is prioritized.  
+Also, consider _lookup tables_, e.g. adding _rule_:
+`ip rule add to <subnet/mask> priority N lookup <table>`  
+will force to lookup specific table first, if `N` is lower than others, can be checked with `ip rule list`
