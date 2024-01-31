@@ -19,6 +19,8 @@
     - [wireless](#wireless)
         - [AP](#ap)
         - [wpa supplicant](#wpa-supplicant)
+- [modem](#modem)
+    - [Huawei E3372h](#huawei-e3372h)
 - [tips & trics](#tips-trics)
     - [show process which is listening target port](#show-process-which-is-listening-target-port)
     - [get ip](#get-ip)
@@ -237,6 +239,16 @@ rsn_pairwise=CCMP
 * enable `wpa_supplicant.service`
 
 for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obtain configuration
+
+
+# modem
+
+## Huawei E3372h
+```
+opkg install kmod-usb-core kmod-usb-net kmod-usb-uhci chat ppp kmod-usb-serial kmod-usb2 kmod-usb3 libusb-1.0 usb-modeswitch kmod-usb-net-rndis kmod-usb-net-cdc-ether kmod-usb-net-huawei-cdc-ncm
+```
+add new WAN for `eth2`
+
 
 # tips & trics
 ## show process which is listening target port
