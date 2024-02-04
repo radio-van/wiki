@@ -1,35 +1,36 @@
 # Contents
 
 - [configuration](#configuration)
-    - [disabling password auth](#configuration#disabling password auth)
-    - [disabling root login](#configuration#disabling root login)
-    - [do not ask about adding host keys](#configuration#do not ask about adding host keys)
-    - [solving SSH-RSA](#configuration#solving SSH-RSA)
-    - [limit login access](#configuration#limit login access)
-    - [set shell](#configuration#set shell)
-    - [override settings](#configuration#override settings)
-    - [listen to specific interface](#configuration#listen to specific interface)
+    - [disabling password auth](#disabling-password-auth)
+    - [disabling root login](#disabling-root-login)
+    - [do not ask about adding host keys](#do-not-ask-about-adding-host-keys)
+    - [solving SSH-RSA](#solving-ssh-rsa)
+    - [limit login access](#limit-login-access)
+    - [set shell](#set-shell)
+    - [override settings](#override-settings)
+    - [listen to specific interface](#listen-to-specific-interface)
 - [usage](#usage)
-    - [connection](#usage#connection)
-        - [force using password](#usage#connection#force using password)
-        - [force using IdentityOnly](#usage#connection#force using IdentityOnly)
-    - [keys](#usage#keys)
-        - [keygen](#usage#keys#keygen)
-        - [copy key](#usage#keys#copy key)
-        - [generate public key from private](#usage#keys#generate public key from private)
-        - [storing keys](#usage#keys#storing keys)
-        - [key fingerprint](#usage#keys#key fingerprint)
+    - [connection](#connection)
+        - [force using password](#force-using-password)
+        - [force using IdentityOnly](#force-using-identityonly)
+    - [keys](#keys)
+        - [keygen](#keygen)
+        - [copy key](#copy-key)
+        - [generate public key from private](#generate-public-key-from-private)
+        - [storing keys](#storing-keys)
+        - [key fingerprint](#key-fingerprint)
 - [ssh-agent](#ssh-agent)
-    - [overview](#ssh-agent#overview)
-    - [usage](#ssh-agent#usage)
-    - [agent-forwarding](#ssh-agent#agent-forwarding)
-        - [basics](#ssh-agent#agent-forwarding#basics)
-        - [configuration](#ssh-agent#agent-forwarding#configuration)
-- [port forwarding](#port forwarding)
-- [proxy command](#proxy command)
+    - [overview](#overview)
+    - [usage](#usage-2)
+    - [agent-forwarding](#agent-forwarding)
+        - [basics](#basics)
+        - [configuration](#configuration-2)
+- [port forwarding](#port-forwarding)
+- [proxy command](#proxy-command)
 - [scp](#scp)
-    - [ambiguous target](#scp#ambiguous target)
-- [additional security](#additional security)
+    - [ambiguous target](#ambiguous-target)
+    - [no sftp (e.g. in ash)](#no-sftp-eg-in-ash)
+- [additional security](#additional-security)
 
 # configuration
 
@@ -194,6 +195,9 @@ case, *stdin/stdout* forwarding).
 ## ambiguous target
 
 All spaces in target path must be escaped with `\\` and path itself must be enclosed with `"`
+
+## no sftp (e.g. in ash)
+use legacy protocol `scp -O ...`
 
 
 # additional security
