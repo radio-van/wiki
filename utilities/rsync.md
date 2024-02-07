@@ -27,5 +27,7 @@
 add `-e 'ssh -p <port>'` to **rsync** arrguments
 
 ## sudo on other side
-* add `<username> ALL=NOPASSWD:/usr/bin/rsync` to sudoers on the other side
-* use `--rsync-path='sudo rsync'`
+* `read -s -p "Remote sudo password: " SUDOPASS && rsync -avzuP --stats --rsync-path="echo $SUDOPASS | sudo -Sv && sudo rsync" <host> <target>`
+OR  
+- add `<username> ALL=NOPASSWD:/usr/bin/rsync` to sudoers on the other side
+- use `--rsync-path='sudo rsync'`
