@@ -33,6 +33,7 @@
   * [KaiOS](hardware/kaios.md)
   * [mac](hardware/mac.md)
   * [power](hardware/power.md)
+  * [radio](hardware/radio.md)
   * [Remarkable](hardware/Remarkable.md)
   * [thinkpad](hardware/thinkpad.md)
   * [usb-modems](hardware/modems.md)
