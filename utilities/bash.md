@@ -388,7 +388,7 @@ where `<date>` in format `YYMMDD`
 `... | tr [:lower:] [:upper:]`
 
 ## convert dec to binary
-`echo "$((<BASE>#<NUMBER>))"`
+`echo "obase=<BASE>;<NUM>" | bc`
 
 ## batch rename
 `find ./ -name “*.wiki” | sed -e ‘s/\(.*\)\(wiki\)/mv \1\2 \1md/g’ | sh`
