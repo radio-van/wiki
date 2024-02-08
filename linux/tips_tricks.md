@@ -7,8 +7,8 @@
     - [locale](#locale)
     - [keyboard switch](#keyboard-switch)
 - [share terminal](#share-terminal)
-    - [get output from process executed by another thread](#get-output-from-process-executed-by-another-thread)
-    - [version of distro](#version-of-distro)
+- [get output from process executed by another thread](#get-output-from-process-executed-by-another-thread)
+- [version of distro](#version-of-distro)
 - [QR code for WiFi](#qr-code-for-wifi)
 
 # fork bomb
@@ -60,12 +60,12 @@ Acquire::http::Proxy "http://username:password@proxy.server:port/";
 # share terminal
 `<command> | nc seashells.io 1337`
 
-## get output from process executed by another thread
+# get output from process executed by another thread
 `strace -p<PID> -s9999 -e write`  
 - `write` means capture output
 - `-s9999` avoids truncating to 32 chars
 
-## version of distro
+# version of distro
 `cat /etc/os-release`
 
 
