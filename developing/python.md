@@ -1,5 +1,7 @@
 # Contents
 
+- [Asyncio](#asyncio)
+    - [async loop through list](#async-loop-through-list)
 - [Classes](#classes)
     - [general](#general)
         - [initialization](#initialization)
@@ -74,8 +76,18 @@
     - [cor function](#cor-function)
     - [try](#try)
 
+# Asyncio
+
+## async loop through list
+```python
+results = await asyncio.gather(*map(<func>, <list>))
+```
+
+
 # Classes
+
 ## general
+
 ### initialization
 - `Foo(*args, **kwargs)` means `Foo.__call__(*args, **kwargs)`
 - object `Foo` is an instance of class `type`, so calling `Foo.__call__(*args, **kwargs)` is equal to `type.__call__(Foo, *args, **kwargs)`
