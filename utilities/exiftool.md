@@ -2,6 +2,7 @@
 
 - [tags](#tags)
     - [exclude metadata](#exclude-metadata)
+    - [show only value](#show-only-value)
 - [tips & tricks](#tips-tricks)
     - [remove all metadata except date and location](#remove-all-metadata-except-date-and-location)
 
@@ -24,6 +25,10 @@
     `-all=` deletes all the tags<br>
     `-tagsFromFile @` takes the listed flags from the source file,<br>
     in this case `@` represents the current file and writes them to the destination.
+
+## show only value
+`exiftool -s3 -TAG <file>`
+
 
 # tips & tricks
 
