@@ -60,6 +60,7 @@
             - [install requirements](#install-requirements)
             - [upgrade all](#upgrade-all)
             - [space](#space)
+            - [use index-url](#use-index-url)
 - [receipts](#receipts)
     - [web server](#web-server)
     - [decode base64](#decode-base64)
@@ -562,6 +563,17 @@ add `<venv_name>` to `.python-version` in dir
 
 #### space
 `TMPDIR=/home/user/tmp/ python3 -m pip install a_package`
+
+#### use index-url
+`pip install <package> --index-url <url>`  
+or
+```
+requirements.txt
+
+<pac1>
+<pac2>
+--index-url <url>
+```
 
 
 # receipts

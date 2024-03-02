@@ -1,23 +1,26 @@
 # Contents
 
-- [Virtual console](#Virtual console)
-- [Xorg](#Xorg)
-    - [keycodes](#Xorg#keycodes)
-    - [modifiers](#Xorg#modifiers)
-    - [xcape](#Xorg#xcape)
-    - [xkb](#Xorg#xkb)
-        - [options](#Xorg#xkb#options)
-        - [frequently used XKB options](#Xorg#xkb#frequently used XKB options)
-        - [one-click key functions](#Xorg#xkb#one-click key functions)
-    - [Xmodmap](#Xorg#Xmodmap)
-        - [modify keymap](#Xorg#Xmodmap#modify keymap)
-        - [modifier keys](#Xorg#Xmodmap#modifier keys)
-        - [reverse scrolling](#Xorg#Xmodmap#reverse scrolling)
-        - [swap mouse buttons](#Xorg#Xmodmap#swap mouse buttons)
-        - [disable touchpad](#Xorg#Xmodmap#disable touchpad)
+- [Virtual console](#virtual-console)
+- [Xorg](#xorg)
+    - [keycodes](#keycodes)
+    - [modifiers](#modifiers)
+    - [xcape](#xcape)
+    - [xkb](#xkb)
+        - [options](#options)
+        - [frequently used XKB options](#frequently-used-xkb-options)
+        - [one-click key functions](#one-click-key-functions)
+    - [Xmodmap](#xmodmap)
+        - [modify keymap](#modify-keymap)
+        - [modifier keys](#modifier-keys)
+        - [reverse scrolling](#reverse-scrolling)
+        - [swap mouse buttons](#swap-mouse-buttons)
+        - [disable touchpad](#disable-touchpad)
 - [backlight](#backlight)
-    - [mackbook](#backlight#mackbook)
+    - [mackbook](#mackbook)
 - [leds](#leds)
+- [QMK](#qmk)
+- [ZMK](#zmk)
+    - [Flash](#flash)
 
 # Virtual console
 `/etc/vconsole.conf`  
@@ -187,3 +190,15 @@ add mod2 = Num_Lock
 
 # leds
 * `setleds -L +num` - turns on NumLock Led (without changing VT flag)
+
+
+# QMK
+
+
+# ZMK
+
+## Flash
+* connect to PC
+* press button twice
+* copy firmware file to appeared flashdrive
+
