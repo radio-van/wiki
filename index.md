@@ -17,6 +17,7 @@
   * [JS](developing/js.md)
   * [HTML](developing/html.md)
   * [requests](developing/requests.md)
+  * [grafana](developing/grafana.md)
 
 # Facts
   * [facts](general/facts.md)
