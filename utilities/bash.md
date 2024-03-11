@@ -13,6 +13,7 @@
     - [group conditions](#group-conditions)
     - [run several commands simultaneously](#run-several-commands-simultaneously)
 - [scripting](#scripting)
+    - [determine interactive shell](#determine-interactive-shell)
     - [group commands](#group-commands)
     - [subshell quotes](#subshell-quotes)
     - [set options](#set-options)
@@ -143,6 +144,15 @@ see also [group commands](##group commands)
 
 
 # scripting
+
+## determine interactive shell
+```bash
+if [ -t 0 ]; then
+  # interactive shell
+else
+  # non-interactive shell
+fi
+```
 
 ## group commands
 Grouping allows to redirect output of all grouped commands.
