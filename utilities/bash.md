@@ -7,6 +7,7 @@
     - [[ and [[](#-and-)
     - [compare strings](#compare-strings)
     - [substring in string](#substring-in-string)
+    - [string starts with substr](#string-starts-with-substr)
 - [escape sequences](#escape-sequences)
 - [pipes](#pipes)
     - [conditions](#conditions-2)
@@ -102,6 +103,11 @@ Complex way
 ```bash
 [[ $string == *"$substring"* ]] && <included> || <not included>
 ```
+## string starts with substr
+```bash
+[[ $string == substring* ]] && <included> || <not included>
+```
+It's important not using `""` with pure string!
 
 # escape sequences
 `\e` and `\033` are equal  
