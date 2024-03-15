@@ -1,5 +1,6 @@
 # Developing
 ## general
+  * [ai](developing/ai.md)
   * [common](developing/common.md)
   * [compilation](developing/compilation.md)
   * [math](developing/math.md)
