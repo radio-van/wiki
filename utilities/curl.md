@@ -29,7 +29,7 @@ without data:
 `curl --request POST <url>`
 
 json:  
-`curl -H "Content-Type: application/json" -d "{<json>}" <url>`
+`curl -H "Content-Type: application/json" -d '{"param": "value"}' <url>`
 
 # cookie
 * save cookies `-c, --cookie-jar <cookie_file>`
