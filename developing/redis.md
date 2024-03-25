@@ -1,9 +1,9 @@
 # Contents
 
 - [basics](#basics)
-- [CLI](#CLI)
-    - [list all keys](#CLI#list all keys)
-    - [delete key](#CLI#delete key)
+- [CLI](#cli)
+    - [list all keys](#list-all-keys)
+    - [delete key](#delete-key)
 - [usecase](#usecase)
 
 # basics
@@ -20,7 +20,8 @@
 `redis-cli KEYS '*'`
 
 ## delete key
-`redis-cli DEL <key>`
+* `redis-cli DEL <key>`
+* `redis-cli KEYS "<pattern>" | xargs redis-cli DEL`
 
 
 # usecase
