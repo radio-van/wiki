@@ -26,6 +26,7 @@
     - [Huawei E3372h](#huawei-e3372h)
     - [Ubiquiti](#ubiquiti)
         - [dd](#dd)
+        - [LED patterns](#led-patterns)
         - [recover with TFTP](#recover-with-tftp)
 - [tips & trics](#tips-trics)
     - [show process which is listening target port](#show-process-which-is-listening-target-port)
@@ -289,6 +290,15 @@ add new WAN for `eth2`
 * write OpenWrt into **kernel1** (`mtd3` in example above): `dd if=/tmp/sysupgrade.bin of=/dev/mtdblock3`
 * boot from **kernel0**: `dd if=/dev/zero bs=1 count=1 of=/dev/mtdblock4`
 * reboot
+
+### LED patterns
+* _booting_: flashing white every `0.5` sec
+* _adoption_: steady white
+* _bluetooth_: slow blue
+* _operational_: steady blue
+* _error_: strobbing white
+* _updating firmware_: white-blue
+* _tftp_: white-blue-off 5 sec
 
 ### recover with TFTP
 * `ip addr add 192.168.1.0/24 dev <iface>`
