@@ -25,6 +25,8 @@
 - [hardware](#hardware)
     - [Huawei E3372h](#huawei-e3372h)
     - [Ubiquiti](#ubiquiti)
+        - [dd](#dd)
+        - [recover with TFTP](#recover-with-tftp)
 - [tips & trics](#tips-trics)
     - [show process which is listening target port](#show-process-which-is-listening-target-port)
     - [get ip](#get-ip)
@@ -265,6 +267,8 @@ add new WAN for `eth2`
 
 
 ## Ubiquiti
+
+### dd
 * (optional) hard reset by holding **reset** button for 30 sec
 * `ip addr add 192.168.1.0/24 dev <iface>`
 * `ip route add 192.168.1.20 dev <iface>`
@@ -285,6 +289,12 @@ add new WAN for `eth2`
 * write OpenWrt into **kernel1** (`mtd3` in example above): `dd if=/tmp/sysupgrade.bin of=/dev/mtdblock3`
 * boot from **kernel0**: `dd if=/dev/zero bs=1 count=1 of=/dev/mtdblock4`
 * reboot
+
+### recover with TFTP
+* `ip addr add 192.168.1.0/24 dev <iface>`
+* hold **reset** button, plug power, wait blue-white-off pattern
+* `curl -T <official firmware>.bin tftp://192.168.1.20`
+* wait for flashing (blue-white pattern -> white)
 
 
 # tips & trics
