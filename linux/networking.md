@@ -12,6 +12,7 @@
         - [system V](#system-v)
         - [systemd](#systemd)
         - [netctl](#netctl)
+    - [routes](#routes)
     - [firewall](#firewall)
     - [DNS resolving](#dns-resolving)
     - [DHCP server](#dhcp-server)
@@ -125,6 +126,10 @@ Automatic network switching can be enabled by enabling:
 
 Automatic networks can be listed with `netctl-auto list` and manually switched with `netctl-auto switch-to <profile>`
 
+
+## routes
+* add gateway `ip route add <gateway IP> dev <interface>`
+* add route `ip route add <IP>/<mask> via <gateway> dev <interface>`
 
 ## firewall
 

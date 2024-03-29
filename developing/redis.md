@@ -4,6 +4,7 @@
 - [CLI](#cli)
     - [list all keys](#list-all-keys)
     - [delete key](#delete-key)
+    - [delete all keys](#delete-all-keys)
 - [usecase](#usecase)
 
 # basics
@@ -23,6 +24,8 @@
 * `redis-cli DEL <key>`
 * `redis-cli KEYS "<pattern>" | xargs redis-cli DEL`
 
+## delete all keys
+`FLUSHDB`
 
 # usecase
 Can be used as [Celery](./celery.md) *backend* (result stores) and *broker* (message transport).
