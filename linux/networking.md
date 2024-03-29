@@ -20,8 +20,9 @@
     - [wireless](#wireless)
         - [AP](#ap)
         - [wpa supplicant](#wpa-supplicant)
-- [modem](#modem)
+- [hardware](#hardware)
     - [Huawei E3372h](#huawei-e3372h)
+    - [Ubiquiti](#ubiquiti)
 - [tips & trics](#tips-trics)
     - [show process which is listening target port](#show-process-which-is-listening-target-port)
     - [get ip](#get-ip)
@@ -246,13 +247,36 @@ rsn_pairwise=CCMP
 for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obtain configuration
 
 
-# modem
+# hardware
 
 ## Huawei E3372h
 ```
 opkg install kmod-usb-core kmod-usb-net kmod-usb-uhci chat ppp kmod-usb-serial kmod-usb2 kmod-usb3 libusb-1.0 usb-modeswitch kmod-usb-net-rndis kmod-usb-net-cdc-ether kmod-usb-net-huawei-cdc-ncm
 ```
 add new WAN for `eth2`
+
+
+## Ubiquiti
+* (optional) hard reset by holding **reset** button for 30 sec
+* `ip addr add 192.168.1.0/24 dev <iface>`
+* `ip route add 192.168.1.20 dev <iface>`
+* `scp -O <firmware>.bin ubnt@192.168.1.20:/tmp/`, password is `ubnt`
+* **ssh** into and `echo "5edfacbf" > /proc/ubnthal/.uf` (unlock mtd partition)
+* check **mtd** with `cat /proc/mtd`, output should look like this:
+    ```
+    dev:    size   erasesize  name
+    mtd0: 00060000 00010000 "u-boot"
+    mtd1: 00010000 00010000 "u-boot-env"
+    mtd2: 00790000 00010000 "kernel0"
+    mtd3: 00790000 00010000 "kernel1"
+    mtd4: 00020000 00010000 "bs"
+    mtd5: 00040000 00010000 "cfg"
+    mtd6: 00010000 00010000 "EEPROM"
+    ```
+* write OpenWrt into **kernel0** (`mtd2` in example above): `dd if=/tmp/sysupgrade.bin of=/dev/mtdblock2`
+* write OpenWrt into **kernel1** (`mtd3` in example above): `dd if=/tmp/sysupgrade.bin of=/dev/mtdblock3`
+* boot from **kernel0**: `dd if=/dev/zero bs=1 count=1 of=/dev/mtdblock4`
+* reboot
 
 
 # tips & trics
