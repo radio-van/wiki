@@ -16,6 +16,8 @@
     - [firewall](#firewall)
     - [DNS resolving](#dns-resolving)
     - [DHCP server](#dhcp-server)
+    - [TFTP](#tftp)
+        - [client](#client)
     - [ip address aliasing](#ip-address-aliasing)
     - [wireless](#wireless)
         - [AP](#ap)
@@ -163,6 +165,12 @@ subnet 172.16.0.0 netmask 255.255.255.0 {
 }
 ```
 * `systemctl enable --now dhcpd4` (optionally `dhcpd6`)
+
+## TFTP
+
+### client
+`curl -T <firmware.bin> tftp://<ip>`
+
 
 ## ip address aliasing
 ArchLinux   
