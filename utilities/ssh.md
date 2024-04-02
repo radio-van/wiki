@@ -19,6 +19,7 @@
         - [generate public key from private](#generate-public-key-from-private)
         - [storing keys](#storing-keys)
         - [key fingerprint](#key-fingerprint)
+        - [remove server fingerprint from known_hosts](#remove-server-fingerprint-from-known_hosts)
 - [ssh-agent](#ssh-agent)
     - [overview](#overview)
     - [usage](#usage-2)
@@ -124,6 +125,9 @@ When using `gpg-agent` instead of `ssh-agent` it's required to explicitly use Id
 ssh-keyscan -t rsa github.com | ssh-keygen -lf -
 ```
 useful for compare with public key fingerprint, e.g. for [github](https://docs.github.com/en/github/authenticating-to-github/githubs-ssh-key-fingerprints)
+
+### remove server fingerprint from known_hosts
+`ssh-keygen -R <hostname/IP>`
 
 
 # ssh-agent
