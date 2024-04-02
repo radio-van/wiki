@@ -39,6 +39,7 @@
     - [flush routing cache](#flush-routing-cache)
     - [which route is used](#which-route-is-used)
     - [priority of route](#priority-of-route)
+    - [QR code for WIFI](#qr-code-for-wifi)
 
 # interfaces
 
@@ -353,3 +354,7 @@ on Openwrt
 Also, consider _lookup tables_, e.g. adding _rule_:
 `ip rule add to <subnet/mask> priority N lookup <table>`  
 will force to lookup specific table first, if `N` is lower than others, can be checked with `ip rule list`
+
+
+## QR code for WIFI
+`WIFI:T:WPA;S:<ssid>;P:<pass>;H:;;`
