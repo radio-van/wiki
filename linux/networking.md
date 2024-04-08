@@ -25,6 +25,7 @@
 - [hardware](#hardware)
     - [ESP](#esp)
     - [Huawei E3372h](#huawei-e3372h)
+        - [OpenWRT](#openwrt)
     - [Ubiquiti](#ubiquiti)
         - [dd](#dd)
         - [LED patterns](#led-patterns)
@@ -268,6 +269,8 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 - только диапазон N, если не требуется ниже
 
 ## Huawei E3372h
+
+### OpenWRT
 ```
 opkg install kmod-usb-core kmod-usb-net kmod-usb-uhci chat ppp kmod-usb-serial kmod-usb2 kmod-usb3 libusb-1.0 usb-modeswitch kmod-usb-net-rndis kmod-usb-net-cdc-ether kmod-usb-net-huawei-cdc-ncm
 ```
