@@ -23,6 +23,7 @@
         - [AP](#ap)
         - [wpa supplicant](#wpa-supplicant)
 - [hardware](#hardware)
+    - [ESP](#esp)
     - [Huawei E3372h](#huawei-e3372h)
     - [Ubiquiti](#ubiquiti)
         - [dd](#dd)
@@ -260,6 +261,11 @@ for encrypted passphrase `wpa_passphrase <SSID> <passphrase>` can be used to obt
 
 
 # hardware
+
+## ESP
+- фиксированная ширина канала 20 МГц
+- выключение всех бустов (TX burst, airtime fairness, 256-QAM и т.д.)
+- только диапазон N, если не требуется ниже
 
 ## Huawei E3372h
 ```
