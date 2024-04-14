@@ -12,6 +12,7 @@
     - [stop all containers](#stop-all-containers)
     - [rm all containers](#rm-all-containers)
 - [Managing](#managing)
+    - [clear logs](#clear-logs)
     - [cleanup](#cleanup)
 - [Configuration](#configuration)
     - [runtime](#runtime)
@@ -79,6 +80,9 @@ Docker image size could be reduced with `DockerSlim` utility
 
 
 # Managing
+
+## clear logs
+`echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)`
 
 ## cleanup
 * check occupied space
