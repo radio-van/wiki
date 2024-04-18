@@ -20,6 +20,8 @@
     - [recommendations](#recommendations)
 - [tmpfs](#tmpfs)
     - [increase size](#increase-size)
+- [dd](#dd)
+    - [mount partition from full-disk image](#mount-partition-from-full-disk-image)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -126,3 +128,34 @@ See [LVM](../utilities/lvm.md)
 
 ## increase size
 `mount -o remount,size=<X>G /tmp`
+
+
+# dd
+
+## mount partition from full-disk image
+* `fdisk -lu <img>`:
+    ```
+    ...
+    Units = sectors of 1 * 512 = 512 bytes
+    Sector size (logical/physical): 512 bytes / 512 bytes
+    ...
+      Device Boot      Start         End      Blocks   Id  System
+    sda.img1   *          56     6400000     3199972+   c  W95 FAT32 (LBA)
+    ```
+
+* calculate offset: **Sector size** * **Start** = (e.g.) `512` * `56` = `28672`
+
+* mount using the offset:
+    ```
+    losetup -o 28672 /dev/loop0 <img>
+    ```
+* now the partition resides on /dev/loop0 and can be fscked, mounted, etc
+    ```
+    fsck -fv /dev/loop0
+    mount /dev/loop0 /mnt
+    ```
+* unmount
+    ```
+    umount /mnt
+    losetup -d /dev/loop0
+    ```

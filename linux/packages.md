@@ -17,6 +17,7 @@
     - [cleanup](#cleanup)
     - [pathes](#pathes)
 - [Apt](#apt)
+    - [proxy for particular repo](#proxy-for-particular-repo)
     - [skip all interaction](#skip-all-interaction)
 
 # Pacman
@@ -100,6 +101,16 @@ makepkg -fsri
 
 
 # Apt
+
+## proxy for particular repo
+add to `/etc/apt/apt.conf.d/99proxy`:
+```
+Acquire::http::Proxy {
+    your.local.repository "http://...";
+};
+```
+`DIRECT` can be used instead of `<proxy>` for opposite config
+
 
 ## skip all interaction
 `DEBIAN_FRONTEND=noninteractive apt-get install -y <packages>`

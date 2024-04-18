@@ -2,10 +2,11 @@
 
 - [basics](#basics)
 - [configuration](#configuration)
-    - [configs](#configuration#configs)
-    - [command line](#configuration#command line)
-    - [key generation](#configuration#key generation)
-    - [NAT](#configuration#NAT)
+    - [configs](#configs)
+    - [command line](#command-line)
+    - [key generation](#key-generation)
+    - [NAT](#nat)
+- [pfsense as wireguard server](#pfsense-as-wireguard-server)
 
 # basics
     Each node has `private_key` and `public_key`.
@@ -148,3 +149,9 @@ PersistentKeepalive = 25
 ```
 And ignore all other peers.  
 Setting `AllowedIPs = 10.0.1.0/24` allows all other peers to communicate via **router peer**.
+
+
+# pfsense as wireguard server
+
+* add port forwarding from `WAN` to `WG` iface (UDP, wg listen port, WG IP) and check _add associated filter rule_
+* add wireguard firewall rule with _pass_ action, from WG iface for IPv4 from WG subnet source to Any
