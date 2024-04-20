@@ -38,6 +38,7 @@
         - [cut N symbols](#cut-n-symbols)
         - [cut pattern aka substitution](#cut-pattern-aka-substitution)
         - [numeric range](#numeric-range)
+        - [capitalization](#capitalization)
 - [usage](#usage)
     - [execute and source](#execute-and-source)
     - [previous command and arguments](#previous-command-and-arguments)
@@ -57,6 +58,7 @@
     - [upper and lower case string](#upper-and-lower-case-string)
     - [convert dec to binary](#convert-dec-to-binary)
     - [batch rename](#batch-rename)
+    - [trim first line from output](#trim-first-line-from-output)
 
 # configuration
 ## basics
@@ -334,6 +336,12 @@ e.g.
 ### numeric range
 * `ls 201{1..5}*` will list files beginning from `2011` to `2015`
 
+### capitalization
+* uppercase frist letter `echo "${var^}"`
+* uppercase all letters `echo "${var^^}"`
+* lowercase first letter `echo "${var,}"`
+* lowercase all letters `echo "${var,,}"`
+
 # usage
 ## execute and source
 * `execute` aka `./<script>` runs script in _new_ shell (all changes to environment will stay in that shell)
@@ -408,3 +416,6 @@ where `<date>` in format `YYMMDD`
 
 ## batch rename
 `find ./ -name “*.wiki” | sed -e ‘s/\(.*\)\(wiki\)/mv \1\2 \1md/g’ | sh`
+
+## trim first line from output
+`tail -n +2`
