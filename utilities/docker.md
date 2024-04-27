@@ -22,8 +22,9 @@
     - [docker-compose](#docker-compose)
         - [set ARG from .env](#set-arg-from-env)
         - [color in logs](#color-in-logs)
-    - [podman](#podman)
-        - [replace Docker with podman](#replace-docker-with-podman)
+- [Podman](#podman)
+    - [replace Docker with podman](#replace-docker-with-podman)
+    - [auth](#auth)
     - [troubleshootig](#troubleshootig)
 
 # Build
@@ -153,9 +154,10 @@ build:
 ### color in logs
 add `tty: true` to `docker-compose.yaml`
 
-## podman
 
-### replace Docker with podman
+# Podman
+
+## replace Docker with podman
 * `touch /etc/subuid /etc/subgid`
 * `usermod --add-subuids 100000-165535 --add-subgids 100000-165535 <username>`
 * `systemctl --user start podman.service`
@@ -166,6 +168,20 @@ add `tty: true` to `docker-compose.yaml`
 * `export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"`
 * edit `/etc/containers/registries.conf`:
     * `unqualified-search-registries = ['docker.io']`
+
+## auth
+move `.docker/auth.json` to `$XDG_RUNTIME_DIR/containers/`
+
+e.g. of `auth.json` for _yandex cloud_:
+```
+{
+  "auths": {
+    "cr.yandex": {
+      "auth": "<token>"
+    }
+  }
+}
+```
 
 ## troubleshootig
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option
