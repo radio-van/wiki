@@ -109,6 +109,7 @@
   * [bash](utilities/bash.md)
   * [beets](utilities/beets.md)
   * [brew](utilities/brew.md)
+  * [clonezilla](utilities/clonezilla.md)
   * [crontab](utilities/crontab.md)
   * [curl](utilities/curl.md)
   * [dd](utilities/dd.md)
