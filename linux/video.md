@@ -1,9 +1,9 @@
 # Contents
 
-- [different monitor resolutions](#different monitor resolutions)
-- [stucked VIRTUAL monitor](#stucked VIRTUAL monitor)
-- [get window class or name](#get window class or name)
-- [get iGPU memory](#get iGPU memory)
+- [different monitor resolutions](#different-monitor-resolutions)
+- [stucked VIRTUAL monitor](#stucked-virtual-monitor)
+- [get window class or name](#get-window-class-or-name)
+- [get iGPU memory](#get-igpu-memory)
 - [touchscreen](#touchscreen)
 
 # different monitor resolutions

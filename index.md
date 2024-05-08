@@ -38,6 +38,7 @@
   * [radio](hardware/radio.md)
   * [Remarkable](hardware/Remarkable.md)
   * [thinkpad](hardware/thinkpad.md)
+  * [video](hardware/video.md)
   * [usb-modems](hardware/modems.md)
   * [xiaomi vacuum](hardware/xiaomi_vacuum.md)
 

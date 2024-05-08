@@ -35,7 +35,7 @@ Tool for creating encrypted partitions.
 `cryptsetup luksAddKey <device> <keyfile>` allow to decrypt partition with a given **keyfile**
 
 ### keyfile between partitions
-`dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=N`  
+`dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=Y`  
 where:
 - `<device>` is third device (e.g. usb-flashdrive) to store key between/before partitions
 - `X` - offset on `<device>` (e.g. 2048 to preserve MBR header) in bytes
