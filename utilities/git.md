@@ -94,6 +94,7 @@
     - [urls](#urls)
         - [change remote url](#change-remote-url)
     - [debug](#debug)
+- [cleanup](#cleanup)
 
 # concept
 Git is a graph of commits with connections.
@@ -529,3 +530,16 @@ Tags are technically the same as [branches](#branch), i.e. just pointers to part
 
 ## debug
 add `GIT_TRACE=1` before command
+
+
+# cleanup
+
+* `git fsck --full` checks and repairs filesystem
+* `git reflog expire --all --expire=1.month.ago` remove old refs
+* `git gc --prune=now --aggressive` remove all unaccessible commits and refs older than 2 weeks
+* `git repack` dowsize files
+* `git prune-repacked` reduce packs size
+* `git remote prune <remote name>` remove local branches if they are removed on remote
+
+In case of **object corrupt or missing** first of all `git fsck --full` can be used
+
