@@ -60,6 +60,7 @@
   * [networking](linux/networking.md)
   * [packages](linux/packages.md)
   * [printing](linux/printing.md)
+  * [power](linux/power.md)
   * [sound](linux/sound.md)
   * [terminal](linux/terminal.md)
   * [tips&tricks](linux/tips_tricks.md)
