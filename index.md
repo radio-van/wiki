@@ -52,6 +52,7 @@
   * [installation](linux/installation.md)
   * [history](linux/history.md)
   * [filesystem](linux/filesystem.md)
+  * [kernel](linux/kernel.md)
   * [keyboard](linux/keyboard.md)
   * [loading](linux/loading.md)
   * [logs](linux/logs.md)
