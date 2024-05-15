@@ -186,4 +186,15 @@ e.g. of `auth.json` for _yandex cloud_:
 ## troubleshootig
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option
 * **crun: setrlimit RLIMIT_NPROC: Operation not permitted: OCI permission denied** - use `--force-recreate` with compose command
-* **failed to mount runtime directory for rootless netns: no such file or directory ** - 
+* **failed to mount runtime directory for rootless netns: no such file or directory** - use proper net package?
+* 
+    ```
+    running `/usr/bin/newuidmap 16111 0 500 1 1 10000 65536`: newuidmap: open of uid_map failed: Permission denied 
+    Error: cannot set up namespace using "/usr/bin/newuidmap": exit status 1
+    ```
+    check capabilities:
+    ```
+    getcap /usr/bin/newuidmap /usr/bin/newgidmap
+        /usr/bin/newuidmap cap_setuid=ep
+        /usr/bin/newgidmap cap_setgid=ep
+    ```
