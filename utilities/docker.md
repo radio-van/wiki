@@ -53,7 +53,8 @@ Docker image size could be reduced with `DockerSlim` utility
 ```
 * do not use `chown` command in separate `RUN` derective (it will cause doubling folder size),<br>
   use `COPY --chown <user>` instead
-  
+* to copy dir rather than its content use `ADD <src> <dest>` instead of `COPY`  
+
 ## transfer images
 * `docker save <image> > <image_file>.tar`
 * `docker load < <image_file>.tar>`
