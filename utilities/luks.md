@@ -4,6 +4,7 @@
 - [set bootloader options](#set-bootloader-options)
 - [keys](#keys)
     - [generate random key](#generate-random-key)
+    - [test key](#test-key)
     - [keyfile on separate drive](#keyfile-on-separate-drive)
         - [keyfile between partitions](#keyfile-between-partitions)
         - [keyfile as a file](#keyfile-as-a-file)
@@ -28,6 +29,9 @@ Tool for creating encrypted partitions.
 ## generate random key
 * `dd if=/dev/urandom of=<keyfile> bs=512 count=8`
 * `tr -dc A-Za-z0-9 </dev/urandom | head -c 64 ; echo ''`
+
+## test key
+`cryptsetup luksOpen --test-passphrase --key-slot N /dev/<dev> && echo correct`
 
 ## keyfile on separate drive
 `keyfile` can be random file, passphrase, binary

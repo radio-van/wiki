@@ -71,6 +71,7 @@
     - [get first item from list with condition](#get-first-item-from-list-with-condition)
     - [set dictionary value if it isn't set](#set-dictionary-value-if-it-isnt-set)
 - [troubleshooting](#troubleshooting)
+    - [asdf conflicts with AUR helper](#asdf-conflicts-with-aur-helper)
     - [no pip in venv](#no-pip-in-venv)
     - [psycopg2](#psycopg2)
 - [Machine Learning](#machine-learning)
@@ -631,6 +632,9 @@ some_dict.setdefault(<key>, <value>)
 
 
 # troubleshooting
+
+## asdf conflicts with AUR helper
+`PATH=$(getconf PATH) <aur helper>`
 
 ## no pip in venv
 `python -m venv --upgrade venv`
