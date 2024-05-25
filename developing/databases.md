@@ -44,6 +44,7 @@
         - [update](#update)
         - [update on conflict](#update-on-conflict)
         - [delete](#delete)
+    - [window functions](#window-functions)
     - [tools](#tools)
         - [connect](#connect)
         - [dump](#dump)
@@ -351,6 +352,76 @@ WHERE table_name='your_table' and column_name='your_column';
   DELETE FROM table WHERE condition;
 ```
 
+
+## window functions
+`func() OVER <window> as <col_name>`
+
+`()` - empty __window__, i.e. all results
+
+functions:
+* `row_number()`
+* `rank()`
+* `lead()`
+also:
+* `sum()`
+* `count()`
+
+Examples:
+* add row numbers:
+    ```sql
+    SELECT id, col1, col2, row_number() OVER () as num FROM table;
+    
+    id | col1 | col2 | num
+    1  | foo  | bar  | 1
+    2  | bar  | foo  | 2
+    ```
+* calculate rating:
+    ```sql
+    SELECT id, score, row_number() OVER (ORDER BY score DESC) as rating FROM table ORDER BY id;
+    
+    id | score | rating
+    1  |    50 |      2
+    2  |   100 |      1
+    ```
+    Note that rating acts as id for __window__ because __window__ uses its own ordering
+
+* using `PARTITION`
+    ```sql
+    SELECT id, section, score, row_number() OVER (PARTITION BY section ORDER BY score DESC) as rating FROM table ORDER BY id;
+    
+    id | section | score | rating
+    1  |       1 |    50 |      2
+    2  |       1 |   100 |      1
+    3  |       2 |    70 |      1
+    ```
+    Note that rating is assigned according to section
+
+* using `sum()`:
+    ```sql
+    SELECT transaction_id, change, sum(change) OVER (ORDER BY transaction_id) as balance FROM transactions ORDER BY transaction_id;
+    
+    transaction_id | change | balance
+                 1 |    1.0 |     1.0
+                 2 |   -2.0 |    -1.0
+                 3 |   10.0 |     9.0
+    ```
+    OR
+    ```sql
+    SELECT transaction_id, change, sum(change) OVER () as balance FROM transactions ORDER BY transaction_id;
+    
+    transaction_id | change | balance
+                 1 |    1.0 |     9.0
+                 2 |   -2.0 |     9.0
+                 3 |   10.0 |     9.0
+    ```
+    Note that without window only final balance is shown
+    
+* multiple functions:
+    ```sql
+    SELECT sum(salary) OVER w avg(salary) OVER w FROM salaries WINDOW w AS (PARTITION BY worker ORDER BY salary DESC);
+    ```
+    
+    
 ## tools 
 * `pgcli`
 * `psql`
