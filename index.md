@@ -108,6 +108,7 @@
 # Utilities
   * [adb](utilities/adb.md)
   * [ansible](utilities/ansible.md)
+  * [aria](utilities/aria.md)
   * [awk](utilities/awk.md)
   * [bash](utilities/bash.md)
   * [beets](utilities/beets.md)
