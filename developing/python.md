@@ -61,6 +61,7 @@
             - [upgrade all](#upgrade-all)
             - [space](#space)
             - [use index-url](#use-index-url)
+            - [from git](#from-git)
 - [receipts](#receipts)
     - [web server](#web-server)
     - [decode base64](#decode-base64)
@@ -574,6 +575,13 @@ requirements.txt
 <pac1>
 <pac2>
 --index-url <url>
+```
+
+#### from git
+```
+requirements.txt
+
+<package>  @ git+https://github.com/owner/repo@branch
 ```
 
 
