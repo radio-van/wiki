@@ -11,6 +11,8 @@
     - [removing container](#removing-container)
     - [stop all containers](#stop-all-containers)
     - [rm all containers](#rm-all-containers)
+- [Installation](#installation)
+    - [Debian](#debian)
 - [Managing](#managing)
     - [clear logs](#clear-logs)
     - [cleanup](#cleanup)
@@ -79,6 +81,27 @@ Docker image size could be reduced with `DockerSlim` utility
 `docker stop $(docker ps -a -q)`
 ## rm all containers
 `docker rm $(docker ps -a -q)`
+
+
+# Installation
+
+## Debian
+
+* add source
+    ```
+    /etc/apt/sources.list.d/10-debian.list
+
+    deb [arch=amd64 signed-by=/usr/share/keyrings/docker-keyring.gpg] https://download.docker.com/linux/debian bookworm stable
+    ```
+* add signature
+    ```
+    /usr/share/keyrings/docker-keyring.gpg
+    ```
+
+    Output of `wget -O- https://download.docker.com/linux/debian/gpg | gpg --dearmor`
+    `gpg --dearmor` is necessary if `file <gpg.gpg>` outputs `docker-keyring.gpg: PGP public key block Public-Key (old)`
+* install
+    `apt update && apt install docker-ce`
 
 
 # Managing
