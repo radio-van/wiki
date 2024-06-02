@@ -4,6 +4,7 @@
     - [alpine](#alpine)
 - [troubleshooting](#troubleshooting)
     - [no host internet conection](#no-host-internet-conection)
+    - [ESPHome can not find device](#esphome-can-not-find-device)
 
 # installation
 
@@ -18,3 +19,10 @@
 ## no host internet conection
 * chack `ha network info`
 * set gateway as DNS server
+
+## ESPHome can not find device
+```yaml
+zeroconf:
+  ignore:
+    - <entity>
+```
