@@ -5,6 +5,7 @@
 - [get window class or name](#get-window-class-or-name)
 - [get iGPU memory](#get-igpu-memory)
 - [touchscreen](#touchscreen)
+- [codecs](#codecs)
 
 # different monitor resolutions
 e.g.
@@ -37,3 +38,18 @@ xrandr --output INT_DISPLAY --scale 1x1 --mode 1920x1200 --pos 0x1620
 # touchscreen
 * `xinput --list` to get names of touch controllers, smth with **stylus** and **eraser** is required
 * `xinput --map-to-output '<NAME>' $DISPLAY` map to display
+
+
+# codecs
+| Device          | WebRTC      | MSE         | MP4         |
+|-----------------|-------------|-------------|-------------|
+| latency         | best        | medium      | bad         |
+| Desktop Chrome  | H264        | H264, H265* | H264, H265* |
+| Desktop Safari  | H264, H265* | H264        | no          |
+| Desktop Edge    | H264        | H264, H265* | H264, H265* |
+| Desktop Firefox | H264        | H264        | H264        |
+| Desktop Opera   | no          | H264        | H264        |
+| iPhone Safari   | H264, H265* | no          | no          |
+| iPad Safari     | H264, H265* | H264        | no          |
+| Android Chrome  | H264        | H264        | H264        |
+| masOS Hass App  | no          | no          | no          |
