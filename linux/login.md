@@ -9,8 +9,11 @@
 `getty` is a program which detects connection to `tty` (virtual console) and
 launches another program (`login` by default).
 
+
 # tips&trics
+
 ## restore root password
+
 ### Ubuntu + GRUB
 * hold `shift` after BIOS screen to enter `GRUB` menu
 * press e to edit boot commands
