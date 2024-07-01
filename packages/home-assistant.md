@@ -26,3 +26,13 @@ zeroconf:
   ignore:
     - <entity>
 ```
+
+OR
+
+`<hass config>/.storage/core.config_entries`
+check IPs in
+```
+domain:
+  esphome:
+```
+and "real" ones (from routers)

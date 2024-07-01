@@ -207,6 +207,17 @@ e.g. of `auth.json` for _yandex cloud_:
 }
 ```
 
+OR
+
+`/run/user/1000/containers/auth.json`
+```json
+{
+  "credHelpers": {
+    "cr.yandex": "yc"
+  }
+}
+```
+
 ## troubleshootig
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option
 * **crun: setrlimit RLIMIT_NPROC: Operation not permitted: OCI permission denied** - use `--force-recreate` with compose command
