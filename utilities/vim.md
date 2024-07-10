@@ -220,12 +220,17 @@ Basically `Gclog` does two things:
 - loads commits to quickfix list
 - opens temp buffer with `git log` output
 
+bare git basics:
+* `git log` basically shows commits w/ messages
+* `git log -- <file>` shows only commits w/ particular file changed
+* `git log --patch | -p` shows diff along with commits
+
 using that various behaviour can be obtained:
-* `:Gclog -- %` loads list of commits where current file was changed into quickfix list  
-  and opens `git log` output (it will contain all changes, not only for current file)
-* `:Git log --patch -- %` load in temp buffer a log of changes for current file 
-* `0Gclog` opens a quickfix list with all changes of the current file (w/o diffs)
-  `0` actually means a whole file, particular line range can be specified.
+* `:Git log --patch -- %` load in temp buffer a log of changes for current file (enter checkouts buffer to file in selected commit)
+* `:Gclog -- %` does the same, but temp buffer contains diff only for particular commit and quickfix list contains
+  list of commits where current file was changed (however, temp buffer contain all changes made in commit, not only related to current file)
+* `0Gclog` also opens a quickfix list with all commits where current file was changed, but there are corresponding (to selected commit)
+  file state, not diffs. `0` actually means a whole file, particular line range can be specified. Under the hood it uses `-L` arg to `git log`
 
 #### merge conflict
 `Gdiffsplit!`

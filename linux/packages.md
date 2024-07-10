@@ -16,6 +16,7 @@
 - [Flatpak](#flatpak)
     - [cleanup](#cleanup)
     - [pathes](#pathes)
+    - [permissions](#permissions)
 - [Apt](#apt)
     - [proxy for particular repo](#proxy-for-particular-repo)
     - [skip all interaction](#skip-all-interaction)
@@ -98,6 +99,9 @@ makepkg -fsri
 
 ## pathes
 `$HOME/.var`
+
+## permissions
+`flatpak override <package> --filesystem=<path>`
 
 
 # Apt
