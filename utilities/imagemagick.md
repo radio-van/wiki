@@ -1,10 +1,14 @@
 # Contents
 
+- [create image](#create-image)
 - [crop](#crop)
 - [montage](#montage)
 - [resize](#resize)
 - [convert png to jpg](#convert-png-to-jpg)
 - [fill color](#fill-color)
+
+# create image
+`convert -size WxH xc:#rrggbb <output>`
 
 # crop
 `convert -crop <width>x<height>+<x>+<y> <input> <output>`
