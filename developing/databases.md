@@ -22,6 +22,7 @@
         - [sort order](#sort-order)
         - [query from several tables](#query-from-several-tables)
         - [aggregate data with same values](#aggregate-data-with-same-values)
+        - [aggregate data with same values in JSON field](#aggregate-data-with-same-values-in-json-field)
         - [EXCLUDE](#exclude)
         - [JOINS](#joins)
             - [inner join](#inner-join)
@@ -208,6 +209,10 @@ FROM
   SELECT DISTINCT column FROM ...
   SELECT column2, MAX(column1) FROM ... GROUP BY column2;
 ``` 
+### aggregate data with same values in JSON field
+```sql
+  SELECT <field>->>'<json key>' AS key, COUNT(*) AS count FROM <table> GROUP BY <json key>
+``` 
 
 ### EXCLUDE
 ```sql
@@ -302,6 +307,9 @@ Note that:
 ```sql
   \copy (SELECT ...) to 'filename' with csv;
 ```
+Alternative method for read-only FS:
+`psql ... -c '<command> to STDOUT with csv;' > <filename>`
+
 ### copy column
 ```sql
 ALTER TABLE <table> ADD COLUMN <new_column> <data type>;
