@@ -59,6 +59,7 @@
     - [convert dec to binary](#convert-dec-to-binary)
     - [batch rename](#batch-rename)
     - [trim first line from output](#trim-first-line-from-output)
+    - [base64](#base64)
 
 # configuration
 ## basics
@@ -419,3 +420,8 @@ where `<date>` in format `YYMMDD`
 
 ## trim first line from output
 `tail -n +2`
+
+
+## base64
+* `echo 'string' | base64 --encode`
+* `echo 'string' | base64 --decode`
