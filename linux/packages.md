@@ -17,6 +17,7 @@
     - [cleanup](#cleanup)
     - [pathes](#pathes)
     - [permissions](#permissions)
+    - [downgrade](#downgrade)
 - [Apt](#apt)
     - [proxy for particular repo](#proxy-for-particular-repo)
     - [skip all interaction](#skip-all-interaction)
@@ -102,6 +103,10 @@ makepkg -fsri
 
 ## permissions
 `flatpak override <package> --filesystem=<path>`
+
+## downgrade
+* `flatpak remote-info --log flathub <package>`
+* `flatpak update --commit=<commit> <package>`
 
 
 # Apt

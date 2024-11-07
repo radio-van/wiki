@@ -233,3 +233,8 @@ OR
         /usr/bin/newuidmap cap_setuid=ep
         /usr/bin/newgidmap cap_setgid=ep
     ```
+    if not, set:
+    ```
+    sudo chmod u+s /usr/bin/newuidmap
+    sudo chmod u+s /usr/bin/newgidmap
+    ```

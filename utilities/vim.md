@@ -57,6 +57,7 @@
         - [ex/ed](#exed)
             - [ranges](#ranges)
             - [patterns](#patterns)
+            - [captive groups](#captive-groups)
             - [commands](#commands-2)
             - [examples](#examples)
             - [regex](#regex)
@@ -551,6 +552,9 @@ e.g. `:g/foo/s/bar/zzz/g` - replace all `bar` with `zzz` in all lines containing
 | `0;/that`        | first line containing `that` (also matches in the first line)                            |
 | `1;/that`        | first line after line 1 containing `that`                                                |
 | `/foo\(bar\)\@!` | equivalent to `(?!..)` perl non-captive groups. Search for **foo** not following **bar** |
+
+#### captive groups
+`s/\(...\)/\1/`
 
 #### commands
 * replace `:s/../../`
