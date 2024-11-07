@@ -18,6 +18,7 @@
     - [pathes](#pathes)
     - [permissions](#permissions)
     - [downgrade](#downgrade)
+    - [freeze or pin version](#freeze-or-pin-version)
 - [Apt](#apt)
     - [proxy for particular repo](#proxy-for-particular-repo)
     - [skip all interaction](#skip-all-interaction)
@@ -107,6 +108,10 @@ makepkg -fsri
 ## downgrade
 * `flatpak remote-info --log flathub <package>`
 * `flatpak update --commit=<commit> <package>`
+
+## freeze or pin version
+* `flatpak mask <package>`
+* `flatpak mask --remove <package>`
 
 
 # Apt
