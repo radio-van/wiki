@@ -28,6 +28,8 @@
             - [inner join](#inner-join)
             - [left join](#left-join)
         - [WHERE and HAVING](#where-and-having)
+        - [count more then one param](#count-more-then-one-param)
+        - [group by month](#group-by-month)
     - [tables](#tables)
         - [add column](#add-column)
         - [change column type](#change-column-type)
@@ -280,6 +282,17 @@ Note that:
 - `WHERE` employees_no < 10 would fail with an error, because that value doesn’t exist before aggregation.
 - `HAVING` gender = 'F' would fail with an error, because the gender column doesn’t exist in the aggregated  
          rows (or, if you prefer, in the SELECT clause).
+
+### count more then one param
+```sql
+SELECT COUNT(CASE <value><condition> THEN 1 END) AS VAL_COND1, COUNT(...) AS VAL_COND2 FROM ...;
+```
+
+### group by month
+```sql
+SELECT DATE_TRUNC('month', created_at) AS month, COUNT(...) GROUP BY month ORDER BY month;
+```
+
 
 ## tables 
 ### add column 
