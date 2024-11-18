@@ -143,13 +143,15 @@ ffmpeg -i <input> -vcodec libx264 -level 3.1 -preset medium -crf 23 \
 ## record audio
 `ffmpeg -f pulse -i <ID of source> <out>`
 
-`<ID of source>` - full name of sink, can be obtained via `pactl list sinks`
+`<ID of source>` - full name of sink, can be obtained via `pactl list short sources`
 
 ## record screen
 video only:  
 `ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+<x>,<y> <output>`
 with audio (mic):  
-`ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i pulse -acodec aac -strict experimental <output>`
+`ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 -f <AUDIO (see above)> -strict experimental <output>`
+for high-load:
+`ffmpeg -video_size 2560x1440 -f x11grab -i :0.0 -f pulse -i 23430 -c:v libx264rgb -crf 0 -color_range 2 -preset ultrafast -threads 4 -rtbufsize 702000k <out>`
 
 ## reverse
 `ffmpeg -i <input> -vf reverse <output`
