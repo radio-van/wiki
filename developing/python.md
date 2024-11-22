@@ -78,6 +78,7 @@
 - [Machine Learning](#machine-learning)
     - [cor function](#cor-function)
     - [try](#try)
+- [Typecheking](#typecheking)
 
 # Asyncio
 
@@ -668,3 +669,12 @@ plt.show()
 
 ## try
 * SAM model from META AI
+
+
+
+# Typecheking
+```python
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from smth import Smth
+```

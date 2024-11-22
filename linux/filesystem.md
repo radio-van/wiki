@@ -16,8 +16,16 @@
 - [swap](#swap)
     - [increase size of swapfile](#increase-size-of-swapfile)
 - [ZFS](#zfs)
-    - [RAID](#raid)
+    - [Copy-on-write](#copy-on-write)
+    - [Snapshots](#snapshots)
+    - [Topology](#topology)
+        - [device](#device)
+        - [vdev](#vdev)
+        - [pool](#pool)
+        - [dataset](#dataset)
+        - [zvol](#zvol)
     - [recommendations](#recommendations)
+    - [rename pool](#rename-pool)
 - [tmpfs](#tmpfs)
     - [increase size](#increase-size)
 - [dd](#dd)
@@ -110,18 +118,58 @@ See [LVM](../utilities/lvm.md)
 
 # ZFS
 
-**ZFS** keeps hashes for all data and cheks on read or while doing **scrub** task.  
-**Copy-on-write** file copied only when it is actually changed.
+**ZFS** keeps hashes for all data and checks on read or while doing **scrub** task to keep data consistent.
 
-* `pool` объединение физических дисков (с разной топологией, e.g. RAID0)
-* `dataset` i.e. dir, can be nested, supports snapshots (read-only)
+## Copy-on-write
+Conventional FS modifies files in-place. CoW FS writes new copy on free space and marks old copy as
+available to be overwritten by another data.
+Link and unlink blocks is a single operation and even power loss during it doesn't affect consistency:
+data will stay either in old state or in new one.
 
-## RAID
-* `RAIDZ` = `RAID5`, impossible to add disks, 80% capacity for 4 drives
+## Snapshots
+Because of CoW it is easy to keep versions of files: FS just doesn't mark old version as "free space" until
+at least one snapshot is linked with that copy.
+
+## Topology
+
+### device
+Physical device: typically SSD or HDD, but also can be hardware RAID or even a raw file
+
+### vdev
+Consists of one or more **devices** which can be combined in several ways:
+* single
+* mirror (of any number of devices)
+* RAIDZ1, RAIDZ2, RAIDZ3 combination with 1, 2 or 3 disks for parity data
+NOTE: parity data is actually distributed across __all__ disks.
+NOTE: important param is `ashift`, which sets **block** size. Ideally `2^ashift = device sector size`.
+      **block** smaller than **sector** dramatically decreases performance, as each **sector**
+      should be readed before modify data amount equal to **block** size.
+      **block** bigger that **sector** size decrease space usage efficiency, but not significantly.
+      As some devices can provede false **sector** size information, better to set `ashift = 13`
+* special: for log, cache, metadata
+
+### pool
+Consists of 1 or more **vdev**s. Has **no** parity, all redundancy is made on **vdev** level.
+**Spare** device can be added on **pool** level to be attached to _temporary_ replace
+failed one in any **vdev**. However, failed **device** in **vdev** still must be replaced,
+after that **spare** becomes inactive again.
+
+### dataset
+Roughly, a directory with a set of params such as compression, quota, etc.
+Mountpoint of any dataset can be anywhere.
+
+### zvol
+Virtual block device which can be formatted into any filesystem
+
 
 ## recommendations
 * turn off `atime` per dataset
 * set dataset attributes: `quotas`, `mountpoints`, `deduplication` (requires hashtable for all blocks), `compress`
+
+
+## rename pool
+- `zpool import old_name new_name`
+- `zpool export new_name`
 
 
 # tmpfs

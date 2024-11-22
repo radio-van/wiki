@@ -57,6 +57,7 @@
     - [command history](#command-history)
     - [upper and lower case string](#upper-and-lower-case-string)
     - [convert dec to binary](#convert-dec-to-binary)
+    - [convert binary to dec](#convert-binary-to-dec)
     - [batch rename](#batch-rename)
     - [trim first line from output](#trim-first-line-from-output)
     - [base64](#base64)
@@ -414,6 +415,9 @@ where `<date>` in format `YYMMDD`
 
 ## convert dec to binary
 `echo "obase=<BASE>;<NUM>" | bc`
+
+## convert binary to dec
+`echo "ibase=<BASE>;<NUM>" | bc`
 
 ## batch rename
 `find ./ -name “*.wiki” | sed -e ‘s/\(.*\)\(wiki\)/mv \1\2 \1md/g’ | sh`
