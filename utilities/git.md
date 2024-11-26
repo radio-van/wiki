@@ -17,6 +17,7 @@
             - [basic usage](#basic-usage)
             - [interactive usage](#interactive-usage)
             - [revert rebase](#revert-rebase)
+        - [show merged/unmerged branches](#show-mergedunmerged-branches)
         - [delete local branch](#delete-local-branch)
         - [delete remote branch](#delete-remote-branch)
         - [delete file from all commits history](#delete-file-from-all-commits-history)
@@ -238,11 +239,17 @@ to separate changes in one file `git rebase --interactive` + `git add --patch` c
 * `git reflog` -> search for rebase hunk
 * `git reset --hard HEAD@{<hunk>}`
 
+### show merged/unmerged branches
+* `git branch --merged <branch>`
+* `git branch --no-merged <branch>`
+add `-r` to show remote branches
+
 ### delete local branch
 `git branch -d $branch`
 
 ### delete remote branch
 `git push origin --delete $remote_branch`
+also `git fetch --prune` to update local index after deleting on remote
 
 ### delete file from all commits history
 `git filter-branch --tree-filter "rm -f <file>" -- --all`
@@ -265,6 +272,11 @@ if branch is already checkouted:
 `git log --all --decorate --oneline --graph`   
 
 mnemonic: **A**ll **D**ecorate **O**neline **G**raph - **a dog**
+
+better output: 
+```
+git log --all --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+```
 
 ## checkout
 ### last used branch

@@ -3,16 +3,17 @@
 - [basics](#basics)
 - [arguments](#arguments)
 - [commands](#commands)
-    - [delete](#commands#delete)
-    - [print](#commands#print)
-    - [quit](#commands#quit)
-    - [substitute](#commands#substitute)
-        - [flags](#commands#substitute#flags)
+    - [delete](#delete)
+    - [print](#print)
+    - [quit](#quit)
+    - [substitute](#substitute)
+        - [flags](#flags)
 - [patterns](#patterns)
 - [ranges](#ranges)
 - [recepies](#recepies)
-    - [delete everything except alpha-numerical chars](#recepies#delete everything except alpha-numerical chars)
-    - [delete color escape codes](#recepies#delete color escape codes)
+    - [delete everything except alpha-numerical chars](#delete-everything-except-alpha-numerical-chars)
+    - [delete color escape codes](#delete-color-escape-codes)
+    - [insert line at the beginning](#insert-line-at-the-beginning)
 
 # basics
 `sed -> awk -> perl`
@@ -36,6 +37,7 @@ to apply multiple commands to the same [[#ranges|range]], `<range> {command1, co
 
 ## delete
 `/pattern/d` deletes line
+e.g. `sed '2d` deletes 2nd line
 
 ## print
 `p` prints line (even if `-n` given)  
@@ -68,3 +70,6 @@ e.g. `sed -n '2p'` prints 2nd line
 
 ## delete color escape codes
 `sed -r 's/\x1B\[([0-9]{1,3}(;[0-9]{1,3})*)+m//g'`
+
+## insert line at the beginning
+`sed -i '1s/^/...\n/' <file>`
