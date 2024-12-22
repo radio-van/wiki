@@ -18,6 +18,7 @@
 - [ZFS](#zfs)
     - [Copy-on-write](#copy-on-write)
     - [Snapshots](#snapshots)
+    - [Decompression](#decompression)
     - [Topology](#topology)
         - [device](#device)
         - [vdev](#vdev)
@@ -127,8 +128,13 @@ Link and unlink blocks is a single operation and even power loss during it doesn
 data will stay either in old state or in new one.
 
 ## Snapshots
-Because of CoW it is easy to keep versions of files: FS just doesn't mark old version as "free space" until
+* because of CoW it is easy to keep versions of files: FS just doesn't mark old version as "free space" until
 at least one snapshot is linked with that copy.
+* send/receive is very fast, because only changed data is transfered and diffs don't have to be calculated, which  
+makes it signifiacantly faster than rsync.
+
+## Decompression
+Decompression is fast and efficient. Recommended to keep no more than 80% of pool occupied.
 
 ## Topology
 

@@ -73,6 +73,7 @@
 ## specific distro
   * [proxmox](linux/proxmox.md)
   * [openwrt](linux/openwrt.md)
+  * [truenas](linux/truenas.md)
 
 
 # Mac OS
@@ -117,6 +118,7 @@
   * [crontab](utilities/crontab.md)
   * [curl](utilities/curl.md)
   * [dd](utilities/dd.md)
+  * [discord](utilities/discord.md)
   * [docker](utilities/docker.md)
   * [dunst](utilities/dunst.md)
   * [exiftool](utilities/exiftool.md)
