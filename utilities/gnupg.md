@@ -2,27 +2,27 @@
 
 - [configuration](#configuration)
 - [usage](#usage)
-    - [generate](#usage#generate)
-    - [list](#usage#list)
-    - [edit](#usage#edit)
-    - [export](#usage#export)
-    - [import](#usage#import)
-    - [delete](#usage#delete)
-    - [encrypt/decrypt](#usage#encrypt/decrypt)
-        - [use multiple keys](#usage#encrypt/decrypt#use multiple keys)
-    - [git integration](#usage#git integration)
-    - [edit uid](#usage#edit uid)
+    - [generate](#generate)
+    - [list](#list)
+    - [edit](#edit)
+    - [export](#export)
+    - [import](#import)
+    - [delete](#delete)
+    - [encrypt/decrypt](#encryptdecrypt)
+        - [use multiple keys](#use-multiple-keys)
+    - [git integration](#git-integration)
+    - [edit uid](#edit-uid)
 - [gpg-agent](#gpg-agent)
-    - [configuration](#gpg-agent#configuration)
-    - [restart](#gpg-agent#restart)
-    - [ssh integration](#gpg-agent#ssh integration)
-    - [compare ssh key with GPG keygrip](#gpg-agent#compare ssh key with GPG keygrip)
-        - [SSH key > GPG key](#gpg-agent#compare ssh key with GPG keygrip#SSH key > GPG key)
-        - [GPG key > SSH key](#gpg-agent#compare ssh key with GPG keygrip#GPG key > SSH key)
-    - [import existing key](#gpg-agent#import existing key)
-    - [forget passphrase](#gpg-agent#forget passphrase)
+    - [configuration](#configuration-2)
+    - [restart](#restart)
+    - [ssh integration](#ssh-integration)
+    - [compare ssh key with GPG keygrip](#compare-ssh-key-with-gpg-keygrip)
+        - [SSH key > GPG key](#ssh-key-gpg-key)
+        - [GPG key > SSH key](#gpg-key-ssh-key)
+    - [import existing key](#import-existing-key)
+    - [forget passphrase](#forget-passphrase)
 - [troubles](#troubles)
-    - [gpg-agent from tmux](#troubles#gpg-agent from tmux)
+    - [gpg-agent from tmux](#gpg-agent-from-tmux)
 
     GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management
     system, along with access modules for all kinds of public key directories.
@@ -169,7 +169,7 @@ allow-preset-passphrase  # ? allows to cache passphrase
 key must be generated with *Auth* capability
 - add key [keygrip](#list) to `~/.gnupg/sshcontrol`
   good idea is to add `confirm` option after the key to secure AgentForwarding
-- export key `gpg --export-ssh-key <keygrip>`
+- export key `gpg --export-ssh-key <keyid>!` (`keyid` is on the second line from the bottom, add `!` to use particular subkey)
 - export public key to github as *GPG* key `gpg --export --armor <keygrip>`
 - restart *gpg-agent* `gpg-connect-agent reloadagent /bye`
 - (optional) check connection `ssh -T git@github.com`

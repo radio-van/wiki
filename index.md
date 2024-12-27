@@ -65,6 +65,7 @@
   * [sound](linux/sound.md)
   * [terminal](linux/terminal.md)
   * [tips&tricks](linux/tips_tricks.md)
+  * [security](linux/security.md)
   * [system](linux/system.md)
   * [usb](linux/usb.md)
   * [video](linux/video.md)
