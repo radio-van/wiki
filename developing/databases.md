@@ -42,7 +42,7 @@
         - [check if column exists](#check-if-column-exists)
     - [values](#values)
         - [duplicate](#duplicate)
-        - [duplicate wwith modification](#duplicate-wwith-modification)
+        - [duplicate with modification](#duplicate-with-modification)
         - [insert](#insert)
         - [partial update](#partial-update)
         - [update](#update)
@@ -345,11 +345,12 @@ WHERE table_name='your_table' and column_name='your_column';
 ```sql
   INSERT INTO table (col1, col2, ...) SELECT col1, col2 FROM table WHERE <condition>
 ```
-### duplicate wwith modification
+### duplicate with modification
 ```sql
   INSERT INTO table (col1, col2, ...) SELECT <new_value> as col1, col2 FROM table WHERE <condition>
 ```
 in this case value of `col1` from table is ignored, `<new_value>` is used instead.
+
 ### insert 
 * single row:
 ```sql
