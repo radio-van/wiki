@@ -75,6 +75,7 @@
     - [asdf conflicts with AUR helper](#asdf-conflicts-with-aur-helper)
     - [no pip in venv](#no-pip-in-venv)
     - [psycopg2](#psycopg2)
+    - [no __version__ when installing](#no-__version__-when-installing)
 - [Machine Learning](#machine-learning)
     - [cor function](#cor-function)
     - [try](#try)
@@ -650,6 +651,9 @@ some_dict.setdefault(<key>, <value>)
 
 ## psycopg2
 * `pg_config` not found: install `postgresql-libs` (Arch) or `libqp-dev` (Ubuntu) or `libpqxx-devel` (Fedora)
+
+## no __version__ when installing
+check Python version
 
 
 # Machine Learning
