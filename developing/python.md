@@ -49,6 +49,7 @@
     - [poetry](#poetry)
         - [use system packages](#use-system-packages)
         - [add files from private git repo](#add-files-from-private-git-repo)
+        - [packets version specification](#packets-version-specification)
     - [virtual envs](#virtual-envs)
         - [create venv](#create-venv)
         - [install version of Python](#install-version-of-python)
@@ -529,7 +530,9 @@ is needed
 ### supress excessive logs
 `pytest  --show-capture=no`
 
+
 ## poetry
+
 ### use system packages
 `<venv>/pyvenv.conf`:  
 `include-system-site-packages = true`
@@ -537,6 +540,38 @@ is needed
 ### add files from private git repo
 `poetry add git+ssh://git@github.com:<owner>/<repo>.git#<branch>&subdirectory=<path>'`
 or in `pyproject.toml`: `<package> = {git = "git@github.com:<owner>/<repo>.git", rev = "<branch>", subdirectory = "<path>"}`
+
+### packets version specification
+General rule: if major/minor/patch version is explicitly defined,
+then it is frozen except the last digit, e.g.:
+- `~=1.2.3` allows `>=1.2.3 <1.3.0` i.e. _patch_ version can be updated, _minor_ is fixed
+- `~=1.2` allows `>=1.2.0 < 2.0.0`
+
+Wildcards:
+- `*` allows `>=0.0.0`
+- `1.*` allows `>=1.0.0 <2.0.0`
+- `1.2.*` allows `>=1.2.0 <1.3.0`
+
+Inequality:
+`>= > < !=` can be used
+
+Multiple:
+`>=1.2, <1.5`
+
+Caret (unsupported by **poetry!**):
+_allows update except left-most non-zero digit_
+- `^1.2.3` is converted to `>=1.2.3 <2.0.0`
+- `^1.2` is converted to `>=1.2.0 <2.0.0`
+- `^1` is converted to `>=1.0.0 <2.0.0`
+- `^0.2.3` is converted to `>=0.2.3 <0.3.0`
+- `^0.0.3` is converted to `>=0.0.3 <0.0.4`
+- `^0.0` is converted to `>=0.0.0 <0.1.0`
+- `^0` is converted to `>=0.0.0 <1.0.0`
+
+Tilde (unsupported by **poetry**):
+- `~1.2.3` is converted to `>=1.2.3 <1.3.0`
+- `~1.2` is converted to `>=1.2.0 <1.3.0`
+- `~1` is converted to `>=1.0.0 <2.0.0`
 
 
 ## virtual envs

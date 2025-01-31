@@ -163,6 +163,7 @@
   * [vim](utilities/vim.md)
   * [wget](utilities/wget.md)
   * [wireguard](utilities/wireguard.md)
+  * [yc](utilities/yc.md)
   * [zip](utilities/zip.md)
 
 
