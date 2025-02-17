@@ -459,7 +459,7 @@ Examples:
 - `-W` ask password
 
 ### dump 
-`pg_dump -U username > filename` dump database  
+`pg_dump -U username -t <table> > filename` dump database  
 `pg_dumpall -U username > filename` dump all databases  
 
 ### restore 
