@@ -12,6 +12,7 @@
     - [mount encrypted volumes](#mount-encrypted-volumes)
 - [partitions](#partitions)
     - [copy partition](#copy-partition)
+    - [shrink partition](#shrink-partition)
     - [virtual partitions](#virtual-partitions)
 - [swap](#swap)
     - [increase size of swapfile](#increase-size-of-swapfile)
@@ -100,12 +101,24 @@ where
 * `<password>` is a path to keyfile, e.g. by physical position `/dev/disk/by-path/pci-...`
 * `key options` could be key offset/size `keyfile-offset=<bytes>,keyfile-size=<bytes>`
 
+
 # partitions
+
 ## copy partition
 * `dd if=/dev/sdXN of=/dev/sdYN` more about [dd](../utilities/dd.md)
 * `resize2fs /dev/sdYN` in case if destination drive is bigger
 * `tune2fs -U random /dev/sdYN` to generate uniq `UUID` for copied partition
 
+## shrink partition
+* `e2fsck -f /dev/sdXY`
+* `resize2fs /dev/sdXY <size>`, e.g. `30G` 
+  take a note of output: `The filesystem on /dev/sdXY is now N (M) blocks long`
+* `fdisk /dev/sdX` then `p`
+* take a look at the partition, its **End** param is what need to be altered
+* delete the partition with `d`
+* create a new one with `n` with same params as the old one, but set las sector to `N*M`,
+  e.g `6291456 * 4k = 25165824k` => `+25165824K` (note: **+** and **K**)
+  
 ## virtual partitions
 See [LVM](../utilities/lvm.md)
 
