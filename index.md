@@ -14,6 +14,7 @@
   * [python](developing/python.md)
   * [rabbitMQ](developing/rabbitmq.md)
   * [redis](developing/redis.md)
+  * [YAML](developing/yaml.md)
 ## frontend
   * [JS](developing/js.md)
   * [HTML](developing/html.md)

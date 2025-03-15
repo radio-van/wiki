@@ -3,6 +3,8 @@
 - [Pacman](#pacman)
     - [init](#init)
     - [conflicts on sysupgrade](#conflicts-on-sysupgrade)
+    - [mirrorlist](#mirrorlist)
+        - [get shortlist by country](#get-shortlist-by-country)
     - [corrupted packages](#corrupted-packages)
     - [partial upgrade](#partial-upgrade)
     - [installation log](#installation-log)
@@ -38,6 +40,13 @@
 * check which package owns the file `pacman -Qo <filepath>`
   if it is another package, then it is a bug
 * force overwrite file `pacman -S <package> --overwrite <filepath>`
+
+
+## mirrorlist
+
+### get shortlist by country
+`curl -s "https://archlinux.org/mirrorlist/?country=XX&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 -`
+
 
 ## corrupted packages
 **error** `... is corrupted (... PGP sign).`  

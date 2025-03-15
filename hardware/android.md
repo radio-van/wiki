@@ -15,6 +15,7 @@
     - [bootloader without slots](#bootloader-without-slots)
     - [bootloader with slots](#bootloader-with-slots)
     - [Galaxy 4](#galaxy-4)
+- [Turn off location indicator](#turn-off-location-indicator)
 
 # filesystem
 - `/data` r/w data (configs, apps, userdata), wipes on reset
@@ -136,3 +137,8 @@ adb push twrp-installer-.zip /sdcard
 ```
 - reboot phone into recovery (volume down + power + home)
 - flash `Magisk`, `firmware`, etc
+
+
+# Turn off location indicator
+in **adb shell**:
+`cmd device_config put privacy location_indicators_enabled false default`
