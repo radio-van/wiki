@@ -28,6 +28,7 @@
         - [zvol](#zvol)
     - [recommendations](#recommendations)
     - [rename pool](#rename-pool)
+    - [encrypt unencrypted pool](#encrypt-unencrypted-pool)
 - [tmpfs](#tmpfs)
     - [increase size](#increase-size)
 - [dd](#dd)
@@ -189,6 +190,38 @@ Virtual block device which can be formatted into any filesystem
 ## rename pool
 - `zpool import old_name new_name`
 - `zpool export new_name`
+
+
+## encrypt unencrypted pool
+Native ZFS encryption does not encrypt pools, it only encrypts filesystems.
+Further, per-filesystem encryption has to be set up at the time the filesystem is created.
+In the case of the pool's root filesystem, this means that encryption of the root filesystem must be set at the time the pool is created.
+
+So to create a new pool with an encrypted root filesystem in a similar fashion to that of your existing pool, begin by destroying the new pool:
+
+`zpool destroy <pool>`
+
+Then re-create the pool, merging your zpool create command above with these additional options.
+Note the use of capital `-O`:
+```
+zpool create \
+    (your options from above) \
+    -O encryption=on \
+    -O keyformat=(whatever) \
+    -O keylocation=(whatever) \
+    <pool> \
+    mirror /dev/gpt/diskA-serial-num /dev/gpt/diskB-serial-num
+```
+
+Finally, verify:
+```
+zfs get encryption,keyformat,keylocation <pool>
+
+NAME   PROPERTY     VALUE        SOURCE
+pool  encryption   aes-256-gcm  -
+pool  keyformat    (whatever)   -
+pool  keylocation  (whatever)   local
+```
 
 
 # tmpfs
