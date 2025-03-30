@@ -28,6 +28,8 @@
     - [replace Docker with podman](#replace-docker-with-podman)
     - [auth](#auth)
     - [troubleshootig](#troubleshootig)
+        - [network driver errors](#network-driver-errors)
+        - [missing dynamic library](#missing-dynamic-library)
 
 # Build
 
@@ -219,6 +221,9 @@ OR
 ```
 
 ## troubleshootig
+
+### network driver errors
+
 * **Error bad parameter: Link is not supported** - `links:` in docker-compose is a deprecated option
 * **crun: setrlimit RLIMIT_NPROC: Operation not permitted: OCI permission denied** - use `--force-recreate` with compose command
 * **failed to mount runtime directory for rootless netns: no such file or directory** - use proper net package?
@@ -238,3 +243,8 @@ OR
     sudo chmod u+s /usr/bin/newuidmap
     sudo chmod u+s /usr/bin/newgidmap
     ```
+    
+### missing dynamic library
+
+* error `msg: exec container process (missing dynamic library?) /usr/local/bin/docker-entrypoint.sh: No such file or directory...`
+  remove image (or all images `docker images | awk '{print $3}' | xargs -I% docker rmi -f %`) and re-download them

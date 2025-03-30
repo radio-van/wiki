@@ -42,6 +42,7 @@
     - [which route is used](#which-route-is-used)
     - [priority of route](#priority-of-route)
     - [QR code for WIFI](#qr-code-for-wifi)
+    - [connect 2 PC over ethernet cable](#connect-2-pc-over-ethernet-cable)
 
 # interfaces
 
@@ -367,3 +368,9 @@ will force to lookup specific table first, if `N` is lower than others, can be c
 
 ## QR code for WIFI
 `WIFI:T:WPA;S:<ssid>;P:<pass>;H:;;`
+
+
+## connect 2 PC over ethernet cable
+* *DISABLE* any network manager
+* `ip addr add 192.168.1.X/30 dev eno1`
+* `ip r add 192.168.1.Y dev eno1`

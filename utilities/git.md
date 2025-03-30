@@ -64,6 +64,7 @@
         - [restore file to state 2 commits back](#restore-file-to-state-2-commits-back)
         - [skipping files](#skipping-files)
         - [undo add to stage](#undo-add-to-stage)
+        - [clean untracked files](#clean-untracked-files)
     - [merge](#merge)
         - [force to pick files from particular branch](#force-to-pick-files-from-particular-branch)
     - [remote](#remote)
@@ -440,6 +441,11 @@ in both cases Git:
 - will show merge conflict if file is changed on both sides
 ### undo add to stage
 `git restore --staged <file>`
+
+### clean untracked files
+`git clean -d -n` to check what will be deleted
+`git clean -f`
+
 
 ## merge
 ### force to pick files from particular branch
