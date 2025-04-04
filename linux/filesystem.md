@@ -33,6 +33,8 @@
     - [increase size](#increase-size)
 - [dd](#dd)
     - [mount partition from full-disk image](#mount-partition-from-full-disk-image)
+- [loop device](#loop-device)
+- [find out what blocks unmounting](#find-out-what-blocks-unmounting)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -259,3 +261,19 @@ pool  keylocation  (whatever)   local
     umount /mnt
     losetup -d /dev/loop0
     ```
+    
+    
+# loop device
+Allows to mount files containing filesystems as regular block devices. Useful for mounting disk images.
+* `losetup -f` for getting first available loop device
+* 
+  ```
+  losetup /dev/loopX <image>.img
+  mount /dev/loopX <mountpoint>
+  ```
+  **OR**
+  `mount -o loop <image>.img <mmmountpoint>`
+
+
+# find out what blocks unmounting
+`lsof <mountpoint>`

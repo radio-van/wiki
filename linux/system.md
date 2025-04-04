@@ -1,15 +1,24 @@
 # Contents
 
-- [hardware related](#hardware related)
-    - [laptop lid](#hardware related#laptop lid)
-    - [power buttons and lid](#hardware related#power buttons and lid)
-    - [acpi rules](#hardware related#acpi rules)
-        - [laptop lid hook](#hardware related#acpi rules#laptop lid hook)
+- [hardware related](#hardware-related)
+    - [hardware info](#hardware-info)
+    - [laptop lid](#laptop-lid)
+    - [power buttons and lid](#power-buttons-and-lid)
+    - [acpi rules](#acpi-rules)
+        - [laptop lid hook](#laptop-lid-hook)
 - [hibernation](#hibernation)
-    - [swapfile](#hibernation#swapfile)
-- [os release](#os release)
+    - [swapfile](#swapfile)
+- [os release](#os-release)
 
 # hardware related
+
+## hardware info
+* `lshw -C memory|display|etc` (spare package)
+* `lscpu` (part of `util-linux`)
+* `dmidecode -t memory` (spare package)
+* `lsgpu`
+* `glxwinfo` (part of `glew`)
+
 ## laptop lid
 status: `/proc/acpi/button/lid/LID/state`
 
