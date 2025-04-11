@@ -35,6 +35,9 @@
     - [mount partition from full-disk image](#mount-partition-from-full-disk-image)
 - [loop device](#loop-device)
 - [find out what blocks unmounting](#find-out-what-blocks-unmounting)
+- [move dataset](#move-dataset)
+- [encryption](#encryption-2)
+    - [change to inherit](#change-to-inherit)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -277,3 +280,15 @@ Allows to mount files containing filesystems as regular block devices. Useful fo
 
 # find out what blocks unmounting
 `lsof <mountpoint>`
+
+
+# move dataset
+`zfs rename <old path> <new path>`
+*NOTE*: this preserve encryption, if target dataset must be encrypted and source dataset is not,
+better to copy data via rsync
+
+
+# encryption
+
+## change to inherit
+`zfs change-key -i <path/to/dataset>`

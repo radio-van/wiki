@@ -6,6 +6,8 @@
 - [get iGPU memory](#get-igpu-memory)
 - [touchscreen](#touchscreen)
 - [codecs](#codecs)
+- [DPI](#dpi)
+    - [Xorg](#xorg)
 
 # different monitor resolutions
 e.g.
@@ -53,3 +55,16 @@ xrandr --output INT_DISPLAY --scale 1x1 --mode 1920x1200 --pos 0x1620
 | iPad Safari     | H264, H265* | H264        | no          |
 | Android Chrome  | H264        | H264        | H264        |
 | masOS Hass App  | no          | no          | no          |
+
+
+# DPI
+
+## Xorg
+* add to `/etc/X11/xorg.conf.d/90-monitor.conf`:
+  ```
+  Section "Monitor"
+    Identifier             "<default monitor>"
+    DisplaySize            189  118    # In millimeters
+  EndSection
+  ```
+* add `Xft.dpi: 192` to `Xresources` and execute `xrdb -merge <path/to/Xresources>`
