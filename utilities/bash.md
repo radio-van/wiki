@@ -61,6 +61,7 @@
     - [batch rename](#batch-rename)
     - [trim first line from output](#trim-first-line-from-output)
     - [base64](#base64)
+    - [convert unicode](#convert-unicode)
 
 # configuration
 ## basics
@@ -429,3 +430,7 @@ where `<date>` in format `YYMMDD`
 ## base64
 * `echo 'string' | base64 --encode`
 * `echo 'string' | base64 --decode`
+
+
+## convert unicode
+`while IFS= read -r line; do printf "$line\n"; done < <source_file> > <dest_file>`
