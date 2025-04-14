@@ -166,6 +166,8 @@ OR
 ## docker-compose
 
 ### set ARG from .env
+`FROM` derective resets environment, so `ARG` should be declared after, except for image version.
+
 `ARG` are used in `Dockerfile` and used only during *build*  
 `.env` file is used only by `docker-compose`  
 
