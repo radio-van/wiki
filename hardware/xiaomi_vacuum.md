@@ -1,4 +1,4 @@
-# Contents
+[#](#) Contents
 
 - [token from rooted device](#token from rooted device)
 - [manual wi-fi configuration via ssh](#manual wi-fi configuration via ssh)
