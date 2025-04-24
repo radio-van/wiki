@@ -62,6 +62,7 @@
     - [trim first line from output](#trim-first-line-from-output)
     - [base64](#base64)
     - [convert unicode](#convert-unicode)
+    - [execute command with argument of previous command](#execute-command-with-argument-of-previous-command)
 
 # configuration
 ## basics
@@ -361,6 +362,7 @@ e.g.
 - `!:2-$`, `!:2*` second to last
 - `!:2-` second to last, *does not* includes last
 - `!:0` the command itself
+* `!<pattern>` most recent command matching pattern
 
 _TIP_: look `man history expansion`
 
@@ -434,3 +436,7 @@ where `<date>` in format `YYMMDD`
 
 ## convert unicode
 `while IFS= read -r line; do printf "$line\n"; done < <source_file> > <dest_file>`
+
+
+## execute command with argument of previous command
+see [previous command and arguments](#previous command and arguments)]

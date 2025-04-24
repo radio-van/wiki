@@ -5,7 +5,7 @@
 - [frontend](#frontend)
 - [deployment](#deployment)
     - [edit deployment](#edit-deployment)
-    - [restart deployment](#restart-deployment)
+    - [restart deployment and its pods](#restart-deployment-and-its-pods)
     - [delete deployment](#delete-deployment)
 - [secrets](#secrets)
     - [edit secrets](#edit-secrets)
@@ -18,6 +18,7 @@
 - [delete node](#delete-node)
 - [delete stuck namespace](#delete-stuck-namespace)
 - [Pod](#pod)
+    - [restart](#restart)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -49,7 +50,7 @@ with
 `-command: ['sleep', '500m']`  
 to be able to connect to pod (instead it will fall into recreating loop)  
 
-## restart deployment
+## restart deployment and its pods
 * `kubectl -n <namespace> get deployment` => `<deployment_name>`
 * `kubectl -n <namespace> rollout restart deployment <deployment-name>`
 
@@ -165,3 +166,7 @@ and deleted with `kubectl delete pod <pod_name>`
 
 to make it persistent it can be run directly:
 * `kubectl run -it --image <image> <name> --overrides='{"spec": {...}}'`
+
+
+## restart
+`kubectl rollout restart deployment my-deployment`

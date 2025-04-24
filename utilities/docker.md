@@ -27,6 +27,7 @@
 - [Podman](#podman)
     - [replace Docker with podman](#replace-docker-with-podman)
     - [auth](#auth)
+    - [autostart podman-compose](#autostart-podman-compose)
     - [troubleshootig](#troubleshootig)
         - [network driver errors](#network-driver-errors)
         - [missing dynamic library](#missing-dynamic-library)
@@ -221,6 +222,14 @@ OR
   }
 }
 ```
+
+## autostart podman-compose
+* `podman-compose systemd -a create-unit`
+* `podman-compose -f <docker-compose-name>.yaml systemd -a register`
+* `systemctl --user enable --now podman-compose@<name>`
+
+NOTE: `sudo loginctl enable-linger '<username>'` might be necessary
+
 
 ## troubleshootig
 
