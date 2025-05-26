@@ -45,6 +45,7 @@
         - [silent shell command](#silent-shell-command)
         - [insert smth](#insert-smth)
         - [abbreveation](#abbreveation)
+    - [identation](#identation)
     - [diff](#diff)
     - [editing](#editing)
         - [basic idea](#basic-idea)
@@ -450,6 +451,28 @@ See [registers](#in-insert-mode)
 
 ### abbreveation
 `:ab <abbreveation> <expansion>`
+
+
+## identation
+`>>`  Indent line by shiftwidth spaces
+`<<`  De-indent line by shiftwidth spaces
+`5>>`  Indent 5 lines
+`5==`  Re-indent 5 lines
+`   `
+`>%`  Increase indent of a braced or bracketed block (place cursor on brace first)
+`=%`  Reindent a braced or bracketed block (cursor on brace)
+`<%`  Decrease indent of a braced or bracketed block (cursor on brace)
+`]p`  Paste text, aligning indentation with surroundings
+`   `
+`=i{`  Re-indent the 'inner block', i.e. the contents of the block
+`=a{`  Re-indent 'a block', i.e. block and containing braces
+`=2a{` Re-indent '2 blocks', i.e. this block and containing block
+`   `
+`>i{`  Increase inner block indent
+`<i{`  Decrease inner block indent
+
+`{` can be replcaed with `}` or `B`, e.g. `=iB` is a valid block indent
+
 
 ## diff
 Open desired buffers and `:windo diffthis`

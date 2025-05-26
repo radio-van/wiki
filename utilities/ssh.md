@@ -32,6 +32,8 @@
     - [ambiguous target](#ambiguous-target)
     - [no sftp (e.g. in ash)](#no-sftp-eg-in-ash)
 - [additional security](#additional-security)
+- [troubleshooting](#troubleshooting)
+    - [stuck at debug1: expecting SSH2_MSG_KEX_ECDH_REPLY](#stuck-at-debug1-expecting-ssh2_msg_kex_ecdh_reply)
 
 # configuration
 
@@ -207,3 +209,9 @@ use legacy protocol `scp -O ...`
 # additional security
 - **fail2ban**
 - [endlessh](https://github.com/skeeto/endlessh)
+
+
+# troubleshooting
+
+## stuck at debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+add `-o KexAlgorithms=ecdh-sha2-nistp521`

@@ -38,6 +38,7 @@
 - [move dataset](#move-dataset)
 - [encryption](#encryption-2)
     - [change to inherit](#change-to-inherit)
+- [ACL](#acl)
 
 # encryption
 See [LUKS](../utilities/luks.md)
@@ -292,3 +293,7 @@ better to copy data via rsync
 
 ## change to inherit
 `zfs change-key -i <path/to/dataset>`
+
+
+# ACL
+`setfacl` / `getfacl`

@@ -17,8 +17,13 @@
 - [delete everything from namespace](#delete-everything-from-namespace)
 - [delete node](#delete-node)
 - [delete stuck namespace](#delete-stuck-namespace)
+- [Node](#node)
+    - [get node name of given pod](#get-node-name-of-given-pod)
+    - [get ephemerial storage of node](#get-ephemerial-storage-of-node)
 - [Pod](#pod)
+    - [copy file](#copy-file)
     - [restart](#restart)
+- [minimal CUDA container](#minimal-cuda-container)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -141,7 +146,17 @@ kubectl replace --raw "/api/v1/namespaces/$NAMESPACE/finalize" -f ./$NAMESPACE.j
 ```
 
 
+# Node
+
+## get node name of given pod
+`kubectl get pod <pod> -o "jsonpath={.spec.nodeName}"`
+
+## get ephemerial storage of node
+` kubectl get --raw "/api/v1/nodes/<node>/proxy/stats/summary"`
+
+
 # Pod
+
 A simple pod can be created with `kubectl apply -f pod.yaml` with following contents:
 ```yaml
 apiVersion: v1
@@ -168,5 +183,18 @@ to make it persistent it can be run directly:
 * `kubectl run -it --image <image> <name> --overrides='{"spec": {...}}'`
 
 
+## copy file
+`kubectl cp <pod>:<file> ./<local file>`
+
+
 ## restart
 `kubectl rollout restart deployment my-deployment`
+
+
+# minimal CUDA container
+* `libnvidia-compute-535`
+* `nvidia-utils-535`
+* `nvidia-headless-535-server` **???**
+* `nvidia-driver-535-server` **???**
+where `535` is driver version
+for **Tesla T4** driver version `570`, CUDA `12.8`
