@@ -161,6 +161,7 @@
   * [tailscale](utilities/tailscale.md)
   * [tmux](utilities/tmux.md) 
   * [tar](utilities/tar.md) 
+  * [tcpdump](utilities/tcpdump.md) 
   * [top](utilities/top.md) 
   * [tor](utilities/tor.md) 
   * [urxvt](utilities/urxvt.md)
