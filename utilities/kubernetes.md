@@ -24,6 +24,7 @@
     - [copy file](#copy-file)
     - [restart](#restart)
 - [minimal CUDA container](#minimal-cuda-container)
+- [PersistentVolumeClain](#persistentvolumeclain)
 
 # basics
 Kubernetes `Services` that are a set of labeled `Pods` are running on `Nodes`.  
@@ -198,3 +199,42 @@ to make it persistent it can be run directly:
 * `nvidia-driver-535-server` **???**
 where `535` is driver version
 for **Tesla T4** driver version `570`, CUDA `12.8`
+
+
+
+# PersistentVolumeClain
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: <pvc-name>
+spec:
+  accessModes:
+  - ReadWriteOnce  # RW for one container
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: # e.g. yc-network-hdd
+  volumeMode: Filesystem
+```
+
+in **Pod** or **Deployment** manifest:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ...
+  namespace: ...
+spec:
+  containers:
+  - name: ...
+    image: ...
+    command: ...
+    volumeMounts:
+    - name: <volume-name>
+      mountPath: <mountpoint in container>
+  volumes:
+  - name: <volume-name>
+    persistentVolumeClaim:
+      claimName: <pvc-name>
+```

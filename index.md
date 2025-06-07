@@ -74,6 +74,7 @@
   * [XDG](linux/XDG.md)
 
 ## specific distro
+  * [android](linux/android.md)
   * [proxmox](linux/proxmox.md)
   * [openwrt](linux/openwrt.md)
   * [truenas](linux/truenas.md)
