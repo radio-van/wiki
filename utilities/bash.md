@@ -261,7 +261,7 @@ done
 ```
 or  
 ```bash
-for <loop_var> in (n..m); do
+for <loop_var> in {n..m}; do
   <command>
 done
 ```
