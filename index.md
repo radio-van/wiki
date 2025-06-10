@@ -127,6 +127,7 @@
   * [dunst](utilities/dunst.md)
   * [exiftool](utilities/exiftool.md)
   * [ffmpeg](utilities/ffmpeg.md)
+  * [flatpak](utilities/flatpak.md)
   * [find](utilities/find.md)
   * [firefox](utilities/firefox.md)
   * [frida](utilities/frida.md)
