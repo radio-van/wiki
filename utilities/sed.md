@@ -15,6 +15,8 @@
     - [delete everything except alpha-numerical chars](#delete-everything-except-alpha-numerical-chars)
     - [delete color escape codes](#delete-color-escape-codes)
     - [insert line at the beginning](#insert-line-at-the-beginning)
+    - [remove leading spaces](#remove-leading-spaces)
+    - [remove leading spaces and *](#remove-leading-spaces-and-)
 
 # basics
 `sed -> awk -> perl`
@@ -88,3 +90,9 @@ example:
 
 ## insert line at the beginning
 `sed -i '1s/^/...\n/' <file>`
+
+## remove leading spaces
+` sed -e 's/^\s*//'`
+
+## remove leading spaces and *
+` sed -e 's/^\s*\*\?//'`
