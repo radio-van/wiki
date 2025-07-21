@@ -20,6 +20,9 @@
     - [runtime](#runtime)
     - [data location](#data-location)
         - [transfer to new location](#transfer-to-new-location)
+- [Usage](#usage)
+    - [Dockerfile](#dockerfile-2)
+    - [CMD and ENTRYPOINT](#cmd-and-entrypoint)
 - [Tools](#tools)
     - [docker-compose](#docker-compose)
         - [set ARG from .env](#set-arg-from-env)
@@ -160,6 +163,18 @@ OR
 * `systemctl daemon-reload`
 * `rsync -aqxP /var/lib/docker/ /new/path/docker`
 * `systemctl start docker`
+
+
+# Usage
+
+## Dockerfile
+
+## CMD and ENTRYPOINT
+* `ENTRYPOINT` can be overrided **only** by explicitly passing `--entrypoint` param on container run.
+  args that are passed on container run are appended to `ENTRYPOINT` command
+* `CMD` defines default arguments for container run and is overrided by user deefined args on container run
+
+So, `entrypoint` defines the command and `CMD` defines default args for that command
 
 
 # Tools

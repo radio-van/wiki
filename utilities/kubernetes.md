@@ -3,7 +3,9 @@
 - [basics](#basics)
     - [Ingress](#ingress)
 - [frontend](#frontend)
-- [deployment](#deployment)
+- [Container](#container)
+    - [specs](#specs)
+- [Deployment](#deployment)
     - [edit deployment](#edit-deployment)
     - [restart deployment and its pods](#restart-deployment-and-its-pods)
     - [delete deployment](#delete-deployment)
@@ -43,7 +45,17 @@ Besides **resource** an Ingress Controller is required, e.g. `ingress-nginx`.
 ```
 connect to `http://localhost:8001/api/v1/namespaces/kubernator/services/kubernator/proxy/#/catalog`
 
-# deployment
+
+# Container
+Can be standalone or a part of [deployment](#deployment)
+
+## specs
+What to run is defined by `command` or `args` directive.
+`command` is the same as `entrypoint` in Dockerfile. If `command` is ommited, docker image `entrypoint` is used.
+** `args` is the same as `CMD` in Dockerfile. Defines arguments that are passed to container run
+
+
+# Deployment
 
 ## edit deployment
 `kubectl -n <namespace> edit deployment`  
@@ -63,6 +75,7 @@ to be able to connect to pod (instead it will fall into recreating loop)
 ## delete deployment
 To prevent pod from recreating the deployment must be deleted  
 `kubectl -n <namespace> delete deploy <deploy_name>`
+
 
 # secrets
 
