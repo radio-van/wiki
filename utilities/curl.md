@@ -7,6 +7,7 @@
 - [tips](#tips)
     - [add line after response](#add-line-after-response)
     - [post video to Telegram](#post-video-to-telegram)
+    - [post video note aka circle to Telegram](#post-video-note-aka-circle-to-telegram)
     - [ignore SSL certificate](#ignore-ssl-certificate)
 
 # usage
@@ -43,6 +44,12 @@ json:
 ## post video to Telegram
 `curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
 `<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  
+
+## post video note aka circle to Telegram
+```
+curl -X POST "https://api.telegram.org/bot<bot_token>" -F video_note=@<path_to_video> -F chat_id=<chat_id>
+```
+**NOTE** video must be 640x640
 
 ## ignore SSL certificate
 `-k`
