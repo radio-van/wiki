@@ -13,6 +13,7 @@
         - [podcasts](#podcasts)
         - [video](#video)
         - [for iOS](#for-ios)
+        - [for Telegram circle](#for-telegram-circle)
     - [batch](#batch)
     - [record audio](#record-audio)
     - [record screen](#record-screen)
@@ -136,6 +137,14 @@ or
 ffmpeg -i <input> -vcodec libx264 -level 3.1 -preset medium -crf 23 \
        -x264-params ref=4 -acodec copy -movflags +faststart <output>
 ```
+
+### for Telegram circle
+```
+ffmpeg -i <input> -s 640x640 -vcodec libx264 -preset medium -acodec aac \
+       -vf "crop=1080:1080,scale=640:640,setsar=1" \
+       -level 3.1 -crf 23 -movflags +faststart <output>
+```
+
 
 ## batch
 `for i in *.avi; do ffmpeg -i "$i" "${i%.*}.mp4"; done`
