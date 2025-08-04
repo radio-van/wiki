@@ -69,6 +69,7 @@ Docker image size could be reduced with `DockerSlim` utility
 
 ## ONBUILD
 `ONBUILD <command>` allows to run `<command>` during building _another_ image based on this one
+**NOTE**: `podman` doesn't support `ONBUILD` unless `--format docker` is provided
 
 
 # Containers
