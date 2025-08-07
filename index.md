@@ -83,6 +83,7 @@
 # Mac OS
   * [apps](macos/apps.md)
   * [installation](macos/installation.md)
+  * [login](macos/login.md)
   * [networking](macos/networking.md)
   * [system](macos/system.md)
 

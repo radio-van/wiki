@@ -6,6 +6,7 @@
 - [cookie](#cookie)
 - [tips](#tips)
     - [add line after response](#add-line-after-response)
+    - [post photo to Telegram](#post-photo-to-telegram)
     - [post video to Telegram](#post-video-to-telegram)
     - [post video note aka circle to Telegram](#post-video-note-aka-circle-to-telegram)
     - [ignore SSL certificate](#ignore-ssl-certificate)
@@ -32,24 +33,35 @@ without data:
 json:  
 `curl -H "Content-Type: application/json" -d '{"param": "value"}' <url>`
 
+
+
 # cookie
 * save cookies `-c, --cookie-jar <cookie_file>`
 * use stored cookies `-b, --cookie <cookie_file`
+
+
 
 # tips
 
 ## add line after response
 `-w "\n"`
 
+
+## post photo to Telegram
+`curl -X POST "https://api.telegram.org/bot<bot_token>/sendPhoto" -F photo=@<path_to_image> -F chat_id=<chat_id>`
+
+
 ## post video to Telegram
 `curl -X POST -F "video=@<path_to_video>" "https://api.telegram.org/bot<bot_token>/sendVideo?chat_id=<chat_id>"`  
 `<chat_id>` can be obtained with `.../getUpdates` (smth must be typed in chat first)  
+
 
 ## post video note aka circle to Telegram
 ```
 curl -X POST "https://api.telegram.org/bot<bot_token>" -F video_note=@<path_to_video> -F chat_id=<chat_id>
 ```
 **NOTE** video must be 640x640
+
 
 ## ignore SSL certificate
 `-k`
