@@ -182,7 +182,7 @@ key must be generated with *Auth* capability
 
 ### GPG key > SSH key
 * `gpg -K --with-subkey-fingerprint` - list keys
-* `gpg --export-ssh-key <subkey fingerprint>`
+* `gpg --export-ssh-key <subkey fingerprint>` (the second line in `gpg -K` output)
 * at the end `opengpg: <ID>` can be used as identifier
 
 ## import existing key
