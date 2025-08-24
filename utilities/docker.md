@@ -6,6 +6,9 @@
     - [Dockerfile](#dockerfile)
     - [transfer images](#transfer-images)
     - [ONBUILD](#onbuild)
+    - [multistage build](#multistage-build)
+    - [run as non-root user](#run-as-non-root-user)
+    - [resources constraints](#resources-constraints)
 - [Containers](#containers)
     - [recreate container](#recreate-container)
     - [removing container](#removing-container)
@@ -25,6 +28,8 @@
     - [CMD and ENTRYPOINT](#cmd-and-entrypoint)
 - [Tools](#tools)
     - [docker-compose](#docker-compose)
+        - [healthcheck](#healthcheck)
+        - [run only when other service is healthy](#run-only-when-other-service-is-healthy)
         - [set ARG from .env](#set-arg-from-env)
         - [color in logs](#color-in-logs)
 - [Podman](#podman)
@@ -70,6 +75,39 @@ Docker image size could be reduced with `DockerSlim` utility
 ## ONBUILD
 `ONBUILD <command>` allows to run `<command>` during building _another_ image based on this one
 **NOTE**: `podman` doesn't support `ONBUILD` unless `--format docker` is provided
+
+## multistage build
+```bash
+# Build stage
+FROM python:3.10-slim AS builder
+
+WORKDIR /app
+COPY app.py .
+RUN pip install --target=/tmp/deps psycopg2-binary
+
+# Final stage
+FROM python:3.10-slim
+
+WORKDIR /app
+COPY --from=builder /app/app.py .
+COPY --from=builder /tmp/deps /usr/local/lib/python3.10/site-packages/
+
+CMD ["python", "app.py"]
+```
+
+## run as non-root user
+```bash
+RUN useradd -m etluser
+USER etluser
+```
+
+## resources constraints
+```yaml
+app:
+  build: .
+    mem_limit: 512m
+      cpu_shares: 256
+```
 
 
 # Containers
@@ -181,6 +219,28 @@ So, `entrypoint` defines the command and `CMD` defines default args for that com
 # Tools
 
 ## docker-compose
+
+### healthcheck
+```yaml
+services:
+  db:
+    image: postgres:15
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+```
+
+### run only when other service is healthy
+```yaml
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+```
+
 
 ### set ARG from .env
 `FROM` derective resets environment, so `ARG` should be declared after, except for image version.

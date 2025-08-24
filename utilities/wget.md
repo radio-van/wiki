@@ -13,3 +13,6 @@ wget
 -p, --page-requisites   # get all images, etc. needed to display HTML page
 <url>
 ```
+OR
+`wget -mkp <url>`
+whete `-m` option implies `-r`, `-N`, `-l inf`, `--no-remove-listings`
