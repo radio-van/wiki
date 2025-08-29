@@ -23,6 +23,7 @@
         - [query from several tables](#query-from-several-tables)
         - [aggregate data with same values](#aggregate-data-with-same-values)
         - [aggregate data with same values in JSON field](#aggregate-data-with-same-values-in-json-field)
+        - [count uniq entities between given dates](#count-uniq-entities-between-given-dates)
         - [EXCLUDE](#exclude)
         - [JOINS](#joins)
             - [inner join](#inner-join)
@@ -216,6 +217,10 @@ FROM
 ```sql
   SELECT <field>->>'<json key>' AS key, COUNT(*) AS count FROM <table> GROUP BY <json key>
 ``` 
+### count uniq entities between given dates
+```sql
+  SELECT COUNT(DISTINCT <entity>) AS unique_entities FROM <table> WHERE created_at BETWEEN '<date1>' AND '<date2>';
+```
 
 ### EXCLUDE
 ```sql

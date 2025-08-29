@@ -25,6 +25,7 @@
 - [Pod](#pod)
     - [copy file](#copy-file)
     - [restart](#restart)
+    - [request database with output to local file](#request-database-with-output-to-local-file)
 - [minimal CUDA container](#minimal-cuda-container)
 - [PersistentVolumeClain](#persistentvolumeclain)
 
@@ -203,6 +204,11 @@ to make it persistent it can be run directly:
 
 ## restart
 `kubectl rollout restart deployment my-deployment`
+
+
+## request database with output to local file
+`kubectl exec <pod> -- psql -U <username> -d <database> -c "COPY (SELECT ...) TO STDOUT WITH CSV HEADER" > ./result.csv`
+
 
 
 # minimal CUDA container
