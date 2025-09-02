@@ -34,6 +34,7 @@
 - [additional security](#additional-security)
 - [troubleshooting](#troubleshooting)
     - [stuck at debug1: expecting SSH2_MSG_KEX_ECDH_REPLY](#stuck-at-debug1-expecting-ssh2_msg_kex_ecdh_reply)
+    - [no connection to Android](#no-connection-to-android)
 
 # configuration
 
@@ -215,3 +216,6 @@ use legacy protocol `scp -O ...`
 
 ## stuck at debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
 add `-o KexAlgorithms=ecdh-sha2-nistp521`
+
+## no connection to Android
+VPN connection may block incoming ssh request. Also remember that Termux uses `8022` port.
