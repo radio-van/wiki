@@ -103,13 +103,18 @@
     ```bash
     curl https://api.audd.io/ -F url='https://some/mp3/file.mp3' -F return='apple_music,spotify' -F api_token='test'
     ```
-* file exchange (aka AirDrop) [sharedrop.io](https://sharedrop.io)
+* file exchange (aka AirDrop) [sharedrop.io](https://sharedrop.io) and [pairdrop.net](https://pairdrop.net)
 * file exchange (aka Dropbox) [temp.sh](https://temp.sh) (file expires after 3 days)
     ```bash
     curl -T <file> temp.sh
     ```
 * encoding converter [0xcc.net](http://0xcc.net/jsescape/)
 * search engine [yacy](yacy.net)
+* location name by coordinates:
+    ```bash
+    curl 'https://nominatim.openstreetmap.org/reverse?lat=<LAT>&lon=<LON>&format=json'
+    ```
+    current LON and LAT can be obtained with **geoclue**: `/usr/lib/geoclue-2.0/demos/where-am-i`
 
 # Utilities
   * [adb](utilities/adb.md)
