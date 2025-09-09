@@ -161,6 +161,8 @@ with audio (mic):
 `ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 -f <AUDIO (see above)> -strict experimental <output>`
 for high-load:
 `ffmpeg -video_size 2560x1440 -f x11grab -i :0.0 -f pulse -i 23430 -c:v libx264rgb -crf 0 -color_range 2 -preset ultrafast -threads 4 -rtbufsize 702000k <out>`
+screenshot:
+`ffmpeg -ss 01:23:45 -i input -frames:v 1 -q:v 2 output.jpg`
 
 ## reverse
 `ffmpeg -i <input> -vf reverse <output`

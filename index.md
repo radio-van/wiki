@@ -178,6 +178,7 @@
   * [wget](utilities/wget.md)
   * [wireguard](utilities/wireguard.md)
   * [yc](utilities/yc.md)
+  * [yt-dlp](utilities/yt-dlp.md)
   * [zip](utilities/zip.md)
 
 
