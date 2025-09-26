@@ -37,6 +37,7 @@
     - [expansion](#expansion)
         - [cut N symbols](#cut-n-symbols)
         - [cut pattern aka substitution](#cut-pattern-aka-substitution)
+        - [default value](#default-value)
         - [numeric range](#numeric-range)
         - [capitalization](#capitalization)
 - [usage](#usage)
@@ -336,6 +337,10 @@ e.g.
 `echo "${var#*or}` results `ange`
 `echo "${var#*}` results `apple orange` (because of minimal pattern)
 `echo "${var##*}` results ` ` (because of maximum pattern)
+
+### default value
+* `FOO="${VARIABLE:-default_value}"`: `FOO` is assigned to `default_value`, `VARIABLE` remains unset or null if so
+* `FOO="${VARIABLE:=default_value}"`: `FOO` and `VARIABLE` will be assigned to `default_value` if `VARIABLE` was null or unset
 
 ### numeric range
 * `ls 201{1..5}*` will list files beginning from `2011` to `2015`
