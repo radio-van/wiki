@@ -1,6 +1,7 @@
 # Contents
 
 - [filesystem](#filesystem)
+- [adb](#adb)
 - [apps](#apps)
     - [permissions](#permissions)
 - [bootloader](#bootloader)
@@ -26,6 +27,12 @@
 - `/vendor` system data, specific for particular Android firmware, also like `/usr` in Linux
 - `/sdcard` aka *external storage*, place for user data, like `/home` in Linux. Can be accessed by any app (with permission) or PC via USB. Real mountpoint is `/data/media/0`, also can be accessed at `/storage/emulated/0`
 - `/sdcard/Android/data/com.<app>` storage for app's big data. Can be accessed w/o permission by any app. App's uninstallation *does not* clear this dir.
+
+
+# adb
+Auth (pub) keys on device: `/data/misc/adb/adb_keys` (requires root)
+Auth (private) keys on host: `.android/adbkey`
+
 
 # apps
 ## permissions
