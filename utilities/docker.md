@@ -14,6 +14,8 @@
     - [removing container](#removing-container)
     - [stop all containers](#stop-all-containers)
     - [rm all containers](#rm-all-containers)
+- [Networks](#networks)
+    - [workaround existing endpoint](#workaround-existing-endpoint)
 - [Installation](#installation)
     - [Debian](#debian)
 - [Managing](#managing)
@@ -126,6 +128,16 @@ app:
 `docker stop $(docker ps -a -q)`
 ## rm all containers
 `docker rm $(docker ps -a -q)`
+
+
+# Networks
+
+## workaround existing endpoint
+Caused by attached container that doesn't exists.
+
+* check `docker network inspect --format '{{range $cid,$v := .Containers}}{{printf "%s: %s\n" $cid $v.Name}}{{end}}' "<network>"`
+to find out problematic container
+* `docker disconnect -f <network> <container>`
 
 
 # Installation

@@ -20,7 +20,6 @@
         - [show merged/unmerged branches](#show-mergedunmerged-branches)
         - [delete local branch](#delete-local-branch)
         - [delete remote branch](#delete-remote-branch)
-        - [delete file from all commits history](#delete-file-from-all-commits-history)
         - [rename branch](#rename-branch)
         - [rename remote branch](#rename-remote-branch)
         - [set upstream](#set-upstream)
@@ -252,9 +251,6 @@ add `-r` to show remote branches
 `git push origin --delete $remote_branch`
 also `git fetch --prune` to update local index after deleting on remote
 
-### delete file from all commits history
-`git filter-branch --tree-filter "rm -f <file>" -- --all`
-
 ### rename branch
 `git branch -m <oldname> <newname>`   
 
@@ -311,6 +307,7 @@ to remove:
 ### search for string in whole git history
 * for commit message `git log -S <string>`
 * for line in file `git grep 'git@' $(git rev-list --all)`
+* commit hashes with pattern `git log --all --grep="<string>" --format="%H"`
 
 ### squash commits
 - `git reset --hard <initial commit>` resets work dir to state of choosen commit
@@ -421,6 +418,18 @@ unstage file aka undo `git add`
 ### remove file from entire git history
 **WARNING**: it's dangerous and performance-cost operation. All commits will be changed.  
 `git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <path_to_file>" HEAD`
+
+OR 
+
+```
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch <your-file>" \
+  --prune-empty --tag-name-filter cat -- --all
+```
+
+if there is an error about backup rewrite, use:
+`git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d`
+
 
 ### restore deleted file
 `git restore <file>`
@@ -560,4 +569,3 @@ add `GIT_TRACE=1` before command
 * `git remote prune <remote name>` remove local branches if they are removed on remote
 
 In case of **object corrupt or missing** first of all `git fsck --full` can be used
-
