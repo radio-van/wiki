@@ -17,6 +17,7 @@
     - [bootloader with slots](#bootloader-with-slots)
     - [Galaxy 4](#galaxy-4)
 - [Turn off location indicator](#turn-off-location-indicator)
+- [Fix lost SIM signal](#fix-lost-sim-signal)
 
 # filesystem
 - `/data` r/w data (configs, apps, userdata), wipes on reset
@@ -149,3 +150,12 @@ adb push twrp-installer-.zip /sdcard
 # Turn off location indicator
 in **adb shell**:
 `cmd device_config put privacy location_indicators_enabled false default`
+
+
+# Fix lost SIM signal
+Happens on Sony with /e/ OS
+
+- switch to 3G w/o mob data
+- power off
+- wait
+- power on

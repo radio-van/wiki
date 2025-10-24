@@ -5,6 +5,7 @@
 - [troubleshooting](#troubleshooting)
     - [no host internet conection](#no-host-internet-conection)
     - [ESPHome can not find device](#esphome-can-not-find-device)
+    - [reset password](#reset-password)
 - [Recepies](#recepies)
     - [Tion error notification](#tion-error-notification)
 
@@ -38,6 +39,10 @@ domain:
   esphome:
 ```
 and "real" ones (from routers)
+
+## reset password
+from local console:
+`auth reset --username 'existing_user' --password 'new_password'`
 
 
 # Recepies

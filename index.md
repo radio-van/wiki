@@ -146,6 +146,7 @@
   * [gnupg](utilities/gnupg.md) 
   * [imagemagick](utilities/imagemagick.md) 
   * [iptables](utilities/iptables.md) 
+  * [immich](utilities/immich.md) 
   * [ledger](utilities/ledger.md)
   * [luks](utilities/luks.md)
   * [lvm](utilities/lvm.md)
