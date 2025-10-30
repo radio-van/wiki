@@ -9,6 +9,7 @@
     - [edit deployment](#edit-deployment)
     - [restart deployment and its pods](#restart-deployment-and-its-pods)
     - [delete deployment](#delete-deployment)
+    - [scale](#scale)
 - [secrets](#secrets)
     - [edit secrets](#edit-secrets)
     - [secret from file](#secret-from-file)
@@ -77,6 +78,9 @@ to be able to connect to pod (instead it will fall into recreating loop)
 ## delete deployment
 To prevent pod from recreating the deployment must be deleted  
 `kubectl -n <namespace> delete deploy <deploy_name>`
+
+## scale
+` kubectl -n ... scale --replicas=N deployments/...`
 
 
 # secrets
