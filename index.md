@@ -92,6 +92,7 @@
 
 # Packages
   * [Home-Assistant](packages/home-assistant.md)
+  * [Jellyfin](packages/jellyfin.md)
   * [Nextcloud](packages/nextcloud.md)
   * [Retropie](packages/retropie.md)
 
