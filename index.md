@@ -117,7 +117,7 @@
     curl 'https://nominatim.openstreetmap.org/reverse?lat=<LAT>&lon=<LON>&format=json'
     ```
     current LON and LAT can be obtained with **geoclue**: `/usr/lib/geoclue-2.0/demos/where-am-i`
-* [check IP with geo](https://ipinfo.io)
+* check IP with geo `curl https://ipinfo.io`
 
 
 # Utilities
