@@ -94,6 +94,7 @@
   * [Home-Assistant](packages/home-assistant.md)
   * [Jellyfin](packages/jellyfin.md)
   * [Nextcloud](packages/nextcloud.md)
+  * [Nginx proxy manager](packages/nginx-proxy-manager.md)
   * [Retropie](packages/retropie.md)
 
 # Protocols
