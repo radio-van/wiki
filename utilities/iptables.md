@@ -1,15 +1,16 @@
 # Contents
 
 - [configuration](#configuration)
-- [add rule](#add rule)
-- [list rules](#list rules)
-- [delete rule](#delete rule)
-- [flush rules](#flush rules)
+- [add rule](#add-rule)
+- [list rules](#list-rules)
+- [delete rule](#delete-rule)
+- [flush rules](#flush-rules)
 - [recepies](#recepies)
-    - [open port](#recepies#open port)
-    - [port forwarding](#recepies#port forwarding)
-    - [trafic forwarding](#recepies#trafic forwarding)
-    - [basic routing between eth0 and wlan0](#recepies#basic routing between eth0 and wlan0)
+    - [open port](#open-port)
+    - [port forwarding](#port-forwarding)
+    - [trafic forwarding](#trafic-forwarding)
+    - [basic routing between eth0 and wlan0](#basic-routing-between-eth0-and-wlan0)
+    - [allow trafic between particular WG clients](#allow-trafic-between-particular-wg-clients)
 
 # configuration
 * save rules `iptables-save > /etc/iptables/iptables.rules`
@@ -66,3 +67,21 @@ w/ NAT
 `--state RELATED,ESTABLISHED` allows packet for already established connection.  
 e.g. if firewall rejects any incoming connections, it will reject response from remote webserver, othervise it is  
 allowed as ESTABLISHED connection from allowed outcoming request from the host.
+
+
+## allow trafic between particular WG clients
+```bash
+# allow trafffic to outside
+iptables -t nat -A POSTROUTING -s {{WG NET}} -o {{WAN}} -j MASQUERADE;
+# allow incoming traffic to WG
+iptables -A INPUT -p udp -m udp --dport {{WG PORT}} -j ACCEPT;
+
+# allow traffic from and to particular client
+iptables -A FORWARD -i wg0 -o wg0 -s <client IP> -j ACCEPT;
+iptables -A FORWARD -i wg0 -o wg0 -d <client IP> -j ACCEPT;
+# forbit other client-to-client communication
+iptables -A FORWARD -i wg0 -o wg0 -j DROP;
+# allow traffic to and from WG interface
+iptables -A FORWARD -i wg0 -j ACCEPT;
+iptables -A FORWARD -o wg0 -j ACCEPT;
+```
