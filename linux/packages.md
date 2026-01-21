@@ -14,6 +14,7 @@
     - [upgrade](#upgrade)
     - [delete orphans](#delete-orphans)
     - [delete cache](#delete-cache)
+    - [use aria2 for download](#use-aria2-for-download)
     - [AUR packages](#aur-packages)
 - [Flatpak](#flatpak)
     - [cleanup](#cleanup)
@@ -92,6 +93,11 @@ to prevent further updates
 ## delete cache
 use `paccache` package.  
 * `paccache -rk 1` for keeping only 1 package version (default 3)
+
+## use aria2 for download
+`pacman -Sp [package] | sudo aria2c -d /var/cache/pacman/pkg/ -i -`
+or in config:
+`XferCommand = /usr/bin/aria2c --allow-overwrite=true --continue=true --file-allocation=none --log-level=error --max-tries=2 --max-connection-per-server=2 --max-file-not-found=5 --min-split-size=5M --no-conf --remote-time=true --summary-interval=60 --timeout=5 --dir=/ --out %o %u`
 
 ## AUR packages
 requires `base-devel`, `git`  

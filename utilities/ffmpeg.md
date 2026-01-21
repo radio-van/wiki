@@ -34,6 +34,7 @@
         - [via metadata](#via-metadata)
         - [transpose](#transpose)
     - [specifying start and end frames](#specifying-start-and-end-frames)
+    - [stabilize](#stabilize)
 - [filters](#filters)
     - [select](#select)
     - [segmented output](#segmented-output)
@@ -41,6 +42,9 @@
         - [audio](#audio)
         - [video](#video-2)
         - [together](#together)
+    - [watermark](#watermark)
+        - [image](#image)
+        - [text](#text)
 - [info](#info)
     - [bitrate](#bitrate)
     - [framerate](#framerate)
@@ -261,6 +265,13 @@ to transposed video and vice versa.
 - `-start_number` specifies what image to start at
 - `-vframes 1000` specifies the number frames/images in the video
 
+## stabilize
+- `ffmpeg -i input.mp4 -vf vidstabdetect=shakiness=7 -f null -`, where `shakiness` 1-10, default 5
+- `ffmpeg -i input.mp4 -vf vidstabtransform=smoothing=30:zoom=5:input="transforms.trf" stabilized.mp4`,
+  `smoothing` number of frames before/after, recommended `FPS/2`
+  `zoom` % of crop
+
+
 
 # filters
 ## select
@@ -304,6 +315,19 @@ add optical filter to add smooth
 
 ### together
 `ffmpeg -i <input> -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" -map "[v]" -map "[a]" <output>`
+
+
+## watermark
+
+### image
+`ffmpeg -i video.mp4 -i logo.png -filter_complex "[0:v][1:v]overlay=W-w-20:H-h-20" output.mp4`
+OR (with transparency)
+`ffmpeg -i video.mp4 -i logo.png \
+  -filter_complex "[1:v]format=rgba,colorchannelmixer=aa=0.5[logo];[0:v][logo]overlay=W-w-20:H-h-20" \
+  output.mp4`
+  
+### text
+`ffmpeg -i input.mp4 -vf "drawtext=text='© 2024 My Company':fontsize=24:fontcolor=white:x=w-text_w-20:y=h-text_h-20" output.mp4`
 
 # info
 ## bitrate
