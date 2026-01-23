@@ -100,6 +100,7 @@
 # Protocols
   * [DNS](protocols/DNS.md)
   * [email](protocols/email.md)
+  * [matrix](protocols/matrix.md)
 
 # Services
 * audio recognition (aka Shazam) [audd.io](https://audd.io)
