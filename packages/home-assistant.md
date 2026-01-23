@@ -8,6 +8,7 @@
     - [reset password](#reset-password)
 - [Recepies](#recepies)
     - [Tion error notification](#tion-error-notification)
+    - [Example](#example)
 
 # installation
 
@@ -87,3 +88,8 @@ mode: single
 ```
 
 > Если нужна фиксированная скорость при старте, то, например, в on_boot можно климат принудительно переключить в этот режим
+
+## Example
+```yaml
+6900_kitchen_last_changed: value_template: > {% set elapsed = (as_timestamp(states('sensor.date_time').replace(',','')) - as_timestamp(states.sensor['6900_kitchen_hvac_action'].last_changed| default(0)) | int ) %} {% set days = (elapsed / 86400) | int %} {% set hours= ((elapsed % 86400) / 3600) | int %} {% set mins = ((elapsed % 3600) / 60) | int %} {% set secs = elapsed | int % 60 %} {% if days > 0 %} {{days}}d {%if hours < 10 %}0{%endif%}{{hours}}:{%if mins< 10 %}0{%endif%}{{mins}} {% elif hours > 0 %} {% if hours < 10 %}0{%endif%}{{hours}}:{%if mins< 10 %}0{%endif%}{{mins}} {% elif mins > 0 %} {{mins}}m {% else %} {{secs}}s {% endif %}
+```

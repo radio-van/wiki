@@ -1,6 +1,7 @@
 # Contents
 
-- [Instructions Set Architecture](#Instructions Set Architecture)
+- [Instructions Set Architecture](#instructions-set-architecture)
+- [Cache](#cache)
 
 # Instructions Set Architecture
 * **CISC** has variable instruction length. Idea was to make long commands that can do a lot of stuff and therefore  
@@ -17,3 +18,8 @@
   decoders and implement *Out-of-order* instruction execution, when decoders decide which instructions  
   are independent and can be executed in parallel. On **CISC** instructions are too complex to be  
   decoded easily and efficiently.
+
+# Cache
+Кеш процессора - вынужденная мера, т.к. RAM "далеко". Раздувать единственный кеш тоже накладно, т.к. в случае ошибки его придется долго перезаписывать данными из RAM, поэтому кеш сделан многоуровневым и объем каждого уровня подобран для максимальной эффективности.
+Делать более трех уровней не имеет смысла, т.к. на 4м уровне скорость отклика примерно равна скорости RAM.
+Раздутый L3 у серии CPU X3D от Ryzen - вынужденная мера из-за неэффективности самих ядер. Прирост наблюдается только в играх, т.к. там данные непредсказуемые, в обычных же задачах компиляторы достаточно оптимизированы, чтобы избежать "промахов" кеша и потребности в большом L3 нет.

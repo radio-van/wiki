@@ -2,6 +2,7 @@
 
 - [terminology](#terminology)
 - [address](#address)
+- [headers](#headers)
 - [protocols](#protocols)
 - [systems](#systems)
 - [encryption](#encryption)
@@ -20,6 +21,12 @@
 - `@<domain>` is address of destination *MTA*
 - *MUA* attachs a header with sender's *MTA*
 - all intermediate *MTA* will add their own headers, they are omitted by *MUA*. Sender's address (aka FROM:) can be faked, but *MTA* headers can not
+
+# headers
+- From: mailbox of message author
+- Sender: mailbox of agent responsible for message transmission
+- Return-path: for diagnostics, should not be altered by sender
+- Reply-to: actual mailbox where reply will be delivered
 
 # protocols
 - `SMTP` *Simple Mail Transfer Protocol* is used to transfer mail between *MUA* / *MTA*. Port `25 / 587 / 465 (SSL)`
