@@ -4,14 +4,18 @@
 - [set bootloader options](#set-bootloader-options)
 - [keys](#keys)
     - [generate random key](#generate-random-key)
+    - [add key](#add-key)
     - [test key](#test-key)
-    - [keyfile on separate drive](#keyfile-on-separate-drive)
         - [keyfile between partitions](#keyfile-between-partitions)
         - [keyfile as a file](#keyfile-as-a-file)
     - [use TPM](#use-tpm)
     - [potentially useful stuff](#potentially-useful-stuff)
 - [LUKS container on remote host](#luks-container-on-remote-host)
 - [resize](#resize)
+- [LUKS header](#luks-header)
+    - [backup](#backup)
+    - [restore](#restore)
+    - [detached header](#detached-header)
 
 Tool for creating encrypted partitions.  
 
@@ -26,17 +30,17 @@ Tool for creating encrypted partitions.
        `<device-UUID>` can be checked with `lsblk -dno UUID /dev/sdaX`  
        if [keyfile](#keyfile-on-separate-drive) is used, add it to **boot options**
 # keys
+`keyfile` can be random file, passphrase, binary
+
 ## generate random key
 * `dd if=/dev/urandom of=<keyfile> bs=512 count=8`
 * `tr -dc A-Za-z0-9 </dev/urandom | head -c 64 ; echo ''`
 
+## add key
+`cryptsetup luksAddKey <device> </path/to/keyfile>`
+
 ## test key
 `cryptsetup luksOpen --test-passphrase --key-slot N /dev/<dev> && echo correct`
-
-## keyfile on separate drive
-`keyfile` can be random file, passphrase, binary
-
-`cryptsetup luksAddKey <device> <keyfile>` allow to decrypt partition with a given **keyfile**
 
 ### keyfile between partitions
 `dd if=<keyfile> of=/dev/<device> bs=1 seek=X count=Y`  
@@ -97,3 +101,25 @@ Manual decryption: `clevis luks unlock -d /dev/sdX -n MAPPER`
 
 # resize
 `cryptsetup resize <crypt>`
+
+
+# LUKS header
+
+## backup
+`sudo cryptsetup luksHeaderBackup /dev/sdb --header-backup-file sdbheaderbackup.img`
+
+## restore
+`sudo cryptsetup luksHeaderRestore /dev/sdb --header-backup-file sdbheaderbackup.img`
+
+## detached header
+* create `sudo cryptsetup luksFormat /dev/sdX --header luksheader.img`
+* open `sudo cryptsetup luksOpen /dev/sdX <MAPPER NAME> --header=luksheader.img`
+* auto-open:
+    * if header is a separate device
+      ``` /etc/crypttab
+      MAPPER_NAME /dev/sdX none luks,header=/dev/sdY
+      ```
+    * if header is a file
+      ``` /etc/crypttab
+      MAPPER_NAME /dev/sdX none luks,header=/path/to/header.img:/dev/sdY
+      ```
