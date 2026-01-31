@@ -29,6 +29,8 @@
     - [recommendations](#recommendations)
     - [rename pool](#rename-pool)
     - [encrypt unencrypted pool](#encrypt-unencrypted-pool)
+- [Automount](#automount)
+    - [using zfs-mount-generator](#using-zfs-mount-generator)
 - [tmpfs](#tmpfs)
     - [increase size](#increase-size)
 - [dd](#dd)
@@ -228,6 +230,18 @@ pool  encryption   aes-256-gcm  -
 pool  keyformat    (whatever)   -
 pool  keylocation  (whatever)   local
 ```
+
+
+# Automount
+
+## using zfs-mount-generator
+* `mkdir -p /etc/zfs/zfs-list.cache`
+* `systemctl enable zfs.target`
+* `systemctl enable --now zfs-zed.service`
+* `touch /etc/zfs/zfs-list.cache/<pool name>`
+* `zfs set canmount=off <pool name>`
+* check that `/etc/zfs/zfs-list.cache/<pool name>` is updated
+* `zfs set canmount=on <pool name>`
 
 
 # tmpfs
