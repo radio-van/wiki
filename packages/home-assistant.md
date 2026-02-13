@@ -93,3 +93,24 @@ mode: single
 ```yaml
 6900_kitchen_last_changed: value_template: > {% set elapsed = (as_timestamp(states('sensor.date_time').replace(',','')) - as_timestamp(states.sensor['6900_kitchen_hvac_action'].last_changed| default(0)) | int ) %} {% set days = (elapsed / 86400) | int %} {% set hours= ((elapsed % 86400) / 3600) | int %} {% set mins = ((elapsed % 3600) / 60) | int %} {% set secs = elapsed | int % 60 %} {% if days > 0 %} {{days}}d {%if hours < 10 %}0{%endif%}{{hours}}:{%if mins< 10 %}0{%endif%}{{mins}} {% elif hours > 0 %} {% if hours < 10 %}0{%endif%}{{hours}}:{%if mins< 10 %}0{%endif%}{{mins}} {% elif mins > 0 %} {{mins}}m {% else %} {{secs}}s {% endif %}
 ```
+
+### tuon problem detection
+```yaml
+binary_sensor:
+  ## Informs about state receiving problem from the breezer.
+  - platform: tion
+    id: tion_state_problem
+    type: state
+    name: State Problem
+  ## Filter warning state.
+  - platform: tion
+    id: tion_filter_worn_out
+    type: filter
+    name: Filter Worn Out
+  - platform: template
+    device_class: CONNECTIVITY
+    id: breezer_state
+    name: "Tion_4s State"
+    lambda: |-
+      return millis() - id(uptime_sec) < 300 * 1000;
+```
