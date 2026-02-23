@@ -73,6 +73,9 @@ Docker image size could be reduced with `DockerSlim` utility
 ## transfer images
 * `docker save <image> > <image_file>.tar`
 * `docker load < <image_file>.tar>`
+OR
+`docker save <image> | ssh -C <host> docker load`
+
 
 ## ONBUILD
 `ONBUILD <command>` allows to run `<command>` during building _another_ image based on this one
