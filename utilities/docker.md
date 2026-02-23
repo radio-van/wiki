@@ -14,6 +14,7 @@
     - [removing container](#removing-container)
     - [stop all containers](#stop-all-containers)
     - [rm all containers](#rm-all-containers)
+    - [find which container hold process](#find-which-container-hold-process)
 - [Networks](#networks)
     - [workaround existing endpoint](#workaround-existing-endpoint)
 - [Installation](#installation)
@@ -131,6 +132,9 @@ app:
 `docker stop $(docker ps -a -q)`
 ## rm all containers
 `docker rm $(docker ps -a -q)`
+
+## find which container hold process
+`cat /proc/<PID>/cgroup` gives docker container hash
 
 
 # Networks
