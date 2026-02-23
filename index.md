@@ -91,6 +91,7 @@
   * [tips&tricks](windows/tips_tricks.md)
 
 # Packages
+  * [Caddy](packages/caddy.md)
   * [Home-Assistant](packages/home-assistant.md)
   * [Jellyfin](packages/jellyfin.md)
   * [Nextcloud](packages/nextcloud.md)
