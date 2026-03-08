@@ -43,6 +43,7 @@
     - [priority of route](#priority-of-route)
     - [QR code for WIFI](#qr-code-for-wifi)
     - [connect 2 PC over ethernet cable](#connect-2-pc-over-ethernet-cable)
+    - [get certificate details](#get-certificate-details)
 
 # interfaces
 
@@ -376,3 +377,8 @@ will force to lookup specific table first, if `N` is lower than others, can be c
 * *DISABLE* any network manager
 * `ip addr add 192.168.1.X/30 dev eno1`
 * `ip r add 192.168.1.Y dev eno1`
+
+## get certificate details
+```
+echo | openssl s_client -showcerts -servername <site> -connect <site>:443 2>/dev/null | openssl x509 -inform pem -noout -text
+```
