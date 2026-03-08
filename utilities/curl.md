@@ -12,6 +12,7 @@
     - [post photo to Telegram](#post-photo-to-telegram)
     - [post video to Telegram](#post-video-to-telegram)
     - [post video note aka circle to Telegram](#post-video-note-aka-circle-to-telegram)
+    - [resolve host to particular IP](#resolve-host-to-particular-ip)
 
 # usage
 ## auth
@@ -66,3 +67,6 @@ json:
 curl -X POST "https://api.telegram.org/bot<bot_token>" -F video_note=@<path_to_video> -F chat_id=<chat_id>
 ```
 **NOTE** video must be 640x640
+
+## resolve host to particular IP
+`curl --resolve <hostname>:<port>:<ip> <request>`
