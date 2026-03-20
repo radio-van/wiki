@@ -13,6 +13,7 @@
         - [systemd](#systemd)
         - [netctl](#netctl)
     - [routes](#routes)
+        - [redirect all trafic](#redirect-all-trafic)
     - [firewall](#firewall)
     - [DNS resolving](#dns-resolving)
     - [DHCP server](#dhcp-server)
@@ -141,6 +142,12 @@ Automatic networks can be listed with `netctl-auto list` and manually switched w
 ## routes
 * add gateway `ip route add <gateway IP> dev <interface>`
 * add route `ip route add <IP>/<mask> via <gateway> dev <interface>`
+
+### redirect all trafic
+```
+ip route add default via <new gateway> table N
+ip rule add from <ip> lookup N
+```
 
 ## firewall
 
