@@ -160,6 +160,7 @@
   * [keynav](utilities/keynav.md) 
   * [kubernetes](utilities/kubernetes.md) 
   * [mitm](utilities/mitm.md) 
+  * [mosquitto](utilities/mosquitto.md) 
   * [mopidy](utilities/mopidy.md) 
   * [mpv](utilities/mpv.md) 
   * [mutt](utilities/mutt.md) 
