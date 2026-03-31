@@ -64,7 +64,7 @@ json:
 
 ## post video note aka circle to Telegram
 ```
-curl -X POST "https://api.telegram.org/bot<bot_token>" -F video_note=@<path_to_video> -F chat_id=<chat_id>
+curl -X POST "https://api.telegram.org/bot<bot_token>/sendVideoNote" -F video_note=@<path_to_video> -F chat_id=<chat_id>
 ```
 **NOTE** video must be 640x640
 
