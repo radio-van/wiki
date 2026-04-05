@@ -45,6 +45,7 @@
     - [watermark](#watermark)
         - [image](#image)
         - [text](#text)
+        - [rectangle](#rectangle)
 - [info](#info)
     - [bitrate](#bitrate)
     - [framerate](#framerate)
@@ -328,6 +329,10 @@ OR (with transparency)
   
 ### text
 `ffmpeg -i input.mp4 -vf "drawtext=text='© 2024 My Company':fontsize=24:fontcolor=white:x=w-text_w-20:y=h-text_h-20" output.mp4`
+
+### rectangle
+`ffmpeg -i <input> -vf "drawbox=x=0:y=385:w=iw:h=385:color=red@0.5:t=fill" <output>`
+
 
 # info
 ## bitrate
