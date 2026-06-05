@@ -3,6 +3,7 @@
 - [Pacman](#pacman)
     - [init](#init)
     - [conflicts on sysupgrade](#conflicts-on-sysupgrade)
+    - [keys troubles](#keys-troubles)
     - [mirrorlist](#mirrorlist)
         - [get shortlist by country](#get-shortlist-by-country)
     - [corrupted packages](#corrupted-packages)
@@ -42,6 +43,10 @@
   if it is another package, then it is a bug
 * force overwrite file `pacman -S <package> --overwrite <filepath>`
 
+## keys troubles
+On `Server indicated a failure`:
+* `pacman-key --lsign-key <missing key>`
+* `pacman-key --keyserver hkp://keys.gnupg.net --refresh-keys`
 
 ## mirrorlist
 
