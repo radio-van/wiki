@@ -99,6 +99,7 @@ Codecs are determined by `-c` argument
     - `veryslow` - smaller file
     - `veryfast` - faster conversion
 - `-crf <number>` lower `<number>` means better quality, 15-25 is usually good
+  0-51, 23 for H264, 28 for H265
 
 # output
 - `-pix_fmt yuv420p <output>` sets pixel format of the output
