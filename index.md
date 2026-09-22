@@ -108,6 +108,7 @@
     ```bash
     curl https://api.audd.io/ -F url='https://some/mp3/file.mp3' -F return='apple_music,spotify' -F api_token='test'
     ```
+* [calendar](https://ovodov.me/trud.ics)
 * file exchange (aka AirDrop) [sharedrop.io](https://sharedrop.io) and [pairdrop.net](https://pairdrop.net)
 * file exchange (aka Dropbox) [temp.sh](https://temp.sh) (file expires after 3 days)
     ```bash
